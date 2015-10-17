@@ -1,0 +1,10 @@
+package io.pivotal.bds.gemfire.drools.rules
+
+rule "Test"
+
+    when
+    
+    then
+        System.out.println("Whatever");
+
+end

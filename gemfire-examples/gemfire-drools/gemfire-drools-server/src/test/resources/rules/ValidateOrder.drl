@@ -1,0 +1,86 @@
+package io.pivotal.bds.gemfire.drools.ecom;
+
+import org.slf4j.Logger;
+import com.gemstone.gemfire.cache.Region;
+
+import io.pivotal.bds.gemfire.drools.server.data.RuleExecutionResult;
+
+import io.pivotal.bds.gemfire.data.ecom.Order;
+import io.pivotal.bds.gemfire.data.ecom.OrderKey;
+import io.pivotal.bds.gemfire.data.ecom.Account;
+import io.pivotal.bds.gemfire.data.ecom.AccountKey;
+import io.pivotal.bds.gemfire.data.ecom.AccountStatus;
+
+global com.gemstone.gemfire.cache.Region orderRegion;
+global com.gemstone.gemfire.cache.Region accountRegion;
+global org.slf4j.Logger log;
+
+rule "RetrieveOrder"
+
+    salience 1
+    dialect "java" 
+
+    when
+        key: OrderKey()
+    then
+        log.info("getting order for key {}", key);
+        Order order = (Order)orderRegion.get(key);
+        log.info("got order {}", order);
+        insert(order);
+end
+
+rule "CheckOrderExistence"
+
+    salience 2
+    dialect "java" 
+
+    when
+        result: RuleExecutionResult()
+        key: OrderKey()
+        not order: Order()
+    then
+        log.error("order not found: {}", key.getId());
+        result.getErrors().add("Order "+key.getId() + " does not exist");
+end
+
+rule "RetrieveAccount"
+
+    salience 3
+    dialect "java"
+    
+    when
+        order: Order() 
+    then
+        log.info("getting account for order "+order);
+        AccountKey ak = order.getAccountKey();
+        Account acct = (Account)accountRegion.get(ak);
+        log.info("acct="+acct);
+        insert(acct);
+end
+
+rule "CheckAccountExistence"
+
+    salience 4
+    dialect "java"
+    
+    when
+        result: RuleExecutionResult()
+        key: AccountKey()
+        not acct: Account() 
+    then
+        log.error("acct not found: "+key.getId());
+        result.getErrors().add("Account "+key.getId() + " does not exist");
+end
+
+rule "VerifyAccount"
+
+    salience 5
+    dialect "java" 
+    
+    when
+        result: RuleExecutionResult()
+        acct: Account(status != AccountStatus.ACTIVE)
+	then
+	    log.error("acct not active: "+acct);
+	    result.getErrors().add("Account "+acct.getKey().getId() + " is not active");
+end

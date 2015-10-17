@@ -1,0 +1,37 @@
+[
+    {
+        "name": "java.lang:type=MemoryPool,name=Par Eden Space",
+        "attributes": 
+        [
+            "CollectionUsage",
+            "PeakUsage",
+            "Usage"
+        ]
+    },
+    {
+        "name": "java.lang:type=MemoryPool,name=CMS Old Gen",
+        "attributes": 
+        [
+            "CollectionUsage",
+            "PeakUsage",
+            "Usage"
+        ]
+    },
+    {
+        "name": "java.lang:type=MemoryPool,name=Par Survivor Space",
+        "attributes": 
+        [
+            "CollectionUsage",
+            "PeakUsage",
+            "Usage"
+        ]
+    },
+    {
+        "name": "java.lang:type=Memory",
+        "attributes": 
+        [
+            "HeapMemoryUsage",
+            "NonHeapMemoryUsage"
+        ]
+    }
+]

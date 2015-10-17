@@ -1,0 +1,22 @@
+{
+    "namespace": "io.pivotal.bds.gemfire",
+    "type": "record",
+    "name": "Entity",
+    "fields": 
+    [
+        {
+            "name": "id",
+            "type": "string"
+        },
+
+        {
+            "name": "ts",
+            "type": "long"
+        },
+
+        {
+            "name": "desc",
+            "type": "string"
+        }
+    ]
+}

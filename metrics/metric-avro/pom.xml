@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>io.pivotal.bds.metrics</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+		<artifactId>metrics</artifactId>
+	</parent>
+	
+	<artifactId>metric-avro</artifactId>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro-maven-plugin</artifactId>
+				<version>1.7.7</version>
+				<configuration>
+					<sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
+					<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.parquet</groupId>
+			<artifactId>parquet-avro</artifactId>
+		</dependency>
+	</dependencies>
+	
+</project>
