@@ -1,37 +1,30 @@
 package io.pivotal.bds.gemfire.script.function;
 
-import java.util.Set;
-
 import javax.script.Bindings;
 import javax.script.ScriptEngine;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.StringUtils;
 
-import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.execute.Function;
 import com.gemstone.gemfire.cache.execute.FunctionContext;
 import com.gemstone.gemfire.cache.execute.FunctionException;
-import com.gemstone.gemfire.cache.execute.RegionFunctionContext;
 import com.gemstone.gemfire.cache.execute.ResultSender;
 
-import io.pivotal.bds.gemfire.script.data.ExecutionData;
-import io.pivotal.bds.metrics.timer.Timer;
+public class ScriptExecutionFunction implements Function, ApplicationContextAware {
 
-public class ScriptExecutionFunction implements Function {
-
-    private Region<String, String> scriptRegion;
     private ScriptEngine engine;
-
-    private final Timer timer = new Timer("ScriptExecutionFunction");
+    private ApplicationContext applicationContext;
 
     private static final Logger LOG = LoggerFactory.getLogger(ScriptExecutionFunction.class);
 
     private static final long serialVersionUID = 1L;
 
-    public ScriptExecutionFunction(Region<String, String> scriptRegion, ScriptEngine engine) {
-        this.scriptRegion = scriptRegion;
+    public ScriptExecutionFunction(ScriptEngine engine) {
         this.engine = engine;
     }
 
@@ -40,31 +33,20 @@ public class ScriptExecutionFunction implements Function {
         LOG.info("execute");
 
         try {
-            RegionFunctionContext rctx = (RegionFunctionContext) context;
-            ResultSender<Object> sender = rctx.getResultSender();
+            ResultSender<Object> sender = context.getResultSender();
 
-            ExecutionData data = (ExecutionData) context.getArguments();
+            String script = (String) context.getArguments();
 
-            String scriptName = data.getScriptName();
-            Object args = data.getArguments();
-            Set<?> filter = rctx.getFilter();
-
-            LOG.info("execute: scriptName={}, args={}, filter={}", scriptName, args, filter);
-
-            String script = scriptRegion.get(scriptName);
+            LOG.info("execute: script={}", script);
 
             if (!StringUtils.hasText(script)) {
-                throw new FunctionException("Script " + scriptName + " not found");
+                throw new FunctionException("Script is empty or null");
             }
 
             Bindings bindings = engine.createBindings();
+            bindings.put("context", applicationContext);
 
-            bindings.put("args", args);
-            bindings.put("filter", filter);
-
-            timer.start();
             Object ret = engine.eval(script, bindings);
-            timer.end();
 
             sender.lastResult(ret);
         } catch (FunctionException x) {
@@ -96,4 +78,9 @@ public class ScriptExecutionFunction implements Function {
         return true;
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        LOG.info("setApplicationContext");
+        this.applicationContext = applicationContext;
+    }
 }

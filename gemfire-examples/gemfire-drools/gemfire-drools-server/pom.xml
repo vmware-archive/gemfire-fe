@@ -40,10 +40,6 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.kie</groupId>
-			<artifactId>kie-api</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.gemstone.gemfire</groupId>
 			<artifactId>gemfire</artifactId>
 		</dependency>
@@ -57,10 +53,6 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>org.drools</groupId>
-			<artifactId>drools-compiler</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>io.pivotal.bds.metrics</groupId>
 			<artifactId>metric-timer</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -68,11 +60,6 @@
 		<dependency>
 			<groupId>io.pivotal.bds.gemfire</groupId>
 			<artifactId>gemfire-data</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>io.pivotal.bds.gemfire</groupId>
-			<artifactId>gemfire-keyfw</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

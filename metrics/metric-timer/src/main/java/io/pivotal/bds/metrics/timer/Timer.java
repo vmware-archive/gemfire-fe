@@ -66,14 +66,14 @@ public class Timer {
     }
 
     public void end() {
-        Long e = th.get();
+        Long s = th.get();
         th.remove();
 
-        if (e == null) {
+        if (s == null) {
             this.log.warn("start not called in this thread");
         } else {
-            long t = System.currentTimeMillis();
-            long d = t - e;
+            long e = System.currentTimeMillis();
+            long d = e - s;
 
             queue.offer(d);
         }

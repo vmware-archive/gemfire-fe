@@ -3,7 +3,7 @@ package io.pivotal.bds.gemfire.drools.ecom;
 import org.slf4j.Logger;
 import com.gemstone.gemfire.cache.Region;
 
-import io.pivotal.bds.gemfire.drools.server.data.RuleExecutionResult;
+import io.pivotal.bds.gemfire.drools.common.RuleExecutionResult;
 
 import io.pivotal.bds.gemfire.data.ecom.Order;
 import io.pivotal.bds.gemfire.data.ecom.OrderKey;

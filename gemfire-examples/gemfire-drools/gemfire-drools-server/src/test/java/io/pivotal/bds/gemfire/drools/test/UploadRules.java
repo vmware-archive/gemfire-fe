@@ -11,8 +11,8 @@ import com.gemstone.gemfire.cache.client.ClientCacheFactory;
 import com.gemstone.gemfire.cache.client.ClientRegionFactory;
 import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
 
-import io.pivotal.bds.gemfire.drools.server.data.Rule;
-import io.pivotal.bds.gemfire.drools.server.data.RuleKey;
+import io.pivotal.bds.gemfire.drools.common.Rule;
+import io.pivotal.bds.gemfire.drools.common.RuleKey;
 
 public class UploadRules {
 

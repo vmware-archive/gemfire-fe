@@ -15,7 +15,7 @@ import com.gemstone.gemfire.cache.execute.FunctionService;
 import com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer;
 
 import io.pivotal.bds.gemfire.data.ecom.OrderKey;
-import io.pivotal.bds.gemfire.drools.server.data.RuleExecutionContext;
+import io.pivotal.bds.gemfire.drools.common.RuleExecutionContext;
 
 public class ExecuteRules {
 

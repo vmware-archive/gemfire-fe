@@ -3,6 +3,7 @@ package io.pivotal.bds.gemfire.drools.server.function;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.kie.api.KieServices;
@@ -22,8 +23,8 @@ import com.gemstone.gemfire.cache.execute.FunctionException;
 import com.gemstone.gemfire.cache.execute.RegionFunctionContext;
 import com.gemstone.gemfire.cache.execute.ResultSender;
 
-import io.pivotal.bds.gemfire.drools.server.data.RuleExecutionContext;
-import io.pivotal.bds.gemfire.drools.server.data.RuleExecutionResult;
+import io.pivotal.bds.gemfire.drools.common.RuleExecutionContext;
+import io.pivotal.bds.gemfire.drools.common.RuleExecutionResult;
 import io.pivotal.bds.gemfire.drools.server.util.ApplicationContextGlobals;
 import io.pivotal.bds.metrics.timer.Timer;
 
@@ -31,7 +32,7 @@ public class StatelessRuleExecutionFunction implements Function, ApplicationCont
 
     private ApplicationContext context;
     private KieServices services;
-    private Timer timer = new Timer("StatelessRuleExecutionFunction");
+    private Timer timer = new Timer(StatelessRuleExecutionFunction.class.getName());
 
     private static final Logger LOG = LoggerFactory.getLogger(StatelessRuleExecutionFunction.class);
 
@@ -43,54 +44,73 @@ public class StatelessRuleExecutionFunction implements Function, ApplicationCont
 
     @Override
     public void execute(FunctionContext context) {
-        LOG.info("execute");
-
         try {
             ResultSender<RuleExecutionResult> sender = context.getResultSender();
             RuleExecutionContext rec = (RuleExecutionContext) context.getArguments();
-            RegionFunctionContext rctx = (RegionFunctionContext) context;
 
             ReleaseId relId = rec.getReleaseId();
             Object args = rec.getArguments();
-            LOG.info("execute: args={}", args);
+            Set<?> filter = null;
 
-            Set<?> filter = rctx.getFilter();
+            if (context instanceof RegionFunctionContext) {
+                RegionFunctionContext rctx = (RegionFunctionContext) context;
+                filter = rctx.getFilter();
+            }
+
+            LOG.debug("execute: relId={}, args={}, filter={}", relId, args, filter);
 
             timer.start();
-            for (Object o : filter) {
-                LOG.info("execute: o={}, args={}", o, args);
+            if (filter == null) {
+                execute(relId, null, args, sender, false);
+            } else {
+                Iterator<?> iter = filter.iterator();
 
-                Set<Object> data = new HashSet<>();
-
-                data.add(o);
-
-                if (args != null) {
-                    data.add(args);
+                while (iter.hasNext()) {
+                    Object filterArg = iter.next();
+                    execute(relId, filterArg, args, sender, iter.hasNext());
                 }
-
-                RuleExecutionResult result = new RuleExecutionResult(new ArrayList<>(), new HashMap<>());
-                data.add(result);
-
-                KieContainer container = services.newKieContainer(relId);
-                StatelessKieSession session = container.newStatelessKieSession();
-                
-                Globals globals = session.getGlobals();
-                globals.set("log", LOG);
-                globals.setDelegate(new ApplicationContextGlobals(this.context));
-
-                session.execute(data);
-
-                LOG.info("execute: o={}, args={}, result={}", o, args, result);
-                sender.lastResult(result);
             }
             timer.end();
-
         } catch (FunctionException x) {
             LOG.error("execute: x={}", x.toString(), x);
             throw x;
         } catch (Exception x) {
             LOG.error("execute: x={}", x.toString(), x);
             throw new FunctionException(x.toString(), x);
+        }
+    }
+
+    private void execute(ReleaseId relId, Object filterArg, Object args, ResultSender<RuleExecutionResult> sender, boolean hasMore)
+            throws Exception {
+        LOG.debug("execute: relId={}, filterArg={}, args={}", relId, filterArg, args);
+
+        Set<Object> data = new HashSet<>();
+
+        if (filterArg != null) {
+            data.add(filterArg);
+        }
+
+        if (args != null) {
+            data.add(args);
+        }
+
+        RuleExecutionResult result = new RuleExecutionResult(new ArrayList<>(), new HashMap<>());
+        data.add(result);
+
+        KieContainer container = services.newKieContainer(relId);
+        StatelessKieSession session = container.newStatelessKieSession();
+
+        Globals globals = session.getGlobals();
+        globals.set("log", LOG);
+        globals.setDelegate(new ApplicationContextGlobals(this.context));
+
+        session.execute(data);
+
+        LOG.debug("execute: relId={}, filterArg={}, args={}, result={}", relId, filterArg, args, result);
+        if (hasMore) {
+            sender.sendResult(result);
+        } else {
+            sender.lastResult(result);
         }
     }
 

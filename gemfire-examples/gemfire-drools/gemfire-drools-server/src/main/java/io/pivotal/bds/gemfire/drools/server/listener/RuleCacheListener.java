@@ -18,8 +18,8 @@ import com.gemstone.gemfire.cache.EntryEvent;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
 
-import io.pivotal.bds.gemfire.drools.server.data.Rule;
-import io.pivotal.bds.gemfire.drools.server.data.RuleKey;
+import io.pivotal.bds.gemfire.drools.common.Rule;
+import io.pivotal.bds.gemfire.drools.common.RuleKey;
 
 public class RuleCacheListener extends CacheListenerAdapter<RuleKey, Rule> {
 
