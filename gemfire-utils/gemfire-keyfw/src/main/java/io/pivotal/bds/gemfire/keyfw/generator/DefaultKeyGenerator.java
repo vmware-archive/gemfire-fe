@@ -17,15 +17,15 @@ public class DefaultKeyGenerator<T> implements KeyGenerator<T> {
 
 	@Override
 	public <K extends BaseKey<T>> K generate(Class<K> kc) {
-		LOG.info("creating key: kc={}", kc);
+		LOG.debug("creating key: kc={}", kc);
 
 		try {
 			T id = generator.generate(kc.getName());
-			LOG.info("creating key: kc={}, generated id={}", kc, id);
+			LOG.debug("creating key: kc={}, generated id={}", kc, id);
 
 			K k = kc.newInstance();
 			k.setId(id);
-			LOG.info("creating key: kc={}, generated key={}", kc, k);
+			LOG.debug("creating key: kc={}, generated key={}", kc, k);
 
 			return k;
 		} catch (Exception x) {

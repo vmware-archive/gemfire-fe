@@ -1,10 +1,13 @@
 package io.pivotal.bds.gemfire.drools.test;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.kie.api.KieServices;
 import org.kie.api.builder.ReleaseId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.client.ClientCache;
@@ -16,10 +19,18 @@ import com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer;
 
 import io.pivotal.bds.gemfire.data.ecom.OrderKey;
 import io.pivotal.bds.gemfire.drools.common.RuleExecutionContext;
+import io.pivotal.bds.gemfire.drools.common.RuleExecutionResult;
+import io.pivotal.bds.metrics.rater.Rater;
+import io.pivotal.bds.metrics.timer.Timer;
 
 public class ExecuteRules {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ExecuteRules.class);
+
     public static void main(String[] args) throws Exception {
+        Timer timer = new Timer("ExecuteRules-Timer");
+        Rater rater = new Rater("ExecuteRules-Rater");
+
         KieServices ks = KieServices.Factory.get();
 
         ClientCacheFactory ccf = new ClientCacheFactory();
@@ -50,7 +61,16 @@ public class ExecuteRules {
 
                 key.setId(orderId);
                 key.setColocationId(acctId);
-                FunctionService.onRegion(r).withFilter(filter).withArgs(rec).execute("StatelessRuleExecutionFunction").getResult();
+                List<?> resultList = null;
+
+                timer.start();
+                resultList = (List<?>) FunctionService.onRegion(r).withFilter(filter).withArgs(rec)
+                        .execute("StatelessRuleExecutionFunction").getResult();
+                timer.end();
+                rater.increment();
+
+                RuleExecutionResult result = resultList.isEmpty() ? null : (RuleExecutionResult) resultList.iterator().next();
+                LOG.debug("result={}", result);
             }
         } finally {
             cc.close();

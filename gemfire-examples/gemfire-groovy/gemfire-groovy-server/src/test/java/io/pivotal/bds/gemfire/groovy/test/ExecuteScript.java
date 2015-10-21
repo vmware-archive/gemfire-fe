@@ -14,7 +14,7 @@ import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
 import com.gemstone.gemfire.cache.execute.FunctionService;
 import com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer;
 
-import io.pivotal.bds.gemfire.groovy.common.ScriptExecutionContext;
+import io.pivotal.bds.gemfire.groovy.data.ScriptExecutionContext;
 
 public class ExecuteScript {
 

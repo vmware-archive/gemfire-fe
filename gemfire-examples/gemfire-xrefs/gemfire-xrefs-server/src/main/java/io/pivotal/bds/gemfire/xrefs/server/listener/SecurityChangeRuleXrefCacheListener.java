@@ -7,9 +7,9 @@ import com.gemstone.gemfire.cache.EntryEvent;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
 
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRule;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRuleKey;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
+import io.pivotal.bds.gemfire.data.securities.ChangeRule;
+import io.pivotal.bds.gemfire.data.securities.ChangeRuleKey;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
 import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class SecurityChangeRuleXrefCacheListener extends CacheListenerAdapter<ChangeRuleKey, ChangeRule> {

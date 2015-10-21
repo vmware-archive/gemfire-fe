@@ -28,7 +28,7 @@ public class CacheConfig {
 		LOG.info("creating Cache, locators={}", locators);
 		cf.set("locators", locators);
 
-		cf.setPdxSerializer(new ReflectionBasedAutoSerializer("io.pivotal.bds.gemfire.xrefs.common.*"));
+		cf.setPdxSerializer(new ReflectionBasedAutoSerializer("io.pivotal.bds.gemfire.data.securities.*"));
 		cf.setPdxReadSerialized(false);
 		cf.setPdxPersistent(true);
 		

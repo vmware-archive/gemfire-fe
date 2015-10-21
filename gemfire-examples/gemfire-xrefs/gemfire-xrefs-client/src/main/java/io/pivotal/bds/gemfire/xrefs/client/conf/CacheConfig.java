@@ -39,7 +39,7 @@ public class CacheConfig {
 		
 		ccf.setPoolSubscriptionEnabled(true);
 
-		ccf.setPdxSerializer(new ReflectionBasedAutoSerializer("io.pivotal.bds.gemfire.xrefs.common.*"));
+		ccf.setPdxSerializer(new ReflectionBasedAutoSerializer("io.pivotal.bds.gemfire.data.securities.*"));
 		ccf.setPdxReadSerialized(false);
 
 		return ccf.create();

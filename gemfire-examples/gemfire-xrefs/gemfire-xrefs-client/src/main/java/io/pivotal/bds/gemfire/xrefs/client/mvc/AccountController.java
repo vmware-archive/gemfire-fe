@@ -17,19 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gemstone.gemfire.cache.Region;
 
+import io.pivotal.bds.gemfire.data.securities.Account;
+import io.pivotal.bds.gemfire.data.securities.AccountHistory;
+import io.pivotal.bds.gemfire.data.securities.AccountHistoryKey;
+import io.pivotal.bds.gemfire.data.securities.AccountKey;
+import io.pivotal.bds.gemfire.data.securities.AccountStatus;
+import io.pivotal.bds.gemfire.data.securities.ChangeAttributeType;
+import io.pivotal.bds.gemfire.data.securities.ChangeRule;
+import io.pivotal.bds.gemfire.data.securities.ChangeRuleKey;
+import io.pivotal.bds.gemfire.data.securities.ChangeValueType;
+import io.pivotal.bds.gemfire.data.securities.Security;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
 import io.pivotal.bds.gemfire.keyfw.generator.ColocationKeyGenerator;
-import io.pivotal.bds.gemfire.xrefs.common.Account;
-import io.pivotal.bds.gemfire.xrefs.common.AccountHistory;
-import io.pivotal.bds.gemfire.xrefs.common.AccountHistoryKey;
-import io.pivotal.bds.gemfire.xrefs.common.AccountKey;
-import io.pivotal.bds.gemfire.xrefs.common.AccountStatus;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeAttributeType;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRule;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRuleKey;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeValueType;
 import io.pivotal.bds.gemfire.xrefs.common.Constants;
-import io.pivotal.bds.gemfire.xrefs.common.Security;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
 
 @RestController
 public class AccountController implements Constants {

@@ -7,9 +7,9 @@ import com.gemstone.gemfire.cache.EntryEvent;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
 
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityPriceHistory;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityPriceHistoryKey;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
+import io.pivotal.bds.gemfire.data.securities.SecurityPriceHistory;
+import io.pivotal.bds.gemfire.data.securities.SecurityPriceHistoryKey;
 import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class SecurityPriceHistoryXrefCacheListener extends CacheListenerAdapter<SecurityPriceHistoryKey, SecurityPriceHistory> {

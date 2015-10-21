@@ -1,0 +1,47 @@
+package io.pivotal.bds.gemfire.drools.ecom;
+
+import org.slf4j.Logger;
+import com.gemstone.gemfire.cache.Region;
+
+import io.pivotal.bds.gemfire.drools.common.RuleExecutionResult;
+
+import io.pivotal.bds.gemfire.data.ecom.Order;
+import io.pivotal.bds.gemfire.data.ecom.OrderKey;
+import io.pivotal.bds.gemfire.data.ecom.Account;
+import io.pivotal.bds.gemfire.data.ecom.AccountKey;
+import io.pivotal.bds.gemfire.data.ecom.AccountStatus;
+import io.pivotal.bds.gemfire.data.ecom.Address;
+import io.pivotal.bds.gemfire.data.ecom.AddressKey;
+
+global com.gemstone.gemfire.cache.Region orderRegion;
+global com.gemstone.gemfire.cache.Region accountRegion;
+global com.gemstone.gemfire.cache.Region addressRegion;
+global org.slf4j.Logger log;
+
+rule "RetrieveBillingAddress"
+
+    salience 1
+    dialect "java" 
+
+    when
+        result: RuleExecutionResult()
+        acct: Account(status == AccountStatus.ACTIVE)
+        order: Order()
+    then
+        AddressKey addrKey = acct.getDefaultBillingAddressKey();
+        Address addr = (Address)addressRegion.get(addrKey);
+        insert(addr);        
+end
+
+rule "CheckBillingAddress"
+
+    salience 2
+    dialect "java"
+    
+    when
+        result: RuleExecutionResult()
+        acct: Account(status == AccountStatus.ACTIVE)
+        not addr: Address()
+    then
+        result.getErrors().add("Billing address for Account "+acct.getKey().getId() + " does not exist");
+end

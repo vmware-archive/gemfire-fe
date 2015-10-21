@@ -12,27 +12,27 @@ import com.gemstone.gemfire.cache.client.ClientRegionFactory;
 import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
 import com.gemstone.gemfire.cache.client.Pool;
 
+import io.pivotal.bds.gemfire.data.securities.Account;
+import io.pivotal.bds.gemfire.data.securities.AccountHistory;
+import io.pivotal.bds.gemfire.data.securities.AccountHistoryKey;
+import io.pivotal.bds.gemfire.data.securities.AccountKey;
+import io.pivotal.bds.gemfire.data.securities.AccountStatus;
+import io.pivotal.bds.gemfire.data.securities.ChangeRule;
+import io.pivotal.bds.gemfire.data.securities.ChangeRuleKey;
+import io.pivotal.bds.gemfire.data.securities.Issuer;
+import io.pivotal.bds.gemfire.data.securities.IssuerKey;
+import io.pivotal.bds.gemfire.data.securities.Security;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
+import io.pivotal.bds.gemfire.data.securities.SecurityPriceStatus;
+import io.pivotal.bds.gemfire.data.securities.Trade;
+import io.pivotal.bds.gemfire.data.securities.TradeKey;
 import io.pivotal.bds.gemfire.keyfw.generator.ColocationKeyGenerator;
 import io.pivotal.bds.gemfire.keyfw.generator.DefaultColocationKeyGenerator;
 import io.pivotal.bds.gemfire.keyfw.generator.DefaultKeyGenerator;
 import io.pivotal.bds.gemfire.keyfw.generator.FunctionIDGenerator;
 import io.pivotal.bds.gemfire.keyfw.generator.IDGenerator;
 import io.pivotal.bds.gemfire.keyfw.generator.KeyGenerator;
-import io.pivotal.bds.gemfire.xrefs.common.Account;
-import io.pivotal.bds.gemfire.xrefs.common.AccountHistory;
-import io.pivotal.bds.gemfire.xrefs.common.AccountHistoryKey;
-import io.pivotal.bds.gemfire.xrefs.common.AccountKey;
-import io.pivotal.bds.gemfire.xrefs.common.AccountStatus;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRule;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRuleKey;
 import io.pivotal.bds.gemfire.xrefs.common.Constants;
-import io.pivotal.bds.gemfire.xrefs.common.Issuer;
-import io.pivotal.bds.gemfire.xrefs.common.IssuerKey;
-import io.pivotal.bds.gemfire.xrefs.common.Security;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityPriceStatus;
-import io.pivotal.bds.gemfire.xrefs.common.Trade;
-import io.pivotal.bds.gemfire.xrefs.common.TradeKey;
 
 @Configuration
 public class RegionConfig implements Constants {

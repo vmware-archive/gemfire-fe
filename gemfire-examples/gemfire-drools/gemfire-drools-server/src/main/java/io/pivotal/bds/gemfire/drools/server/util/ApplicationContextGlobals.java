@@ -26,7 +26,7 @@ public class ApplicationContextGlobals implements Globals {
 
     @Override
     public Object get(String identifier) {
-        LOG.info("get: identifier={}", identifier);
+        LOG.debug("get: identifier={}", identifier);
 
         Object value = null;
 
@@ -44,7 +44,7 @@ public class ApplicationContextGlobals implements Globals {
             throw new IllegalArgumentException("Value for identifier " + identifier + " does not exist");
         }
 
-        LOG.info("get: identifier={}, value={}", identifier, value);
+        LOG.debug("get: identifier={}, value={}", identifier, value);
         return value;
     }
 

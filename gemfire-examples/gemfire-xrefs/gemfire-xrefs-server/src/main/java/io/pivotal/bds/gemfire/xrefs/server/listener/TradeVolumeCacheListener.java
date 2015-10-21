@@ -9,17 +9,17 @@ import com.gemstone.gemfire.cache.EntryEvent;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
 
+import io.pivotal.bds.gemfire.data.securities.AccountKey;
+import io.pivotal.bds.gemfire.data.securities.AccountNotification;
+import io.pivotal.bds.gemfire.data.securities.AccountNotificationKey;
+import io.pivotal.bds.gemfire.data.securities.ChangeAttributeType;
+import io.pivotal.bds.gemfire.data.securities.ChangeRule;
+import io.pivotal.bds.gemfire.data.securities.ChangeRuleKey;
+import io.pivotal.bds.gemfire.data.securities.ChangeValueType;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
+import io.pivotal.bds.gemfire.data.securities.Trade;
+import io.pivotal.bds.gemfire.data.securities.TradeKey;
 import io.pivotal.bds.gemfire.keyfw.generator.ColocationKeyGenerator;
-import io.pivotal.bds.gemfire.xrefs.common.AccountKey;
-import io.pivotal.bds.gemfire.xrefs.common.AccountNotification;
-import io.pivotal.bds.gemfire.xrefs.common.AccountNotificationKey;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeAttributeType;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRule;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRuleKey;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeValueType;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
-import io.pivotal.bds.gemfire.xrefs.common.Trade;
-import io.pivotal.bds.gemfire.xrefs.common.TradeKey;
 import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class TradeVolumeCacheListener extends CacheListenerAdapter<TradeKey, Trade> {

@@ -2,7 +2,7 @@ package io.pivotal.bds.gemfire.groovy.test;
 
 import java.net.URL;
 
-import io.pivotal.bds.gemfire.groovy.util.GemfireURLStreamHandler;
+import io.pivotal.bds.gemfire.groovy.server.util.GemfireURLStreamHandler;
 
 public class URLTest {
 

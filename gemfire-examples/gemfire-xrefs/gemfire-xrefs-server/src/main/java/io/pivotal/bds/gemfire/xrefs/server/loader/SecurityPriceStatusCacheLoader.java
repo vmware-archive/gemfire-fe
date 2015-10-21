@@ -6,8 +6,8 @@ import com.gemstone.gemfire.cache.CacheLoader;
 import com.gemstone.gemfire.cache.CacheLoaderException;
 import com.gemstone.gemfire.cache.LoaderHelper;
 
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityPriceStatus;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
+import io.pivotal.bds.gemfire.data.securities.SecurityPriceStatus;
 
 public class SecurityPriceStatusCacheLoader implements CacheLoader<SecurityKey, SecurityPriceStatus> {
 

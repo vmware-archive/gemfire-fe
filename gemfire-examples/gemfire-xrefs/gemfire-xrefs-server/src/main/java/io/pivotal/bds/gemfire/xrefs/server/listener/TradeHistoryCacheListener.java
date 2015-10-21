@@ -10,16 +10,16 @@ import com.gemstone.gemfire.cache.EntryEvent;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
 
+import io.pivotal.bds.gemfire.data.securities.AccountHistory;
+import io.pivotal.bds.gemfire.data.securities.AccountHistoryKey;
+import io.pivotal.bds.gemfire.data.securities.AccountKey;
+import io.pivotal.bds.gemfire.data.securities.AccountStatus;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
+import io.pivotal.bds.gemfire.data.securities.SecurityPriceHistory;
+import io.pivotal.bds.gemfire.data.securities.SecurityPriceHistoryKey;
+import io.pivotal.bds.gemfire.data.securities.Trade;
+import io.pivotal.bds.gemfire.data.securities.TradeKey;
 import io.pivotal.bds.gemfire.keyfw.generator.ColocationKeyGenerator;
-import io.pivotal.bds.gemfire.xrefs.common.AccountHistory;
-import io.pivotal.bds.gemfire.xrefs.common.AccountHistoryKey;
-import io.pivotal.bds.gemfire.xrefs.common.AccountKey;
-import io.pivotal.bds.gemfire.xrefs.common.AccountStatus;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityPriceHistory;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityPriceHistoryKey;
-import io.pivotal.bds.gemfire.xrefs.common.Trade;
-import io.pivotal.bds.gemfire.xrefs.common.TradeKey;
 
 public class TradeHistoryCacheListener extends CacheListenerAdapter<TradeKey, Trade> {
 

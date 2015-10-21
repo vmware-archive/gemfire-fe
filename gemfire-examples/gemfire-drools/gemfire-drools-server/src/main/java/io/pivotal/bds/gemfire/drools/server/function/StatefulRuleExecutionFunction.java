@@ -25,13 +25,15 @@ import com.gemstone.gemfire.cache.execute.ResultSender;
 import io.pivotal.bds.gemfire.drools.common.RuleExecutionContext;
 import io.pivotal.bds.gemfire.drools.common.RuleExecutionResult;
 import io.pivotal.bds.gemfire.drools.server.util.ApplicationContextGlobals;
+import io.pivotal.bds.metrics.rater.Rater;
 import io.pivotal.bds.metrics.timer.Timer;
 
 public class StatefulRuleExecutionFunction implements Function, ApplicationContextAware {
 
     private ApplicationContext context;
     private KieServices services;
-    private Timer timer = new Timer(StatefulRuleExecutionFunction.class.getName());
+    private Timer timer = new Timer(StatefulRuleExecutionFunction.class.getSimpleName()+"-Timer");
+    private Rater rater = new Rater(StatefulRuleExecutionFunction.class.getSimpleName()+"-Rater");
 
     private static final Logger LOG = LoggerFactory.getLogger(StatefulRuleExecutionFunction.class);
 
@@ -70,6 +72,7 @@ public class StatefulRuleExecutionFunction implements Function, ApplicationConte
                 }
             }
             timer.end();
+            rater.increment();
         } catch (FunctionException x) {
             LOG.error("execute: x={}", x.toString(), x);
             throw x;

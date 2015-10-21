@@ -23,9 +23,9 @@ rule "RetrieveOrder"
     when
         key: OrderKey()
     then
-        log.info("getting order for key {}", key);
+        log.debug("getting order for key {}", key);
         Order order = (Order)orderRegion.get(key);
-        log.info("got order {}", order);
+        log.debug("got order {}", order);
         insert(order);
 end
 
@@ -39,7 +39,7 @@ rule "CheckOrderExistence"
         key: OrderKey()
         not order: Order()
     then
-        log.error("order not found: {}", key.getId());
+        log.debug("order not found: {}", key.getId());
         result.getErrors().add("Order "+key.getId() + " does not exist");
 end
 
@@ -51,10 +51,10 @@ rule "RetrieveAccount"
     when
         order: Order() 
     then
-        log.info("getting account for order "+order);
+        log.debug("getting account for order "+order);
         AccountKey ak = order.getAccountKey();
         Account acct = (Account)accountRegion.get(ak);
-        log.info("acct="+acct);
+        log.debug("acct="+acct);
         insert(acct);
 end
 
@@ -68,7 +68,7 @@ rule "CheckAccountExistence"
         key: AccountKey()
         not acct: Account() 
     then
-        log.error("acct not found: "+key.getId());
+        log.debug("acct not found: "+key.getId());
         result.getErrors().add("Account "+key.getId() + " does not exist");
 end
 
@@ -81,6 +81,6 @@ rule "VerifyAccount"
         result: RuleExecutionResult()
         acct: Account(status != AccountStatus.ACTIVE)
 	then
-	    log.error("acct not active: "+acct);
+	    log.debug("acct not active: "+acct);
 	    result.getErrors().add("Account "+acct.getKey().getId() + " is not active");
 end

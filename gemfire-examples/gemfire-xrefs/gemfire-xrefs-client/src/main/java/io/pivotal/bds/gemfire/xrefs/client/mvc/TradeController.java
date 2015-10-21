@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gemstone.gemfire.cache.Region;
 
+import io.pivotal.bds.gemfire.data.securities.Account;
+import io.pivotal.bds.gemfire.data.securities.AccountKey;
+import io.pivotal.bds.gemfire.data.securities.Security;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
+import io.pivotal.bds.gemfire.data.securities.Trade;
+import io.pivotal.bds.gemfire.data.securities.TradeKey;
 import io.pivotal.bds.gemfire.keyfw.generator.ColocationKeyGenerator;
-import io.pivotal.bds.gemfire.xrefs.common.Account;
-import io.pivotal.bds.gemfire.xrefs.common.AccountKey;
 import io.pivotal.bds.gemfire.xrefs.common.Constants;
-import io.pivotal.bds.gemfire.xrefs.common.Security;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
-import io.pivotal.bds.gemfire.xrefs.common.Trade;
-import io.pivotal.bds.gemfire.xrefs.common.TradeKey;
 
 @RestController
 @RequestMapping("/trade")

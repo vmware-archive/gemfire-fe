@@ -9,9 +9,9 @@ import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.partition.PartitionListener;
 import com.gemstone.gemfire.cache.partition.PartitionRegionHelper;
 
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRule;
-import io.pivotal.bds.gemfire.xrefs.common.ChangeRuleKey;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
+import io.pivotal.bds.gemfire.data.securities.ChangeRule;
+import io.pivotal.bds.gemfire.data.securities.ChangeRuleKey;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
 import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class SecurityChangeRuleXrefPartitionListener implements PartitionListener {

@@ -9,9 +9,9 @@ import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.partition.PartitionListener;
 import com.gemstone.gemfire.cache.partition.PartitionRegionHelper;
 
-import io.pivotal.bds.gemfire.xrefs.common.AccountKey;
-import io.pivotal.bds.gemfire.xrefs.common.Trade;
-import io.pivotal.bds.gemfire.xrefs.common.TradeKey;
+import io.pivotal.bds.gemfire.data.securities.AccountKey;
+import io.pivotal.bds.gemfire.data.securities.Trade;
+import io.pivotal.bds.gemfire.data.securities.TradeKey;
 import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class TradeAccountXrefPartitionListener implements PartitionListener {

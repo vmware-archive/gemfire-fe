@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gemstone.gemfire.cache.Region;
 
+import io.pivotal.bds.gemfire.data.securities.Issuer;
+import io.pivotal.bds.gemfire.data.securities.IssuerKey;
+import io.pivotal.bds.gemfire.data.securities.Security;
+import io.pivotal.bds.gemfire.data.securities.SecurityKey;
+import io.pivotal.bds.gemfire.data.securities.SecurityPriceStatus;
 import io.pivotal.bds.gemfire.xrefs.common.Constants;
-import io.pivotal.bds.gemfire.xrefs.common.Issuer;
-import io.pivotal.bds.gemfire.xrefs.common.IssuerKey;
-import io.pivotal.bds.gemfire.xrefs.common.Security;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityKey;
-import io.pivotal.bds.gemfire.xrefs.common.SecurityPriceStatus;
 
 @RestController
 public class SecurityController implements Constants {

@@ -17,11 +17,11 @@ public class RegionLongIDGenerator implements IDGenerator<Long> {
 
 	@Override
 	public synchronized Long generate(String domain) {
-		LOG.info("generating id for domain={}", domain);
+		LOG.debug("generating id for domain={}", domain);
 
 		Long l = region.get(domain);
 		l = l.longValue() + 1L;
-		LOG.info("generating id for domain={}, id={}", domain, l);
+		LOG.debug("generating id for domain={}, id={}", domain, l);
 
 		region.put(domain, l);
 
