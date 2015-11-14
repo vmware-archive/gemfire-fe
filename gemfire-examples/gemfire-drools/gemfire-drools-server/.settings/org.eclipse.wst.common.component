@@ -13,9 +13,6 @@
         <dependent-module archiveName="metric-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/metric-common/metric-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="gemfire-data-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/gemfire-data/gemfire-data">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="gemfire-util-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/gemfire-util/gemfire-util">
             <dependency-type>uses</dependency-type>
         </dependent-module>

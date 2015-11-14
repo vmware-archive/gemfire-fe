@@ -10,6 +10,7 @@
   	<dependency>
   		<groupId>com.gemstone.gemfire</groupId>
   		<artifactId>gemfire</artifactId>
+  		<scope>provided</scope>
   	</dependency>
   	<dependency>
   		<groupId>org.slf4j</groupId>

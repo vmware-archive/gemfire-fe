@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:io.pivotal.bds.gemfire.groovy.client.Application</config>
+		<config>java:io.pivotal.bds.gemfire.paas.server.Application</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
