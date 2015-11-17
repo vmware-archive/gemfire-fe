@@ -24,6 +24,10 @@
 			<artifactId>gemfire-keyfw</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.gemstone.gemfire</groupId>
+			<artifactId>gemfire</artifactId>
+		</dependency>
 	</dependencies>
 	
 </project>
