@@ -14,7 +14,7 @@ public class TimerTester {
         List<Runner> list = new ArrayList<>();
 
         for (int i = 1; i <= 3; ++i) {
-            Timer t = new Timer("timer-" + i);
+            Timer t = new Timer("timer-" + i, true);
             Runner r = new Runner(t, i * 100, i * 100 + 100);
             list.add(r);
         }
