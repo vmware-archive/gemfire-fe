@@ -21,6 +21,7 @@ public class Rater {
     private Logger log;
     private long reporterCycleTime;
     private MetricWriter writer;
+    private boolean running = true;
 
     private long start = 0L;
     private long count = 0L;
@@ -71,6 +72,11 @@ public class Rater {
         maximum = -1L;
         windowMinimum = -1L;
         windowMaximum = -1L;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        running = false;
     }
 
     private synchronized void report() {
@@ -170,7 +176,7 @@ public class Rater {
         @Override
         public void run() {
             try {
-                while (true) {
+                while (running) {
                     Thread.sleep(reporterCycleTime);
                     report();
                 }

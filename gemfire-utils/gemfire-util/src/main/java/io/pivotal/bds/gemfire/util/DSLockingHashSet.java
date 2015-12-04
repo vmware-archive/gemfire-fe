@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.function.Consumer;
 
 public class DSLockingHashSet<E> extends DSHashSet<E> {
 
@@ -217,6 +218,16 @@ public class DSLockingHashSet<E> extends DSHashSet<E> {
         readLock.lock();
         try {
             return super.toString();
+        } finally {
+            readLock.unlock();
+        }
+    }
+
+    @Override
+    public void forEach(Consumer<? super E> action) {
+        readLock.lock();
+        try {
+            super.forEach(action);
         } finally {
             readLock.unlock();
         }

@@ -30,6 +30,7 @@ public class Timer {
     private long reporterCycleTime;
     private MetricWriter writer;
     private SummaryStatistics stats = new SummaryStatistics();
+    private boolean running = true;
 
     private Long[] rolling;
     private int index = 0;
@@ -88,6 +89,11 @@ public class Timer {
         index = 0;
     }
 
+    @Override
+    protected void finalize() throws Throwable {
+        running = false;
+    }
+
     private synchronized void calc(long t) {
         if (writeEachTiming) {
             log.info("timing={}", t);
@@ -144,7 +150,7 @@ public class Timer {
         @Override
         public void run() {
             try {
-                while (true) {
+                while (running) {
                     long t = queue.take();
                     calc(t);
                 }
@@ -163,7 +169,7 @@ public class Timer {
         @Override
         public void run() {
             try {
-                while (true) {
+                while (running) {
                     Thread.sleep(reporterCycleTime);
                     report();
                 }
