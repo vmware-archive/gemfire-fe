@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.pivotal.io/gemfire/cache"
+	xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" version="8.1">
+
+	<pdx persistent="true">
+		<pdx-serializer>
+			<class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
+			<parameter name="classes">
+				<string>io.pivotal.bds.gemfire.geo.data.*,io.pivotal.bds.gemfire.key.*</string>
+			</parameter>
+		</pdx-serializer>
+	</pdx>
+
+	<region name="id" refid="LOCAL">
+		<region-attributes>
+			<cache-loader>
+				<class-name>io.pivotal.bds.gemfire.keyfw.generator.ConfiguredIDPrefixCacheLoader</class-name>
+			</cache-loader>
+		</region-attributes>
+	</region>
+
+	<region name="rootBoundary" refid="REPLICATE">
+	</region>
+
+	<region name="boundary" refid="PARTITION">
+		<region-attributes>
+			<partition-attributes>
+				<partition-resolver>
+					<class-name>io.pivotal.bds.gemfire.keyfw.resolver.ColocationIDPartitionResolver</class-name>
+				</partition-resolver>
+			</partition-attributes>
+		</region-attributes>
+	</region>
+
+	<region name="poi" refid="PARTITION">
+		<region-attributes>
+			<partition-attributes colocated-with="boundary">
+				<partition-resolver>
+					<class-name>io.pivotal.bds.gemfire.keyfw.resolver.ColocationIDPartitionResolver</class-name>
+				</partition-resolver>
+			</partition-attributes>
+		</region-attributes>
+	</region>
+
+	<region name="poiBoundaryXref" refid="PARTITION">
+		<region-attributes>
+			<partition-attributes colocated-with="boundary" />
+		</region-attributes>
+	</region>
+
+	<region name="boundaryPOIXref" refid="PARTITION">
+		<region-attributes>
+			<partition-attributes colocated-with="boundary">
+				<partition-resolver>
+					<class-name>io.pivotal.bds.gemfire.keyfw.resolver.ColocationIDPartitionResolver</class-name>
+				</partition-resolver>
+			</partition-attributes>
+			<cache-loader>
+				<class-name>io.pivotal.bds.gemfire.geo.loader.XrefCacheLoader</class-name>
+			</cache-loader>
+		</region-attributes>
+	</region>
+
+	<function-service>
+		<function>
+			<class-name>io.pivotal.bds.gemfire.geo.function.CreatePOIFunction</class-name>
+		</function>
+		<function>
+			<class-name>io.pivotal.bds.gemfire.geo.function.InitialCreatePOIFunction</class-name>
+		</function>
+        <function>
+            <class-name>io.pivotal.bds.gemfire.geo.function.PopulateBoundaryFunction</class-name>
+        </function>
+        <function>
+            <class-name>io.pivotal.bds.gemfire.geo.function.FindPOIFunction</class-name>
+        </function>
+	</function-service>
+
+</cache>

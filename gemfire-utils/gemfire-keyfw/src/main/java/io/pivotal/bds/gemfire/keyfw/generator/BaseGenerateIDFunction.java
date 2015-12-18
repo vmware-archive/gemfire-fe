@@ -1,89 +1,106 @@
 package io.pivotal.bds.gemfire.keyfw.generator;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.gemstone.gemfire.cache.execute.Function;
 import com.gemstone.gemfire.cache.execute.FunctionContext;
 import com.gemstone.gemfire.cache.execute.FunctionException;
+import com.gemstone.gemfire.cache.execute.RegionFunctionContext;
 import com.gemstone.gemfire.cache.execute.ResultSender;
 
 public abstract class BaseGenerateIDFunction<T> implements Function {
 
-	private String id;
-	protected final Logger log;
+    private String id;
+    protected final Logger log;
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public BaseGenerateIDFunction(String id) {
-		this.id = id;
-		this.log = LoggerFactory.getLogger(getClass());
-	}
+    public BaseGenerateIDFunction(String id) {
+        this.id = id;
+        this.log = LoggerFactory.getLogger(getClass());
+    }
 
-	public BaseGenerateIDFunction() {
-		this(null);
-	}
+    public BaseGenerateIDFunction() {
+        this(null);
+    }
 
-	@Override
-	public void execute(FunctionContext context) {
-		ResultSender<T> sender = context.getResultSender();
+    @Override
+    public void execute(FunctionContext context) {
+        ResultSender<T> sender = context.getResultSender();
 
-		try {
-			Object args = context.getArguments();
-			log.debug("execute: args={}", args);
+        try {
+            Object args = null;
 
-			if (args == null) {
-				throw new NullPointerException("Missing arguments");
-			}
+            if (context instanceof RegionFunctionContext) {
+                RegionFunctionContext rctx = (RegionFunctionContext) context;
+                Set<?> filter = rctx.getFilter();
 
-			Class<?> c = args.getClass();
-			String domain = null;
+                if (filter.size() == 1) {
+                    args = filter.iterator().next();
+                } else if (filter.size() > 1) {
+                    throw new IllegalArgumentException("Filter contains more than one entry: " + filter.size());
+                }
+            } else {
+                args = context.getArguments();
+            }
 
-			if (c.isArray()) {
-				String[] s = (String[]) args;
-				domain = s[0];
-			} else if (c == String.class) {
-				domain = (String) context.getArguments();
-			} else {
-				throw new IllegalArgumentException("Invalid type for args: " + c);
-			}
+            log.debug("execute: args={}", args);
 
-			log.debug("execute: domain={}", domain);
+            if (args == null) {
+                throw new NullPointerException("Missing arguments");
+            }
 
-			T id = getGenerator().generate(domain);
+            Class<?> c = args.getClass();
+            String domain = null;
 
-			log.debug("execute: id={}", id);
+            if (c.isArray()) {
+                String[] s = (String[]) args;
+                domain = s[0];
+            } else if (c == String.class) {
+                domain = (String) args;
+            } else {
+                throw new IllegalArgumentException("Invalid type for args: " + c);
+            }
 
-			sender.lastResult(id);
-		} catch (Exception x) {
-			log.error(x.toString(), x);
-			throw new FunctionException(x.toString(), x);
-		}
-	}
+            log.debug("execute: domain={}", domain);
 
-	@Override
-	public String getId() {
-		return id == null ? getClass().getSimpleName() : id;
-	}
+            T id = getGenerator().generate(domain);
 
-	public void setId(String id) {
-		this.id = id;
-	}
+            log.debug("execute: id={}", id);
 
-	@Override
-	public boolean hasResult() {
-		return true;
-	}
+            sender.lastResult(id);
+        } catch (Exception x) {
+            log.error(x.toString(), x);
+            throw new FunctionException(x.toString(), x);
+        }
+    }
 
-	@Override
-	public boolean isHA() {
-		return true;
-	}
+    @Override
+    public String getId() {
+        return id == null ? getClass().getSimpleName() : id;
+    }
 
-	@Override
-	public boolean optimizeForWrite() {
-		return true;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	protected abstract IDGenerator<T> getGenerator();
+    @Override
+    public boolean hasResult() {
+        return true;
+    }
+
+    @Override
+    public boolean isHA() {
+        return true;
+    }
+
+    @Override
+    public boolean optimizeForWrite() {
+        return true;
+    }
+
+    protected abstract IDGenerator<T> getGenerator();
 }

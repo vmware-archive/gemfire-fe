@@ -21,6 +21,7 @@
 		<module>gemfire-xrefs</module>
 		<module>gemfire-script</module>
 		<module>gemfire-groovy</module>
+		<module>gemfire-geo</module>
 	</modules>
 
 </project>

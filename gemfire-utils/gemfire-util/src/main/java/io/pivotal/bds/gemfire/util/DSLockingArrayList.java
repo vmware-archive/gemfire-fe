@@ -304,7 +304,7 @@ public class DSLockingArrayList<E> extends DSArrayList<E> {
         readLock.lock();
         try {
             @SuppressWarnings("unchecked")
-            ArrayList<E> l = (ArrayList<E>) clone();
+            ArrayList<E> l = (ArrayList<E>) super.clone();
             return l.iterator();
         } finally {
             readLock.unlock();
