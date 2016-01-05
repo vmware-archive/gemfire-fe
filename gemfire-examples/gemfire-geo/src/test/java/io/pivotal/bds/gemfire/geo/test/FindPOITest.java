@@ -3,8 +3,14 @@ package io.pivotal.bds.gemfire.geo.test;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
+
+import org.geotools.geometry.jts.GeometryBuilder;
+import org.geotools.geometry.jts.JTS;
+import org.geotools.referencing.CRS;
+import org.geotools.referencing.crs.DefaultGeographicCRS;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.operation.MathTransform;
 
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.client.ClientCache;
@@ -13,9 +19,8 @@ import com.gemstone.gemfire.cache.client.ClientRegionFactory;
 import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
 import com.gemstone.gemfire.cache.execute.FunctionService;
 import com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer;
-import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
 
 import io.pivotal.bds.gemfire.geo.Constants;
@@ -43,69 +48,78 @@ public class FindPOITest implements Constants {
                     .createClientRegionFactory(ClientRegionShortcut.PROXY);
             Region<PointOfInterestKey, PointOfInterest> rp = crfp.create(POI_REGION_NAME);
 
-            GeometryFactory factory = new GeometryFactory();
-            Random random = new Random();
+            CoordinateReferenceSystem latLonCRS = DefaultGeographicCRS.WGS84;
+            CoordinateReferenceSystem cartCRS = CRS.decode("EPSG:26917");
+
+            MathTransform cartToLatLon = CRS.findMathTransform(cartCRS, latLonCRS);
+            MathTransform latLonToCart = CRS.findMathTransform(latLonCRS, cartCRS);
+
+            GeometryBuilder build = new GeometryBuilder();
+
+            // Point latLonPt = build.point(-112.241597, 33.722719); /// home
+            Point latLonPt = build.point(-112.298415, 33.418814);
+            System.out.println("latLonPt: " + latLonPt);
+
+            Point cartPt = (Point) JTS.transform(latLonPt, latLonToCart);
+            System.out.println("cartPt: " + cartPt);
+
+            double x = cartPt.getX();
+            double y = cartPt.getY();
+
+            double xl = x - 10000;
+            double xr = x + 10000;
+            double yl = y - 10000;
+            double yu = y + 10000;
+
+            Polygon cartPoly = build.box(xl, yl, xr, yu);
+            System.out.println("cartPoly: " + cartPoly);
+
+            Polygon latLonPoly = (Polygon) JTS.transform(cartPoly, cartToLatLon);
+            System.out.println("latLonPoly: " + latLonPoly);
 
             Set<FindPOIRequest> filter = new HashSet<>();
 
             for (int i = 0; i < 10; ++i) {
-                double lx = -5.0 + (10.0 * random.nextDouble());
-                double rx = lx + (5.0 * random.nextDouble());
-
-                double by = -5.0 + (10.0 * random.nextDouble());
-                double ty = by + (5.0 * random.nextDouble());
-
-                Coordinate[] coords = new Coordinate[5];
-
-                coords[0] = new Coordinate(lx, by);
-                coords[1] = new Coordinate(lx, ty);
-                coords[2] = new Coordinate(rx, ty);
-                coords[3] = new Coordinate(rx, by);
-                coords[4] = new Coordinate(lx, by);
-
-                Polygon poly = factory.createPolygon(coords);
-                List<Boundary> bounds = find(poly, r);
+                List<Boundary> bounds = find(latLonPoly, r);
 
                 for (Boundary nb : bounds) {
-                    FindPOIRequest req = new FindPOIRequest(nb.getKey(), poly);
+                    FindPOIRequest req = new FindPOIRequest(nb.getKey(), latLonPoly);
                     filter.add(req);
                 }
 
                 if (filter.size() >= 10) {
-                    long start = System.currentTimeMillis();
-
-                    Object res = FunctionService.onRegion(r).withFilter(filter).execute("FindPOIFunction").getResult();
-
-                    long end = System.currentTimeMillis();
-                    long delta = end - start;
-                    System.out.println("delta = " + delta + ", res = " + res);
-
+                    go(filter, r, rp);
                     filter = new HashSet<>();
                 }
             }
 
             if (!filter.isEmpty()) {
-                long start = System.currentTimeMillis();
-
-                @SuppressWarnings("unchecked")
-                List<FindPOIResponse> res = (List<FindPOIResponse>) FunctionService.onRegion(r).withFilter(filter)
-                        .execute("FindPOIFunction").getResult();
-
-                long end = System.currentTimeMillis();
-                long delta = end - start;
-                System.out.println("delta = " + delta);
-
-                for (FindPOIResponse resp : res) {
-                    for (List<PointOfInterestKey> pks : resp.getResponse().values()) {
-                        for (PointOfInterestKey poik : pks) {
-                            PointOfInterest poi = rp.get(poik);
-                            System.out.println("   " + poi);
-                        }
-                    }
-                }
+                go(filter, r, rp);
             }
         } finally {
             cc.close();
+        }
+    }
+
+    private static void go(Set<FindPOIRequest> filter, Region<BoundaryKey, Boundary> r,
+            Region<PointOfInterestKey, PointOfInterest> rp) {
+        long start = System.currentTimeMillis();
+
+        @SuppressWarnings("unchecked")
+        List<FindPOIResponse> res = (List<FindPOIResponse>) FunctionService.onRegion(r).withFilter(filter)
+                .execute("FindPOIFunction").getResult();
+
+        long end = System.currentTimeMillis();
+        long delta = end - start;
+        System.out.println("delta = " + delta);
+
+        for (FindPOIResponse resp : res) {
+            for (List<PointOfInterestKey> pks : resp.getResponse().values()) {
+                for (PointOfInterestKey poik : pks) {
+                    PointOfInterest poi = rp.get(poik);
+                    System.out.println("   " + poi);
+                }
+            }
         }
     }
 

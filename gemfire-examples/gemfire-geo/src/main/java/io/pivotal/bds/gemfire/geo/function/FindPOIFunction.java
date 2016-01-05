@@ -38,6 +38,7 @@ public class FindPOIFunction extends BaseLockingFunction {
             Region<BoundaryKey, Collection<PointOfInterestKey>> boundaryPOIXrefRegion = RegionHelper
                     .getRegion(BOUNDARY_POI_XREF_REGION_NAME);
             Region<PointOfInterestKey, PointOfInterest> poiRegion = RegionHelper.getRegion(POI_REGION_NAME);
+            Region<BoundaryKey, Boundary> rootBoundaryRegion = RegionHelper.getRegion(ROOT_BOUNDARY_REGION_NAME);
 
             ResultSender<FindPOIResponse> sender = ctx.getResultSender();
             RegionFunctionContext rctx = (RegionFunctionContext) ctx;
@@ -50,12 +51,16 @@ public class FindPOIFunction extends BaseLockingFunction {
                 FindPOIRequest req = (FindPOIRequest) fo;
                 LOG.debug("execute: req={}", req);
 
+                BoundaryKey reqBK = req.getBoundaryKey();
+                Boundary reqB = rootBoundaryRegion.get(reqBK);
                 Geometry geo = req.getGeometry();
 
                 readLock.lock();
 
                 try {
-                    List<Boundary> bounds = GeoUtil.intersects(geo);
+                    long start = System.currentTimeMillis();
+                    List<Boundary> bounds = GeoUtil.intersects(reqB, geo);
+                    long t1 = System.currentTimeMillis();
 
                     if (LOG.isDebugEnabled()) {
                         LOG.debug("execute: bounds.size={}, req={}", bounds.size(), req);
@@ -89,6 +94,11 @@ public class FindPOIFunction extends BaseLockingFunction {
                             }
                         }
                     }
+
+                    long t2 = System.currentTimeMillis();
+                    long d1 = t1 - start;
+                    long d2 = t2 - t1;
+                    LOG.info("execute: d1={}, d2={}", d1, d2);
                 } finally {
                     readLock.unlock();
                 }
