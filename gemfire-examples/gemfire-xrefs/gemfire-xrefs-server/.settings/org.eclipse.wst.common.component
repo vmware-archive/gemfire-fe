@@ -7,12 +7,6 @@
         <dependent-module archiveName="gemfire-xrefs-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/gemfire-xrefs-common/gemfire-xrefs-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="gemfire-key-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/gemfire-key/gemfire-key">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="gemfire-keyfw-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/gemfire-keyfw/gemfire-keyfw">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="gemfire-xrefs-server"/>
         <property name="java-output-path" value="/gemfire-xrefs-server/target/classes"/>
     </wb-module>
