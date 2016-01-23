@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.pivotal.io/gemfire/cache"
+	xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" version="8.1">
+
+	<async-event-queue id="test">
+		<async-event-listener>
+			<class-name>io.pivotal.bds.gemfire.s3.listener.S3AsyncEventListener</class-name>
+		</async-event-listener>
+	</async-event-queue>
+
+	<pdx persistent="true" read-serialized="true" />
+
+	<region name="test1" refid="PARTITION">
+		<region-attributes async-event-queue-ids="test">
+			<entry-time-to-live>
+				<expiration-attributes timeout="1" action="destroy" />
+			</entry-time-to-live>
+			<cache-loader>
+				<class-name>io.pivotal.bds.gemfire.s3.loader.S3CacheLoader</class-name>
+			</cache-loader>
+		</region-attributes>
+	</region>
+
+	<region name="test2" refid="PARTITION">
+		<region-attributes>
+            <entry-time-to-live>
+                <expiration-attributes timeout="1" action="destroy" />
+            </entry-time-to-live>
+			<cache-loader>
+				<class-name>io.pivotal.bds.gemfire.s3.loader.S3CacheLoader</class-name>
+			</cache-loader>
+			<cache-writer>
+				<class-name>io.pivotal.bds.gemfire.s3.writer.S3CacheWriter</class-name>
+			</cache-writer>
+		</region-attributes>
+	</region>
+
+</cache>

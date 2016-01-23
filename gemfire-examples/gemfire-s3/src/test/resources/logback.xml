@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+    <logger name="io.pivotal.bds.gemfire.s3" level="debug" />
+</configuration>
