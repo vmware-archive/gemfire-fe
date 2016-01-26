@@ -17,10 +17,14 @@ import com.gemstone.gemfire.cache.Operation;
 import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
 import com.gemstone.gemfire.cache.asyncqueue.AsyncEventListener;
 
+import io.pivotal.bds.metrics.timer.Timer;
+
 public class S3AsyncEventListener implements AsyncEventListener, Declarable {
 
     private AmazonS3 client;
     private String bucketName;
+    private static final Timer putTimer = new Timer("S3AsyncEventListener-put");
+    private static final Timer deleteTimer = new Timer("S3AsyncEventListener-delete");
 
     private static final Logger LOG = LoggerFactory.getLogger(S3AsyncEventListener.class);
 
@@ -35,6 +39,7 @@ public class S3AsyncEventListener implements AsyncEventListener, Declarable {
             for (AsyncEvent evt : events) {
                 LOG.debug("processEvents: evt={}", evt);
                 Operation op = evt.getOperation();
+                String regionName = evt.getRegion().getName();
 
                 if ((op.isCreate() || op.isUpdate()) && !op.isLoad()) {
                     Object ok = evt.getKey();
@@ -44,9 +49,11 @@ public class S3AsyncEventListener implements AsyncEventListener, Declarable {
                     }
 
                     String key = ok.toString();
+                    String path = regionName+"/"+key;
+
                     byte[] value = evt.getSerializedValue();
                     int len = value.length;
-                    LOG.debug("processEvents: put: key={}, len={}", key, len);
+                    LOG.debug("processEvents: put: key={}, len={}, regionName={}", key, len, regionName);
 
                     ObjectMetadata meta = new ObjectMetadata();
                     meta.setContentLength(len);
@@ -54,7 +61,9 @@ public class S3AsyncEventListener implements AsyncEventListener, Declarable {
 
                     ByteArrayInputStream bis = new ByteArrayInputStream(value);
 
-                    client.putObject(bucketName, key, bis, meta);
+                    putTimer.start();
+                    client.putObject(bucketName, path, bis, meta);
+                    putTimer.end();
                 } else if (op.isDestroy() && !(op.isEviction() || op.isExpiration())) {
                     Object ok = evt.getKey();
 
@@ -63,9 +72,13 @@ public class S3AsyncEventListener implements AsyncEventListener, Declarable {
                     }
 
                     String key = ok.toString();
-                    LOG.debug("processEvents: delete: key={}", key);
+                    String path = regionName+"/"+key;
 
-                    client.deleteObject(bucketName, key);
+                    LOG.debug("processEvents: delete: key={}, regionName={}", key, regionName);
+
+                    deleteTimer.start();
+                    client.deleteObject(bucketName, path);
+                    deleteTimer.end();
                 } else {
                     LOG.debug("processEvents: NOT a create, update, or destroy: evt={}", evt);
                 }

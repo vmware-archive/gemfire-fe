@@ -18,28 +18,37 @@ import com.gemstone.gemfire.cache.LoaderHelper;
 import com.gemstone.gemfire.pdx.PdxInstance;
 import com.gemstone.gemfire.pdx.internal.PdxInputStream;
 
+import io.pivotal.bds.metrics.timer.Timer;
+
 public class S3CacheLoader implements CacheLoader<String, PdxInstance>, Declarable {
 
     private AmazonS3 client;
     private String bucketName;
+    private static final Timer timer = new Timer("S3CacheLoader");
 
     private static final Logger LOG = LoggerFactory.getLogger(S3CacheLoader.class);
 
     @Override
     public PdxInstance load(LoaderHelper<String, PdxInstance> helper) throws CacheLoaderException {
         String key = helper.getKey();
-        LOG.debug("load: key={}", key);
+        String regionName = helper.getRegion().getName();
+        LOG.debug("load: key={}, regionName={}", key, regionName);
+        
+        String path = regionName+"/"+key;
 
         try {
-            S3Object s3Object = client.getObject(bucketName, key);
-            LOG.debug("load: key={}, s3Object={}", key, s3Object);
+            timer.start();
+            S3Object s3Object = client.getObject(bucketName, path);
+            timer.end();
+
+            LOG.debug("load: key={}, regionName={}, s3Object={}", key, regionName, s3Object);
 
             if (s3Object == null) {
                 return null;
             }
 
             int size = (int) s3Object.getObjectMetadata().getContentLength();
-            LOG.debug("load: key={}, size={}", key, size);
+            LOG.debug("load: key={}, regionName={}, size={}", key, regionName, size);
 
             InputStream is = s3Object.getObjectContent();
 
@@ -51,7 +60,7 @@ public class S3CacheLoader implements CacheLoader<String, PdxInstance>, Declarab
 
                 try {
                     PdxInstance inst = (PdxInstance) pdxIs.readObject();
-                    LOG.debug("load: key={}, inst={}", key, inst);
+                    LOG.debug("load: key={}, regionName={}, inst={}", key, regionName, inst);
 
                     return inst;
                 } finally {
@@ -61,7 +70,7 @@ public class S3CacheLoader implements CacheLoader<String, PdxInstance>, Declarab
                 is.close();
             }
         } catch (Exception x) {
-            LOG.error("load: key={}, x={}", key, x.toString(), x);
+            LOG.error("load: key={}, regionName={}, x={}", key, regionName, x.toString(), x);
             throw new CacheLoaderException(x.toString(), x);
         }
     }

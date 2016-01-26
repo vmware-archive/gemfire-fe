@@ -20,10 +20,14 @@ import com.gemstone.gemfire.cache.RegionEvent;
 import com.gemstone.gemfire.cache.SerializedCacheValue;
 import com.gemstone.gemfire.pdx.PdxInstance;
 
+import io.pivotal.bds.metrics.timer.Timer;
+
 public class S3CacheWriter implements CacheWriter<String, PdxInstance>, Declarable {
 
     private AmazonS3 client;
     private String bucketName;
+    private static final Timer putTimer = new Timer("S3CacheWriter-put");
+    private static final Timer deleteTimer = new Timer("S3CacheWriter-delete");
 
     private static final Logger LOG = LoggerFactory.getLogger(S3CacheWriter.class);
 
@@ -40,8 +44,16 @@ public class S3CacheWriter implements CacheWriter<String, PdxInstance>, Declarab
 
         if (!op.isEviction() && !op.isExpiration()) {
             String key = evt.getKey();
-            LOG.debug("beforeDestroy: key={}", key);
-            client.deleteObject(bucketName, key);
+            String regionName = evt.getRegion().getName();
+            LOG.debug("beforeDestroy: key={}, regionName={}", key, regionName);
+
+            String path = regionName + "/" + key;
+
+            deleteTimer.start();
+            client.deleteObject(bucketName, path);
+            deleteTimer.end();
+        } else {
+            LOG.debug("beforeDestroy: eviction or expiration is ignored: evt={}", evt);
         }
     }
 
@@ -61,13 +73,16 @@ public class S3CacheWriter implements CacheWriter<String, PdxInstance>, Declarab
 
     private void doPut(EntryEvent<String, PdxInstance> evt) throws CacheWriterException {
         String key = evt.getKey();
-        LOG.debug("doPut: key={}", key);
+        String regionName = evt.getRegion().getName();
+        LOG.debug("doPut: key={}, regionName={}", key, regionName);
+
+        String path = regionName + "/" + key;
 
         try {
             SerializedCacheValue<PdxInstance> scv = evt.getSerializedNewValue();
             byte[] value = scv.getSerializedValue();
             int len = value.length;
-            LOG.debug("doPut: key={}, len={}", key, len);
+            LOG.debug("doPut: key={}, regionName={}, len={}", key, regionName, len);
 
             ObjectMetadata meta = new ObjectMetadata();
             meta.setContentLength(len);
@@ -75,9 +90,11 @@ public class S3CacheWriter implements CacheWriter<String, PdxInstance>, Declarab
 
             ByteArrayInputStream bis = new ByteArrayInputStream(value);
 
-            client.putObject(bucketName, key, bis, meta);
+            putTimer.start();
+            client.putObject(bucketName, path, bis, meta);
+            putTimer.end();
         } catch (Exception x) {
-            LOG.error("doPut: key={}, x={}", key, x.toString(), x);
+            LOG.error("doPut: key={}, regionName={}, x={}", key, regionName, x.toString(), x);
             throw new CacheWriterException(x.toString(), x);
         }
     }
