@@ -22,6 +22,7 @@
 		<module>gemfire-script</module>
 		<module>gemfire-groovy</module>
 		<module>gemfire-geo</module>
+		<module>gemfire-jdbc</module>
 	</modules>
 
 </project>

@@ -1,0 +1,20 @@
+doUpdate: false
+doDelete: false
+configs:
+- jdbcUrl: jdbc:postgresql:test
+  jdbcDriverClass: org.postgresql.Driver
+  jdbcUsername: test
+  jdbcPassword: test
+  minimumPoolSize: 1
+  maximumPoolSize: 10
+  tableMappings:
+  - tableName: test
+    regionName: test
+    keyColumnName: id
+    columnMappings:
+    - columnName: id
+      fieldName: id
+    - columnName: name
+      fieldName: name
+    - columnName: count
+      fieldName: count

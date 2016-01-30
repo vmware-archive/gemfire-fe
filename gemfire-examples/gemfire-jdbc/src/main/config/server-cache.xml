@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.pivotal.io/gemfire/cache"
+	xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" version="8.1">
+	<async-event-queue id="test">
+		<async-event-listener>
+			<class-name>io.pivotal.bds.gemfire.jdbc.listener.JDBCAsyncEventListener</class-name>
+		</async-event-listener>
+	</async-event-queue>
+
+	<cache-server />
+
+	<pdx read-serialized="true" persistent="true" />
+
+	<region name="test" refid="REPLICATE">
+		<region-attributes async-event-queue-ids="test">
+			<entry-time-to-live>
+				<expiration-attributes timeout="3" action="destroy" />
+			</entry-time-to-live>
+			<cache-loader>
+				<class-name>io.pivotal.bds.gemfire.jdbc.loader.JDCBCacheLoader</class-name>
+			</cache-loader>
+		</region-attributes>
+	</region>
+
+</cache>
