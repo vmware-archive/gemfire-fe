@@ -1,0 +1,27 @@
+{
+    "p-gemfire": 
+    [
+        {
+            "name": "gemfire_dev",
+            "label": "p-gemfire",
+            "tags": 
+            [
+                "gemfire"
+            ],
+
+            "plan": "Gemfire Service Plan 2",
+            "credentials": 
+            {
+                "locators": 
+                [
+                    "localhost[10334]",
+                    "localhost[10335]"
+                ],
+
+                "username": "39dcc9f6-3673-4191-717b-31de93b5314f",
+                "password": "14965847714308626841",
+                "rest_url": ""
+            }
+        }
+    ]
+}

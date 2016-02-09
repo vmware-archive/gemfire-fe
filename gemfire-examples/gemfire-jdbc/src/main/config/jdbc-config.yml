@@ -1,7 +1,7 @@
 doUpdate: false
 doDelete: false
 configs:
-- jdbcUrl: jdbc:postgresql:test
+- jdbcUrl: jdbc:postgresql://gpdb.dev/test
   jdbcDriverClass: org.postgresql.Driver
   jdbcUsername: test
   jdbcPassword: test

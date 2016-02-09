@@ -10,3 +10,7 @@ This is a suite of components that demonstrate various techniques that can be us
 * **gemfire-analytics**.  An example of the use of Machine Learning with Gemfire.
 * **gemfire-complexobjs**.  An example of storing large and complex objects in Gemfire, such as images, video, and audio.
 * **gemfire-locking**.  An example of using Gemfire partition regions and local locks to simulate distributed locking.
+* **gemfire-jdbc**. An example of using PDX to read and write data to and from Gemfire from any database that provides a JDBC driver.
+* **gemfire-s3**.  How to read and write Gemfire data to AWS S3.
+* **gemfire-geo**.  An example of using the GeoTools library to do GIS operations in Gemfire.
+* **gemfire-spring-cloud-test**.  An example of how to use Spring Cloud Gemfire in a Spring Boot app, including the Eclipse env setting for running locally.

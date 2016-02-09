@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.springframework.ide.eclipse.boot.launch">
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="VCAP_APPLICATION" value="p-gemfire"/>
+<mapEntry key="VCAP_SERVICES" value="{&quot;p-gemfire&quot;:[{&quot;name&quot;:&quot;gemfire_dev&quot;,&quot;label&quot;:&quot;p-gemfire&quot;,&quot;tags&quot;:[&quot;gemfire&quot;],&quot;plan&quot;:&quot;Gemfire Service Plan 2&quot;,&quot;credentials&quot;:{&quot;locators&quot;:[&quot;localhost[10331]&quot;,&quot;localhost[10332]&quot;],&quot;username&quot;:&quot;39dcc9f6-3673-4191-717b-31de93b5314f&quot;,&quot;password&quot;:&quot;14965847714308626841&quot;,&quot;rest_url&quot;:&quot;&quot;}}]}"/>
+</mapAttribute>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="io.pivotal.bds.gemfire.spring.boot.Application"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="gemfire-spring-boot-test"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.springframework.ide.eclipse.boot.launch.BootMavenSourcePathProvider"/>
+<booleanAttribute key="spring.boot.debug.enable" value="false"/>
+<booleanAttribute key="spring.boot.lifecycle.enable" value="true"/>
+<stringAttribute key="spring.boot.lifecycle.termination.timeout" value="15000"/>
+<booleanAttribute key="spring.boot.livebean.enable" value="true"/>
+<stringAttribute key="spring.boot.livebean.port" value="61848"/>
+<stringAttribute key="spring.boot.profile" value=""/>
+</launchConfiguration>
