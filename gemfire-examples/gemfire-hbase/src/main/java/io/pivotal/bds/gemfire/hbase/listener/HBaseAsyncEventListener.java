@@ -1,149 +1,120 @@
 package io.pivotal.bds.gemfire.hbase.listener;
 
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
+import org.apache.hadoop.hbase.client.Delete;
 import org.apache.hadoop.hbase.client.Put;
-import org.apache.hadoop.hbase.client.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.Operation;
 import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEventListener;
-import com.gemstone.gemfire.pdx.PdxInstance;
-import com.gemstone.gemfire.pdx.internal.PdxOutputStream;
 
 import io.pivotal.bds.gemfire.hbase.util.HBaseHelper;
+import io.pivotal.bds.gemfire.util.BackoffAsyncEventListener;
 import io.pivotal.bds.metrics.timer.Timer;
 
-public class HBaseAsyncEventListener implements AsyncEventListener, Declarable {
+public class HBaseAsyncEventListener extends BackoffAsyncEventListener {
 
-    private byte[] family;
-    private byte[] qualifier;
-    private String keyFieldName;
-
-    private final Timer timer = new Timer("HBaseAsyncEventListener");
+    private final Timer putsTimer = new Timer("HBaseAsyncEventListener-puts");
+    private final Timer deletesTimer = new Timer("HBaseAsyncEventListener-deletes");
 
     private static final Logger LOG = LoggerFactory.getLogger(HBaseAsyncEventListener.class);
 
     @SuppressWarnings("rawtypes")
     @Override
-    public boolean processEvents(List<AsyncEvent> events) {
+    public void doProcessEvents(List<AsyncEvent> events) throws Exception {
         LOG.trace("processEvents: events={}", events);
 
-        try {
-            // collect all creates or updates that are not from CacheLoader and sort by region
-            Map<String, List<AsyncEvent>> creates = new HashMap<>();
+        // collect all creates, updates, or destroys that are not from load, expire, or evict, and sort by region
+        Map<String, List<AsyncEvent>> stores = new HashMap<>();
+        Map<String, List<AsyncEvent>> deletes = new HashMap<>();
 
-            for (AsyncEvent evt : events) {
-                Operation op = evt.getOperation();
-                String rn = evt.getRegion().getName();
+        for (AsyncEvent evt : events) {
+            Operation op = evt.getOperation();
+            String rn = evt.getRegion().getName();
 
-                if ((op.isCreate() || op.isUpdate()) && !op.isLoad()) {
-                    List<AsyncEvent> list = creates.get(rn);
+            if ((op.isCreate() || op.isUpdate()) && !op.isLoad()) {
+                List<AsyncEvent> list = stores.get(rn);
 
-                    if (list == null) {
-                        list = new ArrayList<>();
-                        creates.put(rn, list);
-                    }
-
-                    list.add(evt);
+                if (list == null) {
+                    list = new ArrayList<>();
+                    stores.put(rn, list);
                 }
+
+                list.add(evt);
+            } else if (op.isDestroy() && !op.isEviction() && !op.isExpiration()) {
+                List<AsyncEvent> list = deletes.get(rn);
+
+                if (list == null) {
+                    list = new ArrayList<>();
+                    deletes.put(rn, list);
+                }
+
+                list.add(evt);
+            } else {
+                LOG.debug("processEvents: not a create, update, or destroy, or is load, eviction, or expiration: evt={}", evt);
             }
+        }
 
-            // do batch puts into hbase for each region
-            for (Map.Entry<String, List<AsyncEvent>> e : creates.entrySet()) {
-                String regionName = e.getKey();
-                LOG.debug("processEvents: regionName={}", regionName);
+        // do batch puts into hbase for each region
+        for (Map.Entry<String, List<AsyncEvent>> e : stores.entrySet()) {
+            String regionName = e.getKey();
+            List<AsyncEvent> list = e.getValue();
+            LOG.debug("processEvents: put: regionName={}", regionName);
 
-                Table table = HBaseHelper.getTable(regionName);
-                List<AsyncEvent> list = e.getValue();
-                List<Put> puts = new ArrayList<>();
+            List<Put> puts = new ArrayList<>();
 
-                for (AsyncEvent evt : list) {
-                    Object ok = evt.getKey();
-
-                    if (LOG.isDebugEnabled()) {
-                        LOG.debug("processEvents: regionName={}, ok={}, value={}", regionName, ok, evt.getDeserializedValue());
-                    }
-
-                    byte[] key = convert(ok);
-                    byte[] value = evt.getSerializedValue();
-
-                    if (LOG.isDebugEnabled()) {
-                        LOG.debug("processEvents: regionName={}, key.length={}, value.length={}, ok={}", regionName, key.length, value.length, ok);
-                    }
-
-                    Put put = new Put(key);
-                    put.addColumn(family, qualifier, value);
-
-                    puts.add(put);
-                }
+            for (AsyncEvent evt : list) {
+                Object ok = evt.getKey();
+                byte[] value = evt.getSerializedValue();
 
                 if (LOG.isDebugEnabled()) {
-                    LOG.debug("processEvents: regionName={}, puts.size={}", regionName, puts.size());
+                    LOG.debug("processEvents: put: regionName={}, value.length={}, ok={}", regionName, value.length, ok);
                 }
 
-                timer.start();
-                table.put(puts);
-                timer.end();
+                Put put = HBaseHelper.createPut(ok, value);
+                puts.add(put);
             }
 
-            return true;
-        } catch (Exception x) {
-            LOG.error("processEvents: x={}", x.toString(), x);
-            return false;
-        }
-    }
-
-    private byte[] convert(Object o) throws Exception {
-        if (o instanceof PdxInstance) {
-            PdxInstance pi = (PdxInstance) o;
-            Object t = pi.getField(keyFieldName);
-
-            if (t == null) {
-                PdxOutputStream pos = new PdxOutputStream();
-                pos.writeObject(pi, false);
-                return pos.toByteArray();
-            } else {
-                return convert(t);
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("processEvents: put: regionName={}, puts.size={}", regionName, puts.size());
             }
-        } else if (o instanceof String) {
-            String s = (String) o;
-            return s.getBytes("UTF-8");
-        } else if (o instanceof Integer) {
-            Integer i = (Integer) o;
-            ByteBuffer bb = ByteBuffer.allocate(4);
-            bb.putInt(i);
-            return bb.array();
-        } else if (o instanceof Long) {
-            Long l = (Long) o;
-            ByteBuffer bb = ByteBuffer.allocate(8);
-            bb.putLong(l);
-            return bb.array();
-        } else {
-            throw new IllegalArgumentException("Cannot handle key type " + o.getClass().getName());
+
+            putsTimer.start();
+            HBaseHelper.store(puts, regionName);
+            putsTimer.end();
         }
-    }
 
-    @Override
-    public void init(Properties props) {
-        String sfam = props.getProperty("family", "gemfire");
-        String squal = props.getProperty("qualifier", "gemfire");
-        keyFieldName = props.getProperty("keyFieldName", "id");
-        LOG.info("init: family={}, qualifier={}, keyFieldName={}", sfam, squal, keyFieldName);
+        // do batch deletes from hbase for each region
+        for (Map.Entry<String, List<AsyncEvent>> e : deletes.entrySet()) {
+            String regionName = e.getKey();
+            LOG.debug("processEvents: delete: regionName={}", regionName);
 
-        try {
-            family = sfam.getBytes("UTF-8");
-            qualifier = squal.getBytes("UTF-8");
-        } catch (Exception x) {
-            throw new IllegalArgumentException(x.toString(), x);
+            List<AsyncEvent> list = e.getValue();
+            List<Delete> dels = new ArrayList<>();
+
+            for (AsyncEvent evt : list) {
+                Object ok = evt.getKey();
+
+                if (LOG.isDebugEnabled()) {
+                    LOG.debug("processEvents: delete: regionName={}, ok={}", regionName, ok);
+                }
+
+                Delete del = HBaseHelper.createDelete(ok);
+                dels.add(del);
+            }
+
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("processEvents: delete: regionName={}, dels.size={}", regionName, dels.size());
+            }
+
+            deletesTimer.start();
+            HBaseHelper.delete(dels, regionName);
+            deletesTimer.end();
         }
     }
 

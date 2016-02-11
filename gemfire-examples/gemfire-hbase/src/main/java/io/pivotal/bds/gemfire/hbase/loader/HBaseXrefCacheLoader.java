@@ -3,6 +3,7 @@ package io.pivotal.bds.gemfire.hbase.loader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,13 +14,17 @@ import com.gemstone.gemfire.cache.CacheLoaderException;
 import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.LoaderHelper;
 
+import io.pivotal.bds.gemfire.hbase.util.Factory;
 import io.pivotal.bds.gemfire.hbase.util.HBaseHelper;
+import io.pivotal.bds.gemfire.util.DSLockingHashSet;
+import io.pivotal.bds.metrics.timer.Timer;
 
-public class HBaseXrefCacheLoader<K, V> implements CacheLoader<K, List<V>>, Declarable {
+public class HBaseXrefCacheLoader<K, V> implements CacheLoader<K, Set<V>>, Declarable {
 
     private int xrefFieldLength;
     private int keyFieldLength;
 
+    private static final Timer timer = new Timer("HBaseCacheLoader");
     private static final Logger LOG = LoggerFactory.getLogger(HBaseXrefCacheLoader.class);
 
     @Override
@@ -40,8 +45,16 @@ public class HBaseXrefCacheLoader<K, V> implements CacheLoader<K, List<V>>, Decl
     }
 
     @Override
-    public List<V> load(LoaderHelper<K, List<V>> helper) throws CacheLoaderException {
+    public Set<V> load(LoaderHelper<K, Set<V>> helper) throws CacheLoaderException {
         LOG.debug("load: helper={}", helper);
+
+        @SuppressWarnings("unchecked")
+        Factory<Set<V>> factory = (Factory<Set<V>>) helper.getArgument();
+
+        if (factory != null) {
+            LOG.debug("load: using factory");
+            return factory.create();
+        }
 
         try {
             String rn = helper.getRegion().getName();
@@ -69,10 +82,13 @@ public class HBaseXrefCacheLoader<K, V> implements CacheLoader<K, List<V>>, Decl
                 LOG.debug("load: rn={}, key={}, start={}, end={}", rn, key, Arrays.toString(start), Arrays.toString(end));
             }
 
+            timer.start();
             List<V> list = HBaseHelper.scan(start, end, rn);
+            timer.end();
+
             LOG.debug("load: rn={}, key={}, list={}", rn, key, list);
 
-            return list.isEmpty() ? null : list;
+            return list.isEmpty() ? null : new DSLockingHashSet<>(list);
         } catch (CacheLoaderException x) {
             LOG.error("load: x={}", x.toString(), x);
             throw x;

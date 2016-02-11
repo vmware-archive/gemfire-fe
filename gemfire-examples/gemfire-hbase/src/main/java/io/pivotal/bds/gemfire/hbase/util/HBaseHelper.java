@@ -14,6 +14,7 @@ import org.apache.hadoop.hbase.TableExistsException;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.Delete;
 import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Put;
 import org.apache.hadoop.hbase.client.Result;
@@ -79,10 +80,10 @@ public class HBaseHelper {
     }
 
     @SuppressWarnings("unchecked")
-    public static <V> V retrieve(String key, String tableName) throws Exception {
+    public static <V> V retrieve(Object key, String tableName) throws Exception {
         LOG.debug("retrieve: key={}, tableName={}", key, tableName);
 
-        byte[] bk = key.getBytes("UTF-8");
+        byte[] bk = serialize(key);
         byte[] bv = retrieve(bk, tableName);
 
         if (bv == null) {
@@ -129,37 +130,77 @@ public class HBaseHelper {
         return put;
     }
 
+    public static Delete createDelete(Object key) {
+        byte[] bk = serialize(key);
+        return createDelete(bk);
+    }
+
+    public static Delete createDelete(byte[] key) {
+        Delete del = new Delete(key);
+        return del;
+    }
+
     public static void store(List<Put> puts, String tableName) throws Exception {
         Table table = getTable(tableName);
         table.put(puts);
     }
 
-    public static void store(String key, Object value, String tableName) throws Exception {
-        PdxOutputStream pos = new PdxOutputStream();
-        pos.writeObject(value, false);
-        byte[] bv = pos.toByteArray();
+    public static void delete(List<Delete> dels, String tableName) throws Exception {
+        Table table = getTable(tableName);
+        table.delete(dels);
+    }
+
+    public static void store(Object key, Object value, String tableName) throws Exception {
+        byte[] bv = serialize(value);
         store(key, bv, tableName);
     }
 
-    public static void store(String key, byte[] value, String tableName) throws Exception {
-        byte[] bk = key.getBytes("UTF-8");
+    public static void store(Object key, byte[] value, String tableName) throws Exception {
+        byte[] bk = serialize(key);
         store(bk, value, tableName);
     }
 
     public static void store(byte[] key, byte[] value, String tableName) throws Exception {
         Table table = getTable(tableName);
-
-        Put put = new Put(key);
-        put.addColumn(family, qualifier, value);
-
+        Put put = createPut(key, value);
         table.put(put);
     }
 
+    public static void delete(Object key, String tableName) throws Exception {
+        byte[] bk = serialize(key);
+        delete(bk, tableName);
+    }
+
+    public static void delete(byte[] key, String tableName) throws Exception {
+        Table table = getTable(tableName);
+        Delete del = createDelete(key);
+        table.delete(del);
+    }
+
+    private static Object getIdentityFieldValue(PdxInstance pi) {
+        for (String f : pi.getFieldNames()) {
+            if (pi.isIdentityField(f)) {
+                return pi.getField(f);
+            }
+        }
+
+        return null;
+    }
+
     public static byte[] serialize(Object o) {
-        if (o instanceof PdxInstance) {
-            PdxOutputStream pos = new PdxOutputStream();
-            pos.writeObject(o, false);
-            return pos.toByteArray();
+        if (o instanceof byte[]) {
+            return (byte[]) o;
+        } else if (o instanceof PdxInstance) {
+            PdxInstance pi = (PdxInstance) o;
+            Object id = getIdentityFieldValue(pi);
+
+            if (id == null) {
+                PdxOutputStream pos = new PdxOutputStream();
+                pos.writeObject(o, false);
+                return pos.toByteArray();
+            } else {
+                return serialize(id);
+            }
         } else {
             Class<?> c = o.getClass();
 
