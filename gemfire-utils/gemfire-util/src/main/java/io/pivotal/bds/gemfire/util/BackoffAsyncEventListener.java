@@ -21,7 +21,7 @@ public abstract class BackoffAsyncEventListener implements AsyncEventListener, D
     private int errorCount = 0;
 
     private static final long DEFAULT_INITIAL_DELAY = 1000L; // one second
-    private static final long DEFAULT_MAXIMUM_DELAY = 10000L; // 10 seconds
+    private static final long DEFAULT_MAXIMUM_DELAY = 16000L; // 16 seconds
     private static final double DEFAULT_DELAY_SCALING = 2.0;
     private static final int DEFAULT_ERROR_COUNT_THRESHOLD = 10;
 

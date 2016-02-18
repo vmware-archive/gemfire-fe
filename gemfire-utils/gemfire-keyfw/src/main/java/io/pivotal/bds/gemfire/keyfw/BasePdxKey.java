@@ -6,7 +6,7 @@ import com.gemstone.gemfire.pdx.PdxWriter;
 
 import io.pivotal.bds.gemfire.key.BaseKey;
 
-public class BasePdxKey<T> extends BaseKey<T>implements PdxSerializable {
+public class BasePdxKey<T> extends BaseKey<T> implements PdxSerializable {
 
     public BasePdxKey() {
     }

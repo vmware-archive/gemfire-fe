@@ -1,14 +1,16 @@
 package io.pivotal.bds.gemfire.ml;
 
-public interface Model {
+import java.util.Map;
 
-    String getName();
+public interface Model<X, Y, T, P> {
+
+    MetaModel getMetadata();
     
-    String getAttributeName();
+    String getId();
+    
+    Map<String, Object> getAttributes();
 
-    ModelType getType();
+    void train(X x, Y y);
 
-    void train(double[][] x, int[] y);
-
-    int predict(double[] x);
+    P predict(T t);
 }

@@ -14,3 +14,6 @@ This is a suite of components that demonstrate various techniques that can be us
 * **gemfire-s3**.  How to read and write Gemfire data to AWS S3.
 * **gemfire-geo**.  An example of using the GeoTools library to do GIS operations in Gemfire.
 * **gemfire-spring-cloud-test**.  An example of how to use Spring Cloud Gemfire in a Spring Boot app, including the Eclipse env setting for running locally.
+* **gemfire-hbase**.  An example of how to use HBase as a backing store for Gemfire.
+* **gemfire-kite**.  An example of how to use the Kite SDK (http://kitesdk.org) to read and write to HDFS from Gemfire.
+* **gemfire-pmml**.  An example of how to execute PMML models in Gemfire.

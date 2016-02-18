@@ -12,5 +12,4 @@ The components include:
 * **gemfire-security**.  Improved versions of Gemfire templates security classes.
 * **gemfire-spark**.  A Spark Receiver implementation that uses a CacheListener.
 * **gemfire-ml**.  Gemfire classes for performing Machine Learning.
-* **gemfire-kite**.  Gemfire CacheLoader implementations that read from [Kite](http://kitesdk.org) datasets.
 * **gemfire-federated**.  A framework for federating multiple Gemfire clusters into a single logical cluster.

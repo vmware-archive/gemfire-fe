@@ -1,30 +1,42 @@
 package io.pivotal.bds.gemfire.ml;
 
-public abstract class AbstractModel implements Model {
+import java.util.HashMap;
+import java.util.Map;
 
-    private String name;
-    private String attributeName;
-    private ModelType type;
+public abstract class AbstractModel<X, Y, T, P> implements Model<X, Y, T, P> {
 
-    public AbstractModel(String name, String attributeName, ModelType type) {
-        this.name = name;
-        this.attributeName = attributeName;
-        this.type = type;
+    private String id;
+    private MetaModel def;
+    private Map<String, Object> attributes = new HashMap<>();
+
+    public AbstractModel(String id, MetaModel def) {
+        this.id = id;
+        this.def = def;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public MetaModel getMetadata() {
+        return def;
+    }
+
+    public void setDef(MetaModel def) {
+        this.def = def;
+    }
+
+    public Map<String, Object> getAttributes() {
+        return attributes;
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getAttributeName() {
-        return attributeName;
-    }
-
-    @Override
-    public ModelType getType() {
-        return type;
+    public String toString() {
+        return getClass().getSimpleName() + " [id=" + id + ", def=" + def + ", attributes=" + attributes + "]";
     }
 
 }

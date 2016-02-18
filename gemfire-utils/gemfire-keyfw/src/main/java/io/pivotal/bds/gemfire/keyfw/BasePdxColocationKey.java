@@ -6,7 +6,7 @@ import com.gemstone.gemfire.pdx.PdxWriter;
 
 import io.pivotal.bds.gemfire.key.BaseColocationKey;
 
-public class BasePdxColocationKey<T, C> extends BaseColocationKey<T, C>implements PdxSerializable {
+public class BasePdxColocationKey<T, C> extends BaseColocationKey<T, C> implements PdxSerializable {
 
     public BasePdxColocationKey() {
     }

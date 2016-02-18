@@ -1,0 +1,2 @@
+# Gemfire Key
+This component provides a generic key classes.  The classes are genericized so that any idenfier can be used.  Also included is a key class and interface that supports co-located partition regions in Gemfire.  These classes can be extended many times, and the derived classes do not need hashCode and equals methods since they are provided by the base classes.

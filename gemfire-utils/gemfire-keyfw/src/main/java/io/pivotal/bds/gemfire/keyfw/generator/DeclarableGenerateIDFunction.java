@@ -8,7 +8,7 @@ import com.gemstone.gemfire.cache.CacheFactory;
 import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.Region;
 
-public class DeclarableGenerateIDFunction extends BaseGenerateIDFunction<Long>implements Declarable {
+public class DeclarableGenerateIDFunction extends BaseGenerateIDFunction<Long> implements Declarable {
 
     private String regionName;
     private IDGenerator<Long> generator;

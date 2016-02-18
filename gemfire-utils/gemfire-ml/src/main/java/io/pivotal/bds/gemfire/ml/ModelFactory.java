@@ -1,10 +1,10 @@
 package io.pivotal.bds.gemfire.ml;
 
-import java.util.Properties;
+import java.util.Map;
 
-public interface ModelFactory {
+public interface ModelFactory<X, Y, T, P> {
 
-    String[] getPropertyNames();
+    MetaModel getMetadata();
 
-    Model create(String name, String attributeName, Properties properties);
+    Model<X, Y, T, P> create(String id, Map<String, Object> properties);
 }
