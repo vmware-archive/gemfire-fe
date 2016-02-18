@@ -12,6 +12,8 @@ public class GaussianProcessRegressionModel extends AbstractRegressionModel {
 
     public GaussianProcessRegressionModel(String id, MetaModel def, MercerKernel<double[]> kernel, double lambda) {
         super(id, def);
+        this.kernel = kernel;
+        this.lambda = lambda;
     }
 
     @Override

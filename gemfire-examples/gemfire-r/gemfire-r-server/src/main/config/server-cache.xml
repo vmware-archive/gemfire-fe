@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.pivotal.io/gemfire/cache"
+	xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" version="8.1">
+
+	<async-event-queue id="predict">
+		<async-event-listener>
+			<class-name>io.pivotal.bds.gemfire.r.server.listener.PredictAsyncEventListener</class-name>
+		</async-event-listener>
+	</async-event-queue>
+
+	<disk-store name="pdx">
+		<disk-dirs>
+			<disk-dir>./</disk-dir>
+		</disk-dirs>
+	</disk-store>
+
+	<pdx disk-store-name="pdx" read-serialized="true" persistent="true" />
+
+	<region name="variableType" refid="REPLICATE">
+	</region>
+
+	<region name="queries" refid="REPLICATE">
+		<region-attributes>
+			<cache-writer>
+				<class-name>io.pivotal.bds.gemfire.r.server.writer.VariableTypeCacheWriter</class-name>
+				<parameter name="variableType">
+					<string>Query</string>
+				</parameter>
+			</cache-writer>
+		</region-attributes>
+	</region>
+
+	<region name="modelDef" refid="REPLICATE">
+		<region-attributes>
+			<cache-writer>
+				<class-name>io.pivotal.bds.gemfire.r.server.writer.ModelDefCacheWriter</class-name>
+			</cache-writer>
+		</region-attributes>
+	</region>
+
+	<region name="modelData" refid="REPLICATE">
+		<region-attributes>
+			<cache-writer>
+				<class-name>io.pivotal.bds.gemfire.r.server.writer.ModelDataCacheWriter</class-name>
+			</cache-writer>
+		</region-attributes>
+	</region>
+
+	<region name="model" refid="LOCAL">
+	</region>
+
+	<region name="evaluate" refid="REPLICATE">
+		<region-attributes>
+			<cache-writer>
+				<class-name>io.pivotal.bds.gemfire.r.server.writer.EvaluateCacheWriter</class-name>
+			</cache-writer>
+		</region-attributes>
+	</region>
+
+	<region name="prediction" refid="PARTITION">
+		<region-attributes>
+			<partition-attributes>
+				<partition-resolver>
+					<class-name>io.pivotal.bds.gemfire.keyfw.resolver.ColocationIDPartitionResolver</class-name>
+				</partition-resolver>
+			</partition-attributes>
+			<cache-listener>
+				<class-name>io.pivotal.bds.gemfire.util.LoggingCacheListener</class-name>
+			</cache-listener>
+		</region-attributes>
+	</region>
+
+	<region name="testData" refid="PARTITION">
+		<region-attributes async-event-queue-ids="predict" />
+	</region>
+
+	<function-service>
+		<function>
+			<class-name>io.pivotal.bds.gemfire.r.server.function.AdhocPredictionFunction</class-name>
+		</function>
+	</function-service>
+
+</cache>

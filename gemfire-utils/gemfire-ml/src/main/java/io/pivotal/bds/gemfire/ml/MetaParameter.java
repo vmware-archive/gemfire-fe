@@ -30,4 +30,9 @@ public class MetaParameter {
         return required;
     }
 
+    @Override
+    public String toString() {
+        return "MetaParameter [name=" + name + ", type=" + type + ", def=" + def + ", required=" + required + "]";
+    }
+
 }
