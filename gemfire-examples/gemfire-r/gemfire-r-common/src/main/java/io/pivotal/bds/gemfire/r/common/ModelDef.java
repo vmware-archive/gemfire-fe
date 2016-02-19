@@ -3,9 +3,7 @@ package io.pivotal.bds.gemfire.r.common;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.gemstone.gemfire.DataSerializable;
@@ -18,22 +16,22 @@ import io.pivotal.bds.gemfire.ml.ModelType;
 public class ModelDef implements DataSerializable {
 
     private ModelKey modelKey;
-    private String queryId;
+    private String matrixId;
+    private String vectorId;
     private ModelType modelType;
     private ModelName modelName;
-    private List<Object> queryArgs;
     private Map<String, Object> parameters;
 
     public ModelDef() {
     }
 
-    public ModelDef(ModelKey modelKey, String queryId, ModelType modelType, ModelName modelName, List<Object> queryArgs,
+    public ModelDef(ModelKey modelKey, String matrixId, String vectorId, ModelType modelType, ModelName modelName,
             Map<String, Object> parameters) {
         this.modelKey = modelKey;
-        this.queryId = queryId;
+        this.matrixId = matrixId;
+        this.vectorId = vectorId;
         this.modelType = modelType;
         this.modelName = modelName;
-        this.queryArgs = queryArgs;
         this.parameters = parameters;
     }
 
@@ -45,12 +43,20 @@ public class ModelDef implements DataSerializable {
         this.modelKey = modelKey;
     }
 
-    public String getQueryId() {
-        return queryId;
+    public String getMatrixId() {
+        return matrixId;
     }
 
-    public void setQueryId(String queryId) {
-        this.queryId = queryId;
+    public void setMatrixId(String matrixId) {
+        this.matrixId = matrixId;
+    }
+
+    public String getVectorId() {
+        return vectorId;
+    }
+
+    public void setVectorId(String vectorId) {
+        this.vectorId = vectorId;
     }
 
     public ModelType getModelType() {
@@ -69,14 +75,6 @@ public class ModelDef implements DataSerializable {
         this.modelName = modelName;
     }
 
-    public List<Object> getQueryArgs() {
-        return queryArgs;
-    }
-
-    public void setQueryArgs(List<Object> queryArgs) {
-        this.queryArgs = queryArgs;
-    }
-
     public Map<String, Object> getParameters() {
         return parameters;
     }
@@ -89,27 +87,27 @@ public class ModelDef implements DataSerializable {
     public void fromData(DataInput input) throws IOException, ClassNotFoundException {
         modelKey = new ModelKey();
         modelKey.fromData(input);
-        queryId = DataSerializer.readString(input);
+        matrixId = DataSerializer.readString(input);
+        vectorId = DataSerializer.readString(input);
         modelType = ModelType.valueOf(DataSerializer.readString(input));
         modelName = ModelName.valueOf(DataSerializer.readString(input));
-        queryArgs = DataSerializer.readArrayList(input);
         parameters = DataSerializer.readHashMap(input);
     }
 
     @Override
     public void toData(DataOutput output) throws IOException {
         modelKey.toData(output);
-        DataSerializer.writeString(queryId, output);
+        DataSerializer.writeString(matrixId, output);
+        DataSerializer.writeString(vectorId, output);
         DataSerializer.writeString(modelType.name(), output);
         DataSerializer.writeString(modelName.name(), output);
-        DataSerializer.writeArrayList((ArrayList<?>) queryArgs, output);
         DataSerializer.writeHashMap((HashMap<?, ?>) parameters, output);
     }
 
     @Override
     public String toString() {
-        return "ModelDef [modelKey=" + modelKey + ", queryId=" + queryId + ", modelType=" + modelType + ", modelName=" + modelName
-                + ", parameters=" + parameters + "]";
+        return "ModelDef [modelKey=" + modelKey + ", matrixId=" + matrixId + ", vectorId=" + vectorId + ", modelType=" + modelType
+                + ", modelName=" + modelName + ", parameters=" + parameters + "]";
     }
 
 }

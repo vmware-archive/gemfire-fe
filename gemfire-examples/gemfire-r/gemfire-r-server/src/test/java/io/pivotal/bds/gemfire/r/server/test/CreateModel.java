@@ -1,8 +1,6 @@
 package io.pivotal.bds.gemfire.r.server.test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.gemstone.gemfire.cache.Region;
@@ -31,10 +29,9 @@ public class CreateModel {
 
         ModelKey key = new ModelKey("model1");
 
-        List<Object> queryArgs = new ArrayList<>();
         Map<String, Object> properties = new HashMap<>();
 
-        ModelDef def = new ModelDef(key, "q1", ModelType.regression, ModelName.RandomForest, queryArgs, properties);
+        ModelDef def = new ModelDef(key, "x1", "y1", ModelType.regression, ModelName.RandomForest, properties);
 
         r.put(key, def);
     }

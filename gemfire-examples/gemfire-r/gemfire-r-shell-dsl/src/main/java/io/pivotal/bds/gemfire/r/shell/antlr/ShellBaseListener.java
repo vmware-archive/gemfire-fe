@@ -100,6 +100,30 @@ public class ShellBaseListener implements ShellListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterVector(ShellParser.VectorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVector(ShellParser.VectorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMatrix(ShellParser.MatrixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMatrix(ShellParser.MatrixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPrint(ShellParser.PrintContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -136,18 +160,6 @@ public class ShellBaseListener implements ShellListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterKernels(ShellParser.KernelsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitKernels(ShellParser.KernelsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterQueryArg(ShellParser.QueryArgContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -167,6 +179,18 @@ public class ShellBaseListener implements ShellListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitQueryArgs(ShellParser.QueryArgsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFieldNames(ShellParser.FieldNamesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFieldNames(ShellParser.FieldNamesContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -232,61 +256,97 @@ public class ShellBaseListener implements ShellListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEvaluateVar(ShellParser.EvaluateVarContext ctx) { }
+	@Override public void enterEvaluateId(ShellParser.EvaluateIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEvaluateVar(ShellParser.EvaluateVarContext ctx) { }
+	@Override public void exitEvaluateId(ShellParser.EvaluateIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFieldVar(ShellParser.FieldVarContext ctx) { }
+	@Override public void enterFieldName(ShellParser.FieldNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFieldVar(ShellParser.FieldVarContext ctx) { }
+	@Override public void exitFieldName(ShellParser.FieldNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterModelVar(ShellParser.ModelVarContext ctx) { }
+	@Override public void enterModelId(ShellParser.ModelIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitModelVar(ShellParser.ModelVarContext ctx) { }
+	@Override public void exitModelId(ShellParser.ModelIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterQueryVar(ShellParser.QueryVarContext ctx) { }
+	@Override public void enterQueryId(ShellParser.QueryIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitQueryVar(ShellParser.QueryVarContext ctx) { }
+	@Override public void exitQueryId(ShellParser.QueryIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRegionVar(ShellParser.RegionVarContext ctx) { }
+	@Override public void enterRegionName(ShellParser.RegionNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRegionVar(ShellParser.RegionVarContext ctx) { }
+	@Override public void exitRegionName(ShellParser.RegionNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMatrixId(ShellParser.MatrixIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMatrixId(ShellParser.MatrixIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVectorId(ShellParser.VectorIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVectorId(ShellParser.VectorIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterKernelId(ShellParser.KernelIdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitKernelId(ShellParser.KernelIdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -299,6 +359,18 @@ public class ShellBaseListener implements ShellListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitQueryString(ShellParser.QueryStringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNumber(ShellParser.NumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumber(ShellParser.NumberContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -1,21 +1,217 @@
 package io.pivotal.bds.gemfire.r.server.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
+
+import com.gemstone.gemfire.cache.CacheFactory;
 import com.gemstone.gemfire.cache.Region;
+import com.gemstone.gemfire.cache.query.Query;
+import com.gemstone.gemfire.cache.query.QueryService;
+import com.gemstone.gemfire.cache.query.SelectResults;
 import com.gemstone.gemfire.cache.query.Struct;
 
+import io.pivotal.bds.gemfire.r.common.Matrix;
 import io.pivotal.bds.gemfire.r.common.VariableType;
+import io.pivotal.bds.gemfire.r.common.Vector;
 import io.pivotal.bds.gemfire.util.RegionHelper;
 
 public class Utils {
 
+    private static final Logger LOG = LoggerFactory.getLogger(Utils.class);
+
+    public static int[] convertToIntArray(Vector<Object> v) {
+        List<Object> l = v.getVector();
+
+        if (l.isEmpty()) {
+            return null;
+        }
+
+        int[] t = new int[l.size()];
+
+        for (int i = 0; i < t.length; ++i) {
+            Object o = l.get(i);
+
+            if (Number.class.isInstance(o)) {
+                Number n = Number.class.cast(o);
+                t[i] = n.intValue();
+            } else {
+                throw new IllegalArgumentException("Expecting a number, got " + o.getClass().getName());
+            }
+        }
+
+        return t;
+    }
+
+    public static Number[] convertToNumberArray(Vector<Object> v) {
+        List<Object> l = v.getVector();
+
+        if (l.isEmpty()) {
+            return null;
+        }
+
+        Number[] t = new Number[l.size()];
+
+        for (int i = 0; i < t.length; ++i) {
+            Object o = l.get(i);
+
+            if (Number.class.isInstance(o)) {
+                Number n = Number.class.cast(o);
+                t[i] = n;
+            } else {
+                throw new IllegalArgumentException("Expecting a number, got " + o.getClass().getName());
+            }
+        }
+
+        return t;
+    }
+
+    public static double[] convertToDoubleArray(Vector<Object> v) {
+        List<Object> l = v.getVector();
+
+        if (l.isEmpty()) {
+            return null;
+        }
+
+        double[] t = new double[l.size()];
+
+        for (int i = 0; i < t.length; ++i) {
+            Object o = l.get(i);
+
+            if (Number.class.isInstance(o)) {
+                Number n = Number.class.cast(o);
+                t[i] = n.doubleValue();
+            } else {
+                throw new IllegalArgumentException("Expecting a number, got " + o.getClass().getName());
+            }
+        }
+
+        return t;
+    }
+
+    public static double[][] convertToDoubleArray(Matrix<Object> m) {
+        List<Vector<Object>> rows = m.getRows();
+
+        if (rows.isEmpty()) {
+            return null;
+        }
+
+        int nrows = rows.size();
+        Vector<Object> v = rows.get(0);
+        List<Object> row = v.getVector();
+        int ncols = row.size();
+
+        double[][] d = new double[nrows][ncols];
+
+        for (int ir = 0; ir < nrows; ++ir) {
+            for (int ic = 0; ic < ncols; ++ic) {
+                Object o = rows.get(ir).getVector().get(ic);
+
+                if (Number.class.isInstance(o)) {
+                    Number n = Number.class.cast(o);
+                    d[ir][ic] = n.doubleValue();
+                } else {
+                    throw new IllegalArgumentException("Expecting a number, got " + o.getClass().getName());
+                }
+            }
+        }
+
+        return d;
+    }
+
+    public static Vector<Object> getVectorFromQuery(String queryId, Object[] args, String fld) {
+        List<Struct> list = doQueryFromId(queryId, args);
+
+        List<Object> rows = new ArrayList<>();
+        Vector<Object> v = new Vector<>(rows);
+
+        if (!list.isEmpty()) {
+            for (Struct st : list) {
+                Object fv = st.get(fld);
+                rows.add(fv);
+            }
+        }
+
+        return v;
+    }
+
+    public static Matrix<Object> getMatrixFromQuery(String queryId, Object[] args, String[] flds) {
+        List<Struct> list = doQueryFromId(queryId, args);
+
+        Matrix<Object> m = new Matrix<>();
+        List<Vector<Object>> lrows = new ArrayList<>();
+        m.setRows(lrows);
+
+        if (!list.isEmpty()) {
+
+            for (int ir = 0; ir < list.size(); ++ir) {
+                Struct st = list.get(ir);
+                List<Object> lrow = new ArrayList<>();
+                Vector<Object> row = new Vector<>(lrow);
+                lrows.add(row);
+
+                if (flds == null || flds.length == 0) {
+                    Object[] fvs = st.getFieldValues();
+
+                    for (int ic = 0; ic < fvs.length; ++ic) {
+                        Object fv = fvs[ic];
+                        lrow.add(fv);
+                    }
+                } else {
+                    for (int ic = 0; ic < flds.length; ++ic) {
+                        Object fv = st.get(flds[ic]);
+                        lrow.add(fv);
+                    }
+                }
+            }
+
+            m.setRows(lrows);
+        }
+
+        return m;
+    }
+
+    public static List<Struct> doQueryFromId(String queryId, List<Object> args) {
+        return doQueryFromId(queryId, args == null ? null : args.toArray());
+    }
+
+    public static List<Struct> doQueryFromId(String queryId, Object[] args) {
+        Region<String, String> r = RegionHelper.getRegion("queries");
+        String query = r.get(queryId);
+        Assert.hasText(queryId, "Query " + queryId + " does not exist");
+        return doQuery(query, args);
+    }
+
+    public static List<Struct> doQuery(String query, List<Object> args) {
+        return doQuery(query, args == null ? null : args.toArray());
+    }
+
+    public static List<Struct> doQuery(String query, Object[] args) {
+        try {
+            LOG.debug("doQuery: query={}, args={}", query, Arrays.toString(args));
+
+            // TODO check query for limit
+            QueryService qs = CacheFactory.getAnyInstance().getQueryService();
+            Query q = qs.newQuery(query);
+
+            @SuppressWarnings("unchecked")
+            SelectResults<Struct> res = (SelectResults<Struct>) (args == null || args.length == 0 ? q.execute() : q.execute(args));
+
+            // TODO check for struct, x and y fields
+            return res.asList();
+        } catch (Exception x) {
+            LOG.error("doQuery: x={}", x.toString(), x);
+            throw new IllegalArgumentException(x.toString(), x);
+        }
+    }
+
     public static void addVariableType(Object key, VariableType type) {
         Region<Object, VariableType> r = RegionHelper.getRegion("variableType");
-        if (r.putIfAbsent(key, type) != null) {
-            throw new IllegalArgumentException("Variable " + key + " already exists");
-        }
+        r.put(key, type);
     }
 
     public static void removeVariableType(Object key) {

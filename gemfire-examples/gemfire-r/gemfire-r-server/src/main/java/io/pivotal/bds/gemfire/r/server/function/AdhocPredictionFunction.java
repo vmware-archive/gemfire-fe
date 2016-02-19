@@ -9,22 +9,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
-import com.gemstone.gemfire.cache.CacheFactory;
 import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.execute.Function;
 import com.gemstone.gemfire.cache.execute.FunctionContext;
 import com.gemstone.gemfire.cache.execute.FunctionException;
 import com.gemstone.gemfire.cache.execute.ResultSender;
-import com.gemstone.gemfire.cache.query.Query;
-import com.gemstone.gemfire.cache.query.QueryService;
-import com.gemstone.gemfire.cache.query.SelectResults;
-import com.gemstone.gemfire.cache.query.Struct;
-import com.gemstone.gemfire.cache.query.types.CollectionType;
-import com.gemstone.gemfire.cache.query.types.ObjectType;
 
 import io.pivotal.bds.gemfire.ml.Model;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
+import io.pivotal.bds.gemfire.r.common.Vector;
+import io.pivotal.bds.gemfire.r.common.VectorKey;
 import io.pivotal.bds.gemfire.r.common.AdhocPrediction;
 import io.pivotal.bds.gemfire.r.common.AdhocPredictionRequest;
 import io.pivotal.bds.gemfire.r.common.AdhocPredictionResponse;
@@ -49,47 +44,32 @@ public class AdhocPredictionFunction implements Function, Declarable {
             Model<?, ?, double[], Number> model = modelRegion.get(modelKey);
             Assert.notNull(model, "Model " + modelKey.getModelId() + " not found");
 
-            String queryId = req.getQueryId();
-
-            Region<String, String> queryRegion = RegionHelper.getRegion("queries");
-            String query = queryRegion.get(queryId);
-            Assert.notNull(query, "Query " + queryId + " not found");
-
-            List<Object> queryArgs = req.getQueryArgs();
-
-            LOG.debug("execute: query={}", query);
-            QueryService qs = CacheFactory.getAnyInstance().getQueryService();
-            Query q = qs.newQuery(query);
-
-            Object ores = queryArgs == null || queryArgs.isEmpty() ? q.execute() : q.execute(queryArgs.toArray());
-            LOG.debug("execute: ores={}", ores);
-
-            SelectResults<?> sres = (SelectResults<?>) ores;
-
-            if (sres.isEmpty()) {
-                throw new IllegalArgumentException("Query did not return any results");
-            }
-
-            CollectionType ctype = sres.getCollectionType();
-            ObjectType otype = ctype.getElementType();
-
-            if (!otype.isStructType()) {
-                throw new IllegalArgumentException("Query did not return structs");
-            }
-
-            @SuppressWarnings("unchecked")
-            List<Struct> lres = ((SelectResults<Struct>) ores).asList();
             List<AdhocPrediction> predicts = new ArrayList<>();
+            double[] x = null;
 
-            for (Struct st : lres) {
-                double[] x = Utils.extractX(st);
-                Number p = model.predict(x);
-                LOG.debug("execute: x={}, p={}", Arrays.toString(x), p);
+            Object arg = req.getArgument();
 
-                AdhocPrediction pred = new AdhocPrediction(x, p);
-                predicts.add(pred);
+            if (Number.class.isInstance(arg)) {
+                Number n = Number.class.cast(arg);
+                x = new double[]{ n.doubleValue() };
+            } else if (String.class == arg.getClass()) {
+                Region<VectorKey, Vector<Object>> vectorRegion = RegionHelper.getRegion("vector");
+                String vectorId = String.class.cast(arg);
+                VectorKey key = new VectorKey(vectorId);
+                Vector<Object> v = vectorRegion.get(key);
+                Assert.notNull(v, "Vector " + vectorId + " not found");
+                
+                x = Utils.convertToDoubleArray(v);
+            } else {
+                throw new IllegalArgumentException("Expected a vectorId or number, got " + arg.getClass().getName());
             }
 
+            Number p = model.predict(x);
+            LOG.debug("execute: x={}, p={}", Arrays.toString(x), p);
+
+            AdhocPrediction pred = new AdhocPrediction(x, p);
+            predicts.add(pred);
+            
             AdhocPredictionResponse resp = new AdhocPredictionResponse(predicts);
             LOG.debug("execute: resp={}", resp);
 

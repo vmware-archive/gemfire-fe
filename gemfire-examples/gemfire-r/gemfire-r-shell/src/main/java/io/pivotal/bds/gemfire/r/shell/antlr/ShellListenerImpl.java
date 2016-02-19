@@ -29,19 +29,26 @@ import io.pivotal.bds.gemfire.r.common.AdhocPredictionRequest;
 import io.pivotal.bds.gemfire.r.common.AdhocPredictionResponse;
 import io.pivotal.bds.gemfire.r.common.EvaluateDef;
 import io.pivotal.bds.gemfire.r.common.EvaluateKey;
+import io.pivotal.bds.gemfire.r.common.MatrixDef;
+import io.pivotal.bds.gemfire.r.common.MatrixKey;
 import io.pivotal.bds.gemfire.r.common.ModelDef;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
+import io.pivotal.bds.gemfire.r.common.VectorDef;
+import io.pivotal.bds.gemfire.r.common.VectorKey;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.EvaluateContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.ExecuteContext;
-import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldVarContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNameContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNamesContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GpContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LsContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.MatrixContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PredictContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PrintContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryArgContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryArgsContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SvmContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.VectorContext;
 
 public class ShellListenerImpl extends ShellBaseListener {
 
@@ -53,10 +60,13 @@ public class ShellListenerImpl extends ShellBaseListener {
     private Region<String, String> queryRegion;
     private Region<ModelKey, ModelDef> modelDefRegion;
     private Region<EvaluateKey, EvaluateDef> evaluateDefRegion;
+    private Region<VectorKey, VectorDef> vectorDefRegion;
+    private Region<MatrixKey, MatrixDef> matrixDefRegion;
 
     public ShellListenerImpl(PrintStream stdout, QueryService queryService, int queryLimit, Pool pool,
             Region<String, String> queryRegion, Region<ModelKey, ModelDef> modelDefRegion,
-            Region<EvaluateKey, EvaluateDef> evaluateDefRegion) {
+            Region<EvaluateKey, EvaluateDef> evaluateDefRegion, Region<VectorKey, VectorDef> vectorDefRegion,
+            Region<MatrixKey, MatrixDef> matrixDefRegion) {
         this.stdout = stdout;
         this.queryService = queryService;
         this.queryLimit = queryLimit;
@@ -64,19 +74,47 @@ public class ShellListenerImpl extends ShellBaseListener {
         this.queryRegion = queryRegion;
         this.modelDefRegion = modelDefRegion;
         this.evaluateDefRegion = evaluateDefRegion;
+        this.vectorDefRegion = vectorDefRegion;
+        this.matrixDefRegion = matrixDefRegion;
+    }
+
+    @Override
+    public void exitVector(VectorContext ctx) {
+        String vectorId = ctx.vectorId().getText();
+        String queryId = ctx.queryId().getText();
+        String fieldName = ctx.fieldName().getText();
+        List<Object> args = convert(ctx.queryArgs());
+
+        VectorKey key = new VectorKey(vectorId);
+        VectorDef def = new VectorDef(queryId, args.toArray(), fieldName);
+
+        vectorDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitMatrix(MatrixContext ctx) {
+        String matrixId = ctx.matrixId().getText();
+        String queryId = ctx.queryId().getText();
+        List<String> fieldNames = convertFieldVar(ctx.fieldNames());
+        List<Object> args = convert(ctx.queryArgs());
+
+        MatrixKey key = new MatrixKey(matrixId);
+        MatrixDef def = new MatrixDef(queryId, args.toArray(), fieldNames.toArray(new String[fieldNames.size()]));
+
+        matrixDefRegion.put(key, def);
     }
 
     @Override
     public void exitEvaluate(EvaluateContext ctx) {
-        String modelId = ctx.modelVar().getText();
+        String modelId = ctx.modelId().getText();
         ModelKey modelKey = new ModelKey(modelId);
         ModelDef modelDef = modelDefRegion.get(modelKey);
         Assert.notNull(modelDef, "Model " + modelId + " does not exist");
 
-        String evalId = ctx.evaluateVar().getText();
-        String regionName = ctx.regionVar().getText();
+        String evalId = ctx.evaluateId().getText();
+        String regionName = ctx.regionName().getText();
 
-        List<String> fieldNames = convertFieldVar(ctx.fieldVar());
+        List<String> fieldNames = convertFieldVar(ctx.fieldName());
         String[] fns = fieldNames.toArray(new String[fieldNames.size()]);
 
         EvaluateKey evalKey = new EvaluateKey(evalId, modelId);
@@ -84,11 +122,16 @@ public class ShellListenerImpl extends ShellBaseListener {
         evaluateDefRegion.put(evalKey, evalDef);
     }
 
-    private List<String> convertFieldVar(List<FieldVarContext> fieldVar) {
+    private List<String> convertFieldVar(FieldNamesContext fieldVar) {
+        List<FieldNameContext> l = fieldVar == null ? null : fieldVar.fieldName();
+        return convertFieldVar(l);
+    }
+
+    private List<String> convertFieldVar(List<FieldNameContext> fieldVar) {
         List<String> list = new ArrayList<>();
 
         if (fieldVar != null) {
-            for (FieldVarContext fvc : fieldVar) {
+            for (FieldNameContext fvc : fieldVar) {
                 String s = fvc.getText();
                 list.add(s);
             }
@@ -99,7 +142,7 @@ public class ShellListenerImpl extends ShellBaseListener {
 
     @Override
     public void exitQuery(QueryContext ctx) {
-        String queryVar = ctx.queryVar().getText();
+        String queryVar = ctx.queryId().getText();
         String query = ctx.queryString().getText();
         query = query.substring(1, query.length() - 1);
         queryRegion.put(queryVar, query);
@@ -107,7 +150,7 @@ public class ShellListenerImpl extends ShellBaseListener {
 
     @Override
     public void exitExecute(ExecuteContext ctx) {
-        String queryVar = ctx.queryVar().getText();
+        String queryVar = ctx.queryId().getText();
         String query = queryRegion.get(queryVar);
         Assert.hasText(query, "Query " + queryVar + " does not exist");
 
@@ -115,18 +158,11 @@ public class ShellListenerImpl extends ShellBaseListener {
         List<Object> args = new ArrayList<>();
 
         for (QueryArgContext ac : argCtxs) {
-            String sd = ac.DECIMAL() == null ? null : ac.DECIMAL().getText();
+            String sd = ac.NUMBER() == null ? null : ac.NUMBER().getText();
 
             if (StringUtils.hasText(sd)) {
                 Double d = new Double(sd);
                 args.add(d);
-            }
-
-            String si = ac.INTEGER() == null ? null : ac.INTEGER().getText();
-
-            if (StringUtils.hasText(si)) {
-                Integer i = new Integer(si);
-                args.add(i);
             }
 
             String qs = ac.QUOTEDSTRING() == null ? null : ac.QUOTEDSTRING().getText();
@@ -226,11 +262,10 @@ public class ShellListenerImpl extends ShellBaseListener {
 
     @Override
     public void exitSvm(SvmContext ctx) {
-        String queryVar = ctx.queryVar().getText();
-        String query = queryRegion.get(queryVar);
-        Assert.hasText(query, "Query " + queryVar + " does not exist");
+        String matrixId = ctx.matrixId().getText();
+        String vectorId = ctx.vectorId().getText();
 
-        String modelVar = ctx.modelVar().getText();
+        String modelId = ctx.modelId().getText();
 
         Map<String, Object> params = new HashMap<>();
 
@@ -244,45 +279,18 @@ public class ShellListenerImpl extends ShellBaseListener {
             params.put("cn", new Double(scn));
         }
 
-        List<Object> queryArgs = new ArrayList<>();
-
-        List<QueryArgContext> qargctx = ctx.queryArgs() == null ? null : ctx.queryArgs().queryArg();
-
-        if (qargctx != null) {
-            for (QueryArgContext qa : qargctx) {
-                String sd = qa.DECIMAL().getText();
-                if (StringUtils.hasText(sd)) {
-                    queryArgs.add(new Double(sd));
-                }
-
-                String si = qa.INTEGER().getText();
-                if (StringUtils.hasText(si)) {
-                    queryArgs.add(new Integer(si));
-                }
-
-                String ss = qa.QUOTEDSTRING().getText();
-                if (StringUtils.hasText(ss)) {
-                    ss = ss.substring(1, ss.length() - 1);
-                    if (StringUtils.hasText(ss)) {
-                        queryArgs.add(ss);
-                    }
-                }
-            }
-        }
-
-        ModelKey key = new ModelKey(modelVar);
-        ModelDef info = new ModelDef(key, queryVar, ModelType.classification, ModelName.SVM, queryArgs, params);
+        ModelKey key = new ModelKey(modelId);
+        ModelDef info = new ModelDef(key, matrixId, vectorId, ModelType.classification, ModelName.SVM, params);
 
         modelDefRegion.put(key, info);
     }
 
     @Override
     public void exitGp(GpContext ctx) {
-        String queryVar = ctx.queryVar().getText();
-        String query = queryRegion.get(queryVar);
-        Assert.hasText(query, "Query " + queryVar + " does not exist");
+        String matrixId = ctx.matrixId().getText();
+        String vectorId = ctx.vectorId().getText();
 
-        String modelVar = ctx.modelVar().getText();
+        String modelId = ctx.modelId().getText();
 
         Map<String, Object> params = new HashMap<>();
 
@@ -291,27 +299,30 @@ public class ShellListenerImpl extends ShellBaseListener {
             params.put("lambda", new Double(sl));
         }
 
-        List<Object> queryArgs = convert(ctx.queryArgs());
-
-        ModelKey key = new ModelKey(modelVar);
-        ModelDef info = new ModelDef(key, queryVar, ModelType.regression, ModelName.GaussianProcess, queryArgs, params);
+        ModelKey key = new ModelKey(modelId);
+        ModelDef info = new ModelDef(key, matrixId, vectorId, ModelType.regression, ModelName.GaussianProcess, params);
 
         modelDefRegion.put(key, info);
     }
 
     @Override
     public void exitPredict(PredictContext ctx) {
-        String modelVar = ctx.modelVar().getText();
-        ModelKey modelKey = new ModelKey(modelVar);
+        String modelId = ctx.modelId().getText();
+        ModelKey modelKey = new ModelKey(modelId);
         ModelDef modelDef = modelDefRegion.get(modelKey);
-        Assert.notNull(modelDef, "Model " + modelVar + " does not exist");
+        Assert.notNull(modelDef, "Model " + modelId + " does not exist");
 
-        String queryVar = ctx.queryVar().getText();
-        String query = queryRegion.get(queryVar);
-        Assert.hasText(query, "Query " + queryVar + " does not exist");
+        Object arg = null;
 
-        List<Object> qargs = convert(ctx.queryArg());
-        AdhocPredictionRequest req = new AdhocPredictionRequest(modelKey, queryVar, qargs);
+        if (ctx.vectorId() != null) {
+            arg = ctx.vectorId().getText();
+        } else if (ctx.number() != null) {
+            arg = ctx.number() == null ? null : new Double(ctx.number().getText());
+        } else {
+            // TODO
+        }
+
+        AdhocPredictionRequest req = new AdhocPredictionRequest(modelKey, arg);
 
         ResultCollector<?, ?> coll = FunctionService.onServer(pool).withArgs(req).execute("AdhocPredictionFunction");
 
@@ -331,14 +342,9 @@ public class ShellListenerImpl extends ShellBaseListener {
 
         if (queryArg != null) {
             for (QueryArgContext qa : queryArg) {
-                String sd = qa.DECIMAL() == null ? null : qa.DECIMAL().getText();
+                String sd = qa.NUMBER() == null ? null : qa.NUMBER().getText();
                 if (StringUtils.hasText(sd)) {
                     queryArgs.add(new Double(sd));
-                }
-
-                String si = qa.INTEGER() == null ? null : qa.INTEGER().getText();
-                if (StringUtils.hasText(si)) {
-                    queryArgs.add(new Integer(si));
                 }
 
                 String ss = qa.QUOTEDSTRING() == null ? null : qa.QUOTEDSTRING().getText();
@@ -366,16 +372,48 @@ public class ShellListenerImpl extends ShellBaseListener {
         boolean found = printQueryVar(var);
         found = printModelVar(var) || found;
         found = printEvalVar(var) || found;
+        found = printVectorVar(var) || found;
+        found = printMatrixVar(var) || found;
 
         if (!found) {
             stdout.println("<variable not found>");
         }
     }
 
+    private boolean printMatrixVar(String matrixId) {
+        MatrixKey key = new MatrixKey(matrixId);
+        MatrixDef def = matrixDefRegion.get(key);
+
+        if (def == null) {
+            return false;
+        } else {
+            stdout.println("Matrix:");
+            stdout.println("   query = " + def.getQueryId());
+            stdout.println("   fields = " + Arrays.toString(def.getFields()));
+            stdout.println("   args  = " + Arrays.toString(def.getQueryArgs()));
+            return true;
+        }
+    }
+
+    private boolean printVectorVar(String vectorId) {
+        VectorKey key = new VectorKey(vectorId);
+        VectorDef def = vectorDefRegion.get(key);
+
+        if (def == null) {
+            return false;
+        } else {
+            stdout.println("Vector:");
+            stdout.println("   query = " + def.getQueryId());
+            stdout.println("   field = " + def.getField());
+            stdout.println("   args  = " + Arrays.toString(def.getQueryArgs()));
+            return true;
+        }
+    }
+
     private boolean printEvalVar(String evalId) {
         EvaluateKey key = new EvaluateKey(evalId, "");
         EvaluateDef def = evaluateDefRegion.get(key);
-        
+
         if (def == null) {
             return false;
         } else {
@@ -395,9 +433,10 @@ public class ShellListenerImpl extends ShellBaseListener {
             return false;
         } else {
             stdout.println("Model:");
-            stdout.println("   name  = " + info.getModelName());
-            stdout.println("   type  = " + info.getModelType());
-            stdout.println("   query = " + info.getQueryId());
+            stdout.println("   name   = " + info.getModelName());
+            stdout.println("   type   = " + info.getModelType());
+            stdout.println("   matrix = " + info.getMatrixId());
+            stdout.println("   vector = " + info.getVectorId());
 
             Map<String, Object> params = info.getParameters();
             List<String> pnames = new ArrayList<>(params.keySet());
@@ -429,11 +468,39 @@ public class ShellListenerImpl extends ShellBaseListener {
         stdout.println("Query:");
         printQueryVars(queryRegion.keySetOnServer());
 
+        stdout.println("Vector:");
+        printVectorVars(vectorDefRegion.keySetOnServer());
+
+        stdout.println("Matrix:");
+        printMatrixVars(matrixDefRegion.keySetOnServer());
+
         stdout.println("Model:");
         printModelVars(modelDefRegion.keySetOnServer());
 
         stdout.println("Evaluate:");
         printEvalVars(evaluateDefRegion.keySetOnServer());
+    }
+
+    private void printVectorVars(Set<VectorKey> c) {
+        List<String> l = new ArrayList<>();
+        for (VectorKey ek : c) {
+            l.add(ek.getVectorId());
+        }
+        Collections.sort(l);
+        for (String s : l) {
+            stdout.println("   " + s);
+        }
+    }
+
+    private void printMatrixVars(Set<MatrixKey> c) {
+        List<String> l = new ArrayList<>();
+        for (MatrixKey ek : c) {
+            l.add(ek.getMatrixId());
+        }
+        Collections.sort(l);
+        for (String s : l) {
+            stdout.println("   " + s);
+        }
     }
 
     private void printEvalVars(Set<EvaluateKey> c) {

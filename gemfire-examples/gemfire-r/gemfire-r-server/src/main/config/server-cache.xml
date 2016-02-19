@@ -19,6 +19,28 @@
 	<region name="variableType" refid="REPLICATE">
 	</region>
 
+	<region name="vectorDef" refid="REPLICATE">
+        <region-attributes>
+            <cache-writer>
+                <class-name>io.pivotal.bds.gemfire.r.server.writer.VectorDefCacheWriter</class-name>
+            </cache-writer>
+        </region-attributes>
+	</region>
+
+	<region name="vector" refid="REPLICATE">
+	</region>
+
+	<region name="matrixDef" refid="REPLICATE">
+        <region-attributes>
+            <cache-writer>
+                <class-name>io.pivotal.bds.gemfire.r.server.writer.MatrixDefCacheWriter</class-name>
+            </cache-writer>
+        </region-attributes>
+	</region>
+
+	<region name="matrix" refid="REPLICATE">
+	</region>
+
 	<region name="queries" refid="REPLICATE">
 		<region-attributes>
 			<cache-writer>

@@ -78,6 +78,26 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitEvaluate(ShellParser.EvaluateContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ShellParser#vector}.
+	 * @param ctx the parse tree
+	 */
+	void enterVector(ShellParser.VectorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#vector}.
+	 * @param ctx the parse tree
+	 */
+	void exitVector(ShellParser.VectorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#matrix}.
+	 * @param ctx the parse tree
+	 */
+	void enterMatrix(ShellParser.MatrixContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#matrix}.
+	 * @param ctx the parse tree
+	 */
+	void exitMatrix(ShellParser.MatrixContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ShellParser#print}.
 	 * @param ctx the parse tree
 	 */
@@ -108,16 +128,6 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitRm(ShellParser.RmContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ShellParser#kernels}.
-	 * @param ctx the parse tree
-	 */
-	void enterKernels(ShellParser.KernelsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ShellParser#kernels}.
-	 * @param ctx the parse tree
-	 */
-	void exitKernels(ShellParser.KernelsContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link ShellParser#queryArg}.
 	 * @param ctx the parse tree
 	 */
@@ -137,6 +147,16 @@ public interface ShellListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitQueryArgs(ShellParser.QueryArgsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#fieldNames}.
+	 * @param ctx the parse tree
+	 */
+	void enterFieldNames(ShellParser.FieldNamesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#fieldNames}.
+	 * @param ctx the parse tree
+	 */
+	void exitFieldNames(ShellParser.FieldNamesContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ShellParser#cpVar}.
 	 * @param ctx the parse tree
@@ -188,55 +208,85 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitVar(ShellParser.VarContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ShellParser#evaluateVar}.
+	 * Enter a parse tree produced by {@link ShellParser#evaluateId}.
 	 * @param ctx the parse tree
 	 */
-	void enterEvaluateVar(ShellParser.EvaluateVarContext ctx);
+	void enterEvaluateId(ShellParser.EvaluateIdContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ShellParser#evaluateVar}.
+	 * Exit a parse tree produced by {@link ShellParser#evaluateId}.
 	 * @param ctx the parse tree
 	 */
-	void exitEvaluateVar(ShellParser.EvaluateVarContext ctx);
+	void exitEvaluateId(ShellParser.EvaluateIdContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ShellParser#fieldVar}.
+	 * Enter a parse tree produced by {@link ShellParser#fieldName}.
 	 * @param ctx the parse tree
 	 */
-	void enterFieldVar(ShellParser.FieldVarContext ctx);
+	void enterFieldName(ShellParser.FieldNameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ShellParser#fieldVar}.
+	 * Exit a parse tree produced by {@link ShellParser#fieldName}.
 	 * @param ctx the parse tree
 	 */
-	void exitFieldVar(ShellParser.FieldVarContext ctx);
+	void exitFieldName(ShellParser.FieldNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ShellParser#modelVar}.
+	 * Enter a parse tree produced by {@link ShellParser#modelId}.
 	 * @param ctx the parse tree
 	 */
-	void enterModelVar(ShellParser.ModelVarContext ctx);
+	void enterModelId(ShellParser.ModelIdContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ShellParser#modelVar}.
+	 * Exit a parse tree produced by {@link ShellParser#modelId}.
 	 * @param ctx the parse tree
 	 */
-	void exitModelVar(ShellParser.ModelVarContext ctx);
+	void exitModelId(ShellParser.ModelIdContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ShellParser#queryVar}.
+	 * Enter a parse tree produced by {@link ShellParser#queryId}.
 	 * @param ctx the parse tree
 	 */
-	void enterQueryVar(ShellParser.QueryVarContext ctx);
+	void enterQueryId(ShellParser.QueryIdContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ShellParser#queryVar}.
+	 * Exit a parse tree produced by {@link ShellParser#queryId}.
 	 * @param ctx the parse tree
 	 */
-	void exitQueryVar(ShellParser.QueryVarContext ctx);
+	void exitQueryId(ShellParser.QueryIdContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ShellParser#regionVar}.
+	 * Enter a parse tree produced by {@link ShellParser#regionName}.
 	 * @param ctx the parse tree
 	 */
-	void enterRegionVar(ShellParser.RegionVarContext ctx);
+	void enterRegionName(ShellParser.RegionNameContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ShellParser#regionVar}.
+	 * Exit a parse tree produced by {@link ShellParser#regionName}.
 	 * @param ctx the parse tree
 	 */
-	void exitRegionVar(ShellParser.RegionVarContext ctx);
+	void exitRegionName(ShellParser.RegionNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#matrixId}.
+	 * @param ctx the parse tree
+	 */
+	void enterMatrixId(ShellParser.MatrixIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#matrixId}.
+	 * @param ctx the parse tree
+	 */
+	void exitMatrixId(ShellParser.MatrixIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#vectorId}.
+	 * @param ctx the parse tree
+	 */
+	void enterVectorId(ShellParser.VectorIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#vectorId}.
+	 * @param ctx the parse tree
+	 */
+	void exitVectorId(ShellParser.VectorIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#kernelId}.
+	 * @param ctx the parse tree
+	 */
+	void enterKernelId(ShellParser.KernelIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#kernelId}.
+	 * @param ctx the parse tree
+	 */
+	void exitKernelId(ShellParser.KernelIdContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ShellParser#queryString}.
 	 * @param ctx the parse tree
@@ -247,4 +297,14 @@ public interface ShellListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitQueryString(ShellParser.QueryStringContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumber(ShellParser.NumberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumber(ShellParser.NumberContext ctx);
 }
