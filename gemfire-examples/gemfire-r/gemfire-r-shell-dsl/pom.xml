@@ -18,7 +18,16 @@
 				<version>4.5.2-1</version>
 				<configuration>
 					<outputDirectory>src/main/java</outputDirectory>
+					<goal></goal>
 				</configuration>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>antlr4</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

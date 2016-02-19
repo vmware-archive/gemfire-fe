@@ -7,4 +7,10 @@
 	</parent>
 	<artifactId>gemfire-r</artifactId>
 	<packaging>pom</packaging>
+	<modules>
+		<module>gemfire-r-common</module>
+		<module>gemfire-r-server</module>
+        <module>gemfire-r-shell-dsl</module>
+		<module>gemfire-r-shell</module>
+	</modules>
 </project>
