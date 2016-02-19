@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,14 +30,19 @@ import io.pivotal.bds.gemfire.r.common.AdhocPredictionRequest;
 import io.pivotal.bds.gemfire.r.common.AdhocPredictionResponse;
 import io.pivotal.bds.gemfire.r.common.EvaluateDef;
 import io.pivotal.bds.gemfire.r.common.EvaluateKey;
+import io.pivotal.bds.gemfire.r.common.FFTRequest;
+import io.pivotal.bds.gemfire.r.common.FFTResponse;
+import io.pivotal.bds.gemfire.r.common.Matrix;
 import io.pivotal.bds.gemfire.r.common.MatrixDef;
 import io.pivotal.bds.gemfire.r.common.MatrixKey;
 import io.pivotal.bds.gemfire.r.common.ModelDef;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
+import io.pivotal.bds.gemfire.r.common.Vector;
 import io.pivotal.bds.gemfire.r.common.VectorDef;
 import io.pivotal.bds.gemfire.r.common.VectorKey;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.EvaluateContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.ExecuteContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FftContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNameContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNamesContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GpContext;
@@ -62,11 +68,14 @@ public class ShellListenerImpl extends ShellBaseListener {
     private Region<EvaluateKey, EvaluateDef> evaluateDefRegion;
     private Region<VectorKey, VectorDef> vectorDefRegion;
     private Region<MatrixKey, MatrixDef> matrixDefRegion;
+    private Region<VectorKey, Vector<Object>> vectorRegion;
+    private Region<MatrixKey, Matrix<Object>> matrixRegion;
 
     public ShellListenerImpl(PrintStream stdout, QueryService queryService, int queryLimit, Pool pool,
             Region<String, String> queryRegion, Region<ModelKey, ModelDef> modelDefRegion,
             Region<EvaluateKey, EvaluateDef> evaluateDefRegion, Region<VectorKey, VectorDef> vectorDefRegion,
-            Region<MatrixKey, MatrixDef> matrixDefRegion) {
+            Region<MatrixKey, MatrixDef> matrixDefRegion, Region<VectorKey, Vector<Object>> vectorRegion,
+            Region<MatrixKey, Matrix<Object>> matrixRegion) {
         this.stdout = stdout;
         this.queryService = queryService;
         this.queryLimit = queryLimit;
@@ -76,6 +85,48 @@ public class ShellListenerImpl extends ShellBaseListener {
         this.evaluateDefRegion = evaluateDefRegion;
         this.vectorDefRegion = vectorDefRegion;
         this.matrixDefRegion = matrixDefRegion;
+        this.vectorRegion = vectorRegion;
+        this.matrixRegion = matrixRegion;
+    }
+
+    @Override
+    public void exitFft(FftContext ctx) {
+        String inputId = ctx.fftInputId().getText();
+        String matrixId = ctx.matrixId().getText();
+        String dir = ctx.fftDir().getText().toUpperCase();
+        String norm = ctx.fftNorm().getText().toUpperCase();
+
+        Object input = null;
+        Region<?, ?> routeRegion = null;
+        VectorKey inputVectorKey = new VectorKey(inputId);
+        MatrixKey inputMatrixKey = new MatrixKey(inputId);
+
+        if (vectorRegion.get(inputVectorKey) != null) {
+            input = inputVectorKey;
+            routeRegion = vectorRegion;
+        } else if (matrixRegion.get(inputMatrixKey) != null) {
+            input = inputMatrixKey;
+            routeRegion = matrixRegion;
+        } else {
+            throw new IllegalArgumentException("Input variable " + inputId + " not found");
+        }
+
+        MatrixKey matrixKey = new MatrixKey(matrixId);
+
+        FFTRequest req = new FFTRequest(input, norm, dir, matrixKey, input);
+        Set<FFTRequest> filter = new HashSet<>();
+        filter.add(req);
+
+        ResultCollector<?, ?> coll = FunctionService.onRegion(routeRegion).withFilter(filter).execute("FFTFunction");
+
+        @SuppressWarnings("unchecked")
+        List<FFTResponse> lresp = (List<FFTResponse>) coll.getResult();
+        FFTResponse resp = lresp.get(0);
+        Object res = resp.getResult();
+
+        if (res instanceof String) {
+            stdout.println(res);
+        }
     }
 
     @Override
@@ -383,30 +434,53 @@ public class ShellListenerImpl extends ShellBaseListener {
     private boolean printMatrixVar(String matrixId) {
         MatrixKey key = new MatrixKey(matrixId);
         MatrixDef def = matrixDefRegion.get(key);
+        Matrix<Object> m = matrixRegion.get(key);
 
-        if (def == null) {
-            return false;
-        } else {
+        if (def != null || m != null) {
             stdout.println("Matrix:");
-            stdout.println("   query = " + def.getQueryId());
-            stdout.println("   fields = " + Arrays.toString(def.getFields()));
-            stdout.println("   args  = " + Arrays.toString(def.getQueryArgs()));
+
+            if (def != null) {
+                stdout.println("   query = " + def.getQueryId());
+                stdout.println("   fields = " + Arrays.toString(def.getFields()));
+                stdout.println("   args  = " + Arrays.toString(def.getQueryArgs()));
+            }
+
+            if (m != null) {
+                for (Vector<Object> v : m.getRows()) {
+                    List<Object> l = v.getVector();
+                    stdout.println("   " + l);
+                }
+            }
+
             return true;
         }
+
+        return false;
     }
 
     private boolean printVectorVar(String vectorId) {
         VectorKey key = new VectorKey(vectorId);
         VectorDef def = vectorDefRegion.get(key);
+        Vector<Object> v = vectorRegion.get(key);
 
-        if (def == null) {
-            return false;
-        } else {
+        if (def != null || v != null) {
             stdout.println("Vector:");
-            stdout.println("   query = " + def.getQueryId());
-            stdout.println("   field = " + def.getField());
-            stdout.println("   args  = " + Arrays.toString(def.getQueryArgs()));
+
+            if (def != null) {
+                stdout.println("   query = " + def.getQueryId());
+                stdout.println("   field = " + def.getField());
+                stdout.println("   args  = " + Arrays.toString(def.getQueryArgs()));
+            }
+
+            if (v != null) {
+                for (Object o : v.getVector()) {
+                    stdout.println("   " + o);
+                }
+            }
+
             return true;
+        } else {
+            return false;
         }
     }
 
@@ -469,10 +543,10 @@ public class ShellListenerImpl extends ShellBaseListener {
         printQueryVars(queryRegion.keySetOnServer());
 
         stdout.println("Vector:");
-        printVectorVars(vectorDefRegion.keySetOnServer());
+        printVectorVars(vectorRegion.keySetOnServer());
 
         stdout.println("Matrix:");
-        printMatrixVars(matrixDefRegion.keySetOnServer());
+        printMatrixVars(matrixRegion.keySetOnServer());
 
         stdout.println("Model:");
         printModelVars(modelDefRegion.keySetOnServer());

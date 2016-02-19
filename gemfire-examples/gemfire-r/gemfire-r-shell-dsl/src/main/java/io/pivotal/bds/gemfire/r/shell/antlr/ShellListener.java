@@ -128,6 +128,46 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitRm(ShellParser.RmContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ShellParser#fft}.
+	 * @param ctx the parse tree
+	 */
+	void enterFft(ShellParser.FftContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#fft}.
+	 * @param ctx the parse tree
+	 */
+	void exitFft(ShellParser.FftContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#fftInputId}.
+	 * @param ctx the parse tree
+	 */
+	void enterFftInputId(ShellParser.FftInputIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#fftInputId}.
+	 * @param ctx the parse tree
+	 */
+	void exitFftInputId(ShellParser.FftInputIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#fftDir}.
+	 * @param ctx the parse tree
+	 */
+	void enterFftDir(ShellParser.FftDirContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#fftDir}.
+	 * @param ctx the parse tree
+	 */
+	void exitFftDir(ShellParser.FftDirContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#fftNorm}.
+	 * @param ctx the parse tree
+	 */
+	void enterFftNorm(ShellParser.FftNormContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#fftNorm}.
+	 * @param ctx the parse tree
+	 */
+	void exitFftNorm(ShellParser.FftNormContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ShellParser#queryArg}.
 	 * @param ctx the parse tree
 	 */

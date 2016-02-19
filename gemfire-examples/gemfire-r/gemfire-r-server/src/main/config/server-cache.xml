@@ -97,9 +97,12 @@
 	</region>
 
 	<function-service>
-		<function>
-			<class-name>io.pivotal.bds.gemfire.r.server.function.AdhocPredictionFunction</class-name>
-		</function>
+        <function>
+            <class-name>io.pivotal.bds.gemfire.r.server.function.AdhocPredictionFunction</class-name>
+        </function>
+        <function>
+            <class-name>io.pivotal.bds.gemfire.r.server.function.FFTFunction</class-name>
+        </function>
 	</function-service>
 
 </cache>

@@ -25,10 +25,12 @@ import com.gemstone.gemfire.cache.query.QueryService;
 
 import io.pivotal.bds.gemfire.r.common.EvaluateDef;
 import io.pivotal.bds.gemfire.r.common.EvaluateKey;
+import io.pivotal.bds.gemfire.r.common.Matrix;
 import io.pivotal.bds.gemfire.r.common.MatrixDef;
 import io.pivotal.bds.gemfire.r.common.MatrixKey;
 import io.pivotal.bds.gemfire.r.common.ModelDef;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
+import io.pivotal.bds.gemfire.r.common.Vector;
 import io.pivotal.bds.gemfire.r.common.VectorDef;
 import io.pivotal.bds.gemfire.r.common.VectorKey;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellLexer;
@@ -74,8 +76,14 @@ public class R {
         ClientRegionFactory<MatrixKey, MatrixDef> matrixDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
         Region<MatrixKey, MatrixDef> matrixDefRegion = matrixDefCRF.create("matrixDef");
 
+        ClientRegionFactory<VectorKey, Vector<Object>> vectorCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<VectorKey, Vector<Object>> vectorRegion = vectorCRF.create("vector");
+
+        ClientRegionFactory<MatrixKey, Matrix<Object>> matrixCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<MatrixKey, Matrix<Object>> matrixRegion = matrixCRF.create("matrix");
+
         ShellListenerImpl list = new ShellListenerImpl(stdout, qs, queryLimit, pool, queryRegion, modelDefRegion, evalDefRegion,
-                vectorDefRegion, matrixDefRegion);
+                vectorDefRegion, matrixDefRegion, vectorRegion, matrixRegion);
 
         boolean cont = true;
         Scanner sc = new Scanner(System.in);

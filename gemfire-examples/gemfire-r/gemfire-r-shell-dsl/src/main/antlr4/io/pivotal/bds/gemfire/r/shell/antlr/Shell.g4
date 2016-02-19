@@ -1,6 +1,6 @@
 grammar Shell;
 
-cmd: query | execute | svm | gp | predict | print | ls | rm | evaluate | vector | matrix ;
+cmd: query | execute | svm | gp | predict | print | ls | rm | evaluate | vector | matrix | fft ;
 query: queryId EQUALS QUERY LPAREN queryString RPAREN ;
 execute: EXECUTE LPAREN queryId (COMMA queryArg)* RPAREN ;
 svm: modelId EQUALS SVM LPAREN matrixId COMMA vectorId (COMMA CP EQUALS cpVar)? (COMMA CN EQUALS cnVar)? (COMMA K EQUALS kVar)? RPAREN ;
@@ -12,7 +12,11 @@ matrix: matrixId EQUALS MATRIX LPAREN queryId COMMA fieldNames (COMMA queryArgs)
 print: PRINT var ;
 ls: LS ;
 rm: RM var ; 
+fft: matrixId EQUALS FFT LPAREN fftInputId COMMA fftDir COMMA fftNorm RPAREN ; 
 
+fftInputId: IDENTIFIER ;
+fftDir: FORWARD | INVERSE ;
+fftNorm: STANDARD | UNITARY ;
 queryArg: QUOTEDSTRING | NUMBER ;
 queryArgs: LBRACKET queryArg (COMMA queryArg)* RBRACKET ;
 fieldNames: LBRACKET fieldName (COMMA fieldName)* RBRACKET ;
@@ -32,6 +36,11 @@ kernelId: IDENTIFIER ;
 queryString : QUOTEDSTRING ;
 number: NUMBER;
 
+FFT: 'fft';
+FORWARD: 'forward';
+INVERSE: 'inverse';
+STANDARD: 'standard';
+UNITARY: 'unitary';
 GAUSS: 'gauss';
 MATRIX: 'matrix';
 VECTOR: 'vect';
