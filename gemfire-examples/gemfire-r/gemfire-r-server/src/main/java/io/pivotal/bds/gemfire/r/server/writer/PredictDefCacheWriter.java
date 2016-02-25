@@ -16,47 +16,46 @@ import io.pivotal.bds.gemfire.ml.Model;
 import io.pivotal.bds.gemfire.ml.ModelType;
 import io.pivotal.bds.gemfire.ml.classification.ClassificationModel;
 import io.pivotal.bds.gemfire.ml.regression.RegressionModel;
-import io.pivotal.bds.gemfire.r.common.EvaluateDef;
-import io.pivotal.bds.gemfire.r.common.EvaluateKey;
+import io.pivotal.bds.gemfire.r.common.PredictDef;
+import io.pivotal.bds.gemfire.r.common.PredictDefKey;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
 import io.pivotal.bds.gemfire.r.common.VariableType;
 import io.pivotal.bds.gemfire.r.server.util.ClassificationPredictHandler;
-import io.pivotal.bds.gemfire.r.server.util.PredictHandler;
+import io.pivotal.bds.gemfire.r.server.util.Handler;
 import io.pivotal.bds.gemfire.r.server.util.RegressionPredictHandler;
 import io.pivotal.bds.gemfire.r.server.util.Utils;
 
-public class EvaluateCacheWriter extends CacheWriterAdapter<EvaluateKey, EvaluateDef>implements Declarable {
+public class PredictDefCacheWriter extends CacheWriterAdapter<PredictDefKey, PredictDef>implements Declarable {
 
     private Region<ModelKey, Model<?, ?, ?, ?>> modelRegion;
 
-    private static final Logger LOG = LoggerFactory.getLogger(EvaluateCacheWriter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PredictDefCacheWriter.class);
 
     @Override
-    public void beforeCreate(EntryEvent<EvaluateKey, EvaluateDef> event) throws CacheWriterException {
+    public void beforeCreate(EntryEvent<PredictDefKey, PredictDef> event) throws CacheWriterException {
         LOG.debug("beforeCreate: event={}", event);
         Utils.addVariableType(event.getKey(), VariableType.Evaluate);
 
-        EvaluateDef def = event.getNewValue();
+        PredictDef def = event.getNewValue();
         ModelKey modelKey = def.getModelKey();
-        String modelId = modelKey.getModelId();
         String regionName = def.getRegionName();
 
         Model<?, ?, ?, ?> model = getModelRegion().get(modelKey);
         LOG.debug("beforeCreate: model={}", model);
 
         if (model == null) {
-            throw new IllegalArgumentException("Model " + modelId + " does not exist");
+            throw new IllegalArgumentException("Model " + modelKey + " does not exist");
         }
 
         ModelType mt = model.getMetadata().getType();
 
         switch (mt) {
             case classification: {
-                new ClassificationPredictHandler(modelId, regionName, (ClassificationModel) model, def.getFieldNames());
+                new ClassificationPredictHandler(modelKey, regionName, (ClassificationModel) model, def.getFieldNames());
                 break;
             }
             case regression: {
-                new RegressionPredictHandler(modelId, regionName, (RegressionModel) model, def.getFieldNames());
+                new RegressionPredictHandler(modelKey, regionName, (RegressionModel) model, def.getFieldNames());
                 break;
             }
             default: {
@@ -66,16 +65,15 @@ public class EvaluateCacheWriter extends CacheWriterAdapter<EvaluateKey, Evaluat
     }
 
     @Override
-    public void beforeDestroy(EntryEvent<EvaluateKey, EvaluateDef> event) throws CacheWriterException {
+    public void beforeDestroy(EntryEvent<PredictDefKey, PredictDef> event) throws CacheWriterException {
         LOG.debug("beforeDestroy: event={}", event);
         Utils.removeVariableType(event.getKey());
 
-        EvaluateDef def = event.getOldValue();
+        PredictDef def = event.getOldValue();
         ModelKey modelKey = def.getModelKey();
-        String modelId = modelKey.getModelId();
         String regionName = def.getRegionName();
 
-        PredictHandler.removeHandler(modelId, regionName);
+        Handler.removeHandler(modelKey, regionName);
     }
 
     @Override

@@ -6,11 +6,11 @@ import com.gemstone.gemfire.cache.client.ClientCacheFactory;
 import com.gemstone.gemfire.cache.client.ClientRegionFactory;
 import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
 
-import io.pivotal.bds.gemfire.r.common.EvaluateDef;
-import io.pivotal.bds.gemfire.r.common.EvaluateKey;
+import io.pivotal.bds.gemfire.r.common.PredictDef;
+import io.pivotal.bds.gemfire.r.common.PredictDefKey;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
 
-public class CreateEvaluate {
+public class CreatePredict {
 
     public static void main(String[] args) throws Exception {
         ClientCacheFactory ccf = new ClientCacheFactory();
@@ -20,12 +20,12 @@ public class CreateEvaluate {
 
         ClientCache cc = ccf.create();
 
-        ClientRegionFactory<EvaluateKey, EvaluateDef> crf = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
-        Region<EvaluateKey, EvaluateDef> r = crf.create("evaluate");
+        ClientRegionFactory<PredictDefKey, PredictDef> crf = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
+        Region<PredictDefKey, PredictDef> r = crf.create("evaluate");
 
-        EvaluateKey key = new EvaluateKey("eval1", "model1");
-        ModelKey mk = new ModelKey(key.getModelId());
-        EvaluateDef def = new EvaluateDef(mk, "testData", new String[] { "temp" });
+        PredictDefKey key = new PredictDefKey("eval1", "model1");
+        ModelKey mk = new ModelKey(key.getColocationId());
+        PredictDef def = new PredictDef(mk, "testData", new String[] { "temp" });
 
         r.put(key, def);
     }

@@ -12,14 +12,16 @@ import com.gemstone.gemfire.DataSerializer;
 public class Prediction implements DataSerializable {
 
     private PredictionKey key;
+    private ModelKey modelKey;
     private Date timestamp;
     private Number prediction;
 
     public Prediction() {
     }
 
-    public Prediction(PredictionKey key, Date timestamp, Number prediction) {
+    public Prediction(PredictionKey key, ModelKey modelKey, Date timestamp, Number prediction) {
         this.key = key;
+        this.modelKey = modelKey;
         this.timestamp = timestamp;
         this.prediction = prediction;
     }
@@ -30,6 +32,14 @@ public class Prediction implements DataSerializable {
 
     public void setKey(PredictionKey key) {
         this.key = key;
+    }
+
+    public ModelKey getModelKey() {
+        return modelKey;
+    }
+
+    public void setModelKey(ModelKey modelKey) {
+        this.modelKey = modelKey;
     }
 
     public Date getTimestamp() {
@@ -52,6 +62,8 @@ public class Prediction implements DataSerializable {
     public void fromData(DataInput input) throws IOException, ClassNotFoundException {
         key = new PredictionKey();
         key.fromData(input);
+        modelKey = new ModelKey();
+        modelKey.fromData(input);
         timestamp = DataSerializer.readDate(input);
         prediction = DataSerializer.readObject(input);
     }
@@ -59,13 +71,15 @@ public class Prediction implements DataSerializable {
     @Override
     public void toData(DataOutput output) throws IOException {
         key.toData(output);
+        modelKey.toData(output);
         DataSerializer.writeDate(timestamp, output);
         DataSerializer.writeObject(prediction, output);
     }
 
     @Override
     public String toString() {
-        return "Prediction [key=" + key + ", timestamp=" + timestamp + ", prediction=" + prediction + "]";
+        return "Prediction [key=" + key + ", modelKey=" + modelKey + ", timestamp=" + timestamp + ", prediction=" + prediction
+                + "]";
     }
 
 }

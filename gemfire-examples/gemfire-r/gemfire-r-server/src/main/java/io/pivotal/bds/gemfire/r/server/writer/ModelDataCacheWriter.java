@@ -20,6 +20,8 @@ import io.pivotal.bds.gemfire.ml.ModelFactoryManager;
 import io.pivotal.bds.gemfire.ml.ModelName;
 import io.pivotal.bds.gemfire.ml.ModelType;
 import io.pivotal.bds.gemfire.r.common.ModelData;
+import io.pivotal.bds.gemfire.r.common.ModelDef;
+import io.pivotal.bds.gemfire.r.common.ModelDefKey;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
 import io.pivotal.bds.gemfire.util.RegionHelper;
 
@@ -34,27 +36,13 @@ public class ModelDataCacheWriter extends CacheWriterAdapter<ModelKey, ModelData
     @Override
     public void beforeCreate(EntryEvent<ModelKey, ModelData> event) throws CacheWriterException {
         LOG.debug("beforeCreate: event={}", event);
-
-        ModelKey modelKey = event.getKey();
-        ModelData data = event.getNewValue();
-
-        Model<?, ?, ?, ?> model = createModel(data);
-        LOG.debug("beforeCreate: data={}, model={}", data, model);
-
-        getModelRegion().put(modelKey, model);
+        createModel(event);
     }
 
     @Override
     public void beforeUpdate(EntryEvent<ModelKey, ModelData> event) throws CacheWriterException {
         LOG.debug("beforeUpdate: event={}", event);
-
-        ModelKey modelKey = event.getKey();
-        ModelData data = event.getNewValue();
-
-        Model<?, ?, ?, ?> model = createModel(data);
-        LOG.debug("beforeUpdate: data={}, model={}", data, model);
-
-        getModelRegion().put(modelKey, model);
+        createModel(event);
     }
 
     @Override
@@ -68,37 +56,44 @@ public class ModelDataCacheWriter extends CacheWriterAdapter<ModelKey, ModelData
     public void init(Properties props) {
     }
 
-    @SuppressWarnings("rawtypes")
-    private Model createModel(ModelData data) {
-        ModelKey modelKey = data.getModelKey();
-        String modelId = modelKey.getModelId();
-        ModelName modelName = data.getModelName();
-        ModelType modelType = data.getType();
-        Map<String, Object> properties = data.getProperties();
+    private void createModel(EntryEvent<ModelKey, ModelData> event) {
+        ModelKey modelKey = event.getKey();
+        ModelData modelData = event.getNewValue();
+        ModelDefKey modelDefKey = modelData.getModelDefKey();
+
+        Region<ModelDefKey, ModelDef> modelDefRegion = RegionHelper.getRegion("modelDef");
+        ModelDef def = modelDefRegion.get(modelDefKey);
+
+        String modelId = modelKey.getId();
+        ModelName modelName = def.getName();
+        ModelType modelType = def.getType();
+        Map<String, Object> properties = def.getParameters();
 
         switch (modelType) {
             case classification: {
                 ModelFactory<double[][], int[], double[], Integer> factory = ModelFactoryManager.getFactory(modelType, modelName);
 
-                double[][] x = data.getX();
-                int[] y = convertToIntArray(data.getY());
+                double[][] x = modelData.getX();
+                int[] y = convertToIntArray(modelData.getY());
 
                 Model<double[][], int[], double[], Integer> model = factory.create(modelId, properties);
                 model.train(x, y);
 
-                return model;
+                getModelRegion().put(modelKey, model);
+                break;
             }
             case regression: {
                 ModelFactory<double[][], double[], double[], Integer> factory = ModelFactoryManager.getFactory(modelType,
                         modelName);
 
-                double[][] x = data.getX();
-                double[] y = convertToDoubleArray(data.getY());
+                double[][] x = modelData.getX();
+                double[] y = convertToDoubleArray(modelData.getY());
 
                 Model<double[][], double[], double[], Integer> model = factory.create(modelId, properties);
                 model.train(x, y);
 
-                return model;
+                getModelRegion().put(modelKey, model);
+                break;
             }
             default: {
                 throw new IllegalArgumentException("Unknown model type: " + modelType.name());

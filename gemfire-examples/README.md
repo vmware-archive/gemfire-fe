@@ -17,3 +17,4 @@ This is a suite of components that demonstrate various techniques that can be us
 * **gemfire-hbase**.  An example of how to use HBase as a backing store for Gemfire.
 * **gemfire-kite**.  An example of how to use the Kite SDK (http://kitesdk.org) to read and write to HDFS from Gemfire.
 * **gemfire-pmml**.  An example of how to execute PMML models in Gemfire.
+* **gemfire-r**.  An R-like tool that allows analytics to be performed directly on the in-memory data in Gemfire.  Vectors and matrices are created from a Gemfire query, which can then be analyzed via various models.  Predictions are then generated in real-time from the model when new data is inserted into the region.  The initial version supports regression, classification, and FFT.  Clustering is also planned, as well as models that dynamically update when the data in a region changes.

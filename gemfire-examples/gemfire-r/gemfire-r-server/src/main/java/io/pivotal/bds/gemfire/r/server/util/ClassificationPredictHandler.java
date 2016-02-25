@@ -4,13 +4,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.gemstone.gemfire.cache.Operation;
 import com.gemstone.gemfire.pdx.PdxInstance;
 
 import io.pivotal.bds.gemfire.ml.classification.ClassificationModel;
+import io.pivotal.bds.gemfire.r.common.ModelKey;
 import io.pivotal.bds.gemfire.r.common.Prediction;
 import io.pivotal.bds.gemfire.r.common.PredictionKey;
 
@@ -19,13 +17,10 @@ public class ClassificationPredictHandler extends PredictHandler {
     private ClassificationModel model;
     private String[] fieldNames;
 
-    private static final Logger LOG = LoggerFactory.getLogger(ClassificationPredictHandler.class);
-
-    public ClassificationPredictHandler(String modelId, String regionName, ClassificationModel model, String[] fieldNames) {
-        super(modelId);
+    public ClassificationPredictHandler(ModelKey modelKey, String regionName, ClassificationModel model, String[] fieldNames) {
+        super(modelKey, regionName);
         this.model = model;
         this.fieldNames = fieldNames;
-        addHandler(this, regionName);
     }
 
     @Override
@@ -62,8 +57,8 @@ public class ClassificationPredictHandler extends PredictHandler {
             LOG.debug("doHandle: regionName={}, op={}, key={}, value={}, x={}, y={}", regionName, op, key, value,
                     Arrays.toString(x), y);
 
-            PredictionKey predictKey = new PredictionKey(UUID.randomUUID().toString(), getModelId());
-            Prediction predict = new Prediction(predictKey, new Date(), y);
+            PredictionKey predictKey = new PredictionKey(UUID.randomUUID().toString(), modelKey.getId());
+            Prediction predict = new Prediction(predictKey, modelKey, new Date(), y);
 
             send(predictKey, predict);
         } else {
@@ -73,8 +68,8 @@ public class ClassificationPredictHandler extends PredictHandler {
 
     @Override
     public String toString() {
-        return "ClassificationPredictHandler [modelId=" + getModelId() + ", model=" + model + ", fieldNames="
-                + Arrays.toString(fieldNames) + "]";
+        return "ClassificationPredictHandler [modelKey=" + modelKey + ", regionName=" + getRegionName() + ", model=" + model
+                + ", fieldNames=" + Arrays.toString(fieldNames) + "]";
     }
 
 }

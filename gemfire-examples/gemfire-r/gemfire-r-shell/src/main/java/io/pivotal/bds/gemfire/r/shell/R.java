@@ -23,19 +23,26 @@ import com.gemstone.gemfire.cache.client.Pool;
 import com.gemstone.gemfire.cache.client.ServerOperationException;
 import com.gemstone.gemfire.cache.query.QueryService;
 
-import io.pivotal.bds.gemfire.r.common.EvaluateDef;
-import io.pivotal.bds.gemfire.r.common.EvaluateKey;
+import io.pivotal.bds.gemfire.r.common.PredictDef;
+import io.pivotal.bds.gemfire.r.common.PredictDefKey;
+import io.pivotal.bds.gemfire.r.common.TrainDef;
+import io.pivotal.bds.gemfire.r.common.TrainDefKey;
+import io.pivotal.bds.gemfire.r.common.DynamicTrainDef;
+import io.pivotal.bds.gemfire.r.common.DynamicTrainDefKey;
+import io.pivotal.bds.gemfire.r.common.KernelDef;
+import io.pivotal.bds.gemfire.r.common.KernelKey;
 import io.pivotal.bds.gemfire.r.common.Matrix;
 import io.pivotal.bds.gemfire.r.common.MatrixDef;
 import io.pivotal.bds.gemfire.r.common.MatrixKey;
 import io.pivotal.bds.gemfire.r.common.ModelDef;
-import io.pivotal.bds.gemfire.r.common.ModelKey;
+import io.pivotal.bds.gemfire.r.common.ModelDefKey;
 import io.pivotal.bds.gemfire.r.common.Vector;
 import io.pivotal.bds.gemfire.r.common.VectorDef;
 import io.pivotal.bds.gemfire.r.common.VectorKey;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellLexer;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellListenerImpl;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.CmdContext;
 
 public class R {
 
@@ -49,6 +56,10 @@ public class R {
 
         String locatorHost = "localhost";
         int locatorPort = 10334;
+
+        if (args.length == 1) {
+            locatorHost = args[0];
+        }
 
         ClientCacheFactory ccf = new ClientCacheFactory();
 
@@ -64,11 +75,12 @@ public class R {
         ClientRegionFactory<String, String> queryCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
         Region<String, String> queryRegion = queryCRF.create("queries");
 
-        ClientRegionFactory<ModelKey, ModelDef> modelDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
-        Region<ModelKey, ModelDef> modelDefRegion = modelDefCRF.create("modelDef");
+        ClientRegionFactory<ModelDefKey, ModelDef> modelDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<ModelDefKey, ModelDef> modelDefRegion = modelDefCRF.create("modelDef");
 
-        ClientRegionFactory<EvaluateKey, EvaluateDef> evalDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
-        Region<EvaluateKey, EvaluateDef> evalDefRegion = evalDefCRF.create("evaluate");
+        ClientRegionFactory<PredictDefKey, PredictDef> predictDefCRF = cc
+                .createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<PredictDefKey, PredictDef> predictDefRegion = predictDefCRF.create("predictDef");
 
         ClientRegionFactory<VectorKey, VectorDef> vectorDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
         Region<VectorKey, VectorDef> vectorDefRegion = vectorDefCRF.create("vectorDef");
@@ -82,9 +94,21 @@ public class R {
         ClientRegionFactory<MatrixKey, Matrix<Object>> matrixCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
         Region<MatrixKey, Matrix<Object>> matrixRegion = matrixCRF.create("matrix");
 
-        ShellListenerImpl list = new ShellListenerImpl(stdout, qs, queryLimit, pool, queryRegion, modelDefRegion, evalDefRegion,
-                vectorDefRegion, matrixDefRegion, vectorRegion, matrixRegion);
+        ClientRegionFactory<TrainDefKey, TrainDef> trainDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<TrainDefKey, TrainDef> trainDefRegion = trainDefCRF.create("trainDef");
 
+        ClientRegionFactory<DynamicTrainDefKey, DynamicTrainDef> dynamicTrainDefCRF = cc
+                .createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<DynamicTrainDefKey, DynamicTrainDef> dynamicTrainDefRegion = dynamicTrainDefCRF.create("dynamicTrainDef");
+
+        ClientRegionFactory<KernelKey, KernelDef> kernelDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<KernelKey, KernelDef> kernelDefRegion = kernelDefCRF.create("kernelDef");
+
+        ShellListenerImpl list = new ShellListenerImpl(stdout, fout, qs, queryLimit, pool, queryRegion, modelDefRegion,
+                predictDefRegion, vectorDefRegion, matrixDefRegion, vectorRegion, matrixRegion, trainDefRegion,
+                dynamicTrainDefRegion, kernelDefRegion);
+
+        ErrorList errorList = new ErrorList(fout);
         boolean cont = true;
         Scanner sc = new Scanner(System.in);
 
@@ -93,6 +117,7 @@ public class R {
                 stdout.println();
                 stdout.print("gfr> ");
                 String line = sc.nextLine();
+                fout.println("cmd: " + line);
 
                 if ("exit".equalsIgnoreCase(line)) {
                     cont = false;
@@ -103,11 +128,14 @@ public class R {
                         CommonTokenStream tokens = new CommonTokenStream(lex);
                         ShellParser parser = new ShellParser(tokens);
                         parser.addParseListener(list);
-                        parser.addErrorListener(new ErrorList());
-                        parser.cmd();
+                        parser.addErrorListener(errorList);
+                        parser.setTrace(true);
+                        CmdContext cctx = parser.cmd();
+                        fout.println("CmdContext: " + cctx);
                     } catch (ServerOperationException x) {
                         stdout.println(x.getCause().getMessage());
                         stdout.println(x.getRootCause().getMessage());
+                        x.printStackTrace(fout);
                     } catch (Exception x) {
                         stdout.println(x.getMessage());
                         x.printStackTrace(fout);
@@ -121,25 +149,36 @@ public class R {
 
     private static class ErrorList implements ANTLRErrorListener {
 
+        private PrintStream log;
+
+        public ErrorList(PrintStream log) {
+            this.log = log;
+        }
+
         @Override
         public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg,
                 RecognitionException e) {
+            log.println("syntaxError: " + charPositionInLine + " near " + offendingSymbol + ": " + msg);
             throw new IllegalArgumentException("Syntax error at " + charPositionInLine + " near " + offendingSymbol + ": " + msg);
         }
 
         @Override
         public void reportAmbiguity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, boolean exact, BitSet ambigAlts,
                 ATNConfigSet configs) {
+            log.println("reportAmbiguity: startIndex=" + startIndex + ", stopIndex=" + stopIndex + ", exact=" + exact);
         }
 
         @Override
         public void reportAttemptingFullContext(Parser recognizer, DFA dfa, int startIndex, int stopIndex, BitSet conflictingAlts,
                 ATNConfigSet configs) {
+            log.println("reportAttemptingFullContext: startIndex=" + startIndex + ", stopIndex=" + stopIndex);
         }
 
         @Override
         public void reportContextSensitivity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, int prediction,
                 ATNConfigSet configs) {
+            log.println("reportContextSensitivity: startIndex=" + startIndex + ", stopIndex=" + stopIndex + ", prediction="
+                    + prediction);
         }
 
     }

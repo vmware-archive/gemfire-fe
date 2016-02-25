@@ -10,12 +10,12 @@ import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.Operation;
 import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
 
-import io.pivotal.bds.gemfire.r.server.util.PredictHandler;
+import io.pivotal.bds.gemfire.r.server.util.Handler;
 import io.pivotal.bds.gemfire.util.BackoffAsyncEventListener;
 
-public class PredictAsyncEventListener extends BackoffAsyncEventListener implements Declarable {
+public class HandlerAsyncEventListener extends BackoffAsyncEventListener implements Declarable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(PredictAsyncEventListener.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HandlerAsyncEventListener.class);
 
     @SuppressWarnings("rawtypes")
     @Override
@@ -30,7 +30,7 @@ public class PredictAsyncEventListener extends BackoffAsyncEventListener impleme
             Object key = evt.getKey();
             Object value = evt.getDeserializedValue();
 
-            PredictHandler.handle(regionName, op, key, value);
+            Handler.handle(regionName, op, key, value);
         }
     }
 

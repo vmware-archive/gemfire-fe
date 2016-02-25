@@ -25,7 +25,11 @@ public abstract class BackoffAsyncEventListener implements AsyncEventListener, D
     private static final double DEFAULT_DELAY_SCALING = 2.0;
     private static final int DEFAULT_ERROR_COUNT_THRESHOLD = 10;
 
-    private static final Logger LOG = LogManager.getLogger(BackoffAsyncEventListener.class);
+    protected final Logger LOG;
+
+    public BackoffAsyncEventListener() {
+        LOG = LogManager.getLogger(getClass());
+    }
 
     @SuppressWarnings("rawtypes")
     @Override

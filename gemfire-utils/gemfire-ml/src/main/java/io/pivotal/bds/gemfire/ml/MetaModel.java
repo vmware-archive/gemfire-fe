@@ -28,7 +28,7 @@ public class MetaModel {
 
     @Override
     public String toString() {
-        return "ModelDef [type=" + type + ", name=" + name + ", parameters=" + parameters + "]";
+        return "MetaModel [type=" + type + ", name=" + name + ", parameters=" + parameters + "]";
     }
 
 }

@@ -31,7 +31,7 @@ public class CreateModel {
 
         Map<String, Object> properties = new HashMap<>();
 
-        ModelDef def = new ModelDef(key, "x1", "y1", ModelType.regression, ModelName.RandomForest, properties);
+        ModelDef def = null; // TODO new ModelDef(key, "x1", "y1", ModelType.regression, ModelName.RandomForest, properties);
 
         r.put(key, def);
     }

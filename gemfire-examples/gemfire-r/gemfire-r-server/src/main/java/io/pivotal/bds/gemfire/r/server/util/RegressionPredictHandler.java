@@ -11,6 +11,7 @@ import com.gemstone.gemfire.cache.Operation;
 import com.gemstone.gemfire.pdx.PdxInstance;
 
 import io.pivotal.bds.gemfire.ml.regression.RegressionModel;
+import io.pivotal.bds.gemfire.r.common.ModelKey;
 import io.pivotal.bds.gemfire.r.common.Prediction;
 import io.pivotal.bds.gemfire.r.common.PredictionKey;
 
@@ -21,11 +22,10 @@ public class RegressionPredictHandler extends PredictHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(RegressionPredictHandler.class);
 
-    public RegressionPredictHandler(String modelId, String regionName, RegressionModel model, String[] fieldNames) {
-        super(modelId);
+    public RegressionPredictHandler(ModelKey modelKey, String regionName, RegressionModel model, String[] fieldNames) {
+        super(modelKey, regionName);
         this.model = model;
         this.fieldNames = fieldNames;
-        addHandler(this, regionName);
     }
 
     @Override
@@ -62,8 +62,8 @@ public class RegressionPredictHandler extends PredictHandler {
             LOG.debug("doHandle: regionName={}, op={}, key={}, value={}, x={}, y={}", regionName, op, key, value,
                     Arrays.toString(x), y);
 
-            PredictionKey predictKey = new PredictionKey(UUID.randomUUID().toString(), getModelId());
-            Prediction predict = new Prediction(predictKey, new Date(), y);
+            PredictionKey predictKey = new PredictionKey(UUID.randomUUID().toString(), modelKey.getId());
+            Prediction predict = new Prediction(predictKey, modelKey, new Date(), y);
 
             send(predictKey, predict);
         } else {
@@ -73,7 +73,7 @@ public class RegressionPredictHandler extends PredictHandler {
 
     @Override
     public String toString() {
-        return "RegressionPredictHandler [modelId=" + getModelId() + ", model=" + model + ", fieldNames="
-                + Arrays.toString(fieldNames) + "]";
+        return "RegressionPredictHandler [modelKey=" + modelKey + ", regionName=" + getRegionName() + ", model=" + model
+                + ", fieldNames=" + Arrays.toString(fieldNames) + "]";
     }
 }

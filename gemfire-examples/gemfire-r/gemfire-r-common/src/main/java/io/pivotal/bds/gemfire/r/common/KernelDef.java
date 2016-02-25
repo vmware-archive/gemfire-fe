@@ -3,10 +3,13 @@ package io.pivotal.bds.gemfire.r.common;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.gemstone.gemfire.DataSerializable;
+import com.gemstone.gemfire.DataSerializer;
 
+@SuppressWarnings("serial")
 public class KernelDef implements DataSerializable {
 
     private KernelType type;
@@ -37,15 +40,15 @@ public class KernelDef implements DataSerializable {
     }
 
     @Override
-    public void fromData(DataInput arg0) throws IOException, ClassNotFoundException {
-        // TODO Auto-generated method stub
-
+    public void fromData(DataInput in) throws IOException, ClassNotFoundException {
+        type = DataSerializer.readEnum(KernelType.class, in);
+        properties = DataSerializer.readHashMap(in);
     }
 
     @Override
-    public void toData(DataOutput arg0) throws IOException {
-        // TODO Auto-generated method stub
-
+    public void toData(DataOutput out) throws IOException {
+        DataSerializer.writeEnum(type, out);
+        DataSerializer.writeHashMap((HashMap<?, ?>) properties, out);
     }
 
     @Override

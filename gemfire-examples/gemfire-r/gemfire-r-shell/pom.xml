@@ -10,6 +10,19 @@
 
 	<artifactId>gemfire-r-shell</artifactId>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<excludeScope>provided</excludeScope>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>io.pivotal.bds.gemfire</groupId>

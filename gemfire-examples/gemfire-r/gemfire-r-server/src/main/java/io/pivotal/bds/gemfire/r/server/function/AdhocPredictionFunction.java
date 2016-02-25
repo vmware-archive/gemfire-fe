@@ -42,7 +42,7 @@ public class AdhocPredictionFunction implements Function, Declarable {
 
             ModelKey modelKey = req.getModelKey();
             Model<?, ?, double[], Number> model = modelRegion.get(modelKey);
-            Assert.notNull(model, "Model " + modelKey.getModelId() + " not found");
+            Assert.notNull(model, "Model " + modelKey.getId() + " not found");
 
             List<AdhocPrediction> predicts = new ArrayList<>();
             double[] x = null;

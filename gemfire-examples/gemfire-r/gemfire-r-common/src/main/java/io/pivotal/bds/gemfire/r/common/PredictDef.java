@@ -9,16 +9,16 @@ import com.gemstone.gemfire.DataSerializable;
 import com.gemstone.gemfire.DataSerializer;
 
 @SuppressWarnings("serial")
-public class EvaluateDef implements DataSerializable {
+public class PredictDef implements DataSerializable {
 
     private ModelKey modelKey;
     private String regionName;
     private String[] fieldNames;
 
-    public EvaluateDef() {
+    public PredictDef() {
     }
 
-    public EvaluateDef(ModelKey modelKey, String regionName, String[] fieldNames) {
+    public PredictDef(ModelKey modelKey, String regionName, String[] fieldNames) {
         this.modelKey = modelKey;
         this.regionName = regionName;
         this.fieldNames = fieldNames;
@@ -65,7 +65,7 @@ public class EvaluateDef implements DataSerializable {
 
     @Override
     public String toString() {
-        return "PredictionDef [modelKey=" + modelKey + ", regionName=" + regionName + ", fieldNames=" + Arrays.toString(fieldNames)
+        return "PredictDef [modelKey=" + modelKey + ", regionName=" + regionName + ", fieldNames=" + Arrays.toString(fieldNames)
                 + "]";
     }
 }

@@ -4,7 +4,7 @@
 
 	<async-event-queue id="predict">
 		<async-event-listener>
-			<class-name>io.pivotal.bds.gemfire.r.server.listener.PredictAsyncEventListener</class-name>
+			<class-name>io.pivotal.bds.gemfire.r.server.listener.HandlerAsyncEventListener</class-name>
 		</async-event-listener>
 	</async-event-queue>
 
@@ -16,8 +16,11 @@
 
 	<pdx disk-store-name="pdx" read-serialized="true" persistent="true" />
 
-	<region name="variableType" refid="REPLICATE">
-	</region>
+    <region name="variableType" refid="REPLICATE">
+    </region>
+
+    <region name="kernelDef" refid="REPLICATE">
+    </region>
 
 	<region name="vectorDef" refid="REPLICATE">
         <region-attributes>
@@ -53,31 +56,42 @@
 	</region>
 
 	<region name="modelDef" refid="REPLICATE">
-		<region-attributes>
-			<cache-writer>
-				<class-name>io.pivotal.bds.gemfire.r.server.writer.ModelDefCacheWriter</class-name>
-			</cache-writer>
-		</region-attributes>
 	</region>
 
-	<region name="modelData" refid="REPLICATE">
-		<region-attributes>
-			<cache-writer>
-				<class-name>io.pivotal.bds.gemfire.r.server.writer.ModelDataCacheWriter</class-name>
-			</cache-writer>
-		</region-attributes>
-	</region>
+    <region name="modelData" refid="REPLICATE">
+        <region-attributes>
+            <cache-writer>
+                <class-name>io.pivotal.bds.gemfire.r.server.writer.ModelDataCacheWriter</class-name>
+            </cache-writer>
+        </region-attributes>
+    </region>
 
-	<region name="model" refid="LOCAL">
-	</region>
+    <region name="model" refid="LOCAL">
+    </region>
 
-	<region name="evaluate" refid="REPLICATE">
-		<region-attributes>
-			<cache-writer>
-				<class-name>io.pivotal.bds.gemfire.r.server.writer.EvaluateCacheWriter</class-name>
-			</cache-writer>
-		</region-attributes>
-	</region>
+    <region name="trainDef" refid="REPLICATE">
+        <region-attributes>
+            <cache-writer>
+                <class-name>io.pivotal.bds.gemfire.r.server.writer.TrainDefCacheWriter</class-name>
+            </cache-writer>
+        </region-attributes>
+    </region>
+
+    <region name="dynamicTrainDef" refid="REPLICATE">
+        <region-attributes>
+            <cache-writer>
+                <class-name>io.pivotal.bds.gemfire.r.server.writer.DynamicTrainDefCacheWriter</class-name>
+            </cache-writer>
+        </region-attributes>
+    </region>
+
+    <region name="predictDef" refid="REPLICATE">
+        <region-attributes>
+            <cache-writer>
+                <class-name>io.pivotal.bds.gemfire.r.server.writer.PredictDefCacheWriter</class-name>
+            </cache-writer>
+        </region-attributes>
+    </region>
 
 	<region name="prediction" refid="PARTITION">
 		<region-attributes>

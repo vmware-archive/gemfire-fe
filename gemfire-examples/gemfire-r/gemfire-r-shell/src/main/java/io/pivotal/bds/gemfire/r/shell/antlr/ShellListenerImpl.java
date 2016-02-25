@@ -28,65 +28,155 @@ import io.pivotal.bds.gemfire.ml.ModelType;
 import io.pivotal.bds.gemfire.r.common.AdhocPrediction;
 import io.pivotal.bds.gemfire.r.common.AdhocPredictionRequest;
 import io.pivotal.bds.gemfire.r.common.AdhocPredictionResponse;
-import io.pivotal.bds.gemfire.r.common.EvaluateDef;
-import io.pivotal.bds.gemfire.r.common.EvaluateKey;
+import io.pivotal.bds.gemfire.r.common.DynamicTrainDef;
+import io.pivotal.bds.gemfire.r.common.DynamicTrainDefKey;
+import io.pivotal.bds.gemfire.r.common.PredictDef;
+import io.pivotal.bds.gemfire.r.common.PredictDefKey;
+import io.pivotal.bds.gemfire.r.common.TrainDef;
+import io.pivotal.bds.gemfire.r.common.TrainDefKey;
 import io.pivotal.bds.gemfire.r.common.FFTRequest;
 import io.pivotal.bds.gemfire.r.common.FFTResponse;
+import io.pivotal.bds.gemfire.r.common.KernelDef;
+import io.pivotal.bds.gemfire.r.common.KernelKey;
+import io.pivotal.bds.gemfire.r.common.KernelType;
 import io.pivotal.bds.gemfire.r.common.Matrix;
 import io.pivotal.bds.gemfire.r.common.MatrixDef;
 import io.pivotal.bds.gemfire.r.common.MatrixKey;
 import io.pivotal.bds.gemfire.r.common.ModelDef;
+import io.pivotal.bds.gemfire.r.common.ModelDefKey;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
 import io.pivotal.bds.gemfire.r.common.Vector;
 import io.pivotal.bds.gemfire.r.common.VectorDef;
 import io.pivotal.bds.gemfire.r.common.VectorKey;
-import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.EvaluateContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsegaussKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsehypertangentKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparselaplaceKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparselinearKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsepolyKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsethinplatesplineKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.DtrainModelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.ExecuteContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FftContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNameContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNamesContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GaussKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GpContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.HypertangentKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LaplaceKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LinearKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LsContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.MatrixContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PearsonKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PolyKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PredictContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PrintContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryArgContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryArgsContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsegaussKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsehypertangentKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparselaplaceKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparselinearKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsepolyKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsethinplatesplineKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SvmContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.ThinplatesplineKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.TrainModelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.VectorContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.XFieldNameContext;
 
 public class ShellListenerImpl extends ShellBaseListener {
 
     private PrintStream stdout;
+    private PrintStream log;
     private QueryService queryService;
     private int queryLimit;
     private Pool pool;
 
     private Region<String, String> queryRegion;
-    private Region<ModelKey, ModelDef> modelDefRegion;
-    private Region<EvaluateKey, EvaluateDef> evaluateDefRegion;
+    private Region<ModelDefKey, ModelDef> modelDefRegion;
+    private Region<PredictDefKey, PredictDef> predictDefRegion;
     private Region<VectorKey, VectorDef> vectorDefRegion;
     private Region<MatrixKey, MatrixDef> matrixDefRegion;
     private Region<VectorKey, Vector<Object>> vectorRegion;
     private Region<MatrixKey, Matrix<Object>> matrixRegion;
+    private Region<TrainDefKey, TrainDef> trainDefRegion;
+    private Region<DynamicTrainDefKey, DynamicTrainDef> dynamicTrainDefRegion;
+    private Region<KernelKey, KernelDef> kernelDefRegion;
 
-    public ShellListenerImpl(PrintStream stdout, QueryService queryService, int queryLimit, Pool pool,
-            Region<String, String> queryRegion, Region<ModelKey, ModelDef> modelDefRegion,
-            Region<EvaluateKey, EvaluateDef> evaluateDefRegion, Region<VectorKey, VectorDef> vectorDefRegion,
+    public ShellListenerImpl(PrintStream stdout, PrintStream log, QueryService queryService, int queryLimit, Pool pool,
+            Region<String, String> queryRegion, Region<ModelDefKey, ModelDef> modelDefRegion,
+            Region<PredictDefKey, PredictDef> predictDefRegion, Region<VectorKey, VectorDef> vectorDefRegion,
             Region<MatrixKey, MatrixDef> matrixDefRegion, Region<VectorKey, Vector<Object>> vectorRegion,
-            Region<MatrixKey, Matrix<Object>> matrixRegion) {
+            Region<MatrixKey, Matrix<Object>> matrixRegion, Region<TrainDefKey, TrainDef> trainDefRegion,
+            Region<DynamicTrainDefKey, DynamicTrainDef> dynamicTrainDefRegion, Region<KernelKey, KernelDef> kernelDefRegion) {
         this.stdout = stdout;
+        this.log = log;
         this.queryService = queryService;
         this.queryLimit = queryLimit;
         this.pool = pool;
         this.queryRegion = queryRegion;
         this.modelDefRegion = modelDefRegion;
-        this.evaluateDefRegion = evaluateDefRegion;
+        this.predictDefRegion = predictDefRegion;
         this.vectorDefRegion = vectorDefRegion;
         this.matrixDefRegion = matrixDefRegion;
         this.vectorRegion = vectorRegion;
         this.matrixRegion = matrixRegion;
+        this.trainDefRegion = trainDefRegion;
+        this.dynamicTrainDefRegion = dynamicTrainDefRegion;
+        this.kernelDefRegion = kernelDefRegion;
+    }
+
+    @Override
+    public void exitTrainModel(TrainModelContext ctx) {
+        String modelDefId = ctx.modelId().getText();
+        String matrixId = ctx.matrixId().getText();
+        String vectorId = ctx.vectorId().getText();
+        String trainId = ctx.trainId().getText();
+        log.println("exitTrain: modelDefId=" + modelDefId + ", matrixId=" + matrixId + ", vectorId=" + vectorId + ", trainId="
+                + trainId);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelDefId);
+        ModelDef modelDef = modelDefRegion.get(modelDefKey);
+        Assert.notNull(modelDef, "Model " + modelDefKey + " not found");
+
+        MatrixKey matrixKey = new MatrixKey(matrixId);
+        MatrixDef matrixDef = matrixDefRegion.get(matrixKey);
+        Assert.notNull(matrixDef, "Matrix" + matrixKey + " not found");
+
+        VectorKey vectorKey = new VectorKey(vectorId);
+        VectorDef vectorDef = vectorDefRegion.get(vectorKey);
+        Assert.notNull(vectorDef, "Vector" + vectorKey + " not found");
+
+        ModelKey modelKey = new ModelKey(trainId);
+        TrainDefKey trainDefKey = new TrainDefKey(trainId, modelDefId);
+        TrainDef trainDef = new TrainDef(modelDefKey, modelKey, matrixKey, vectorKey);
+
+        trainDefRegion.put(trainDefKey, trainDef);
+    }
+
+    @Override
+    public void exitDtrainModel(DtrainModelContext ctx) {
+        String modelDefId = ctx.modelId().getText();
+        String trainId = ctx.trainId().getText();
+        String regionName = ctx.regionName().getText();
+        int size = Integer.parseInt(ctx.sizeVar().getText());
+        String yFieldName = ctx.yFieldName().getText();
+
+        List<XFieldNameContext> xlist = ctx.xFieldName();
+        String[] xFieldNames = new String[xlist.size()];
+
+        for (int i = 0; i < xFieldNames.length; ++i) {
+            xFieldNames[i] = xlist.get(i).getText();
+        }
+
+        DynamicTrainDefKey trainDefKey = new DynamicTrainDefKey(trainId, modelDefId);
+        ModelDefKey modelDefKey = new ModelDefKey(modelDefId);
+        ModelKey modelKey = new ModelKey(trainId);
+
+        DynamicTrainDef trainDef = new DynamicTrainDef(modelDefKey, modelKey, regionName, size, xFieldNames, yFieldName);
+
+        dynamicTrainDefRegion.put(trainDefKey, trainDef);
     }
 
     @Override
@@ -153,24 +243,6 @@ public class ShellListenerImpl extends ShellBaseListener {
         MatrixDef def = new MatrixDef(queryId, args.toArray(), fieldNames.toArray(new String[fieldNames.size()]));
 
         matrixDefRegion.put(key, def);
-    }
-
-    @Override
-    public void exitEvaluate(EvaluateContext ctx) {
-        String modelId = ctx.modelId().getText();
-        ModelKey modelKey = new ModelKey(modelId);
-        ModelDef modelDef = modelDefRegion.get(modelKey);
-        Assert.notNull(modelDef, "Model " + modelId + " does not exist");
-
-        String evalId = ctx.evaluateId().getText();
-        String regionName = ctx.regionName().getText();
-
-        List<String> fieldNames = convertFieldVar(ctx.fieldName());
-        String[] fns = fieldNames.toArray(new String[fieldNames.size()]);
-
-        EvaluateKey evalKey = new EvaluateKey(evalId, modelId);
-        EvaluateDef evalDef = new EvaluateDef(modelKey, regionName, fns);
-        evaluateDefRegion.put(evalKey, evalDef);
     }
 
     private List<String> convertFieldVar(FieldNamesContext fieldVar) {
@@ -313,9 +385,6 @@ public class ShellListenerImpl extends ShellBaseListener {
 
     @Override
     public void exitSvm(SvmContext ctx) {
-        String matrixId = ctx.matrixId().getText();
-        String vectorId = ctx.vectorId().getText();
-
         String modelId = ctx.modelId().getText();
 
         Map<String, Object> params = new HashMap<>();
@@ -330,28 +399,31 @@ public class ShellListenerImpl extends ShellBaseListener {
             params.put("cn", new Double(scn));
         }
 
-        ModelKey key = new ModelKey(modelId);
-        ModelDef info = new ModelDef(key, matrixId, vectorId, ModelType.classification, ModelName.SVM, params);
+        ModelDefKey key = new ModelDefKey(modelId);
+        ModelDef info = new ModelDef(key, ModelType.classification, ModelName.SVM, params);
 
         modelDefRegion.put(key, info);
     }
 
     @Override
     public void exitGp(GpContext ctx) {
-        String matrixId = ctx.matrixId().getText();
-        String vectorId = ctx.vectorId().getText();
-
+        String kernelId = ctx.kernelId().getText();
+        KernelKey kernelKey = new KernelKey(kernelId);
+        KernelDef kernelDef = kernelDefRegion.get(kernelKey);
+        Assert.notNull(kernelDef, "Kernel " + kernelId + " does not exist");
+        
         String modelId = ctx.modelId().getText();
 
         Map<String, Object> params = new HashMap<>();
+        params.put("kernel", kernelKey);
 
         String sl = ctx.lambdaVar() == null ? null : ctx.lambdaVar().getText();
         if (StringUtils.hasText(sl)) {
             params.put("lambda", new Double(sl));
         }
 
-        ModelKey key = new ModelKey(modelId);
-        ModelDef info = new ModelDef(key, matrixId, vectorId, ModelType.regression, ModelName.GaussianProcess, params);
+        ModelDefKey key = new ModelDefKey(modelId);
+        ModelDef info = new ModelDef(key, ModelType.regression, ModelName.GaussianProcess, params);
 
         modelDefRegion.put(key, info);
     }
@@ -360,8 +432,6 @@ public class ShellListenerImpl extends ShellBaseListener {
     public void exitPredict(PredictContext ctx) {
         String modelId = ctx.modelId().getText();
         ModelKey modelKey = new ModelKey(modelId);
-        ModelDef modelDef = modelDefRegion.get(modelKey);
-        Assert.notNull(modelDef, "Model " + modelId + " does not exist");
 
         Object arg = null;
 
@@ -485,14 +555,14 @@ public class ShellListenerImpl extends ShellBaseListener {
     }
 
     private boolean printEvalVar(String evalId) {
-        EvaluateKey key = new EvaluateKey(evalId, "");
-        EvaluateDef def = evaluateDefRegion.get(key);
+        PredictDefKey key = new PredictDefKey(evalId, "");
+        PredictDef def = predictDefRegion.get(key);
 
         if (def == null) {
             return false;
         } else {
             stdout.println("Evaluate:");
-            stdout.println("   model  = " + def.getModelKey().getModelId());
+            stdout.println("   model  = " + def.getModelKey().getId());
             stdout.println("   region = " + def.getRegionName());
             stdout.println("   fields = " + Arrays.toString(def.getFieldNames()));
             return true;
@@ -507,10 +577,8 @@ public class ShellListenerImpl extends ShellBaseListener {
             return false;
         } else {
             stdout.println("Model:");
-            stdout.println("   name   = " + info.getModelName());
-            stdout.println("   type   = " + info.getModelType());
-            stdout.println("   matrix = " + info.getMatrixId());
-            stdout.println("   vector = " + info.getVectorId());
+            stdout.println("   name   = " + info.getName());
+            stdout.println("   type   = " + info.getType());
 
             Map<String, Object> params = info.getParameters();
             List<String> pnames = new ArrayList<>(params.keySet());
@@ -552,13 +620,13 @@ public class ShellListenerImpl extends ShellBaseListener {
         printModelVars(modelDefRegion.keySetOnServer());
 
         stdout.println("Evaluate:");
-        printEvalVars(evaluateDefRegion.keySetOnServer());
+        printEvalVars(predictDefRegion.keySetOnServer());
     }
 
     private void printVectorVars(Set<VectorKey> c) {
         List<String> l = new ArrayList<>();
         for (VectorKey ek : c) {
-            l.add(ek.getVectorId());
+            l.add(ek.getId());
         }
         Collections.sort(l);
         for (String s : l) {
@@ -569,7 +637,7 @@ public class ShellListenerImpl extends ShellBaseListener {
     private void printMatrixVars(Set<MatrixKey> c) {
         List<String> l = new ArrayList<>();
         for (MatrixKey ek : c) {
-            l.add(ek.getMatrixId());
+            l.add(ek.getId());
         }
         Collections.sort(l);
         for (String s : l) {
@@ -577,10 +645,10 @@ public class ShellListenerImpl extends ShellBaseListener {
         }
     }
 
-    private void printEvalVars(Set<EvaluateKey> c) {
+    private void printEvalVars(Set<PredictDefKey> c) {
         List<String> l = new ArrayList<>();
-        for (EvaluateKey ek : c) {
-            l.add(ek.getEvaluateId());
+        for (PredictDefKey ek : c) {
+            l.add(ek.getId());
         }
         Collections.sort(l);
         for (String s : l) {
@@ -596,15 +664,276 @@ public class ShellListenerImpl extends ShellBaseListener {
         }
     }
 
-    private void printModelVars(Set<ModelKey> c) {
+    private void printModelVars(Set<ModelDefKey> c) {
         List<String> l = new ArrayList<>();
-        for (ModelKey k : c) {
-            l.add(k.getModelId());
+        for (ModelDefKey k : c) {
+            l.add(k.getId());
         }
         Collections.sort(l);
         for (String s : l) {
             stdout.println("   " + s);
         }
+    }
+
+    @Override
+    public void exitGaussKernel(GaussKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.Gaussian, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitLaplaceKernel(LaplaceKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.Laplacian, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitLinearKernel(LinearKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+
+        Map<String, Number> props = new HashMap<>();
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.Linear, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitPearsonKernel(PearsonKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double omega = new Double(ctx.omegaVar().getText());
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("omega", omega);
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.Pearson, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitPolyKernel(PolyKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double degree = new Double(ctx.degreeVar().getText());
+        Double scale = new Double(ctx.scaleVar().getText());
+        Double offset = new Double(ctx.offsetVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("degree", degree);
+        props.put("scale", scale);
+        props.put("offset", offset);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.Polynomial, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitHypertangentKernel(HypertangentKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double scale = new Double(ctx.scaleVar().getText());
+        Double offset = new Double(ctx.offsetVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("scale", scale);
+        props.put("offset", offset);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.HyperbolicTangent, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitThinplatesplineKernel(ThinplatesplineKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.ThinPlateSpline, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitSparsegaussKernel(SparsegaussKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.SparseGaussian, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitSparselaplaceKernel(SparselaplaceKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.SparseLaplacian, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitSparselinearKernel(SparselinearKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+
+        Map<String, Number> props = new HashMap<>();
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.SparseLinear, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitSparsepolyKernel(SparsepolyKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double degree = new Double(ctx.degreeVar().getText());
+        Double scale = new Double(ctx.scaleVar().getText());
+        Double offset = new Double(ctx.offsetVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("degree", degree);
+        props.put("scale", scale);
+        props.put("offset", offset);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.SparsePolynomial, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitSparsehypertangentKernel(SparsehypertangentKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double scale = new Double(ctx.scaleVar().getText());
+        Double offset = new Double(ctx.offsetVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("scale", scale);
+        props.put("offset", offset);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.SparseHyperbolicTangent, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitSparsethinplatesplineKernel(SparsethinplatesplineKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.SparseThinPlateSpline, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitBinarysparsegaussKernel(BinarysparsegaussKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.BinarySparseGaussian, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitBinarysparselaplaceKernel(BinarysparselaplaceKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.BinarySparseLaplacian, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitBinarysparselinearKernel(BinarysparselinearKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+
+        Map<String, Number> props = new HashMap<>();
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.BinarySparseLinear, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitBinarysparsepolyKernel(BinarysparsepolyKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double degree = new Double(ctx.degreeVar().getText());
+        Double scale = new Double(ctx.scaleVar().getText());
+        Double offset = new Double(ctx.offsetVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("degree", degree);
+        props.put("scale", scale);
+        props.put("offset", offset);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.BinarySparsePolynomial, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitBinarysparsehypertangentKernel(BinarysparsehypertangentKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double scale = new Double(ctx.scaleVar().getText());
+        Double offset = new Double(ctx.offsetVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("scale", scale);
+        props.put("offset", offset);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.BinarySparseHyperbolicTangent, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitBinarysparsethinplatesplineKernel(BinarysparsethinplatesplineKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+        Double sigma = new Double(ctx.sigmaVar().getText());
+
+        Map<String, Number> props = new HashMap<>();
+        props.put("sigma", sigma);
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.BinarySparseThinPlateSpline, props);
+        kernelDefRegion.put(key, def);
     }
 
 }

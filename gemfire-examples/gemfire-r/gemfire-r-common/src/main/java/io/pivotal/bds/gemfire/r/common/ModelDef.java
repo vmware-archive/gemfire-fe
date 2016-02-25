@@ -15,64 +15,43 @@ import io.pivotal.bds.gemfire.ml.ModelType;
 @SuppressWarnings("serial")
 public class ModelDef implements DataSerializable {
 
-    private ModelKey modelKey;
-    private String matrixId;
-    private String vectorId;
-    private ModelType modelType;
-    private ModelName modelName;
+    private ModelDefKey key;
+    private ModelType type;
+    private ModelName name;
     private Map<String, Object> parameters;
 
     public ModelDef() {
     }
 
-    public ModelDef(ModelKey modelKey, String matrixId, String vectorId, ModelType modelType, ModelName modelName,
-            Map<String, Object> parameters) {
-        this.modelKey = modelKey;
-        this.matrixId = matrixId;
-        this.vectorId = vectorId;
-        this.modelType = modelType;
-        this.modelName = modelName;
+    public ModelDef(ModelDefKey key, ModelType type, ModelName name, Map<String, Object> parameters) {
+        this.key = key;
+        this.type = type;
+        this.name = name;
         this.parameters = parameters;
     }
 
-    public ModelKey getModelKey() {
-        return modelKey;
+    public ModelDefKey getKey() {
+        return key;
     }
 
-    public void setModelKey(ModelKey modelKey) {
-        this.modelKey = modelKey;
+    public void setKey(ModelDefKey key) {
+        this.key = key;
     }
 
-    public String getMatrixId() {
-        return matrixId;
+    public ModelType getType() {
+        return type;
     }
 
-    public void setMatrixId(String matrixId) {
-        this.matrixId = matrixId;
+    public void setType(ModelType type) {
+        this.type = type;
     }
 
-    public String getVectorId() {
-        return vectorId;
+    public ModelName getName() {
+        return name;
     }
 
-    public void setVectorId(String vectorId) {
-        this.vectorId = vectorId;
-    }
-
-    public ModelType getModelType() {
-        return modelType;
-    }
-
-    public void setModelType(ModelType modelType) {
-        this.modelType = modelType;
-    }
-
-    public ModelName getModelName() {
-        return modelName;
-    }
-
-    public void setModelName(ModelName modelName) {
-        this.modelName = modelName;
+    public void setName(ModelName name) {
+        this.name = name;
     }
 
     public Map<String, Object> getParameters() {
@@ -85,29 +64,24 @@ public class ModelDef implements DataSerializable {
 
     @Override
     public void fromData(DataInput input) throws IOException, ClassNotFoundException {
-        modelKey = new ModelKey();
-        modelKey.fromData(input);
-        matrixId = DataSerializer.readString(input);
-        vectorId = DataSerializer.readString(input);
-        modelType = ModelType.valueOf(DataSerializer.readString(input));
-        modelName = ModelName.valueOf(DataSerializer.readString(input));
+        key = new ModelDefKey();
+        key.fromData(input);
+        type = DataSerializer.readEnum(ModelType.class, input);
+        name = DataSerializer.readEnum(ModelName.class, input);
         parameters = DataSerializer.readHashMap(input);
     }
 
     @Override
     public void toData(DataOutput output) throws IOException {
-        modelKey.toData(output);
-        DataSerializer.writeString(matrixId, output);
-        DataSerializer.writeString(vectorId, output);
-        DataSerializer.writeString(modelType.name(), output);
-        DataSerializer.writeString(modelName.name(), output);
+        key.toData(output);
+        DataSerializer.writeEnum(type, output);
+        DataSerializer.writeEnum(name, output);
         DataSerializer.writeHashMap((HashMap<?, ?>) parameters, output);
     }
 
     @Override
     public String toString() {
-        return "ModelDef [modelKey=" + modelKey + ", matrixId=" + matrixId + ", vectorId=" + vectorId + ", modelType=" + modelType
-                + ", modelName=" + modelName + ", parameters=" + parameters + "]";
+        return "ModelDef [key=" + key + ", type=" + type + ", name=" + name + ", parameters=" + parameters + "]";
     }
 
 }

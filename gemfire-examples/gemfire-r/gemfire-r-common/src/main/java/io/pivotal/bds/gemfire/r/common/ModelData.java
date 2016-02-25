@@ -4,68 +4,42 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.gemstone.gemfire.DataSerializable;
 import com.gemstone.gemfire.DataSerializer;
 
-import io.pivotal.bds.gemfire.ml.ModelName;
-import io.pivotal.bds.gemfire.ml.ModelType;
-
 @SuppressWarnings("serial")
 public class ModelData implements DataSerializable {
 
-    private ModelKey modelKey;
-    private ModelType type;
-    private ModelName modelName;
-    private Map<String, Object> properties;
+    private ModelKey key;
+    private ModelDefKey modelDefKey;
     private double[][] x;
     private Number[] y;
 
     public ModelData() {
     }
 
-    public ModelData(ModelKey modelKey, ModelType type, ModelName modelName, Map<String, Object> properties, double[][] x,
-            Number[] y) {
-        this.modelKey = modelKey;
-        this.type = type;
-        this.modelName = modelName;
-        this.properties = properties;
+    public ModelData(ModelKey key, ModelDefKey modelDefKey, double[][] x, Number[] y) {
+        this.key = key;
+        this.modelDefKey = modelDefKey;
         this.x = x;
         this.y = y;
     }
 
-    public ModelKey getModelKey() {
-        return modelKey;
+    public ModelKey getKey() {
+        return key;
     }
 
-    public void setModelKey(ModelKey modelKey) {
-        this.modelKey = modelKey;
+    public void setKey(ModelKey key) {
+        this.key = key;
     }
 
-    public ModelType getType() {
-        return type;
+    public ModelDefKey getModelDefKey() {
+        return modelDefKey;
     }
 
-    public void setType(ModelType type) {
-        this.type = type;
-    }
-
-    public ModelName getModelName() {
-        return modelName;
-    }
-
-    public void setModelName(ModelName modelName) {
-        this.modelName = modelName;
-    }
-
-    public Map<String, Object> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Map<String, Object> properties) {
-        this.properties = properties;
+    public void setModelDefKey(ModelDefKey modelDefKey) {
+        this.modelDefKey = modelDefKey;
     }
 
     public double[][] getX() {
@@ -86,28 +60,26 @@ public class ModelData implements DataSerializable {
 
     @Override
     public void fromData(DataInput input) throws IOException, ClassNotFoundException {
-        modelKey = new ModelKey();
-        modelKey.fromData(input);
-        type = ModelType.valueOf(DataSerializer.readString(input));
-        modelName = ModelName.valueOf(DataSerializer.readString(input));
-        properties = DataSerializer.readHashMap(input);
+        key = new ModelKey();
+        key.fromData(input);
+        modelDefKey = new ModelDefKey();
+        modelDefKey.fromData(input);
         x = DataSerializer.readObject(input);
         y = DataSerializer.readObject(input);
     }
 
     @Override
     public void toData(DataOutput output) throws IOException {
-        modelKey.toData(output);
-        DataSerializer.writeString(type.name(), output);
-        DataSerializer.writeString(modelName.name(), output);
-        DataSerializer.writeHashMap((HashMap<?, ?>) properties, output);
+        key.toData(output);
+        modelDefKey.toData(output);
         DataSerializer.writeObject(x, output);
         DataSerializer.writeObject(y, output);
     }
 
     @Override
     public String toString() {
-        return "ModelData [modelKey=" + modelKey + ", type=" + type + ", modelName=" + modelName + ", properties=" + properties
-                + ", x=" + Arrays.toString(x) + ", y=" + Arrays.toString(y) + "]";
+        return "ModelData [key=" + key + ", modelDefKey=" + modelDefKey + ", x=" + Arrays.toString(x) + ", y=" + Arrays.toString(y)
+                + "]";
     }
+
 }
