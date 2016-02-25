@@ -14,16 +14,23 @@ import com.gemstone.gemfire.cache.EntryEvent;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.util.CacheWriterAdapter;
 
+import io.pivotal.bds.gemfire.ml.KernelType;
+import io.pivotal.bds.gemfire.ml.MercerKernelFactory;
+import io.pivotal.bds.gemfire.ml.MercerKernelFactoryManager;
 import io.pivotal.bds.gemfire.ml.Model;
 import io.pivotal.bds.gemfire.ml.ModelFactory;
 import io.pivotal.bds.gemfire.ml.ModelFactoryManager;
 import io.pivotal.bds.gemfire.ml.ModelName;
 import io.pivotal.bds.gemfire.ml.ModelType;
+import io.pivotal.bds.gemfire.r.common.KernelDef;
+import io.pivotal.bds.gemfire.r.common.KernelKey;
 import io.pivotal.bds.gemfire.r.common.ModelData;
 import io.pivotal.bds.gemfire.r.common.ModelDef;
 import io.pivotal.bds.gemfire.r.common.ModelDefKey;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
+import io.pivotal.bds.gemfire.util.Assert;
 import io.pivotal.bds.gemfire.util.RegionHelper;
+import smile.math.kernel.MercerKernel;
 
 public class ModelDataCacheWriter extends CacheWriterAdapter<ModelKey, ModelData>implements Declarable {
 
@@ -68,6 +75,21 @@ public class ModelDataCacheWriter extends CacheWriterAdapter<ModelKey, ModelData
         ModelName modelName = def.getName();
         ModelType modelType = def.getType();
         Map<String, Object> properties = def.getParameters();
+
+        KernelKey kernelKey = (KernelKey) properties.get("kernelKey");
+
+        if (kernelKey != null) {
+            Region<KernelKey, KernelDef> kernelDefRegion = RegionHelper.getRegion("kernelDef");
+            KernelDef kernelDef = kernelDefRegion.get(kernelKey);
+            Assert.notNull(kernelDef, "Kernel def %s not found", kernelKey.getId());
+            
+            KernelType kernelType = kernelDef.getType();
+            Map<String, Number> kernelProps = kernelDef.getProperties();
+            MercerKernelFactory<?> mkf = MercerKernelFactoryManager.getFactory(kernelType);
+            MercerKernel<?> kern = mkf.createKernel(kernelProps);
+            
+            properties.put("kernel", kern);
+        }
 
         switch (modelType) {
             case classification: {

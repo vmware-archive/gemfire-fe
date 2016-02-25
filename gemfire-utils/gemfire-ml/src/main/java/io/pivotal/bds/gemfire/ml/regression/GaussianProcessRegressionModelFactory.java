@@ -19,10 +19,16 @@ public class GaussianProcessRegressionModelFactory extends AbstractRegressionMod
         super(createModelDef());
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected Model<double[][], double[], double[], Double> doCreate(String id, Map<String, Object> properties) {
-        Double sigma = (Double) properties.getOrDefault("sigma", DEFAULT_SIGMA);
-        MercerKernel<double[]> kernel = new GaussianKernel(sigma);
+        MercerKernel<double[]> kernel = (MercerKernel<double[]>) properties.get("kernel");
+        
+        if (kernel == null) {
+            Double sigma = (Double) properties.getOrDefault("sigma", DEFAULT_SIGMA);
+            kernel = new GaussianKernel(sigma);
+        }
+        
         Double lambda = (Double) properties.getOrDefault("lambda", DEFAULT_LAMBDA);
         return new GaussianProcessRegressionModel(id, def, kernel, lambda);
     }
@@ -31,6 +37,7 @@ public class GaussianProcessRegressionModelFactory extends AbstractRegressionMod
         MetaModel def = new MetaModel(ModelType.regression, ModelName.GaussianProcess);
         def.getParameters().add(new MetaParameter("sigma", Double.class, DEFAULT_SIGMA, false));
         def.getParameters().add(new MetaParameter("lambda", Double.class, DEFAULT_LAMBDA, false));
+        def.getParameters().add(new MetaParameter("kernel", MercerKernel.class, null, true));
         return def;
     }
 }

@@ -23,6 +23,7 @@ import com.gemstone.gemfire.cache.query.SelectResults;
 import com.gemstone.gemfire.cache.query.Struct;
 import com.gemstone.gemfire.pdx.PdxInstance;
 
+import io.pivotal.bds.gemfire.ml.KernelType;
 import io.pivotal.bds.gemfire.ml.ModelName;
 import io.pivotal.bds.gemfire.ml.ModelType;
 import io.pivotal.bds.gemfire.r.common.AdhocPrediction;
@@ -38,7 +39,6 @@ import io.pivotal.bds.gemfire.r.common.FFTRequest;
 import io.pivotal.bds.gemfire.r.common.FFTResponse;
 import io.pivotal.bds.gemfire.r.common.KernelDef;
 import io.pivotal.bds.gemfire.r.common.KernelKey;
-import io.pivotal.bds.gemfire.r.common.KernelType;
 import io.pivotal.bds.gemfire.r.common.Matrix;
 import io.pivotal.bds.gemfire.r.common.MatrixDef;
 import io.pivotal.bds.gemfire.r.common.MatrixKey;
@@ -61,6 +61,7 @@ import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNameContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNamesContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GaussKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GpContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.HellingerKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.HypertangentKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LaplaceKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LinearKernelContext;
@@ -415,7 +416,7 @@ public class ShellListenerImpl extends ShellBaseListener {
         String modelId = ctx.modelId().getText();
 
         Map<String, Object> params = new HashMap<>();
-        params.put("kernel", kernelKey);
+        params.put("kernelKey", kernelKey);
 
         String sl = ctx.lambdaVar() == null ? null : ctx.lambdaVar().getText();
         if (StringUtils.hasText(sl)) {
@@ -933,6 +934,17 @@ public class ShellListenerImpl extends ShellBaseListener {
 
         KernelKey key = new KernelKey(kernelId);
         KernelDef def = new KernelDef(KernelType.BinarySparseThinPlateSpline, props);
+        kernelDefRegion.put(key, def);
+    }
+
+    @Override
+    public void exitHellingerKernel(HellingerKernelContext ctx) {
+        String kernelId = ctx.kernelId().getText();
+
+        Map<String, Number> props = new HashMap<>();
+
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = new KernelDef(KernelType.Hellinger, props);
         kernelDefRegion.put(key, def);
     }
 

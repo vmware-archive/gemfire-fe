@@ -1,4 +1,4 @@
-package io.pivotal.bds.gemfire.r.common;
+package io.pivotal.bds.gemfire.ml;
 
 public enum KernelType {
     

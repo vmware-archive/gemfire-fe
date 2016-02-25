@@ -9,6 +9,8 @@ import java.util.Map;
 import com.gemstone.gemfire.DataSerializable;
 import com.gemstone.gemfire.DataSerializer;
 
+import io.pivotal.bds.gemfire.ml.KernelType;
+
 @SuppressWarnings("serial")
 public class KernelDef implements DataSerializable {
 

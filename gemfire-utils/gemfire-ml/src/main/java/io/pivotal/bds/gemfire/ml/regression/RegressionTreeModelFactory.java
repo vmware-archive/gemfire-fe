@@ -25,7 +25,7 @@ public class RegressionTreeModelFactory extends AbstractRegressionModelFactory {
 
     private static MetaModel createModelDef() {
         MetaModel def = new MetaModel(ModelType.regression, ModelName.RegressionTree);
-        def.getParameters().add(new MetaParameter("", Integer.class, DEFAULT_J, false));
+        def.getParameters().add(new MetaParameter("J", Integer.class, DEFAULT_J, false));
         return def;
     }
 }

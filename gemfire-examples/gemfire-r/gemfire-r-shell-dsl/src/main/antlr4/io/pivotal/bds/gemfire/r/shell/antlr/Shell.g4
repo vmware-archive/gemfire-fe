@@ -1,20 +1,49 @@
 grammar Shell;
 
-cmd: query | execute | svm | gp | trainModel | dtrainModel | predict | print | ls | rm | vector | matrix | fft ;
+cmd
+    : query 
+    | execute 
+    | svm 
+    | gaussianProcess 
+    | regressionTree 
+    | randomForestRegression 
+    | ridgeRegression 
+    | svr 
+    | kernel 
+    | trainModel 
+    | dtrainModel 
+    | predict 
+    | print 
+    | ls 
+    | rm 
+    | vector 
+    | matrix 
+    | fft ;
+
+svm: modelId EQUALS SVM LPAREN cpVar COMMA cnVar COMMA kVar RPAREN ;
+gaussianProcess: modelId EQUALS GAUSSIANPROCESS LPAREN kernelId COMMA lambdaVar RPAREN ;
+regressionTree: modelId EQUALS REGRESSIONTREE LPAREN maxNodesVar COMMA nodeSizeVar RPAREN ;
+randomForestRegression: modelId EQUALS RANDOMFORESTREGRESSION LPAREN ntreesVar COMMA nodeSizeVar RPAREN ;
+ridgeRegression: modelId EQUALS RIDGEREGRESSION LPAREN lambdaVar RPAREN ;
+svr: modelId EQUALS SVR LPAREN kernelId COMMA epsVar COMMA cVar COMMA tolVar RPAREN ;
+
+knn: modelId EQUALS KNN LPAREN kernelId COMMA epsVar COMMA cVar COMMA tolVar RPAREN ;
 
 query: queryId EQUALS QUERY LPAREN queryString RPAREN ;
 execute: EXECUTE LPAREN queryId (COMMA queryArg)* RPAREN ;
-svm: modelId EQUALS SVM LPAREN cpVar COMMA cnVar COMMA kVar RPAREN ;
-gp: modelId EQUALS GP LPAREN kernelId COMMA lambdaVar RPAREN ;
+
 trainModel: trainId EQUALS TRAIN LPAREN modelId COMMA matrixId COMMA vectorId RPAREN ;
 dtrainModel: trainId EQUALS DTRAIN LPAREN modelId COMMA regionName COMMA sizeVar COMMA yFieldName (COMMA xFieldName)+ RPAREN ;
 predict: PREDICT LPAREN modelId COMMA (vectorId|number) RPAREN ;
+
 vector: vectorId EQUALS VECTOR LPAREN queryId COMMA fieldName (COMMA queryArgs)? RPAREN ;
 matrix: matrixId EQUALS MATRIX LPAREN queryId COMMA fieldNames (COMMA queryArgs)? RPAREN ;
+
+fft: matrixId EQUALS FFT LPAREN fftInputId COMMA fftDir COMMA fftNorm RPAREN ;
+
 print: PRINT var ;
 ls: LS ;
 rm: RM var ; 
-fft: matrixId EQUALS FFT LPAREN fftInputId COMMA fftDir COMMA fftNorm RPAREN ;
 
 kernel: kernelId EQUALS mercerkernel ;
 
@@ -25,7 +54,8 @@ mercerkernel
     | pearsonKernel 
     | polyKernel 
     | hypertangentKernel 
-    | thinplatesplineKernel 
+    | thinplatesplineKernel
+    | hellingerKernel 
     | sparsegaussKernel 
     | sparselaplaceKernel
     | sparselinearKernel
@@ -47,6 +77,7 @@ pearsonKernel: kernelId EQUALS PEARSONKERNEL LPAREN sigmaVar COMMA omegaVar RPAR
 polyKernel: kernelId EQUALS POLYNOMIALKERNEL LPAREN degreeVar COMMA scaleVar COMMA offsetVar RPAREN ;
 hypertangentKernel: kernelId EQUALS HYPERBOLICTANGENTKERNEL LPAREN scaleVar COMMA offsetVar RPAREN ;
 thinplatesplineKernel: kernelId EQUALS THINPLATEPLINEKERNEL LPAREN sigmaVar RPAREN ;
+hellingerKernel: kernelId EQUALS HELLINGERKERNEL ;
 
 sparsegaussKernel: kernelId EQUALS SPARSEGAUSSIANKERNEL LPAREN sigmaVar RPAREN ;
 sparselaplaceKernel: kernelId EQUALS SPARSELAPLACEKERNEL LPAREN sigmaVar RPAREN ;
@@ -62,6 +93,13 @@ binarysparsepolyKernel: kernelId EQUALS BINARYSPARSEPOLYNOMIALKERNEL LPAREN degr
 binarysparsehypertangentKernel: kernelId EQUALS BINARYSPARSEHYPERBOLICTANGENTKERNEL LPAREN scaleVar COMMA offsetVar RPAREN ;
 binarysparsethinplatesplineKernel: kernelId EQUALS BINARYSPARSETHINPLATEPLINEKERNEL LPAREN sigmaVar RPAREN ;
 
+ntreesVar: NUMBER ;
+maxNodesVar: NUMBER ;
+nodeSizeVar: NUMBER ;
+
+tolVar: NUMBER ;
+epsVar: NUMBER ;
+cVar: NUMBER ;
 cpVar: NUMBER ;
 cnVar: NUMBER ;
 kVar: NUMBER ;
@@ -100,6 +138,7 @@ PEARSONKERNEL: 'pearsonkernel';
 POLYNOMIALKERNEL: 'polykernel';
 HYPERBOLICTANGENTKERNEL: 'hypertangentkernel';
 THINPLATEPLINEKERNEL: 'thinplatesplinekernel';
+HELLINGERKERNEL: 'hellingerkernel';
 
 SPARSEGAUSSIANKERNEL: 'sparsegausskernel';
 SPARSELAPLACEKERNEL: 'sparselaplacekernel';
@@ -114,6 +153,13 @@ BINARYSPARSELINEARKERNEL: 'binarysparselinearkernel';
 BINARYSPARSEPOLYNOMIALKERNEL: 'binarysparsepolykernel';
 BINARYSPARSEHYPERBOLICTANGENTKERNEL: 'binarysparsehypertangentkernel';
 BINARYSPARSETHINPLATEPLINEKERNEL: 'binarysparsethinplatesplinekernel';
+
+GAUSSIANPROCESS: 'gp';
+REGRESSIONTREE: 'rtree';
+RANDOMFORESTREGRESSION: 'rforestr';
+RIDGEREGRESSION: 'ridger';
+SVR: 'svr';
+KNN: 'knn';
 
 DTRAIN: 'dtrain';
 TRAIN: 'train' ;
@@ -134,7 +180,6 @@ PRINT: 'print';
 PREDICT: 'predict';
 K: 'k';
 LAMBDA: 'lambda';
-GP: 'gp';
 SVM: 'svm';
 CP: 'cp';
 CN: 'cn';
