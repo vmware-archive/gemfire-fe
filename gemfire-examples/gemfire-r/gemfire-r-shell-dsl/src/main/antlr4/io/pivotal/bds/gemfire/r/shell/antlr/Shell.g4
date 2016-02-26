@@ -3,7 +3,13 @@ grammar Shell;
 cmd
     : query 
     | execute 
-    | svm 
+    | svm
+    | fld
+    | randomForestClassification
+    | decisionTree
+    | qda
+    | lda
+    | rda
     | gaussianProcess 
     | regressionTree 
     | randomForestRegression 
@@ -20,7 +26,14 @@ cmd
     | matrix 
     | fft ;
 
+rda: modelId EQUALS RDA LPAREN alphaVar COMMA tolVar (COMMA prioriVar)+ RPAREN ;
+lda: modelId EQUALS LDA LPAREN tolVar (COMMA prioriVar)+ RPAREN ;
+qda: modelId EQUALS QDA LPAREN tolVar (COMMA prioriVar)+ RPAREN ;
+fld: modelId EQUALS FLD LPAREN lVar COMMA tolVar RPAREN ;
+randomForestClassification: modelId EQUALS RANDOMFOREST_CLASSIFICATION LPAREN ntreesVar COMMA mtryVar RPAREN ;
+decisionTree: modelId EQUALS DECISIONTREE LPAREN jVar COMMA dtreeSplitRuleVar RPAREN ;
 svm: modelId EQUALS SVM LPAREN cpVar COMMA cnVar COMMA kVar RPAREN ;
+
 gaussianProcess: modelId EQUALS GAUSSIANPROCESS LPAREN kernelId COMMA lambdaVar RPAREN ;
 regressionTree: modelId EQUALS REGRESSIONTREE LPAREN maxNodesVar COMMA nodeSizeVar RPAREN ;
 randomForestRegression: modelId EQUALS RANDOMFORESTREGRESSION LPAREN ntreesVar COMMA nodeSizeVar RPAREN ;
@@ -44,6 +57,8 @@ fft: matrixId EQUALS FFT LPAREN fftInputId COMMA fftDir COMMA fftNorm RPAREN ;
 print: PRINT var ;
 ls: LS ;
 rm: RM var ; 
+
+dtreeSplitRuleVar: DECISIONTREE_CLASSIFICATIONERROR | ENTROPY | GINI ;
 
 kernel: kernelId EQUALS mercerkernel ;
 
@@ -93,6 +108,11 @@ binarysparsepolyKernel: kernelId EQUALS BINARYSPARSEPOLYNOMIALKERNEL LPAREN degr
 binarysparsehypertangentKernel: kernelId EQUALS BINARYSPARSEHYPERBOLICTANGENTKERNEL LPAREN scaleVar COMMA offsetVar RPAREN ;
 binarysparsethinplatesplineKernel: kernelId EQUALS BINARYSPARSETHINPLATEPLINEKERNEL LPAREN sigmaVar RPAREN ;
 
+jVar: NUMBER ;
+alphaVar: NUMBER ;
+prioriVar: NUMBER ;
+lVar: NUMBER ;
+mtryVar: NUMBER ;
 ntreesVar: NUMBER ;
 maxNodesVar: NUMBER ;
 nodeSizeVar: NUMBER ;
@@ -154,13 +174,27 @@ BINARYSPARSEPOLYNOMIALKERNEL: 'binarysparsepolykernel';
 BINARYSPARSEHYPERBOLICTANGENTKERNEL: 'binarysparsehypertangentkernel';
 BINARYSPARSETHINPLATEPLINEKERNEL: 'binarysparsethinplatesplinekernel';
 
+RBF_NETWORK: 'rbfnet';
+RANDOMFOREST_CLASSIFICATION: 'rforestc';
+FLD: 'fld';
+QDA: 'qda';
+LDA: 'lda';
+RDA: 'rda';
+LOGISTIC_REGRESSION: 'lregress';
+NAIVE_BAYES: 'nbayes';
+NEUTRAL_NETWORK: 'neuralnet';
+KNN: 'knn';
+DECISIONTREE_CLASSIFICATIONERROR: 'classerror';
+DECISIONTREE: 'dtree';
+
 GAUSSIANPROCESS: 'gp';
 REGRESSIONTREE: 'rtree';
 RANDOMFORESTREGRESSION: 'rforestr';
 RIDGEREGRESSION: 'ridger';
 SVR: 'svr';
-KNN: 'knn';
 
+ENTROPY: 'entropy';
+GINI: 'gini';
 DTRAIN: 'dtrain';
 TRAIN: 'train' ;
 FFT: 'fft' ;

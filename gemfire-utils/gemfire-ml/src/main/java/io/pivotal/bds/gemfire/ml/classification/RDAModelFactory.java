@@ -18,8 +18,10 @@ public class RDAModelFactory extends AbstractClassificationModelFactory {
 
     @Override
     protected Model<double[][], int[], double[], Integer> doCreate(String id, Map<String, Object> properties) {
+        double[] priori = (double[]) properties.get("priori");
         Double alpha = (Double) properties.getOrDefault("alpha", DEFAULT_ALPHA);
-        return new RDAModel(id, def, alpha);
+        Double tol = (Double) properties.get("tol");
+        return new RDAModel(id, def, priori, alpha, tol);
     }
 
     private static MetaModel createModelDef() {

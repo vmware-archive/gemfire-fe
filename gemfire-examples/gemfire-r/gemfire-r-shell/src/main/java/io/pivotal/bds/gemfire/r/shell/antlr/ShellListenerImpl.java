@@ -54,16 +54,20 @@ import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparselaplaceKerne
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparselinearKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsepolyKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsethinplatesplineKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.DecisionTreeContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.DtrainModelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.ExecuteContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FftContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNameContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FieldNamesContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FldContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GaussKernelContext;
-import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GpContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GaussianProcessContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.HellingerKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.HypertangentKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.KnnContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LaplaceKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LdaContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LinearKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LsContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.MatrixContext;
@@ -71,9 +75,16 @@ import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PearsonKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PolyKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PredictContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PrintContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PrioriVarContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QdaContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryArgContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryArgsContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RandomForestClassificationContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RandomForestRegressionContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RdaContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RegressionTreeContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RidgeRegressionContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsegaussKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsehypertangentKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparselaplaceKernelContext;
@@ -81,6 +92,7 @@ import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparselinearKernelContex
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsepolyKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsethinplatesplineKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SvmContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SvrContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.ThinplatesplineKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.TrainModelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.VectorContext;
@@ -126,6 +138,164 @@ public class ShellListenerImpl extends ShellBaseListener {
         this.trainDefRegion = trainDefRegion;
         this.dynamicTrainDefRegion = dynamicTrainDefRegion;
         this.kernelDefRegion = kernelDefRegion;
+    }
+
+    @Override
+    public void exitRda(RdaContext ctx) {
+        String modelId = ctx.modelId().getText();
+
+        Double alpha = new Double(ctx.alphaVar().getText());
+        Double tol = new Double(ctx.tolVar().getText());
+
+        List<PrioriVarContext> pvars = ctx.prioriVar();
+        double[] priori = new double[pvars.size()];
+
+        for (int i = 0; i < priori.length; ++i) {
+            priori[i] = Double.parseDouble(pvars.get(i).getText());
+        }
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("alpha", alpha);
+        params.put("priori", priori);
+        params.put("tol", tol);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.classification, ModelName.RDA, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
+    }
+
+    @Override
+    public void exitLda(LdaContext ctx) {
+        String modelId = ctx.modelId().getText();
+
+        Double tol = new Double(ctx.tolVar().getText());
+
+        List<PrioriVarContext> pvars = ctx.prioriVar();
+        double[] priori = new double[pvars.size()];
+
+        for (int i = 0; i < priori.length; ++i) {
+            priori[i] = Double.parseDouble(pvars.get(i).getText());
+        }
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("priori", priori);
+        params.put("tol", tol);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.classification, ModelName.LDA, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
+    }
+
+    @Override
+    public void exitQda(QdaContext ctx) {
+        String modelId = ctx.modelId().getText();
+
+        Double tol = new Double(ctx.tolVar().getText());
+
+        List<PrioriVarContext> pvars = ctx.prioriVar();
+        double[] priori = new double[pvars.size()];
+
+        for (int i = 0; i < priori.length; ++i) {
+            priori[i] = Double.parseDouble(pvars.get(i).getText());
+        }
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("priori", priori);
+        params.put("tol", tol);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.classification, ModelName.QDA, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
+    }
+
+    @Override
+    public void exitFld(FldContext ctx) {
+        String modelId = ctx.modelId().getText();
+
+        Double l = new Double(ctx.lVar().getText());
+        Double tol = new Double(ctx.tolVar().getText());
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("L", l);
+        params.put("tol", tol);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.classification, ModelName.FLD, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
+    }
+
+    @Override
+    public void exitRandomForestClassification(RandomForestClassificationContext ctx) {
+        String modelId = ctx.modelId().getText();
+
+        Double ntrees = new Double(ctx.ntreesVar().getText());
+        Double mtry = new Double(ctx.mtryVar().getText());
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("ntrees", ntrees);
+        params.put("mtry", mtry);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.classification, ModelName.RandomForest, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
+    }
+
+    @Override
+    public void exitDecisionTree(DecisionTreeContext ctx) {
+        String modelId = ctx.modelId().getText();
+
+        Integer j = new Integer(ctx.jVar().getText());
+        String splitRule = ctx.dtreeSplitRuleVar().getText();
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("j", j);
+        params.put("splitRule", splitRule);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.classification, ModelName.DecisionTree, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
+    }
+
+    @Override
+    public void exitRegressionTree(RegressionTreeContext ctx) {
+        // TODO Auto-generated method stub
+        super.exitRegressionTree(ctx);
+    }
+
+    @Override
+    public void exitRandomForestRegression(RandomForestRegressionContext ctx) {
+        // TODO Auto-generated method stub
+        super.exitRandomForestRegression(ctx);
+    }
+
+    @Override
+    public void exitRidgeRegression(RidgeRegressionContext ctx) {
+        // TODO Auto-generated method stub
+        super.exitRidgeRegression(ctx);
+    }
+
+    @Override
+    public void exitSvr(SvrContext ctx) {
+        // TODO Auto-generated method stub
+        super.exitSvr(ctx);
+    }
+
+    @Override
+    public void exitKnn(KnnContext ctx) {
+        // TODO Auto-generated method stub
+        super.exitKnn(ctx);
     }
 
     @Override
@@ -407,12 +577,12 @@ public class ShellListenerImpl extends ShellBaseListener {
     }
 
     @Override
-    public void exitGp(GpContext ctx) {
+    public void exitGaussianProcess(GaussianProcessContext ctx) {
         String kernelId = ctx.kernelId().getText();
         KernelKey kernelKey = new KernelKey(kernelId);
         KernelDef kernelDef = kernelDefRegion.get(kernelKey);
         Assert.notNull(kernelDef, "Kernel " + kernelId + " does not exist");
-        
+
         String modelId = ctx.modelId().getText();
 
         Map<String, Object> params = new HashMap<>();

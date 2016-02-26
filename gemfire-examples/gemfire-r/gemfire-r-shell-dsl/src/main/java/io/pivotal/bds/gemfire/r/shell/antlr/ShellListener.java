@@ -18,6 +18,66 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitCmd(ShellParser.CmdContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ShellParser#rda}.
+	 * @param ctx the parse tree
+	 */
+	void enterRda(ShellParser.RdaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#rda}.
+	 * @param ctx the parse tree
+	 */
+	void exitRda(ShellParser.RdaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#lda}.
+	 * @param ctx the parse tree
+	 */
+	void enterLda(ShellParser.LdaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#lda}.
+	 * @param ctx the parse tree
+	 */
+	void exitLda(ShellParser.LdaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#qda}.
+	 * @param ctx the parse tree
+	 */
+	void enterQda(ShellParser.QdaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#qda}.
+	 * @param ctx the parse tree
+	 */
+	void exitQda(ShellParser.QdaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#fld}.
+	 * @param ctx the parse tree
+	 */
+	void enterFld(ShellParser.FldContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#fld}.
+	 * @param ctx the parse tree
+	 */
+	void exitFld(ShellParser.FldContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#randomForestClassification}.
+	 * @param ctx the parse tree
+	 */
+	void enterRandomForestClassification(ShellParser.RandomForestClassificationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#randomForestClassification}.
+	 * @param ctx the parse tree
+	 */
+	void exitRandomForestClassification(ShellParser.RandomForestClassificationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#decisionTree}.
+	 * @param ctx the parse tree
+	 */
+	void enterDecisionTree(ShellParser.DecisionTreeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#decisionTree}.
+	 * @param ctx the parse tree
+	 */
+	void exitDecisionTree(ShellParser.DecisionTreeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ShellParser#svm}.
 	 * @param ctx the parse tree
 	 */
@@ -197,6 +257,16 @@ public interface ShellListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRm(ShellParser.RmContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#dtreeSplitRuleVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterDtreeSplitRuleVar(ShellParser.DtreeSplitRuleVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#dtreeSplitRuleVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitDtreeSplitRuleVar(ShellParser.DtreeSplitRuleVarContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ShellParser#kernel}.
 	 * @param ctx the parse tree
@@ -417,6 +487,56 @@ public interface ShellListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBinarysparsethinplatesplineKernel(ShellParser.BinarysparsethinplatesplineKernelContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#jVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterJVar(ShellParser.JVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#jVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitJVar(ShellParser.JVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#alphaVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterAlphaVar(ShellParser.AlphaVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#alphaVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitAlphaVar(ShellParser.AlphaVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#prioriVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrioriVar(ShellParser.PrioriVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#prioriVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrioriVar(ShellParser.PrioriVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#lVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterLVar(ShellParser.LVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#lVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitLVar(ShellParser.LVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#mtryVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterMtryVar(ShellParser.MtryVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#mtryVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitMtryVar(ShellParser.MtryVarContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ShellParser#ntreesVar}.
 	 * @param ctx the parse tree
