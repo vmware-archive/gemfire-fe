@@ -270,32 +270,78 @@ public class ShellListenerImpl extends ShellBaseListener {
 
     @Override
     public void exitRegressionTree(RegressionTreeContext ctx) {
-        // TODO Auto-generated method stub
-        super.exitRegressionTree(ctx);
+        String modelId = ctx.modelId().getText();
+
+        Integer j = new Integer(ctx.jVar().getText());
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("j", j);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.classification, ModelName.RegressionTree, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
     }
 
     @Override
     public void exitRandomForestRegression(RandomForestRegressionContext ctx) {
-        // TODO Auto-generated method stub
-        super.exitRandomForestRegression(ctx);
+        String modelId = ctx.modelId().getText();
+
+        Integer t = new Integer(ctx.tVar().getText());
+        Integer m = new Integer(ctx.mVar().getText());
+        Integer s = new Integer(ctx.sVar().getText());
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("T", t);
+        params.put("M", m);
+        params.put("S", s);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.regression, ModelName.RandomForest, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
     }
 
     @Override
     public void exitRidgeRegression(RidgeRegressionContext ctx) {
-        // TODO Auto-generated method stub
-        super.exitRidgeRegression(ctx);
+        String modelId = ctx.modelId().getText();
+
+        Double lambda = new Double(ctx.lambdaVar().getText());
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("lambda", lambda);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.regression, ModelName.RidgeRegression, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
     }
 
     @Override
     public void exitSvr(SvrContext ctx) {
-        // TODO Auto-generated method stub
-        super.exitSvr(ctx);
+        String modelId = ctx.modelId().getText();
+
+        Double eps = new Double(ctx.epsVar().getText());
+        Double c = new Double(ctx.cVar().getText());
+        Double tol = new Double(ctx.tolVar().getText());
+
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("eps", eps);
+        params.put("c", c);
+        params.put("tol", tol);
+
+        ModelDefKey modelDefKey = new ModelDefKey(modelId);
+        ModelDef modelDef = new ModelDef(modelDefKey, ModelType.regression, ModelName.SVR, params);
+
+        modelDefRegion.put(modelDefKey, modelDef);
     }
 
     @Override
     public void exitKnn(KnnContext ctx) {
-        // TODO Auto-generated method stub
-        super.exitKnn(ctx);
     }
 
     @Override

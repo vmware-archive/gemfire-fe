@@ -488,6 +488,36 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitBinarysparsethinplatesplineKernel(ShellParser.BinarysparsethinplatesplineKernelContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ShellParser#tVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterTVar(ShellParser.TVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#tVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitTVar(ShellParser.TVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#mVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterMVar(ShellParser.MVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#mVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitMVar(ShellParser.MVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#sVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterSVar(ShellParser.SVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#sVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitSVar(ShellParser.SVarContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ShellParser#jVar}.
 	 * @param ctx the parse tree
 	 */

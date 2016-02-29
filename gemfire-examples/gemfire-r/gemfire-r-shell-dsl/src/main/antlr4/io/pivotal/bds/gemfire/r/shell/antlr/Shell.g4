@@ -35,8 +35,8 @@ decisionTree: modelId EQUALS DECISIONTREE LPAREN jVar COMMA dtreeSplitRuleVar RP
 svm: modelId EQUALS SVM LPAREN cpVar COMMA cnVar COMMA kVar RPAREN ;
 
 gaussianProcess: modelId EQUALS GAUSSIANPROCESS LPAREN kernelId COMMA lambdaVar RPAREN ;
-regressionTree: modelId EQUALS REGRESSIONTREE LPAREN maxNodesVar COMMA nodeSizeVar RPAREN ;
-randomForestRegression: modelId EQUALS RANDOMFORESTREGRESSION LPAREN ntreesVar COMMA nodeSizeVar RPAREN ;
+regressionTree: modelId EQUALS REGRESSIONTREE LPAREN jVar RPAREN ;
+randomForestRegression: modelId EQUALS RANDOMFORESTREGRESSION LPAREN tVar COMMA mVar COMMA sVar RPAREN ;
 ridgeRegression: modelId EQUALS RIDGEREGRESSION LPAREN lambdaVar RPAREN ;
 svr: modelId EQUALS SVR LPAREN kernelId COMMA epsVar COMMA cVar COMMA tolVar RPAREN ;
 
@@ -108,6 +108,9 @@ binarysparsepolyKernel: kernelId EQUALS BINARYSPARSEPOLYNOMIALKERNEL LPAREN degr
 binarysparsehypertangentKernel: kernelId EQUALS BINARYSPARSEHYPERBOLICTANGENTKERNEL LPAREN scaleVar COMMA offsetVar RPAREN ;
 binarysparsethinplatesplineKernel: kernelId EQUALS BINARYSPARSETHINPLATEPLINEKERNEL LPAREN sigmaVar RPAREN ;
 
+tVar: NUMBER ;
+mVar: NUMBER ;
+sVar: NUMBER ;
 jVar: NUMBER ;
 alphaVar: NUMBER ;
 prioriVar: NUMBER ;
