@@ -131,22 +131,39 @@
         </region-attributes>
     </region>
 
-	<region name="prediction" refid="PARTITION">
-		<region-attributes>
-			<partition-attributes>
-				<partition-resolver>
-					<class-name>io.pivotal.bds.gemfire.keyfw.resolver.ColocationIDPartitionResolver</class-name>
-				</partition-resolver>
-			</partition-attributes>
-			<cache-listener>
-				<class-name>io.pivotal.bds.gemfire.util.LoggingCacheListener</class-name>
-			</cache-listener>
-		</region-attributes>
-	</region>
+    <region name="prediction" refid="PARTITION">
+        <region-attributes>
+            <partition-attributes>
+                <partition-resolver>
+                    <class-name>io.pivotal.bds.gemfire.keyfw.resolver.ColocationIDPartitionResolver</class-name>
+                </partition-resolver>
+            </partition-attributes>
+            <cache-listener>
+                <class-name>io.pivotal.bds.gemfire.util.LoggingCacheListener</class-name>
+            </cache-listener>
+        </region-attributes>
+    </region>
 
-	<region name="testData" refid="PARTITION">
-		<region-attributes async-event-queue-ids="predict" />
-	</region>
+    <region name="pmmlPrediction" refid="PARTITION">
+        <region-attributes>
+            <partition-attributes>
+                <partition-resolver>
+                    <class-name>io.pivotal.bds.gemfire.keyfw.resolver.ColocationIDPartitionResolver</class-name>
+                </partition-resolver>
+            </partition-attributes>
+            <cache-listener>
+                <class-name>io.pivotal.bds.gemfire.util.LoggingCacheListener</class-name>
+            </cache-listener>
+        </region-attributes>
+    </region>
+
+    <region name="testData" refid="PARTITION">
+        <region-attributes async-event-queue-ids="predict" />
+    </region>
+
+    <region name="auditData" refid="PARTITION">
+        <region-attributes async-event-queue-ids="predict" />
+    </region>
 
 	<function-service>
         <function>
