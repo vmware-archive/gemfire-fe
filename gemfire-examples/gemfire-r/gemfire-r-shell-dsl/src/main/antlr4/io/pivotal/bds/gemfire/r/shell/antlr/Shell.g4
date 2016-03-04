@@ -24,8 +24,24 @@ cmd
     | rm 
     | vector 
     | matrix 
-    | fft ;
+    | fft 
+    | hmm 
+    | c 
+    | m 
+    | t 
+    | cbind
+    | rbind 
+    | pmmlLoad
+    | pmmlPredict ;
 
+pmmlPredict: pmmlPredictId EQUALS PMML_PREDICT LPAREN pmmlId COMMA regionName RPAREN ;
+pmmlLoad: pmmlId EQUALS PMML_LOAD LPAREN filePathVar RPAREN ;
+rbind: matrixId EQUALS RBIND LPAREN matrixId COMMA matrixId RPAREN;
+cbind: matrixId EQUALS CBIND LPAREN matrixId COMMA matrixId RPAREN;
+t: matrixId EQUALS T LPAREN matrixId RPAREN ;
+m: matrixId EQUALS M LPAREN C LPAREN cVar (COMMA cVar)* RPAREN COMMA NROWS EQUALS nrowsVar COMMA NCOLS EQUALS ncolsVar RPAREN;
+c: vectorId EQUALS C LPAREN cVar (COMMA cVar)* RPAREN;
+hmm: hmmId EQUALS HMM LPAREN hmmPiVectorId COMMA hmmAMatrixId COMMA hmmBMatrixId (COMMA hmmSymbolsVectorId)? RPAREN;
 rda: modelId EQUALS RDA LPAREN alphaVar COMMA tolVar (COMMA prioriVar)+ RPAREN ;
 lda: modelId EQUALS LDA LPAREN tolVar (COMMA prioriVar)+ RPAREN ;
 qda: modelId EQUALS QDA LPAREN tolVar (COMMA prioriVar)+ RPAREN ;
@@ -108,6 +124,8 @@ binarysparsepolyKernel: kernelId EQUALS BINARYSPARSEPOLYNOMIALKERNEL LPAREN degr
 binarysparsehypertangentKernel: kernelId EQUALS BINARYSPARSEHYPERBOLICTANGENTKERNEL LPAREN scaleVar COMMA offsetVar RPAREN ;
 binarysparsethinplatesplineKernel: kernelId EQUALS BINARYSPARSETHINPLATEPLINEKERNEL LPAREN sigmaVar RPAREN ;
 
+nrowsVar: NUMBER ;
+ncolsVar: NUMBER ;
 tVar: NUMBER ;
 mVar: NUMBER ;
 sVar: NUMBER ;
@@ -133,6 +151,14 @@ degreeVar: NUMBER ;
 scaleVar: NUMBER ;
 offsetVar: NUMBER ;
 
+filePathVar: QUOTEDSTRING ;
+pmmlPredictId: IDENTIFIER ;
+pmmlId: IDENTIFIER ;
+hmmId: IDENTIFIER ;
+hmmPiVectorId: IDENTIFIER ;
+hmmAMatrixId: IDENTIFIER ;
+hmmBMatrixId: IDENTIFIER ;
+hmmSymbolsVectorId: IDENTIFIER ;
 xFieldName: IDENTIFIER ;
 yFieldName: IDENTIFIER ;
 sizeVar: NUMBER ;
@@ -154,6 +180,16 @@ kernelId: IDENTIFIER ;
 queryString : QUOTEDSTRING ;
 number: NUMBER;
 
+PMML_LOAD: 'pmml.load';
+PMML_PREDICT: 'pmml.predict';
+CBIND: 'cbind';
+RBIND: 'rbind';
+NROWS: 'nrows';
+NCOLS: 'ncols';
+T: 't';
+M: 'm';
+C: 'c';
+HMM: 'hmm';
 GAUSSIANKERNEL: 'gausskernel';
 LAPLACEKERNEL: 'laplacekernel';
 LINEARKERNEL: 'linearkernel';

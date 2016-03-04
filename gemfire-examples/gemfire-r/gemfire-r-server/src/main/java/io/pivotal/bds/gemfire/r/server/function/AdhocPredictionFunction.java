@@ -59,7 +59,7 @@ public class AdhocPredictionFunction implements Function, Declarable {
                 Vector<Object> v = vectorRegion.get(key);
                 Assert.notNull(v, "Vector " + vectorId + " not found");
                 
-                x = Utils.convertToDoubleArray(v);
+                x = Utils.convertObjectVectorToDoubleArray(v);
             } else {
                 throw new IllegalArgumentException("Expected a vectorId or number, got " + arg.getClass().getName());
             }

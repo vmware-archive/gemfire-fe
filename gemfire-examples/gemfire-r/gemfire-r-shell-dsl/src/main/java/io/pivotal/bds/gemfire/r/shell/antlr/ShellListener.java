@@ -18,6 +18,86 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitCmd(ShellParser.CmdContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ShellParser#pmmlPredict}.
+	 * @param ctx the parse tree
+	 */
+	void enterPmmlPredict(ShellParser.PmmlPredictContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#pmmlPredict}.
+	 * @param ctx the parse tree
+	 */
+	void exitPmmlPredict(ShellParser.PmmlPredictContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#pmmlLoad}.
+	 * @param ctx the parse tree
+	 */
+	void enterPmmlLoad(ShellParser.PmmlLoadContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#pmmlLoad}.
+	 * @param ctx the parse tree
+	 */
+	void exitPmmlLoad(ShellParser.PmmlLoadContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#rbind}.
+	 * @param ctx the parse tree
+	 */
+	void enterRbind(ShellParser.RbindContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#rbind}.
+	 * @param ctx the parse tree
+	 */
+	void exitRbind(ShellParser.RbindContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#cbind}.
+	 * @param ctx the parse tree
+	 */
+	void enterCbind(ShellParser.CbindContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#cbind}.
+	 * @param ctx the parse tree
+	 */
+	void exitCbind(ShellParser.CbindContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#t}.
+	 * @param ctx the parse tree
+	 */
+	void enterT(ShellParser.TContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#t}.
+	 * @param ctx the parse tree
+	 */
+	void exitT(ShellParser.TContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#m}.
+	 * @param ctx the parse tree
+	 */
+	void enterM(ShellParser.MContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#m}.
+	 * @param ctx the parse tree
+	 */
+	void exitM(ShellParser.MContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#c}.
+	 * @param ctx the parse tree
+	 */
+	void enterC(ShellParser.CContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#c}.
+	 * @param ctx the parse tree
+	 */
+	void exitC(ShellParser.CContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#hmm}.
+	 * @param ctx the parse tree
+	 */
+	void enterHmm(ShellParser.HmmContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#hmm}.
+	 * @param ctx the parse tree
+	 */
+	void exitHmm(ShellParser.HmmContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ShellParser#rda}.
 	 * @param ctx the parse tree
 	 */
@@ -488,6 +568,26 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitBinarysparsethinplatesplineKernel(ShellParser.BinarysparsethinplatesplineKernelContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ShellParser#nrowsVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterNrowsVar(ShellParser.NrowsVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#nrowsVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitNrowsVar(ShellParser.NrowsVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#ncolsVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterNcolsVar(ShellParser.NcolsVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#ncolsVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitNcolsVar(ShellParser.NcolsVarContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ShellParser#tVar}.
 	 * @param ctx the parse tree
 	 */
@@ -717,6 +817,86 @@ public interface ShellListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOffsetVar(ShellParser.OffsetVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#filePathVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterFilePathVar(ShellParser.FilePathVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#filePathVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitFilePathVar(ShellParser.FilePathVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#pmmlPredictId}.
+	 * @param ctx the parse tree
+	 */
+	void enterPmmlPredictId(ShellParser.PmmlPredictIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#pmmlPredictId}.
+	 * @param ctx the parse tree
+	 */
+	void exitPmmlPredictId(ShellParser.PmmlPredictIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#pmmlId}.
+	 * @param ctx the parse tree
+	 */
+	void enterPmmlId(ShellParser.PmmlIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#pmmlId}.
+	 * @param ctx the parse tree
+	 */
+	void exitPmmlId(ShellParser.PmmlIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#hmmId}.
+	 * @param ctx the parse tree
+	 */
+	void enterHmmId(ShellParser.HmmIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#hmmId}.
+	 * @param ctx the parse tree
+	 */
+	void exitHmmId(ShellParser.HmmIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#hmmPiVectorId}.
+	 * @param ctx the parse tree
+	 */
+	void enterHmmPiVectorId(ShellParser.HmmPiVectorIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#hmmPiVectorId}.
+	 * @param ctx the parse tree
+	 */
+	void exitHmmPiVectorId(ShellParser.HmmPiVectorIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#hmmAMatrixId}.
+	 * @param ctx the parse tree
+	 */
+	void enterHmmAMatrixId(ShellParser.HmmAMatrixIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#hmmAMatrixId}.
+	 * @param ctx the parse tree
+	 */
+	void exitHmmAMatrixId(ShellParser.HmmAMatrixIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#hmmBMatrixId}.
+	 * @param ctx the parse tree
+	 */
+	void enterHmmBMatrixId(ShellParser.HmmBMatrixIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#hmmBMatrixId}.
+	 * @param ctx the parse tree
+	 */
+	void exitHmmBMatrixId(ShellParser.HmmBMatrixIdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#hmmSymbolsVectorId}.
+	 * @param ctx the parse tree
+	 */
+	void enterHmmSymbolsVectorId(ShellParser.HmmSymbolsVectorIdContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#hmmSymbolsVectorId}.
+	 * @param ctx the parse tree
+	 */
+	void exitHmmSymbolsVectorId(ShellParser.HmmSymbolsVectorIdContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ShellParser#xFieldName}.
 	 * @param ctx the parse tree

@@ -29,6 +29,8 @@ import io.pivotal.bds.gemfire.r.common.TrainDef;
 import io.pivotal.bds.gemfire.r.common.TrainDefKey;
 import io.pivotal.bds.gemfire.r.common.DynamicTrainDef;
 import io.pivotal.bds.gemfire.r.common.DynamicTrainDefKey;
+import io.pivotal.bds.gemfire.r.common.HMMDef;
+import io.pivotal.bds.gemfire.r.common.HMMKey;
 import io.pivotal.bds.gemfire.r.common.KernelDef;
 import io.pivotal.bds.gemfire.r.common.KernelKey;
 import io.pivotal.bds.gemfire.r.common.Matrix;
@@ -36,6 +38,10 @@ import io.pivotal.bds.gemfire.r.common.MatrixDef;
 import io.pivotal.bds.gemfire.r.common.MatrixKey;
 import io.pivotal.bds.gemfire.r.common.ModelDef;
 import io.pivotal.bds.gemfire.r.common.ModelDefKey;
+import io.pivotal.bds.gemfire.r.common.PMMLData;
+import io.pivotal.bds.gemfire.r.common.PMMLKey;
+import io.pivotal.bds.gemfire.r.common.PMMLPredictDef;
+import io.pivotal.bds.gemfire.r.common.PMMLPredictDefKey;
 import io.pivotal.bds.gemfire.r.common.Vector;
 import io.pivotal.bds.gemfire.r.common.VectorDef;
 import io.pivotal.bds.gemfire.r.common.VectorKey;
@@ -104,9 +110,19 @@ public class R {
         ClientRegionFactory<KernelKey, KernelDef> kernelDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
         Region<KernelKey, KernelDef> kernelDefRegion = kernelDefCRF.create("kernelDef");
 
+        ClientRegionFactory<HMMKey, HMMDef> hmmDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<HMMKey, HMMDef> hmmDefRegion = hmmDefCRF.create("hmmDef");
+
+        ClientRegionFactory<PMMLKey, PMMLData> pmmlDataCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<PMMLKey, PMMLData> pmmlDataRegion = pmmlDataCRF.create("pmmlData");
+
+        ClientRegionFactory<PMMLPredictDefKey, PMMLPredictDef> pmmlPredictDefCRF = cc
+                .createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        Region<PMMLPredictDefKey, PMMLPredictDef> pmmlPredictDefRegion = pmmlPredictDefCRF.create("pmmlPredictDef");
+
         ShellListenerImpl list = new ShellListenerImpl(stdout, fout, qs, queryLimit, pool, queryRegion, modelDefRegion,
                 predictDefRegion, vectorDefRegion, matrixDefRegion, vectorRegion, matrixRegion, trainDefRegion,
-                dynamicTrainDefRegion, kernelDefRegion);
+                dynamicTrainDefRegion, kernelDefRegion, hmmDefRegion, pmmlDataRegion, pmmlPredictDefRegion);
 
         ErrorList errorList = new ErrorList(fout);
         boolean cont = true;

@@ -70,7 +70,19 @@ public class Utils {
         return t;
     }
 
-    public static double[] convertToDoubleArray(Vector<Object> v) {
+    public static double[] convertNumberVectorToDoubleArray(Vector<Number> v) {
+        List<Number> l = v.getVector();
+
+        if (l.isEmpty()) {
+            return null;
+        }
+
+        double[] t = new double[l.size()];
+
+        return t;
+    }
+
+    public static double[] convertObjectVectorToDoubleArray(Vector<Object> v) {
         List<Object> l = v.getVector();
 
         if (l.isEmpty()) {
@@ -93,7 +105,31 @@ public class Utils {
         return t;
     }
 
-    public static double[][] convertToDoubleArray(Matrix<Object> m) {
+    public static double[][] convertNumberMatrixToDoubleArray(Matrix<Number> m) {
+        List<Vector<Number>> rows = m.getRows();
+
+        if (rows.isEmpty()) {
+            return null;
+        }
+
+        int nrows = rows.size();
+        Vector<Number> v = rows.get(0);
+        List<Number> row = v.getVector();
+        int ncols = row.size();
+
+        double[][] d = new double[nrows][ncols];
+
+        for (int ir = 0; ir < nrows; ++ir) {
+            for (int ic = 0; ic < ncols; ++ic) {
+                Number n = rows.get(ir).getVector().get(ic);
+                d[ir][ic] = n.doubleValue();
+            }
+        }
+
+        return d;
+    }
+
+    public static double[][] convertObjectMatrixToDoubleArray(Matrix<Object> m) {
         List<Vector<Object>> rows = m.getRows();
 
         if (rows.isEmpty()) {

@@ -1,5 +1,7 @@
 package io.pivotal.bds.gemfire.r.shell.antlr;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,6 +39,8 @@ import io.pivotal.bds.gemfire.r.common.TrainDef;
 import io.pivotal.bds.gemfire.r.common.TrainDefKey;
 import io.pivotal.bds.gemfire.r.common.FFTRequest;
 import io.pivotal.bds.gemfire.r.common.FFTResponse;
+import io.pivotal.bds.gemfire.r.common.HMMDef;
+import io.pivotal.bds.gemfire.r.common.HMMKey;
 import io.pivotal.bds.gemfire.r.common.KernelDef;
 import io.pivotal.bds.gemfire.r.common.KernelKey;
 import io.pivotal.bds.gemfire.r.common.Matrix;
@@ -45,6 +49,10 @@ import io.pivotal.bds.gemfire.r.common.MatrixKey;
 import io.pivotal.bds.gemfire.r.common.ModelDef;
 import io.pivotal.bds.gemfire.r.common.ModelDefKey;
 import io.pivotal.bds.gemfire.r.common.ModelKey;
+import io.pivotal.bds.gemfire.r.common.PMMLData;
+import io.pivotal.bds.gemfire.r.common.PMMLKey;
+import io.pivotal.bds.gemfire.r.common.PMMLPredictDef;
+import io.pivotal.bds.gemfire.r.common.PMMLPredictDefKey;
 import io.pivotal.bds.gemfire.r.common.Vector;
 import io.pivotal.bds.gemfire.r.common.VectorDef;
 import io.pivotal.bds.gemfire.r.common.VectorKey;
@@ -64,6 +72,7 @@ import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.FldContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GaussKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.GaussianProcessContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.HellingerKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.HmmContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.HypertangentKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.KnnContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LaplaceKernelContext;
@@ -72,6 +81,8 @@ import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LinearKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LsContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.MatrixContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PearsonKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PmmlLoadContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PmmlPredictContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PolyKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PredictContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PrintContext;
@@ -116,13 +127,18 @@ public class ShellListenerImpl extends ShellBaseListener {
     private Region<TrainDefKey, TrainDef> trainDefRegion;
     private Region<DynamicTrainDefKey, DynamicTrainDef> dynamicTrainDefRegion;
     private Region<KernelKey, KernelDef> kernelDefRegion;
+    private Region<HMMKey, HMMDef> hmmDefRegion;
+    private Region<PMMLKey, PMMLData> pmmlDataRegion;
+    private Region<PMMLPredictDefKey, PMMLPredictDef> pmmlPredictDefRegion;
 
     public ShellListenerImpl(PrintStream stdout, PrintStream log, QueryService queryService, int queryLimit, Pool pool,
             Region<String, String> queryRegion, Region<ModelDefKey, ModelDef> modelDefRegion,
             Region<PredictDefKey, PredictDef> predictDefRegion, Region<VectorKey, VectorDef> vectorDefRegion,
             Region<MatrixKey, MatrixDef> matrixDefRegion, Region<VectorKey, Vector<Object>> vectorRegion,
             Region<MatrixKey, Matrix<Object>> matrixRegion, Region<TrainDefKey, TrainDef> trainDefRegion,
-            Region<DynamicTrainDefKey, DynamicTrainDef> dynamicTrainDefRegion, Region<KernelKey, KernelDef> kernelDefRegion) {
+            Region<DynamicTrainDefKey, DynamicTrainDef> dynamicTrainDefRegion, Region<KernelKey, KernelDef> kernelDefRegion,
+            Region<HMMKey, HMMDef> hmmDefRegion, Region<PMMLKey, PMMLData> pmmlDataRegion,
+            Region<PMMLPredictDefKey, PMMLPredictDef> pmmlPredictDefRegion) {
         this.stdout = stdout;
         this.log = log;
         this.queryService = queryService;
@@ -138,6 +154,102 @@ public class ShellListenerImpl extends ShellBaseListener {
         this.trainDefRegion = trainDefRegion;
         this.dynamicTrainDefRegion = dynamicTrainDefRegion;
         this.kernelDefRegion = kernelDefRegion;
+        this.hmmDefRegion = hmmDefRegion;
+        this.pmmlPredictDefRegion = pmmlPredictDefRegion;
+        this.pmmlDataRegion = pmmlDataRegion;
+    }
+
+    @Override
+    public void exitPmmlPredict(PmmlPredictContext ctx) {
+        String pmmlId = ctx.pmmlId().getText();
+        PMMLKey pmmlKey = new PMMLKey(pmmlId);
+        Assert.isTrue(pmmlDataRegion.containsKeyOnServer(pmmlKey), "PMML model " + pmmlId + " not found");
+
+        String pmmlPredictId = ctx.pmmlPredictId().getText();
+        String regionName = ctx.regionName().getText();
+
+        PMMLPredictDefKey pdk = new PMMLPredictDefKey(pmmlPredictId, pmmlId);
+        PMMLPredictDef def = new PMMLPredictDef(pmmlKey, regionName);
+
+        pmmlPredictDefRegion.put(pdk, def);
+    }
+
+    @Override
+    public void exitPmmlLoad(PmmlLoadContext ctx) {
+        String pmmlId = ctx.pmmlId().getText();
+
+        String filePath = ctx.filePathVar().getText();
+        filePath = filePath.substring(1, filePath.length() - 1); // strip quotes
+
+        File file = new File(filePath);
+
+        if (!file.exists()) {
+            throw new IllegalArgumentException("File " + filePath + " does not exist");
+        }
+
+        if (!file.isFile()) {
+            throw new IllegalArgumentException("File " + filePath + " is not a file");
+        }
+
+        if (!file.canRead()) {
+            throw new IllegalArgumentException("File " + filePath + " is not readable");
+        }
+
+        StringBuilder buf = new StringBuilder();
+        char[] c = new char[1024];
+        int len = 0;
+        String model = null;
+
+        try {
+            FileReader fr = new FileReader(file);
+
+            try {
+                while ((len = fr.read(c)) > 0) {
+                    buf.append(c, 0, len);
+                }
+
+                model = buf.toString();
+            } finally {
+                fr.close();
+            }
+        } catch (Exception x) {
+            throw new IllegalArgumentException(x.getMessage(), x);
+        }
+
+        PMMLKey key = new PMMLKey(pmmlId);
+        PMMLData data = new PMMLData(model);
+
+        pmmlDataRegion.put(key, data);
+    }
+
+    @Override
+    public void exitHmm(HmmContext ctx) {
+        String piId = ctx.hmmPiVectorId().getText();
+        VectorKey piKey = new VectorKey(piId);
+        Assert.isTrue(vectorRegion.containsKeyOnServer(piKey), "Vector " + piId + " not found");
+
+        String aId = ctx.hmmAMatrixId().getText();
+        MatrixKey aKey = new MatrixKey(aId);
+        Assert.isTrue(matrixRegion.containsKeyOnServer(aKey), "Matrix " + aId + " not found");
+
+        String bId = ctx.hmmAMatrixId().getText();
+        MatrixKey bKey = new MatrixKey(bId);
+        Assert.isTrue(matrixRegion.containsKeyOnServer(bKey), "Matrix " + bId + " not found");
+
+        String sId = ctx.hmmSymbolsVectorId() == null ? null : ctx.hmmSymbolsVectorId().getText();
+
+        VectorKey sKey = null;
+
+        if (sId != null) {
+            sKey = new VectorKey(sId);
+            Assert.isTrue(vectorRegion.containsKeyOnServer(sKey), "Vector " + sId + " not found");
+        }
+
+        String hmmId = ctx.hmmId().getText();
+
+        HMMKey hmmKey = new HMMKey(hmmId);
+        HMMDef hmmDef = new HMMDef(piKey, aKey, bKey, sKey);
+        hmmDefRegion.put(hmmKey, hmmDef);
     }
 
     @Override

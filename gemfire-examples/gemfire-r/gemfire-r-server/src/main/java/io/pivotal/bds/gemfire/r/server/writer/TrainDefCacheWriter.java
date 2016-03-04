@@ -64,7 +64,7 @@ public class TrainDefCacheWriter extends CacheWriterAdapter<TrainDefKey, TrainDe
 
         Region<ModelKey, ModelData> modelDataRegion = RegionHelper.getRegion("modelData");
 
-        double[][] x = Utils.convertToDoubleArray(matrix);
+        double[][] x = Utils.convertObjectMatrixToDoubleArray(matrix);
         Number[] y = Utils.convertToNumberArray(vector);
 
         ModelData data = new ModelData(modelKey, modelDefKey, x, y);
