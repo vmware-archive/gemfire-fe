@@ -18,6 +18,36 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitCmd(ShellParser.CmdContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ShellParser#rstats}.
+	 * @param ctx the parse tree
+	 */
+	void enterRstats(ShellParser.RstatsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#rstats}.
+	 * @param ctx the parse tree
+	 */
+	void exitRstats(ShellParser.RstatsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#cstats}.
+	 * @param ctx the parse tree
+	 */
+	void enterCstats(ShellParser.CstatsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#cstats}.
+	 * @param ctx the parse tree
+	 */
+	void exitCstats(ShellParser.CstatsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#vstats}.
+	 * @param ctx the parse tree
+	 */
+	void enterVstats(ShellParser.VstatsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#vstats}.
+	 * @param ctx the parse tree
+	 */
+	void exitVstats(ShellParser.VstatsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ShellParser#pmmlPredict}.
 	 * @param ctx the parse tree
 	 */
@@ -87,6 +117,16 @@ public interface ShellListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitC(ShellParser.CContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#cv}.
+	 * @param ctx the parse tree
+	 */
+	void enterCv(ShellParser.CvContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#cv}.
+	 * @param ctx the parse tree
+	 */
+	void exitCv(ShellParser.CvContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ShellParser#hmm}.
 	 * @param ctx the parse tree
@@ -568,6 +608,16 @@ public interface ShellListener extends ParseTreeListener {
 	 */
 	void exitBinarysparsethinplatesplineKernel(ShellParser.BinarysparsethinplatesplineKernelContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ShellParser#numeric}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumeric(ShellParser.NumericContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#numeric}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumeric(ShellParser.NumericContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ShellParser#nrowsVar}.
 	 * @param ctx the parse tree
 	 */
@@ -697,6 +747,26 @@ public interface ShellListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNodeSizeVar(ShellParser.NodeSizeVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#colVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterColVar(ShellParser.ColVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#colVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitColVar(ShellParser.ColVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ShellParser#rowVar}.
+	 * @param ctx the parse tree
+	 */
+	void enterRowVar(ShellParser.RowVarContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ShellParser#rowVar}.
+	 * @param ctx the parse tree
+	 */
+	void exitRowVar(ShellParser.RowVarContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ShellParser#tolVar}.
 	 * @param ctx the parse tree

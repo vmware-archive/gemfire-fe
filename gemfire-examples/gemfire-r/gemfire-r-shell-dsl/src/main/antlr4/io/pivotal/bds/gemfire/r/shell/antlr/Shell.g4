@@ -32,15 +32,22 @@ cmd
     | cbind
     | rbind 
     | pmmlLoad
-    | pmmlPredict ;
+    | pmmlPredict 
+    | vstats 
+    | cstats 
+    | rstats ;
 
+rstats: RSTATS LPAREN matrixId COMMA rowVar RPAREN ;
+cstats: CSTATS LPAREN matrixId COMMA colVar RPAREN ;
+vstats: VSTATS LPAREN vectorId RPAREN;
 pmmlPredict: pmmlPredictId EQUALS PMML_PREDICT LPAREN pmmlId COMMA regionName RPAREN ;
 pmmlLoad: pmmlId EQUALS PMML_LOAD LPAREN filePathVar RPAREN ;
-rbind: matrixId EQUALS RBIND LPAREN matrixId COMMA matrixId RPAREN;
-cbind: matrixId EQUALS CBIND LPAREN matrixId COMMA matrixId RPAREN;
+rbind: matrixId EQUALS RBIND LPAREN matrixId COMMA vectorId RPAREN;
+cbind: matrixId EQUALS CBIND LPAREN matrixId COMMA vectorId RPAREN;
 t: matrixId EQUALS T LPAREN matrixId RPAREN ;
-m: matrixId EQUALS M LPAREN C LPAREN cVar (COMMA cVar)* RPAREN COMMA NROWS EQUALS nrowsVar COMMA NCOLS EQUALS ncolsVar RPAREN;
-c: vectorId EQUALS C LPAREN cVar (COMMA cVar)* RPAREN;
+m: matrixId EQUALS M LPAREN cv COMMA nrowsVar COMMA ncolsVar RPAREN;
+c: vectorId EQUALS cv;
+cv: C LPAREN cVar (COMMA cVar)* RPAREN;
 hmm: hmmId EQUALS HMM LPAREN hmmPiVectorId COMMA hmmAMatrixId COMMA hmmBMatrixId (COMMA hmmSymbolsVectorId)? RPAREN;
 rda: modelId EQUALS RDA LPAREN alphaVar COMMA tolVar (COMMA prioriVar)+ RPAREN ;
 lda: modelId EQUALS LDA LPAREN tolVar (COMMA prioriVar)+ RPAREN ;
@@ -124,8 +131,9 @@ binarysparsepolyKernel: kernelId EQUALS BINARYSPARSEPOLYNOMIALKERNEL LPAREN degr
 binarysparsehypertangentKernel: kernelId EQUALS BINARYSPARSEHYPERBOLICTANGENTKERNEL LPAREN scaleVar COMMA offsetVar RPAREN ;
 binarysparsethinplatesplineKernel: kernelId EQUALS BINARYSPARSETHINPLATEPLINEKERNEL LPAREN sigmaVar RPAREN ;
 
-nrowsVar: NUMBER ;
-ncolsVar: NUMBER ;
+numeric: FLOAT | INTEGER;
+nrowsVar: INTEGER ;
+ncolsVar: INTEGER ;
 tVar: NUMBER ;
 mVar: NUMBER ;
 sVar: NUMBER ;
@@ -138,9 +146,11 @@ ntreesVar: NUMBER ;
 maxNodesVar: NUMBER ;
 nodeSizeVar: NUMBER ;
 
+colVar: INTEGER;
+rowVar: INTEGER;
 tolVar: NUMBER ;
 epsVar: NUMBER ;
-cVar: NUMBER ;
+cVar: QUOTEDSTRING | numeric ;
 cpVar: NUMBER ;
 cnVar: NUMBER ;
 kVar: NUMBER ;
@@ -232,6 +242,9 @@ RANDOMFORESTREGRESSION: 'rforestr';
 RIDGEREGRESSION: 'ridger';
 SVR: 'svr';
 
+RSTATS: 'rstats';
+CSTATS: 'cstats';
+VSTATS: 'vstats';
 ENTROPY: 'entropy';
 GINI: 'gini';
 DTRAIN: 'dtrain';
@@ -269,7 +282,10 @@ DBLQUOTES : '"' ;
 COMMA : ',' ;
 EQUALS : '=' ;
 IDENTIFIER : [a-zA-Z][a-zA-Z0-9_.]* ;
-DIGIT: [0-9] ;
-NUMBER: DIGIT+ ('.' DIGIT+)? ;
+FLOAT: DIGITS '.' DIGITS ;
+INTEGER: DIGITS ;
+NUMBER: FLOAT | INTEGER ;
+fragment DIGITS: DIGIT+ ;
+fragment DIGIT: [0-9] ;
 QUOTEDSTRING : DBLQUOTES (~["])+? DBLQUOTES ;
 WS :  [ \t\r\n\u000C]+ -> skip ;

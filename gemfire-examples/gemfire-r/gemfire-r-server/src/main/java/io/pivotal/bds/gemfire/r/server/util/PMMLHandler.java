@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
+import org.jpmml.evaluator.EvaluationException;
 import org.jpmml.evaluator.FieldValue;
 import org.jpmml.evaluator.ModelEvaluator;
 import org.jpmml.evaluator.ModelEvaluatorFactory;
@@ -64,26 +65,30 @@ public class PMMLHandler extends Handler {
 
         LOG.debug("doHandle: arguments={}", arguments);
 
-        Map<FieldName, ?> results = modelEvaluator.evaluate(arguments);
-        LOG.debug("doHandle: results={}", results);
+        try {
+            Map<FieldName, ?> results = modelEvaluator.evaluate(arguments);
+            LOG.debug("doHandle: results={}", results);
 
-        Map<String, Object> values = new HashMap<>();
+            Map<String, Object> values = new HashMap<>();
 
-        for (Map.Entry<FieldName, ?> entry : results.entrySet()) {
-            FieldName fieldName = entry.getKey();
-            String fn = fieldName.getValue();
-            Object fieldValue = entry.getValue();
-            values.put(fn, fieldValue);
+            for (Map.Entry<FieldName, ?> entry : results.entrySet()) {
+                FieldName fieldName = entry.getKey();
+                String fn = fieldName.getValue();
+                Object fieldValue = entry.getValue();
+                values.put(fn, fieldValue);
+            }
+
+            LOG.debug("doHandle: values={}", values);
+
+            PMMLPredictionKey pk = new PMMLPredictionKey(UUID.randomUUID().toString(), pmmlKey.getId());
+            PMMLPrediction pred = new PMMLPrediction(values);
+            LOG.debug("doHandle: pk={}, pred={}", pk, pred);
+
+            Region<PMMLPredictionKey, PMMLPrediction> r = RegionHelper.getRegion("pmmlPrediction");
+            r.put(pk, pred);
+        } catch (EvaluationException x) {
+            LOG.error("doHandle: x={}, arguments={}", x.toString(), arguments, x);
         }
-
-        LOG.debug("doHandle: values={}", values);
-
-        PMMLPredictionKey pk = new PMMLPredictionKey(UUID.randomUUID().toString(), pmmlKey.getId());
-        PMMLPrediction pred = new PMMLPrediction(values);
-        LOG.debug("doHandle: pk={}, pred={}", pk, pred);
-
-        Region<PMMLPredictionKey, PMMLPrediction> r = RegionHelper.getRegion("pmmlPrediction");
-        r.put(pk, pred);
     }
 
 }

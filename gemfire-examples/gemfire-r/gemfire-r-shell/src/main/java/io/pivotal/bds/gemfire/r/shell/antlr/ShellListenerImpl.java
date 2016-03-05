@@ -31,12 +31,17 @@ import io.pivotal.bds.gemfire.ml.ModelType;
 import io.pivotal.bds.gemfire.r.common.AdhocPrediction;
 import io.pivotal.bds.gemfire.r.common.AdhocPredictionRequest;
 import io.pivotal.bds.gemfire.r.common.AdhocPredictionResponse;
+import io.pivotal.bds.gemfire.r.common.CbindRequest;
+import io.pivotal.bds.gemfire.r.common.CstatsRequest;
 import io.pivotal.bds.gemfire.r.common.DynamicTrainDef;
 import io.pivotal.bds.gemfire.r.common.DynamicTrainDefKey;
 import io.pivotal.bds.gemfire.r.common.PredictDef;
 import io.pivotal.bds.gemfire.r.common.PredictDefKey;
+import io.pivotal.bds.gemfire.r.common.RstatsRequest;
+import io.pivotal.bds.gemfire.r.common.StatsResponse;
 import io.pivotal.bds.gemfire.r.common.TrainDef;
 import io.pivotal.bds.gemfire.r.common.TrainDefKey;
+import io.pivotal.bds.gemfire.r.common.TransposeRequest;
 import io.pivotal.bds.gemfire.r.common.FFTRequest;
 import io.pivotal.bds.gemfire.r.common.FFTResponse;
 import io.pivotal.bds.gemfire.r.common.HMMDef;
@@ -56,12 +61,18 @@ import io.pivotal.bds.gemfire.r.common.PMMLPredictDefKey;
 import io.pivotal.bds.gemfire.r.common.Vector;
 import io.pivotal.bds.gemfire.r.common.VectorDef;
 import io.pivotal.bds.gemfire.r.common.VectorKey;
+import io.pivotal.bds.gemfire.r.common.VstatsRequest;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsegaussKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsehypertangentKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparselaplaceKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparselinearKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsepolyKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.BinarysparsethinplatesplineKernelContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.CContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.CVarContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.CbindContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.CstatsContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.CvContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.DecisionTreeContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.DtrainModelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.ExecuteContext;
@@ -79,6 +90,7 @@ import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LaplaceKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LdaContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LinearKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.LsContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.MContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.MatrixContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PearsonKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.PmmlLoadContext;
@@ -93,9 +105,11 @@ import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryArgsContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.QueryContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RandomForestClassificationContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RandomForestRegressionContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RbindContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RdaContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RegressionTreeContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RidgeRegressionContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.RstatsContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsegaussKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsehypertangentKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparselaplaceKernelContext;
@@ -104,9 +118,11 @@ import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsepolyKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SparsethinplatesplineKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SvmContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.SvrContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.TContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.ThinplatesplineKernelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.TrainModelContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.VectorContext;
+import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.VstatsContext;
 import io.pivotal.bds.gemfire.r.shell.antlr.ShellParser.XFieldNameContext;
 
 public class ShellListenerImpl extends ShellBaseListener {
@@ -157,6 +173,189 @@ public class ShellListenerImpl extends ShellBaseListener {
         this.hmmDefRegion = hmmDefRegion;
         this.pmmlPredictDefRegion = pmmlPredictDefRegion;
         this.pmmlDataRegion = pmmlDataRegion;
+    }
+
+    @Override
+    public void exitRstats(RstatsContext ctx) {
+        String matrixId = ctx.matrixId().getText();
+        MatrixKey matrixKey = new MatrixKey(matrixId);
+        Assert.isTrue(matrixRegion.containsKeyOnServer(matrixKey), "Matrix " + matrixId + " not found");
+
+        int row = Integer.parseInt(ctx.rowVar().getText());
+        RstatsRequest req = new RstatsRequest(matrixKey, row);
+
+        @SuppressWarnings("unchecked")
+        List<StatsResponse> resp = (List<StatsResponse>) FunctionService.onServer(pool).withArgs(req).execute("RstatsFunction")
+                .getResult();
+        StatsResponse sr = resp.get(0);
+        stdout.println(sr);
+    }
+
+    @Override
+    public void exitCstats(CstatsContext ctx) {
+        String matrixId = ctx.matrixId().getText();
+        MatrixKey matrixKey = new MatrixKey(matrixId);
+        Assert.isTrue(matrixRegion.containsKeyOnServer(matrixKey), "Matrix " + matrixId + " not found");
+
+        int col = Integer.parseInt(ctx.colVar().getText());
+        CstatsRequest req = new CstatsRequest(matrixKey, col);
+
+        @SuppressWarnings("unchecked")
+        List<StatsResponse> resp = (List<StatsResponse>) FunctionService.onServer(pool).withArgs(req).execute("CstatsFunction")
+                .getResult();
+        StatsResponse sr = resp.get(0);
+        stdout.println(sr);
+    }
+
+    @Override
+    public void exitVstats(VstatsContext ctx) {
+        String vectorId = ctx.vectorId().getText();
+        VectorKey vectorKey = new VectorKey(vectorId);
+        Assert.isTrue(vectorRegion.containsKeyOnServer(vectorKey), "Vector " + vectorId + " not found");
+
+        VstatsRequest req = new VstatsRequest(vectorKey);
+
+        @SuppressWarnings("unchecked")
+        List<StatsResponse> resp = (List<StatsResponse>) FunctionService.onServer(pool).withArgs(req).execute("VstatsFunction")
+                .getResult();
+        StatsResponse sr = resp.get(0);
+        stdout.println(sr);
+    }
+
+    @Override
+    public void exitRbind(RbindContext ctx) {
+        String srcMatrixId = ctx.matrixId().get(1).getText();
+        MatrixKey srcMatrixKey = new MatrixKey(srcMatrixId);
+        Assert.isTrue(matrixRegion.containsKeyOnServer(srcMatrixKey), "Source matrix " + srcMatrixId + " not found");
+
+        String vectorId = ctx.vectorId().getText();
+        VectorKey vectorKey = new VectorKey(vectorId);
+        Assert.isTrue(vectorRegion.containsKey(vectorKey), "Vector " + vectorId + " not found");
+
+        String destMatrixId = ctx.matrixId().get(0).getText();
+        MatrixKey destMatrixKey = new MatrixKey(destMatrixId);
+
+        CbindRequest req = new CbindRequest(srcMatrixKey, destMatrixKey, vectorKey);
+        FunctionService.onServer(pool).withArgs(req).execute("RbindFunction").getResult();
+    }
+
+    @Override
+    public void exitCbind(CbindContext ctx) {
+        String srcMatrixId = ctx.matrixId().get(1).getText();
+        MatrixKey srcMatrixKey = new MatrixKey(srcMatrixId);
+        Assert.isTrue(matrixRegion.containsKeyOnServer(srcMatrixKey), "Source matrix " + srcMatrixId + " not found");
+
+        String vectorId = ctx.vectorId().getText();
+        VectorKey vectorKey = new VectorKey(vectorId);
+        Assert.isTrue(vectorRegion.containsKeyOnServer(vectorKey), "Vector " + vectorId + " not found");
+
+        String destMatrixId = ctx.matrixId().get(0).getText();
+        MatrixKey destMatrixKey = new MatrixKey(destMatrixId);
+
+        CbindRequest req = new CbindRequest(srcMatrixKey, destMatrixKey, vectorKey);
+        FunctionService.onServer(pool).withArgs(req).execute("CbindFunction").getResult();
+    }
+
+    @Override
+    public void exitT(TContext ctx) {
+        String srcMatrixId = ctx.matrixId().get(1).getText();
+        MatrixKey srcMatrixKey = new MatrixKey(srcMatrixId);
+        Assert.isTrue(matrixRegion.containsKeyOnServer(srcMatrixKey), "Source matrix " + srcMatrixId + " not found");
+
+        String destMatrixId = ctx.matrixId().get(0).getText();
+        MatrixKey destMatrixKey = new MatrixKey(destMatrixId);
+
+        TransposeRequest req = new TransposeRequest(srcMatrixKey, destMatrixKey);
+        FunctionService.onServer(pool).withArgs(req).execute("TransposeFunction").getResult();
+    }
+
+    @Override
+    public void exitM(MContext ctx) {
+        Vector<Object> vector = createVector(ctx.cv());
+
+        int nrows = Integer.parseInt(ctx.nrowsVar().INTEGER().getText());
+        int ncols = Integer.parseInt(ctx.ncolsVar().INTEGER().getText());
+
+        List<Object> list = vector.getVector();
+
+        if (list.size() != nrows * ncols) {
+            throw new IllegalArgumentException("Invalid number of entries");
+        }
+
+        List<Class<?>> colTypes = new ArrayList<>();
+        List<Vector<Object>> rows = new ArrayList<>();
+        int t = 0;
+
+        for (int r = 0; r < nrows; ++r) {
+            List<Object> rl = new ArrayList<>();
+
+            for (int c = 0; c < ncols; ++c) {
+                Object o = list.get(t++);
+
+                if (r == 0) {
+                    colTypes.add(o.getClass());
+                } else {
+                    if (colTypes.get(c) != o.getClass()) {
+                        throw new IllegalArgumentException("Columns must be of the same type");
+                    }
+                }
+
+                rl.add(o);
+            }
+
+            rows.add(new Vector<>(rl));
+        }
+
+        Matrix<Object> matrix = new Matrix<>(rows);
+        String matrixId = ctx.matrixId().getText();
+        MatrixKey matrixKey = new MatrixKey(matrixId);
+
+        matrixRegion.put(matrixKey, matrix);
+    }
+
+    @Override
+    public void exitC(CContext ctx) {
+        Vector<Object> vector = createVector(ctx.cv());
+
+        Class<?> ct = null;
+
+        for (Object o : vector.getVector()) {
+            if (ct == null) {
+                ct = o.getClass();
+            } else if (ct != o.getClass()) {
+                throw new IllegalArgumentException("Type of elements of vector must be the same");
+            }
+        }
+
+        String vectorId = ctx.vectorId().getText();
+        VectorKey vectorKey = new VectorKey(vectorId);
+        vectorRegion.put(vectorKey, vector);
+    }
+
+    private Vector<Object> createVector(CvContext ctx) {
+        List<CVarContext> cvars = ctx.cVar();
+        List<Object> vars = new ArrayList<>();
+
+        for (CVarContext cvc : cvars) {
+            Object val = null;
+
+            if (cvc.QUOTEDSTRING() != null) {
+                String s = cvc.QUOTEDSTRING().getText();
+                s = s.substring(1, s.length() - 1);
+                val = s;
+            } else if (cvc.numeric() != null) {
+
+                String s = cvc.numeric().INTEGER() != null ? cvc.numeric().INTEGER().getText() : cvc.numeric().FLOAT().getText();
+                val = new Double(s);
+            } else {
+                throw new IllegalArgumentException("Didn't get string or number");
+            }
+
+            vars.add(val);
+        }
+
+        Vector<Object> vector = new Vector<>(vars);
+        return vector;
     }
 
     @Override
@@ -466,16 +665,13 @@ public class ShellListenerImpl extends ShellBaseListener {
                 + trainId);
 
         ModelDefKey modelDefKey = new ModelDefKey(modelDefId);
-        ModelDef modelDef = modelDefRegion.get(modelDefKey);
-        Assert.notNull(modelDef, "Model " + modelDefKey + " not found");
+        Assert.isTrue(modelDefRegion.containsKeyOnServer(modelDefKey), "Model " + modelDefKey.getId() + " not found");
 
         MatrixKey matrixKey = new MatrixKey(matrixId);
-        MatrixDef matrixDef = matrixDefRegion.get(matrixKey);
-        Assert.notNull(matrixDef, "Matrix" + matrixKey + " not found");
+        Assert.isTrue(matrixDefRegion.containsKeyOnServer(matrixKey), "Matrix " + matrixKey.getId() + " not found");
 
         VectorKey vectorKey = new VectorKey(vectorId);
-        VectorDef vectorDef = vectorDefRegion.get(vectorKey);
-        Assert.notNull(vectorDef, "Vector" + vectorKey + " not found");
+        Assert.isTrue(vectorDefRegion.containsKeyOnServer(vectorKey), "Vector " + vectorKey.getId() + " not found");
 
         ModelKey modelKey = new ModelKey(trainId);
         TrainDefKey trainDefKey = new TrainDefKey(trainId, modelDefId);
@@ -738,8 +934,7 @@ public class ShellListenerImpl extends ShellBaseListener {
     public void exitGaussianProcess(GaussianProcessContext ctx) {
         String kernelId = ctx.kernelId().getText();
         KernelKey kernelKey = new KernelKey(kernelId);
-        KernelDef kernelDef = kernelDefRegion.get(kernelKey);
-        Assert.notNull(kernelDef, "Kernel " + kernelId + " does not exist");
+        Assert.isTrue(kernelDefRegion.containsKeyOnServer(kernelKey), "Kernel " + kernelId + " does not exist");
 
         String modelId = ctx.modelId().getText();
 

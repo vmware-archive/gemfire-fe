@@ -28,6 +28,42 @@ public class ShellBaseListener implements ShellListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterRstats(ShellParser.RstatsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRstats(ShellParser.RstatsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCstats(ShellParser.CstatsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCstats(ShellParser.CstatsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVstats(ShellParser.VstatsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVstats(ShellParser.VstatsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPmmlPredict(ShellParser.PmmlPredictContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -107,6 +143,18 @@ public class ShellBaseListener implements ShellListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitC(ShellParser.CContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCv(ShellParser.CvContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCv(ShellParser.CvContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -688,6 +736,18 @@ public class ShellBaseListener implements ShellListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterNumeric(ShellParser.NumericContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumeric(ShellParser.NumericContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNrowsVar(ShellParser.NrowsVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -839,6 +899,30 @@ public class ShellBaseListener implements ShellListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNodeSizeVar(ShellParser.NodeSizeVarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterColVar(ShellParser.ColVarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitColVar(ShellParser.ColVarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRowVar(ShellParser.RowVarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRowVar(ShellParser.RowVarContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
