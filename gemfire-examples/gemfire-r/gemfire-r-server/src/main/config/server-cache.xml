@@ -144,7 +144,7 @@
 		</region-attributes>
 	</region>
 
-	<region name="pmmlPrediction" refid="LOCAL">
+	<region name="pmmlPrediction" refid="PARTITION">
 		<region-attributes>
 			<cache-listener>
 				<class-name>io.pivotal.bds.gemfire.util.LoggingCacheListener</class-name>
@@ -177,5 +177,14 @@
 			<class-name>io.pivotal.bds.gemfire.r.server.function.TransposeFunction</class-name>
 		</function>
 	</function-service>
+
+	<serialization-registration>
+        <serializer>
+            <class-name>io.pivotal.bds.gemfire.r.common.serializer.VoteDistributionSerializer</class-name>
+        </serializer>
+        <serializer>
+            <class-name>io.pivotal.bds.gemfire.r.common.serializer.ProbabilityDistributionSerializer</class-name>
+        </serializer>
+	</serialization-registration>
 
 </cache>

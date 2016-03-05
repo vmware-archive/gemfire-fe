@@ -78,46 +78,46 @@ public class R {
 
         int queryLimit = 100;
 
-        ClientRegionFactory<String, String> queryCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<String, String> queryCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<String, String> queryRegion = queryCRF.create("queries");
 
-        ClientRegionFactory<ModelDefKey, ModelDef> modelDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<ModelDefKey, ModelDef> modelDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<ModelDefKey, ModelDef> modelDefRegion = modelDefCRF.create("modelDef");
 
         ClientRegionFactory<PredictDefKey, PredictDef> predictDefCRF = cc
-                .createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+                .createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<PredictDefKey, PredictDef> predictDefRegion = predictDefCRF.create("predictDef");
 
-        ClientRegionFactory<VectorKey, VectorDef> vectorDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<VectorKey, VectorDef> vectorDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<VectorKey, VectorDef> vectorDefRegion = vectorDefCRF.create("vectorDef");
 
-        ClientRegionFactory<MatrixKey, MatrixDef> matrixDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<MatrixKey, MatrixDef> matrixDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<MatrixKey, MatrixDef> matrixDefRegion = matrixDefCRF.create("matrixDef");
 
-        ClientRegionFactory<VectorKey, Vector<Object>> vectorCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<VectorKey, Vector<Object>> vectorCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<VectorKey, Vector<Object>> vectorRegion = vectorCRF.create("vector");
 
-        ClientRegionFactory<MatrixKey, Matrix<Object>> matrixCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<MatrixKey, Matrix<Object>> matrixCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<MatrixKey, Matrix<Object>> matrixRegion = matrixCRF.create("matrix");
 
-        ClientRegionFactory<TrainDefKey, TrainDef> trainDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<TrainDefKey, TrainDef> trainDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<TrainDefKey, TrainDef> trainDefRegion = trainDefCRF.create("trainDef");
 
         ClientRegionFactory<DynamicTrainDefKey, DynamicTrainDef> dynamicTrainDefCRF = cc
-                .createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+                .createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<DynamicTrainDefKey, DynamicTrainDef> dynamicTrainDefRegion = dynamicTrainDefCRF.create("dynamicTrainDef");
 
-        ClientRegionFactory<KernelKey, KernelDef> kernelDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<KernelKey, KernelDef> kernelDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<KernelKey, KernelDef> kernelDefRegion = kernelDefCRF.create("kernelDef");
 
-        ClientRegionFactory<HMMKey, HMMDef> hmmDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<HMMKey, HMMDef> hmmDefCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<HMMKey, HMMDef> hmmDefRegion = hmmDefCRF.create("hmmDef");
 
-        ClientRegionFactory<PMMLKey, PMMLData> pmmlDataCRF = cc.createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+        ClientRegionFactory<PMMLKey, PMMLData> pmmlDataCRF = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<PMMLKey, PMMLData> pmmlDataRegion = pmmlDataCRF.create("pmmlData");
 
         ClientRegionFactory<PMMLPredictDefKey, PMMLPredictDef> pmmlPredictDefCRF = cc
-                .createClientRegionFactory(ClientRegionShortcut.CACHING_PROXY);
+                .createClientRegionFactory(ClientRegionShortcut.PROXY);
         Region<PMMLPredictDefKey, PMMLPredictDef> pmmlPredictDefRegion = pmmlPredictDefCRF.create("pmmlPredictDef");
 
         ShellListenerImpl list = new ShellListenerImpl(stdout, fout, qs, queryLimit, pool, queryRegion, modelDefRegion,
