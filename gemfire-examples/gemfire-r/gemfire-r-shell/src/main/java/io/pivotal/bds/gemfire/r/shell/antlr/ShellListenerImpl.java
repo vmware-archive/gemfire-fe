@@ -1016,12 +1016,115 @@ public class ShellListenerImpl extends ShellBaseListener {
 
         boolean found = printQueryVar(var);
         found = printModelVar(var) || found;
-        found = printEvalVar(var) || found;
+        found = printTrainVar(var) || found;
+        found = printPredictVar(var) || found;
         found = printVectorVar(var) || found;
         found = printMatrixVar(var) || found;
+        found = printHMMVar(var) || found;
+        found = printKernelVar(var) || found;
+        found = printPMMLVar(var) || found;
+        found = printPMMLPredictVar(var) || found;
 
         if (!found) {
             stdout.println("<variable not found>");
+        }
+    }
+
+    private boolean printPMMLPredictVar(String id) {
+        try {
+            SelectResults<PMMLPredictDef> res = pmmlPredictDefRegion
+                    .query("select value from /pmmlPredictDef.entrySet where key.id='" + id + "'");
+            List<PMMLPredictDef> list = res.asList();
+
+            if (!list.isEmpty()) {
+                PMMLPredictDef def = list.get(0);
+
+                stdout.println("PMML Predict:");
+
+                stdout.println("   pmml   = " + def.getPmmlKey().getId());
+                stdout.println("   region = " + def.getRegionName());
+
+                return true;
+            }
+        } catch (Exception x) {
+            stdout.println(x.getMessage());
+            x.printStackTrace(log);
+        }
+
+        return false;
+    }
+
+    private boolean printPMMLVar(String pmmlId) {
+        PMMLKey key = new PMMLKey(pmmlId);
+        PMMLData data = pmmlDataRegion.get(key);
+
+        if (data != null) {
+            stdout.println("PMML:");
+
+            stdout.println("   model = ");
+            stdout.println(data.getModel());
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean printKernelVar(String kernelId) {
+        KernelKey key = new KernelKey(kernelId);
+        KernelDef def = kernelDefRegion.get(key);
+
+        if (def != null) {
+            stdout.println("Kernel:");
+
+            stdout.println("   type  = " + def.getType());
+            stdout.println("   props = " + def.getProperties());
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean printTrainVar(String trainId) {
+        try {
+            SelectResults<TrainDef> res = trainDefRegion
+                    .query("select value from /trainDef.entrySet where key.id='" + trainId + "'");
+            List<TrainDef> list = res.asList();
+
+            if (!list.isEmpty()) {
+                TrainDef def = list.get(0);
+
+                stdout.println("Train:");
+
+                stdout.println("   model      = " + def.getModelKey().getId());
+                stdout.println("   model def  = " + def.getModelDefKey().getId());
+                stdout.println("   matrix     = " + def.getMatrixKey().getId());
+                stdout.println("   vector     = " + def.getVectorKey().getId());
+            }
+
+            return true;
+        } catch (Exception e) {
+            stdout.println(e.getMessage());
+            e.printStackTrace(this.log);
+        }
+
+        return false;
+    }
+
+    private boolean printHMMVar(String hmmId) {
+        HMMKey key = new HMMKey(hmmId);
+        HMMDef def = hmmDefRegion.get(key);
+
+        if (def != null) {
+            stdout.println("HMM:");
+
+            stdout.println("   pi vector      = " + def.getPiKey().getId());
+            stdout.println("   a matrix       = " + def.getaKey().getId());
+            stdout.println("   b matrix       = " + def.getbKey().getId());
+            stdout.println("   symbols vector = " + def.getSymbolsKey().getId());
+
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -1078,14 +1181,14 @@ public class ShellListenerImpl extends ShellBaseListener {
         }
     }
 
-    private boolean printEvalVar(String evalId) {
+    private boolean printPredictVar(String evalId) {
         PredictDefKey key = new PredictDefKey(evalId, "");
         PredictDef def = predictDefRegion.get(key);
 
         if (def == null) {
             return false;
         } else {
-            stdout.println("Evaluate:");
+            stdout.println("Predict:");
             stdout.println("   model  = " + def.getModelKey().getId());
             stdout.println("   region = " + def.getRegionName());
             stdout.println("   fields = " + Arrays.toString(def.getFieldNames()));
@@ -1143,8 +1246,78 @@ public class ShellListenerImpl extends ShellBaseListener {
         stdout.println("Model:");
         printModelVars(modelDefRegion.keySetOnServer());
 
-        stdout.println("Evaluate:");
-        printEvalVars(predictDefRegion.keySetOnServer());
+        stdout.println("Train:");
+        printTrainVars(trainDefRegion.keySetOnServer());
+
+        stdout.println("Predict:");
+        printPredictVars(predictDefRegion.keySetOnServer());
+
+        stdout.println("Kernel:");
+        printKernelVars(kernelDefRegion.keySetOnServer());
+
+        stdout.println("PMML:");
+        printPMMLVars(pmmlDataRegion.keySetOnServer());
+
+        stdout.println("PMML Predict:");
+        printPMMLPredictVars(pmmlPredictDefRegion.keySetOnServer());
+
+        stdout.println("HMM:");
+        printHMMVars(hmmDefRegion.keySetOnServer());
+    }
+
+    private void printHMMVars(Set<HMMKey> c) {
+        List<String> l = new ArrayList<>();
+        for (HMMKey ek : c) {
+            l.add(ek.getId());
+        }
+        Collections.sort(l);
+        for (String s : l) {
+            stdout.println("   " + s);
+        }
+    }
+
+    private void printPMMLPredictVars(Set<PMMLPredictDefKey> c) {
+        List<String> l = new ArrayList<>();
+        for (PMMLPredictDefKey ek : c) {
+            l.add(ek.getId());
+        }
+        Collections.sort(l);
+        for (String s : l) {
+            stdout.println("   " + s);
+        }
+    }
+
+    private void printPMMLVars(Set<PMMLKey> c) {
+        List<String> l = new ArrayList<>();
+        for (PMMLKey ek : c) {
+            l.add(ek.getId());
+        }
+        Collections.sort(l);
+        for (String s : l) {
+            stdout.println("   " + s);
+        }
+    }
+
+    private void printTrainVars(Set<TrainDefKey> c) {
+        List<String> l = new ArrayList<>();
+        for (TrainDefKey ek : c) {
+            l.add(ek.getId());
+        }
+        Collections.sort(l);
+        for (String s : l) {
+            stdout.println("   " + s);
+        }
+    }
+
+    private void printKernelVars(Set<KernelKey> c) {
+        List<String> l = new ArrayList<>();
+        for (KernelKey ek : c) {
+            l.add(ek.getId());
+        }
+        Collections.sort(l);
+        for (String s : l) {
+            stdout.println("   " + s);
+        }
     }
 
     private void printVectorVars(Set<VectorKey> c) {
@@ -1169,7 +1342,7 @@ public class ShellListenerImpl extends ShellBaseListener {
         }
     }
 
-    private void printEvalVars(Set<PredictDefKey> c) {
+    private void printPredictVars(Set<PredictDefKey> c) {
         List<String> l = new ArrayList<>();
         for (PredictDefKey ek : c) {
             l.add(ek.getId());
