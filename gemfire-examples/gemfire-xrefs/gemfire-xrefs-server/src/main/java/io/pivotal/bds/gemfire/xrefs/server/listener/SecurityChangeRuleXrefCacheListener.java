@@ -1,5 +1,7 @@
 package io.pivotal.bds.gemfire.xrefs.server.listener;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,15 +12,14 @@ import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
 import io.pivotal.bds.gemfire.data.securities.ChangeRule;
 import io.pivotal.bds.gemfire.data.securities.ChangeRuleKey;
 import io.pivotal.bds.gemfire.data.securities.SecurityKey;
-import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class SecurityChangeRuleXrefCacheListener extends CacheListenerAdapter<ChangeRuleKey, ChangeRule> {
 
-    private Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> xrefRegion;
+    private Region<SecurityKey, Set<ChangeRuleKey>> xrefRegion;
 
     private static final Logger LOG = LoggerFactory.getLogger(SecurityChangeRuleXrefCacheListener.class);
 
-    public SecurityChangeRuleXrefCacheListener(Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> xrefRegion) {
+    public SecurityChangeRuleXrefCacheListener(Region<SecurityKey, Set<ChangeRuleKey>> xrefRegion) {
         this.xrefRegion = xrefRegion;
     }
 
@@ -29,7 +30,7 @@ public class SecurityChangeRuleXrefCacheListener extends CacheListenerAdapter<Ch
         LOG.info("afterCreate: crk={}, cr={}", crk, cr);
         
         SecurityKey sk = cr.getSecurityKey();
-        PDXConcurrentList<ChangeRuleKey> l = xrefRegion.get(sk);
+        Set<ChangeRuleKey> l = xrefRegion.get(sk);
         l.add(crk);
         xrefRegion.put(sk, l);
     }
@@ -41,7 +42,7 @@ public class SecurityChangeRuleXrefCacheListener extends CacheListenerAdapter<Ch
         LOG.info("afterDestroy: crk={}, cr={}", crk, cr);
         
         SecurityKey sk = cr.getSecurityKey();
-        PDXConcurrentList<ChangeRuleKey> l = xrefRegion.get(sk);
+        Set<ChangeRuleKey> l = xrefRegion.get(sk);
         l.remove(crk);
         xrefRegion.put(sk, l);
     }

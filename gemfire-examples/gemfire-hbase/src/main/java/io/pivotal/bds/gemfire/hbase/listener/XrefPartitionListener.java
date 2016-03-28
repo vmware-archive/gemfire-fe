@@ -1,7 +1,7 @@
 package io.pivotal.bds.gemfire.hbase.listener;
 
-import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import org.springframework.util.Assert;
 import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.partition.PartitionListener;
-import com.gemstone.gemfire.cache.partition.PartitionRegionHelper;
+import com.gemstone.gemfire.internal.cache.PartitionedRegion;
 import com.gemstone.gemfire.pdx.PdxInstance;
 
 import io.pivotal.bds.gemfire.util.DSLockingHashSet;
@@ -74,16 +74,16 @@ public class XrefPartitionListener implements PartitionListener, Declarable {
         LOG.info("afterPrimary: region={}, bucketId={}", region.getName(), bucketId);
 
         Region<Object, DSLockingHashSet<Object>> xrefRegion = RegionHelper.getRegion(xrefRegionName);
-        Region<?, ?> pr = PartitionRegionHelper.getLocalPrimaryData(region);
+        PartitionedRegion pr = (PartitionedRegion)region;
+        Set<?> keys = pr.getBucketKeys(bucketId);
 
-        for (Map.Entry<?, ?> e : pr.entrySet()) {
-            Object key = e.getKey();
+        for (Object key: keys) {
 
             if (LOG.isTraceEnabled()) {
                 LOG.info("afterPrimary: region={}, bucketId={}, key={}", region.getName(), bucketId, key);
             }
 
-            PdxInstance inst = (PdxInstance) e.getValue();
+            PdxInstance inst = (PdxInstance) region.get(key);
             Object fieldValue = inst.getField(fieldName);
 
             if (fieldValue != null) {

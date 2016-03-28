@@ -1,5 +1,6 @@
 package io.pivotal.bds.gemfire.xrefs.server.listener;
 
+import java.util.Set;
 import java.util.function.Consumer;
 
 import org.slf4j.Logger;
@@ -20,18 +21,17 @@ import io.pivotal.bds.gemfire.data.securities.SecurityKey;
 import io.pivotal.bds.gemfire.data.securities.Trade;
 import io.pivotal.bds.gemfire.data.securities.TradeKey;
 import io.pivotal.bds.gemfire.keyfw.generator.ColocationKeyGenerator;
-import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class TradeVolumeCacheListener extends CacheListenerAdapter<TradeKey, Trade> {
 
-    private Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> xrefRegion;
+    private Region<SecurityKey, Set<ChangeRuleKey>> xrefRegion;
     private Region<ChangeRuleKey, ChangeRule> changeRuleRegion;
     private Region<AccountNotificationKey, AccountNotification> notificationRegion;
     private ColocationKeyGenerator<Long, String> keyGenerator;
 
     private static final Logger LOG = LoggerFactory.getLogger(TradeVolumeCacheListener.class);
 
-    public TradeVolumeCacheListener(Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> xrefRegion,
+    public TradeVolumeCacheListener(Region<SecurityKey, Set<ChangeRuleKey>> xrefRegion,
             Region<ChangeRuleKey, ChangeRule> changeRuleRegion,
             Region<AccountNotificationKey, AccountNotification> notificationRegion,
             ColocationKeyGenerator<Long, String> keyGenerator) {
@@ -49,7 +49,7 @@ public class TradeVolumeCacheListener extends CacheListenerAdapter<TradeKey, Tra
         SecurityKey sk = tr.getSecurityKey();
         final int quan = tr.getQuantity();
 
-        PDXConcurrentList<ChangeRuleKey> keys = xrefRegion.get(sk);
+        Set<ChangeRuleKey> keys = xrefRegion.get(sk);
 
         keys.forEach(new Consumer<ChangeRuleKey>() {
 

@@ -1,27 +1,26 @@
 package io.pivotal.bds.gemfire.xrefs.server.listener;
 
-import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.partition.PartitionListener;
-import com.gemstone.gemfire.cache.partition.PartitionRegionHelper;
+import com.gemstone.gemfire.internal.cache.PartitionedRegion;
 
 import io.pivotal.bds.gemfire.data.securities.ChangeRule;
 import io.pivotal.bds.gemfire.data.securities.ChangeRuleKey;
 import io.pivotal.bds.gemfire.data.securities.SecurityKey;
-import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class SecurityChangeRuleXrefPartitionListener implements PartitionListener {
 
     private Region<ChangeRuleKey, ChangeRule> changeRuleRegion;
-    private Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> xrefRegion;
+    private Region<SecurityKey, Set<ChangeRuleKey>> xrefRegion;
 
     private static final Logger LOG = LoggerFactory.getLogger(SecurityChangeRuleXrefPartitionListener.class);
 
-    public SecurityChangeRuleXrefPartitionListener(Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> xrefRegion) {
+    public SecurityChangeRuleXrefPartitionListener(Region<SecurityKey, Set<ChangeRuleKey>> xrefRegion) {
         this.xrefRegion = xrefRegion;
     }
 
@@ -39,7 +38,7 @@ public class SecurityChangeRuleXrefPartitionListener implements PartitionListene
             ChangeRule cr = changeRuleRegion.get(crk);
             SecurityKey sk = cr.getSecurityKey();
 
-            PDXConcurrentList<ChangeRuleKey> l = xrefRegion.get(sk);
+            Set<ChangeRuleKey> l = xrefRegion.get(sk);
             l.remove(crk);
             xrefRegion.put(sk, l);
         }
@@ -48,14 +47,15 @@ public class SecurityChangeRuleXrefPartitionListener implements PartitionListene
     @Override
     public void afterPrimary(int bucketId) {
         LOG.info("afterPrimary: bucketId={}", bucketId);
-        Region<ChangeRuleKey, ChangeRule> r = PartitionRegionHelper.getLocalPrimaryData(changeRuleRegion);
+        PartitionedRegion pr = (PartitionedRegion)changeRuleRegion;
+        Set<?> keys = pr.getBucketKeys(bucketId);
 
-        for (Map.Entry<ChangeRuleKey, ChangeRule> e : r.entrySet()) {
-            ChangeRuleKey crk = e.getKey();
-            ChangeRule cr = e.getValue();
+        for (Object ok : keys) {
+            ChangeRuleKey crk = (ChangeRuleKey)ok;
+            ChangeRule cr = changeRuleRegion.get(crk);
             SecurityKey sk = cr.getSecurityKey();
 
-            PDXConcurrentList<ChangeRuleKey> l = xrefRegion.get(sk);
+            Set<ChangeRuleKey> l = xrefRegion.get(sk);
             l.add(crk);
             xrefRegion.put(sk, l);
         }

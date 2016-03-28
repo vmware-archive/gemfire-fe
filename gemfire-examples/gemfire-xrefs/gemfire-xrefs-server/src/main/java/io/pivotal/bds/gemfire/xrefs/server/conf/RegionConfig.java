@@ -1,5 +1,7 @@
 package io.pivotal.bds.gemfire.xrefs.server.conf;
 
+import java.util.Set;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
@@ -45,7 +47,6 @@ import io.pivotal.bds.gemfire.keyfw.generator.IDGenerator;
 import io.pivotal.bds.gemfire.keyfw.generator.RegionLongIDGenerator;
 import io.pivotal.bds.gemfire.keyfw.resolver.ColocationIDPartitionResolver;
 import io.pivotal.bds.gemfire.xrefs.common.Constants;
-import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 import io.pivotal.bds.gemfire.xrefs.server.listener.AccountChangeRuleXrefCacheListener;
 import io.pivotal.bds.gemfire.xrefs.server.listener.AccountChangeRuleXrefPartitionListener;
 import io.pivotal.bds.gemfire.xrefs.server.listener.AccountHistoryXrefCacheListener;
@@ -60,25 +61,25 @@ import io.pivotal.bds.gemfire.xrefs.server.listener.TradeAccountXrefCacheListene
 import io.pivotal.bds.gemfire.xrefs.server.listener.TradeAccountXrefPartitionListener;
 import io.pivotal.bds.gemfire.xrefs.server.listener.TradeHistoryCacheListener;
 import io.pivotal.bds.gemfire.xrefs.server.listener.TradeVolumeCacheListener;
-import io.pivotal.bds.gemfire.xrefs.server.loader.PDXConcurrentListCacheLoader;
+import io.pivotal.bds.gemfire.xrefs.server.loader.DSConcurrentHashSetCacheLoader;
 
 @Configuration
 public class RegionConfig implements Constants {
 
     @Resource(name = ACCOUNT_TRADE_XREF_REGION_BEAN_NAME)
-    private Region<AccountKey, PDXConcurrentList<TradeKey>> accountTradeXrefRegion;
+    private Region<AccountKey, Set<TradeKey>> accountTradeXrefRegion;
 
     @Resource(name = ACCOUNT_HISTORY_XREF_REGION_BEAN_NAME)
-    private Region<AccountKey, PDXConcurrentList<AccountHistoryKey>> accountHistoryXrefRegion;
+    private Region<AccountKey, Set<AccountHistoryKey>> accountHistoryXrefRegion;
 
     @Resource(name = ACCOUNT_CHANGE_RULE_XREF_REGION_BEAN_NAME)
-    private Region<AccountKey, PDXConcurrentList<ChangeRuleKey>> accountChangeRuleXrefRegion;
+    private Region<AccountKey, Set<ChangeRuleKey>> accountChangeRuleXrefRegion;
 
     @Resource(name = SECURITY_CHANGE_RULE_XREF_REGION_BEAN_NAME)
-    private Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> securityChangeRuleXrefRegion;
+    private Region<SecurityKey, Set<ChangeRuleKey>> securityChangeRuleXrefRegion;
 
     @Resource(name = SECURITY_PRICE_HISTORY_XREF_REGION_BEAN_NAME)
-    private Region<SecurityKey, PDXConcurrentList<SecurityPriceHistoryKey>> securityPriceHistoryXrefRegion;
+    private Region<SecurityKey, Set<SecurityPriceHistoryKey>> securityPriceHistoryXrefRegion;
 
     @Resource(name = SECURITY_REGION_BEAN_NAME)
     private Region<SecurityKey, Security> securityRegion;
@@ -285,42 +286,42 @@ public class RegionConfig implements Constants {
     }
 
     @Bean(name = SECURITY_PRICE_HISTORY_XREF_REGION_BEAN_NAME)
-    public Region<SecurityKey, PDXConcurrentList<SecurityPriceHistoryKey>> createSecurityPriceHistoryXrefRegion(Cache cache) {
+    public Region<SecurityKey, Set<SecurityPriceHistoryKey>> createSecurityPriceHistoryXrefRegion(Cache cache) {
         LOG.info("creating {}", SECURITY_PRICE_HISTORY_XREF_REGION_BEAN_NAME);
-        RegionFactory<SecurityKey, PDXConcurrentList<SecurityPriceHistoryKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
-        rf.setCacheLoader(new PDXConcurrentListCacheLoader<>());
+        RegionFactory<SecurityKey, Set<SecurityPriceHistoryKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
+        rf.setCacheLoader(new DSConcurrentHashSetCacheLoader<>());
         return rf.create(SECURITY_PRICE_HISTORY_XREF_REGION_NAME);
     }
 
     @Bean(name = SECURITY_CHANGE_RULE_XREF_REGION_BEAN_NAME)
-    public Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> createSecurityChangeRuleXrefRegion(Cache cache) {
+    public Region<SecurityKey, Set<ChangeRuleKey>> createSecurityChangeRuleXrefRegion(Cache cache) {
         LOG.info("creating {}", SECURITY_CHANGE_RULE_XREF_REGION_BEAN_NAME);
-        RegionFactory<SecurityKey, PDXConcurrentList<ChangeRuleKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
-        rf.setCacheLoader(new PDXConcurrentListCacheLoader<>());
+        RegionFactory<SecurityKey, Set<ChangeRuleKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
+        rf.setCacheLoader(new DSConcurrentHashSetCacheLoader<>());
         return rf.create(SECURITY_CHANGE_RULE_XREF_REGION_NAME);
     }
 
     @Bean(name = ACCOUNT_HISTORY_XREF_REGION_BEAN_NAME)
-    public Region<AccountKey, PDXConcurrentList<AccountHistoryKey>> createAccountHistoryXrefRegion(Cache cache) {
+    public Region<AccountKey, Set<AccountHistoryKey>> createAccountHistoryXrefRegion(Cache cache) {
         LOG.info("creating {}", ACCOUNT_HISTORY_XREF_REGION_BEAN_NAME);
-        RegionFactory<AccountKey, PDXConcurrentList<AccountHistoryKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
-        rf.setCacheLoader(new PDXConcurrentListCacheLoader<>());
+        RegionFactory<AccountKey, Set<AccountHistoryKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
+        rf.setCacheLoader(new DSConcurrentHashSetCacheLoader<>());
         return rf.create(ACCOUNT_HISTORY_XREF_REGION_NAME);
     }
 
     @Bean(name = ACCOUNT_TRADE_XREF_REGION_BEAN_NAME)
-    public Region<AccountKey, PDXConcurrentList<TradeKey>> createAccountTradeXrefRegion(Cache cache) {
+    public Region<AccountKey, Set<TradeKey>> createAccountTradeXrefRegion(Cache cache) {
         LOG.info("creating {}", ACCOUNT_TRADE_XREF_REGION_BEAN_NAME);
-        RegionFactory<AccountKey, PDXConcurrentList<TradeKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
-        rf.setCacheLoader(new PDXConcurrentListCacheLoader<>());
+        RegionFactory<AccountKey, Set<TradeKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
+        rf.setCacheLoader(new DSConcurrentHashSetCacheLoader<>());
         return rf.create(ACCOUNT_TRADE_XREF_REGION_NAME);
     }
 
     @Bean(name = ACCOUNT_CHANGE_RULE_XREF_REGION_BEAN_NAME)
-    public Region<AccountKey, PDXConcurrentList<ChangeRuleKey>> createAccountChangeRuleXrefRegion(Cache cache) {
+    public Region<AccountKey, Set<ChangeRuleKey>> createAccountChangeRuleXrefRegion(Cache cache) {
         LOG.info("creating {}", ACCOUNT_CHANGE_RULE_XREF_REGION_BEAN_NAME);
-        RegionFactory<AccountKey, PDXConcurrentList<ChangeRuleKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
-        rf.setCacheLoader(new PDXConcurrentListCacheLoader<>());
+        RegionFactory<AccountKey, Set<ChangeRuleKey>> rf = cache.createRegionFactory(RegionShortcut.LOCAL);
+        rf.setCacheLoader(new DSConcurrentHashSetCacheLoader<>());
         return rf.create(ACCOUNT_CHANGE_RULE_XREF_REGION_NAME);
     }
 

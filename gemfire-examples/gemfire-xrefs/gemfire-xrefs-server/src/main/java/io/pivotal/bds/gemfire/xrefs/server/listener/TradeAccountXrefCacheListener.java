@@ -1,5 +1,7 @@
 package io.pivotal.bds.gemfire.xrefs.server.listener;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,15 +12,14 @@ import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
 import io.pivotal.bds.gemfire.data.securities.AccountKey;
 import io.pivotal.bds.gemfire.data.securities.Trade;
 import io.pivotal.bds.gemfire.data.securities.TradeKey;
-import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class TradeAccountXrefCacheListener extends CacheListenerAdapter<TradeKey, Trade> {
 
-    private Region<AccountKey, PDXConcurrentList<TradeKey>> accountTradeXrefRegion;
+    private Region<AccountKey, Set<TradeKey>> accountTradeXrefRegion;
 
     private static final Logger LOG = LoggerFactory.getLogger(TradeAccountXrefCacheListener.class);
 
-    public TradeAccountXrefCacheListener(Region<AccountKey, PDXConcurrentList<TradeKey>> accountTradeXrefRegion) {
+    public TradeAccountXrefCacheListener(Region<AccountKey, Set<TradeKey>> accountTradeXrefRegion) {
         this.accountTradeXrefRegion = accountTradeXrefRegion;
     }
 
@@ -31,7 +32,7 @@ public class TradeAccountXrefCacheListener extends CacheListenerAdapter<TradeKey
         AccountKey ak = tr.getAccountKey();
 
         // add xref for account->trade
-        PDXConcurrentList<TradeKey> cltr = accountTradeXrefRegion.get(ak);
+        Set<TradeKey> cltr = accountTradeXrefRegion.get(ak);
         cltr.add(tk);
         accountTradeXrefRegion.put(ak, cltr);
     }

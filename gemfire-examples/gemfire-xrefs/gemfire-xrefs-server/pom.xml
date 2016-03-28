@@ -62,6 +62,11 @@
 			<artifactId>gemfire-keyfw</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>io.pivotal.bds.gemfire</groupId>
+			<artifactId>gemfire-util</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 </project>

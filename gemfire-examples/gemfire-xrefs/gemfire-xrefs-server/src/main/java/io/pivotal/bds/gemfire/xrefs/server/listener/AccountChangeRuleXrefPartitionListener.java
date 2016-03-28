@@ -1,28 +1,27 @@
 package io.pivotal.bds.gemfire.xrefs.server.listener;
 
-import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.partition.PartitionListener;
-import com.gemstone.gemfire.cache.partition.PartitionRegionHelper;
+import com.gemstone.gemfire.internal.cache.PartitionedRegion;
 
 import io.pivotal.bds.gemfire.data.securities.AccountKey;
 import io.pivotal.bds.gemfire.data.securities.ChangeRule;
 import io.pivotal.bds.gemfire.data.securities.ChangeRuleKey;
-import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class AccountChangeRuleXrefPartitionListener implements PartitionListener {
 
     private Region<ChangeRuleKey, ChangeRule> changeRuleRegion;
-    private Region<AccountKey, PDXConcurrentList<ChangeRuleKey>> accountChangeRuleXrefRegion;
+    private Region<AccountKey, Set<ChangeRuleKey>> accountChangeRuleXrefRegion;
 
     private static final Logger LOG = LoggerFactory.getLogger(AccountChangeRuleXrefPartitionListener.class);
 
     public AccountChangeRuleXrefPartitionListener(
-            Region<AccountKey, PDXConcurrentList<ChangeRuleKey>> accountChangeRuleXrefRegion) {
+            Region<AccountKey, Set<ChangeRuleKey>> accountChangeRuleXrefRegion) {
         this.accountChangeRuleXrefRegion = accountChangeRuleXrefRegion;
     }
 
@@ -40,7 +39,7 @@ public class AccountChangeRuleXrefPartitionListener implements PartitionListener
             ChangeRule cr = changeRuleRegion.get(crk);
             AccountKey ak = cr.getAccountKey();
 
-            PDXConcurrentList<ChangeRuleKey> l = accountChangeRuleXrefRegion.get(ak);
+            Set<ChangeRuleKey> l = accountChangeRuleXrefRegion.get(ak);
             l.remove(crk);
             accountChangeRuleXrefRegion.put(ak, l);
         }
@@ -49,14 +48,15 @@ public class AccountChangeRuleXrefPartitionListener implements PartitionListener
     @Override
     public void afterPrimary(int bucketId) {
         LOG.info("afterPrimary: bucketId={}", bucketId);
-        Region<ChangeRuleKey, ChangeRule> r = PartitionRegionHelper.getLocalPrimaryData(changeRuleRegion);
+        PartitionedRegion pr = (PartitionedRegion)changeRuleRegion;
+        Set<?> keys = pr.getBucketKeys(bucketId);
 
-        for (Map.Entry<ChangeRuleKey, ChangeRule> entry : r.entrySet()) {
-            ChangeRuleKey crk = entry.getKey();
-            ChangeRule cr = entry.getValue();
+        for (Object ok : keys) {
+            ChangeRuleKey crk = (ChangeRuleKey)ok;
+            ChangeRule cr = changeRuleRegion.get(crk);
             AccountKey ak = cr.getAccountKey();
 
-            PDXConcurrentList<ChangeRuleKey> l = accountChangeRuleXrefRegion.get(ak);
+            Set<ChangeRuleKey> l = accountChangeRuleXrefRegion.get(ak);
             l.add(crk);
             accountChangeRuleXrefRegion.put(ak, l);
         }

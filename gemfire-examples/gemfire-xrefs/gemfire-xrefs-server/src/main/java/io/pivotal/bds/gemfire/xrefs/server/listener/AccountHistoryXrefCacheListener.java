@@ -1,5 +1,7 @@
 package io.pivotal.bds.gemfire.xrefs.server.listener;
 
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,15 +12,14 @@ import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
 import io.pivotal.bds.gemfire.data.securities.AccountHistory;
 import io.pivotal.bds.gemfire.data.securities.AccountHistoryKey;
 import io.pivotal.bds.gemfire.data.securities.AccountKey;
-import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class AccountHistoryXrefCacheListener extends CacheListenerAdapter<AccountHistoryKey, AccountHistory> {
 
-    private Region<AccountKey, PDXConcurrentList<AccountHistoryKey>> accountHistoryXrefRegion;
+    private Region<AccountKey, Set<AccountHistoryKey>> accountHistoryXrefRegion;
 
     private static final Logger LOG = LoggerFactory.getLogger(AccountHistoryXrefCacheListener.class);
 
-    public AccountHistoryXrefCacheListener(Region<AccountKey, PDXConcurrentList<AccountHistoryKey>> accountHistoryXrefRegion) {
+    public AccountHistoryXrefCacheListener(Region<AccountKey, Set<AccountHistoryKey>> accountHistoryXrefRegion) {
         this.accountHistoryXrefRegion = accountHistoryXrefRegion;
     }
 
@@ -31,7 +32,7 @@ public class AccountHistoryXrefCacheListener extends CacheListenerAdapter<Accoun
         AccountKey ak = ah.getAccountKey();
 
         // add xref for account->account history
-        PDXConcurrentList<AccountHistoryKey> clah = accountHistoryXrefRegion.get(ak);
+        Set<AccountHistoryKey> clah = accountHistoryXrefRegion.get(ak);
         clah.add(ahk);
         accountHistoryXrefRegion.put(ak, clah);
     }

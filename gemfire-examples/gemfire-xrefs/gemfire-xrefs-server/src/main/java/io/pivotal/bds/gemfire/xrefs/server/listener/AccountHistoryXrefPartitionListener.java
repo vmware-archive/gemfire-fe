@@ -1,27 +1,26 @@
 package io.pivotal.bds.gemfire.xrefs.server.listener;
 
-import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.partition.PartitionListener;
-import com.gemstone.gemfire.cache.partition.PartitionRegionHelper;
+import com.gemstone.gemfire.internal.cache.PartitionedRegion;
 
 import io.pivotal.bds.gemfire.data.securities.AccountHistory;
 import io.pivotal.bds.gemfire.data.securities.AccountHistoryKey;
 import io.pivotal.bds.gemfire.data.securities.AccountKey;
-import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class AccountHistoryXrefPartitionListener implements PartitionListener {
 
     private Region<AccountHistoryKey, AccountHistory> accountHistoryRegion;
-    private Region<AccountKey, PDXConcurrentList<AccountHistoryKey>> accountHistoryXrefRegion;
+    private Region<AccountKey, Set<AccountHistoryKey>> accountHistoryXrefRegion;
 
     private static final Logger LOG = LoggerFactory.getLogger(AccountHistoryXrefPartitionListener.class);
 
-    public AccountHistoryXrefPartitionListener(Region<AccountKey, PDXConcurrentList<AccountHistoryKey>> accountHistoryXrefRegion) {
+    public AccountHistoryXrefPartitionListener(Region<AccountKey, Set<AccountHistoryKey>> accountHistoryXrefRegion) {
         this.accountHistoryXrefRegion = accountHistoryXrefRegion;
     }
 
@@ -39,7 +38,7 @@ public class AccountHistoryXrefPartitionListener implements PartitionListener {
             AccountHistory ah = accountHistoryRegion.get(ahk);
             AccountKey ak = ah.getAccountKey();
 
-            PDXConcurrentList<AccountHistoryKey> l = accountHistoryXrefRegion.get(ak);
+            Set<AccountHistoryKey> l = accountHistoryXrefRegion.get(ak);
             l.remove(ahk);
             accountHistoryXrefRegion.put(ak, l);
         }
@@ -48,14 +47,15 @@ public class AccountHistoryXrefPartitionListener implements PartitionListener {
     @Override
     public void afterPrimary(int bucketId) {
         LOG.info("afterPrimary: bucketId={}", bucketId);
-        Region<AccountHistoryKey, AccountHistory> r = PartitionRegionHelper.getLocalPrimaryData(accountHistoryRegion);
+        PartitionedRegion pr = (PartitionedRegion) accountHistoryRegion;
+        Set<?> keys = pr.getBucketKeys(bucketId);
 
-        for (Map.Entry<AccountHistoryKey, AccountHistory> entry : r.entrySet()) {
-            AccountHistoryKey ahk = entry.getKey();
-            AccountHistory ah = entry.getValue();
+        for (Object ok : keys) {
+            AccountHistoryKey ahk = (AccountHistoryKey) ok;
+            AccountHistory ah = accountHistoryRegion.get(ahk);
             AccountKey ak = ah.getAccountKey();
 
-            PDXConcurrentList<AccountHistoryKey> l = accountHistoryXrefRegion.get(ak);
+            Set<AccountHistoryKey> l = accountHistoryXrefRegion.get(ak);
             l.add(ahk);
             accountHistoryXrefRegion.put(ak, l);
         }

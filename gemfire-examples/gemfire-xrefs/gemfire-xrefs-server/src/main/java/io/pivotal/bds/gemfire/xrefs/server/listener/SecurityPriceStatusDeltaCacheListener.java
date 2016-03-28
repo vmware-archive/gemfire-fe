@@ -1,5 +1,6 @@
 package io.pivotal.bds.gemfire.xrefs.server.listener;
 
+import java.util.Set;
 import java.util.function.Consumer;
 
 import org.slf4j.Logger;
@@ -19,18 +20,17 @@ import io.pivotal.bds.gemfire.data.securities.ChangeValueType;
 import io.pivotal.bds.gemfire.data.securities.SecurityKey;
 import io.pivotal.bds.gemfire.data.securities.SecurityPriceStatus;
 import io.pivotal.bds.gemfire.keyfw.generator.ColocationKeyGenerator;
-import io.pivotal.bds.gemfire.xrefs.server.data.PDXConcurrentList;
 
 public class SecurityPriceStatusDeltaCacheListener extends CacheListenerAdapter<SecurityKey, SecurityPriceStatus> {
 
-    private Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> xrefRegion;
+    private Region<SecurityKey, Set<ChangeRuleKey>> xrefRegion;
     private Region<ChangeRuleKey, ChangeRule> changeRuleRegion;
     private Region<AccountNotificationKey, AccountNotification> notificationRegion;
     private ColocationKeyGenerator<Long, String> keyGenerator;
 
     private static final Logger LOG = LoggerFactory.getLogger(SecurityPriceStatusDeltaCacheListener.class);
 
-    public SecurityPriceStatusDeltaCacheListener(Region<SecurityKey, PDXConcurrentList<ChangeRuleKey>> xrefRegion,
+    public SecurityPriceStatusDeltaCacheListener(Region<SecurityKey, Set<ChangeRuleKey>> xrefRegion,
             Region<ChangeRuleKey, ChangeRule> changeRuleRegion,
             Region<AccountNotificationKey, AccountNotification> notificationRegion,
             ColocationKeyGenerator<Long, String> keyGenerator) {
@@ -55,7 +55,7 @@ public class SecurityPriceStatusDeltaCacheListener extends CacheListenerAdapter<
         if (Math.abs(delta) > 0.01) {
             double percent = delta / oldPrice;
             
-            PDXConcurrentList<ChangeRuleKey> list = xrefRegion.get(sk);
+            Set<ChangeRuleKey> list = xrefRegion.get(sk);
             
             list.forEach(new Consumer<ChangeRuleKey>() {
 
