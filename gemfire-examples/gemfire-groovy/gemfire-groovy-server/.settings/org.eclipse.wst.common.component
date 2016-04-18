@@ -10,6 +10,12 @@
         <dependent-module archiveName="gemfire-keyfw-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/gemfire-keyfw/gemfire-keyfw">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="metric-timer-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/metric-timer/metric-timer">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="metric-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/metric-common/metric-common">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <dependent-module archiveName="gemfire-groovy-common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/gemfire-groovy-common/gemfire-groovy-common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
