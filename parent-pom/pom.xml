@@ -55,6 +55,14 @@
 
 	</build>
 
+	<repositories>
+		<repository>
+			<id>gemfire</id>
+			<name>Gemfire</name>
+			<url>http://dist.gemstone.com/maven/release</url>
+		</repository>
+	</repositories>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
