@@ -15,7 +15,7 @@ import com.gemstone.gemfire.cache.client.PoolFactory;
 
 public class LocatorHelper {
 
-    private static final Pattern pattern = Pattern.compile("(?<host>[\\w-]+)\\[(?<port>\\d+)\\]");
+    private static final Pattern pattern = Pattern.compile("(?<host>[\\.\\w-]+)\\[(?<port>\\d+)\\]");
     private static final Logger LOG = LogManager.getLogger(LocatorHelper.class);
 
     public static void addLocators(ClientCacheFactory cacheFactory, String locatorString) {
@@ -36,24 +36,27 @@ public class LocatorHelper {
         }
     }
 
-    public static List<InetSocketAddress> parseLocators(String s) {
+    public static List<InetSocketAddress> parseLocators(String t) {
         List<InetSocketAddress> list = new ArrayList<>();
+        String[] ss = t.split(",");
 
-        Matcher m = pattern.matcher(s);
+        for (String s : ss) {
+            Matcher m = pattern.matcher(s);
 
-        while (m.find()) {
-            String host = m.group("host");
-            String port = m.group("port");
-            LOG.info("parseLocators: host={}, port={}, locatorString={}", host, port, s);
+            while (m.find()) {
+                String host = m.group("host");
+                String port = m.group("port");
+                LOG.info("parseLocators: host={}, port={}, locatorString={}", host, port, s);
 
-            Assert.hasText(host, "Missing host in locator string " + s);
-            Assert.hasText(port, "Missing port in locator string " + s);
+                Assert.hasText(host, "Missing host in locator string " + s);
+                Assert.hasText(port, "Missing port in locator string " + s);
 
-            try {
-                int p = Integer.parseInt(port);
-                list.add(new InetSocketAddress(host, p));
-            } catch (Exception x) {
-                throw new IllegalArgumentException("Port is not a number in locator string " + s);
+                try {
+                    int p = Integer.parseInt(port);
+                    list.add(new InetSocketAddress(host, p));
+                } catch (Exception x) {
+                    throw new IllegalArgumentException("Port is not a number in locator string " + s);
+                }
             }
         }
 
