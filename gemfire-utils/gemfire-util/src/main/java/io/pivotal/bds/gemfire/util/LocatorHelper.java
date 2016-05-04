@@ -15,7 +15,7 @@ import com.gemstone.gemfire.cache.client.PoolFactory;
 
 public class LocatorHelper {
 
-    private static final Pattern pattern = Pattern.compile("(?<host>[\\.\\w-]+)\\[(?<port>\\d+)\\]");
+    private static final Pattern pattern = Pattern.compile("(?<host>[\\-\\.\\w-]+)\\[(?<port>\\d+)\\]");
     private static final Logger LOG = LogManager.getLogger(LocatorHelper.class);
 
     public static void addLocators(ClientCacheFactory cacheFactory, String locatorString) {
