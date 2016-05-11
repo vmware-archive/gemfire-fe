@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.pivotal.io/gemfire/cache"
+	xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://localhost:8080/gemfire/cache/cache-8.1.xsd" version="8.1">
+
+    <async-event-queue id="aggr" parallel="true">
+        <async-event-listener>
+            <class-name>io.pivotal.bds.gemfire.localregion.listener.AggregateAsyncEventListener</class-name>
+        </async-event-listener>
+    </async-event-queue>
+
+    <async-event-queue id="accum" parallel="true">
+        <async-event-listener>
+            <class-name>io.pivotal.bds.gemfire.localregion.listener.AccumulatorAsyncEventListener</class-name>
+        </async-event-listener>
+    </async-event-queue>
+
+	<disk-store name="pdx">
+		<disk-dirs>
+			<disk-dir>./</disk-dir>
+		</disk-dirs>
+	</disk-store>
+
+	<pdx disk-store-name="pdx" persistent="true" read-serialized="false">
+		<pdx-serializer>
+			<class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
+			<parameter name="classes">
+				<string>io.pivotal.bds.gemfire.localregion.data.*,io.pivotal.bds.gemfire.data.ecom.*</string>
+			</parameter>
+		</pdx-serializer>
+	</pdx>
+
+	<region name="account" refid="PARTITION">
+		<region-attributes async-event-queue-ids="aggr">
+			<partition-attributes redundant-copies="1">
+				<partition-listener>
+					<class-name>io.pivotal.bds.gemfire.localregion.listener.AccountPartitionListener</class-name>
+				</partition-listener>
+			</partition-attributes>
+		</region-attributes>
+	</region>
+
+	<region name="order" refid="PARTITION">
+		<region-attributes async-event-queue-ids="aggr,accum">
+			<partition-attributes redundant-copies="1" colocated-with="account">
+				<partition-resolver>
+					<class-name>io.pivotal.bds.gemfire.keyfw.resolver.ColocationIDPartitionResolver</class-name>
+				</partition-resolver>
+				<partition-listener>
+					<class-name>io.pivotal.bds.gemfire.localregion.listener.OrderPartitionListener</class-name>
+				</partition-listener>
+			</partition-attributes>
+		</region-attributes>
+	</region>
+
+    <region name="aggregate" refid="LOCAL">
+        <region-attributes>
+            <cache-loader>
+                <class-name>io.pivotal.bds.gemfire.localregion.loader.AggregateCacheLoader</class-name>
+            </cache-loader>
+        </region-attributes>
+    </region>
+
+    <region name="accumulator" refid="LOCAL">
+        <region-attributes>
+            <cache-loader>
+                <class-name>io.pivotal.bds.gemfire.localregion.loader.AccumulatorCacheLoader</class-name>
+            </cache-loader>
+        </region-attributes>
+    </region>
+
+	<function-service>
+		<function>
+			<class-name>io.pivotal.bds.gemfire.localregion.function.TestFunction</class-name>
+		</function>
+	</function-service>
+
+</cache>
