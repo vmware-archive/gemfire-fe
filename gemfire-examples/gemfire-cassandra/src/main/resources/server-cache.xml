@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.pivotal.io/gemfire/cache"
+	xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" version="8.1">
+
+	<async-event-queue id="account" parallel="true">
+		<async-event-listener>
+			<class-name>io.pivotal.bds.gemfire.cassandra.listener.AccountAsyncEventListener</class-name>
+		</async-event-listener>
+	</async-event-queue>
+
+	<disk-store name="pdx">
+		<disk-dirs>
+			<disk-dir>./</disk-dir>
+		</disk-dirs>
+	</disk-store>
+
+	<pdx disk-store-name="pdx" persistent="true" read-serialized="false">
+		<pdx-serializer>
+			<class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
+			<parameter name="classes">
+				<string>io.pivotal.bds.gemfire.cassandra.data.*</string>
+			</parameter>
+		</pdx-serializer>
+	</pdx>
+
+	<region name="account" refid="PARTITION">
+		<region-attributes async-event-queue-ids="account">
+			<cache-loader>
+				<class-name>io.pivotal.bds.gemfire.cassandra.loader.AccountCacheLoader</class-name>
+			</cache-loader>
+		</region-attributes>
+	</region>
+
+</cache>
