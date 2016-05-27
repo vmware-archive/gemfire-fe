@@ -17,9 +17,9 @@ public class DelegatingCacheLoader<K, V> implements CacheLoader<K, V>, Declarabl
         return delegate;
     }
 
-    public void setDelegate(CacheLoader<K, V> delegate) {
-        Assert.isNull(delegate);
-        this.delegate = delegate;
+    public void setDelegate(CacheLoader<K, V> cl) {
+        Assert.notNull(cl);
+        this.delegate = cl;
     }
 
     @Override

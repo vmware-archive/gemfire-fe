@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
+import org.springframework.util.Assert;
+
 import com.gemstone.gemfire.cache.CacheWriter;
 import com.gemstone.gemfire.cache.CacheWriterException;
 import com.gemstone.gemfire.cache.Declarable;
@@ -15,10 +17,12 @@ public class DelegatingCacheWriter<K, V> implements CacheWriter<K, V>, Declarabl
     private Set<CacheWriter<K, V>> delegates = new HashSet<>();
     
     public void addDelegate(CacheWriter<K, V> cw) {
+        Assert.notNull(cw);
         delegates.add(cw);
     }
     
     public void removeDelegate(CacheWriter<K, V> cw) {
+        Assert.notNull(cw);
         delegates.remove(cw);
     }
     

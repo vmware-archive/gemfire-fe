@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
+import org.springframework.util.Assert;
+
 import com.gemstone.gemfire.cache.CacheListener;
 import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.EntryEvent;
@@ -14,10 +16,12 @@ public class DelegatingCacheListener<K, V> implements CacheListener<K, V>, Decla
     private Set<CacheListener<K, V>> delegates = new HashSet<>();
     
     public void addDelegate(CacheListener<K, V> cl) {
+        Assert.notNull(cl);
         delegates.add(cl);
     }
     
     public void removeDelegate(CacheListener<K, V> cl) {
+        Assert.notNull(cl);
         delegates.remove(cl);
     }
     

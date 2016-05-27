@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
+import org.springframework.util.Assert;
+
 import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.cache.partition.PartitionListener;
@@ -13,10 +15,12 @@ public class DelegatingPartitionListener implements PartitionListener, Declarabl
     private Set<PartitionListener> delegates = new HashSet<>();
 
     public void addDelegate(PartitionListener pl) {
+        Assert.notNull(pl);
         delegates.add(pl);
     }
 
     public void removeDelegate(PartitionListener pl) {
+        Assert.notNull(pl);
         delegates.remove(pl);
     }
 

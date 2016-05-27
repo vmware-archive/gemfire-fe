@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import org.springframework.util.Assert;
+
 import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
 import com.gemstone.gemfire.cache.asyncqueue.AsyncEventListener;
@@ -14,10 +16,12 @@ public class DelegatingAsyncEventListener implements AsyncEventListener, Declara
     private Set<AsyncEventListener> delegates = new HashSet<>();
 
     public void addDelegate(AsyncEventListener ael) {
+        Assert.notNull(ael);
         delegates.add(ael);
     }
 
     public void removeDelegate(AsyncEventListener ael) {
+        Assert.notNull(ael);
         delegates.remove(ael);
     }
 
