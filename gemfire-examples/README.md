@@ -17,3 +17,6 @@ This is a suite of components that demonstrate various techniques that can be us
 * **gemfire-hbase**.  An example of how to use HBase as a backing store for Gemfire.
 * **gemfire-kite**.  An example of how to use the Kite SDK (http://kitesdk.org) to read and write to HDFS from Gemfire.
 * **gemfire-pmml**.  An example of how to execute PMML models in Gemfire.
+* **gemfire-r**.  R-like implementation in Gemfire.
+* **gemfire-fraud**.  An example of how to do near-real-time fraud detection using Gemfire.
+
