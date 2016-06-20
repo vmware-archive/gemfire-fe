@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<client-cache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.pivotal.io/gemfire/cache"
+	xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" version="8.1">
+
+	<pool name="pool">
+		<locator port="10334" host="localhost" />
+	</pool>
+
+	<pdx read-serialized="false">
+		<pdx-serializer>
+			<class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
+			<parameter name="classes">
+				<string>io.pivotal.bds.gemfire.data.ecom.*</string>
+			</parameter>
+		</pdx-serializer>
+	</pdx>
+
+	<region name="r1" refid="PROXY">
+		<region-attributes pool-name="pool" />
+	</region>
+
+	<region name="r2" refid="PROXY">
+		<region-attributes pool-name="pool" />
+	</region>
+
+	<region name="r3" refid="PROXY">
+		<region-attributes pool-name="pool" />
+	</region>
+
+
+</client-cache>

@@ -82,7 +82,7 @@ public abstract class BaseSerializer<T> implements Serializer<T> {
             String date = DatatypeConverter.printDateTime(cal);
             LOG.debug("convert: date: name={}, value={}, date={}", name, value, date);
             parent.put(name, date);
-        } else if (c.isAssignableFrom(PdxInstance.class)) {
+        } else if (PdxInstance.class.isAssignableFrom(c)) {
             PdxInstance inst = (PdxInstance) value;
             JSONObject json = convert(inst);
             LOG.debug("convert: pdx: name={}, value={}, json={}", name, value, json);

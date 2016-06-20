@@ -9,7 +9,7 @@
 		</async-event-listener>
 	</async-event-queue>
 
-	<pdx persistent="true" read-serialized="false">
+	<pdx persistent="true" read-serialized="true">
 		<pdx-serializer>
 			<class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
 			<parameter name="classes">
