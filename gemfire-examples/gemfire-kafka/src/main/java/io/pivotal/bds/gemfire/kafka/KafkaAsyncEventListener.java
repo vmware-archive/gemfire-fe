@@ -3,6 +3,8 @@ package io.pivotal.bds.gemfire.kafka;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,19 +15,19 @@ import com.gemstone.gemfire.cache.asyncqueue.AsyncEventListener;
 public class KafkaAsyncEventListener implements AsyncEventListener, Declarable {
 
     private String topic;
+    @SuppressWarnings("rawtypes")
+    private Producer<Object, AsyncEvent> producer;
     private static final Logger LOG = LoggerFactory.getLogger(KafkaAsyncEventListener.class);
-    private static final AsyncEventSerializer serializer = new AsyncEventSerializer();
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({ "rawtypes" })
     @Override
     public boolean processEvents(List<AsyncEvent> events) {
         LOG.debug("processEvents: events.size={}", events.size());
 
         try {
             for (AsyncEvent event : events) {
-                LOG.debug("processEvents: event={}", event);
-                byte[] value = serializer.serialize(topic, event);
-                ProducerHelper.send(topic, value);
+                LOG.debug("processEvents: topic={}, event={}", topic, event);
+                producer.send(new ProducerRecord<Object, AsyncEvent>(topic, event));
             }
 
             return true;
@@ -37,9 +39,9 @@ public class KafkaAsyncEventListener implements AsyncEventListener, Declarable {
 
     @Override
     public void init(Properties props) {
-        ProducerHelper.init();
+        LOG.info("init: props={}", props);
         topic = props.getProperty("topic", "gemfire");
-        LOG.info("init: topic={}", topic);
+        producer = ProducerHelper.getProducer(props);
     }
 
     @Override

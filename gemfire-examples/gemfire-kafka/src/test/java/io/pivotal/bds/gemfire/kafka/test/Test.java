@@ -20,12 +20,17 @@ public class Test {
         ClientCache cc = ccf.create();
 
         Region<String, Account> r1 = cc.getRegion("r1");
-        Region<String, Account> r2 = cc.getRegion("r2");
+        Region<String, io.pivotal.bds.gemfire.kafka.avro.Account> r2 = cc.getRegion("r2");
         Region<String, PdxInstance> r3 = cc.getRegion("r3");
 
         for (int i = 0; i < 10; ++i) {
             String id = "account-" + i;
             AccountKey ak = new AccountKey((long) i);
+            
+            io.pivotal.bds.gemfire.kafka.avro.Account avAcct = new io.pivotal.bds.gemfire.kafka.avro.Account();
+            avAcct.setName(id);
+            avAcct.setCreatedOn(new Date().toString());
+            avAcct.setStatus(AccountStatus.ACTIVE.name());
 
             Account acct = new Account();
 
@@ -42,8 +47,8 @@ public class Test {
             PdxInstance inst = pif.create();
 
             r1.put(id, acct);
-            r2.put(id, acct);
-            r3.put(id, inst);
+            r2.put(id, avAcct);
+//            r3.put(id, inst);
         }
     }
 }

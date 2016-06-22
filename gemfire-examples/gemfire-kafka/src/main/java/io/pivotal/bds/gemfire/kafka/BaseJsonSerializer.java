@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 import com.gemstone.gemfire.cache.Operation;
 import com.gemstone.gemfire.pdx.PdxInstance;
 
-public abstract class BaseSerializer<T> implements Serializer<T> {
+public abstract class BaseJsonSerializer<T> implements Serializer<T> {
 
     private static final Set<Class<?>> intrinsics;
 
@@ -35,7 +35,7 @@ public abstract class BaseSerializer<T> implements Serializer<T> {
 
     protected final Logger LOG;
 
-    public BaseSerializer() {
+    public BaseJsonSerializer() {
         LOG = LoggerFactory.getLogger(getClass());
     }
 

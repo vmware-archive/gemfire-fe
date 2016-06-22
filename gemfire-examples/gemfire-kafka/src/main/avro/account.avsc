@@ -1,0 +1,9 @@
+{"namespace": "io.pivotal.bds.gemfire.kafka.avro",
+ "type": "record",
+ "name": "Account",
+ "fields": [
+     {"name": "name", "type": "string"},
+     {"name": "createdOn",  "type": "string"},
+     {"name": "status", "type": "string"}
+ ]
+}

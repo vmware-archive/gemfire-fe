@@ -6,14 +6,17 @@
 	<async-event-queue id="ael">
 		<async-event-listener>
 			<class-name>io.pivotal.bds.gemfire.kafka.KafkaAsyncEventListener</class-name>
+			<parameter name="value.serializer">
+				<string>io.pivotal.bds.gemfire.kafka.AsyncEventJsonSerializer</string>
+			</parameter>
 		</async-event-listener>
 	</async-event-queue>
 
-	<pdx persistent="true" read-serialized="true">
+	<pdx persistent="true" read-serialized="false">
 		<pdx-serializer>
 			<class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
 			<parameter name="classes">
-				<string>io.pivotal.bds.gemfire.data.ecom.*</string>
+				<string>io.pivotal.bds.gemfire.data.ecom.*,io.pivotal.bds.gemfire.kafka.avro.*</string>
 			</parameter>
 		</pdx-serializer>
 	</pdx>
@@ -26,6 +29,9 @@
 		<region-attributes>
 			<cache-listener>
 				<class-name>io.pivotal.bds.gemfire.kafka.KafkaCacheListener</class-name>
+				<parameter name="value.serializer">
+                    <string>io.pivotal.bds.gemfire.kafka.EntryEventSpecificRecordSerializer</string>
+				</parameter>
 			</cache-listener>
 		</region-attributes>
 	</region>
@@ -34,6 +40,9 @@
 		<region-attributes>
 			<cache-writer>
 				<class-name>io.pivotal.bds.gemfire.kafka.KafkaCacheWriter</class-name>
+                <parameter name="value.serializer">
+                    <string>io.pivotal.bds.gemfire.kafka.EntryEventJsonSerializer</string>
+                </parameter>
 			</cache-writer>
 		</region-attributes>
 	</region>

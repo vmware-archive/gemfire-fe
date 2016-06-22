@@ -11,7 +11,7 @@
 		<pdx-serializer>
 			<class-name>com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer</class-name>
 			<parameter name="classes">
-				<string>io.pivotal.bds.gemfire.data.ecom.*</string>
+				<string>io.pivotal.bds.gemfire.data.ecom.*,io.pivotal.bds.gemfire.kafka.avro.*</string>
 			</parameter>
 		</pdx-serializer>
 	</pdx>
