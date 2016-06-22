@@ -49,9 +49,9 @@ public abstract class BaseJsonSerializer<T> implements Serializer<T> {
         try {
             JSONObject root = new JSONObject();
 
-            root.put("key", key);
-            root.put("operation", op.toString());
+            convert(root, "key", key);
             convert(root, "value", value);
+            root.put("operation", op.toString());
 
             String json = root.toString();
             LOG.debug("serialize: op={}, key={}, value={}, json={}", op, key, value, json);
