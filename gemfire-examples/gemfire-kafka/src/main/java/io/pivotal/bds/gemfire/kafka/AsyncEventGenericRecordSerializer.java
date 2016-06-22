@@ -21,6 +21,8 @@ public class AsyncEventGenericRecordSerializer implements Serializer<AsyncEvent>
 
     @Override
     public byte[] serialize(String topic, AsyncEvent data) {
+        LOG.debug("serialize: topic={}, data={}", topic, data);
+
         try {
             GenericRecord rec = (GenericRecord) data.getDeserializedValue();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -30,6 +32,7 @@ public class AsyncEventGenericRecordSerializer implements Serializer<AsyncEvent>
             byte[] b = bos.toByteArray();
             return b;
         } catch (Exception x) {
+            LOG.error("serialize: topic={}, data={}, x={}", topic, data, x.toString(), x);
             throw new IllegalArgumentException(x.toString(), x);
         }
     }

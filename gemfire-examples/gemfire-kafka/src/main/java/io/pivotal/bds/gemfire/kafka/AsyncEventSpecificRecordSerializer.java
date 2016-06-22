@@ -8,6 +8,8 @@ import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificDatumWriter;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.common.serialization.Serializer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
 
@@ -15,9 +17,12 @@ import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
 public class AsyncEventSpecificRecordSerializer implements Serializer<AsyncEvent> {
 
     private static final EncoderFactory factory = new EncoderFactory();
+    private static final Logger LOG = LoggerFactory.getLogger(AsyncEventSpecificRecordSerializer.class);
 
     @Override
     public byte[] serialize(String topic, AsyncEvent data) {
+        LOG.debug("serialize: topic={}, data={}", topic, data);
+
         try {
             SpecificRecord rec = (SpecificRecord) data.getDeserializedValue();
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -27,6 +32,7 @@ public class AsyncEventSpecificRecordSerializer implements Serializer<AsyncEvent
             byte[] b = bos.toByteArray();
             return b;
         } catch (Exception x) {
+            LOG.error("serialize: topic={}, data={}, x={}", topic, data, x.toString(), x);
             throw new IllegalArgumentException(x.toString(), x);
         }
     }
