@@ -4,7 +4,7 @@
 
 	<parent>
 		<groupId>io.pivotal.bds.gemfire</groupId>
-		<artifactId>gemfire-examples</artifactId>
+		<artifactId>gemfire-utils</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
