@@ -14,15 +14,23 @@
 
 	<modules>
 		<module>gemfire-data</module>
-		<module>gemfire-complexobjs</module>
 		<module>gemfire-analytics</module>
+		<module>gemfire-bitcoinj</module>
+		<module>gemfire-cassandra</module>
+		<module>gemfire-complexobjs</module>
 		<module>gemfire-drools</module>
-		<module>gemfire-locking</module>
-		<module>gemfire-xrefs</module>
-		<module>gemfire-script</module>
-		<module>gemfire-groovy</module>
+		<module>gemfire-fraud</module>
 		<module>gemfire-geo</module>
+		<module>gemfire-groovy</module>
+		<module>gemfire-hbase</module>
 		<module>gemfire-jdbc</module>
+		<module>gemfire-local-region</module>
+		<module>gemfire-locking</module>
+		<module>gemfire-pmml</module>
+		<module>gemfire-r</module>
+		<module>gemfire-s3</module>
+		<module>gemfire-script</module>
+		<module>gemfire-xrefs</module>
 	</modules>
 
 </project>

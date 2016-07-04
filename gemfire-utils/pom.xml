@@ -25,6 +25,7 @@
         
         
         <module>gemfire-util</module>
+        <module>gemfire-kafka</module>
 	</modules>
 
 </project>
