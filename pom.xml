@@ -56,11 +56,26 @@
 	</build>
 
 	<repositories>
-		<repository>
-			<id>gemfire</id>
-			<name>Gemfire</name>
-			<url>http://dist.gemstone.com/maven/release</url>
-		</repository>
+        <repository>
+            <id>gemfire</id>
+            <name>Gemfire</name>
+            <url>http://dist.gemstone.com/maven/release</url>
+        </repository>
+        <repository>
+            <id>spring-release</id>
+            <name>Spring Releases</name>
+            <url>http://repo.spring.io/release/</url>
+        </repository>
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring Milestones</name>
+            <url>http://repo.spring.io/milestone/</url>
+        </repository>
+        <repository>
+            <id>geotools</id>
+            <name>Geotools</name>
+            <url>http://download.osgeo.org/webdav/geotools/</url>
+        </repository>
 	</repositories>
 
 	<dependencyManagement>
@@ -359,5 +374,12 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<modules>
+		<module>jcollectd</module>
+		<module>metrics</module>
+		<module>gemfire-utils</module>
+		<module>gemfire-examples</module>
+	</modules>
 
 </project>
