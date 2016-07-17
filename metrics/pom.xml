@@ -3,13 +3,12 @@
 
 	<groupId>io.pivotal.bds.metrics</groupId>
 	<artifactId>metrics</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>io.pivotal.bds</groupId>
 		<artifactId>parent-pom</artifactId>
-		<version>1.2.0</version>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 	<modules>
