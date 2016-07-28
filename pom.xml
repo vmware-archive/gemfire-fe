@@ -471,6 +471,11 @@
 				<artifactId>connect-api</artifactId>
 				<version>${kafka.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>20160212</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
