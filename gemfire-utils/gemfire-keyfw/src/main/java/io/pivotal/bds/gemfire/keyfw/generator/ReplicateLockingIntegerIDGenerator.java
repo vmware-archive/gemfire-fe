@@ -27,7 +27,16 @@ public class ReplicateLockingIntegerIDGenerator implements IDGenerator<Integer> 
     public Integer generate(String domain) {
         LOG.debug("generate: domain={}", domain);
 
-        DistributedLockService dls = DistributedLockService.create(serviceName, system);
+        DistributedLockService dls = null;
+
+        try {
+            LOG.debug("generate: creating lock service: domain={}", domain);
+            dls = DistributedLockService.create(serviceName, system);
+        } catch (IllegalArgumentException x) {
+            LOG.debug("generate: getting lock service: domain={}", domain);
+            dls = DistributedLockService.getServiceNamed(serviceName);
+        }
+
         boolean success = dls.lock(domain, waitTime, leaseTime);
 
         if (!success) {
