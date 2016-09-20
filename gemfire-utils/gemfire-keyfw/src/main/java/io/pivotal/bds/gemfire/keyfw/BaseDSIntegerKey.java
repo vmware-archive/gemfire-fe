@@ -6,8 +6,10 @@ import java.io.IOException;
 
 import com.gemstone.gemfire.DataSerializable;
 
+import io.pivotal.bds.gemfire.key.ColocationID;
+
 @SuppressWarnings("serial")
-public abstract class BaseDSIntegerKey implements DataSerializable {
+public abstract class BaseDSIntegerKey implements DataSerializable, ColocationID<Integer> {
 
     private int id;
 
@@ -24,6 +26,11 @@ public abstract class BaseDSIntegerKey implements DataSerializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public Integer getColocationId() {
+        return id;
     }
 
     @Override

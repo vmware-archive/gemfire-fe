@@ -6,8 +6,10 @@ import java.io.IOException;
 
 import com.gemstone.gemfire.DataSerializable;
 
+import io.pivotal.bds.gemfire.key.ColocationID;
+
 @SuppressWarnings("serial")
-public abstract class BaseDSLongKey implements DataSerializable {
+public abstract class BaseDSLongKey implements DataSerializable, ColocationID<Long> {
 
     private long id;
 
@@ -24,6 +26,11 @@ public abstract class BaseDSLongKey implements DataSerializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Override
+    public Long getColocationId() {
+        return id;
     }
 
     @Override
