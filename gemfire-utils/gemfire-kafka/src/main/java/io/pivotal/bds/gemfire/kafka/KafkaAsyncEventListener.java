@@ -41,6 +41,7 @@ public class KafkaAsyncEventListener implements AsyncEventListener, Declarable {
     public void init(Properties props) {
         LOG.info("init: props={}", props);
         topic = props.getProperty("topic", "gemfire");
+        props.remove("topic");
         producer = ProducerHelper.getProducer(props);
     }
 

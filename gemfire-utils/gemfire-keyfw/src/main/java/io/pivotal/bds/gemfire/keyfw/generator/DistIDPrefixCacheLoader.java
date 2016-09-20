@@ -14,7 +14,7 @@ import com.gemstone.gemfire.cache.LoaderHelper;
 import com.gemstone.gemfire.cache.Region;
 import com.gemstone.gemfire.distributed.DistributedSystem;
 
-public class DistIDPrefixCacheLoader implements CacheLoader<Integer, Long>, Declarable {
+public class DistIDPrefixCacheLoader<K> implements CacheLoader<K, Long>, Declarable {
 
     private IDGenerator<Integer> idGenerator;
     private static final Logger LOG = LoggerFactory.getLogger(DistIDPrefixCacheLoader.class);
@@ -28,7 +28,7 @@ public class DistIDPrefixCacheLoader implements CacheLoader<Integer, Long>, Decl
     }
 
     @Override
-    public Long load(LoaderHelper<Integer, Long> helper) throws CacheLoaderException {
+    public Long load(LoaderHelper<K, Long> helper) throws CacheLoaderException {
         long id = getIDGenerator().generate("prefix");
         long prefix = id << 56;
         LOG.trace("load: id={}, prefix={}", id, prefix);
