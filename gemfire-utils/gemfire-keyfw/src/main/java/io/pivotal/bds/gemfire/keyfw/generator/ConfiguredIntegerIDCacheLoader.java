@@ -7,7 +7,7 @@ import com.gemstone.gemfire.cache.CacheLoaderException;
 import com.gemstone.gemfire.cache.Declarable;
 import com.gemstone.gemfire.cache.LoaderHelper;
 
-public class ConfiguredIntegerIDCacheLoader implements CacheLoader<String, Integer>, Declarable {
+public class ConfiguredIntegerIDCacheLoader<K> implements CacheLoader<K, Integer>, Declarable {
 
     private int initialId;
 
@@ -22,7 +22,7 @@ public class ConfiguredIntegerIDCacheLoader implements CacheLoader<String, Integ
     }
 
     @Override
-    public Integer load(LoaderHelper<String, Integer> helper) throws CacheLoaderException {
+    public Integer load(LoaderHelper<K, Integer> helper) throws CacheLoaderException {
         return initialId;
     }
 
