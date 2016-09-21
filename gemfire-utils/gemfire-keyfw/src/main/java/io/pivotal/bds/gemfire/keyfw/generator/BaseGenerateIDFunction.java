@@ -1,5 +1,6 @@
 package io.pivotal.bds.gemfire.keyfw.generator;
 
+import java.util.Iterator;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -32,46 +33,55 @@ public abstract class BaseGenerateIDFunction<T> implements Function {
         ResultSender<T> sender = context.getResultSender();
 
         try {
-            Object args = null;
-
             if (context instanceof RegionFunctionContext) {
                 RegionFunctionContext rctx = (RegionFunctionContext) context;
                 Set<?> filter = rctx.getFilter();
+                Iterator<?> iter = filter.iterator();
 
-                if (filter.size() == 1) {
-                    args = filter.iterator().next();
-                } else if (filter.size() > 1) {
-                    throw new IllegalArgumentException("Filter contains more than one entry: " + filter.size());
+                while (iter.hasNext()) {
+                    String domain = iter.next().toString();
+                    log.debug("execute: domain={}", domain);
+
+                    T id = getGenerator().generate(domain);
+
+                    log.debug("execute: id={}", id);
+
+                    if (iter.hasNext()) {
+                        sender.sendResult(id);
+                    } else {
+                        sender.lastResult(id);
+                    }
                 }
+
             } else {
-                args = context.getArguments();
+                Object args = context.getArguments();
+                log.debug("execute: args={}", args);
+
+                if (args == null) {
+                    throw new NullPointerException("Missing arguments");
+                }
+
+                Class<?> c = args.getClass();
+                String domain = null;
+
+                if (c.isArray()) {
+                    String[] s = (String[]) args;
+                    domain = s[0];
+                } else if (c == String.class) {
+                    domain = (String) args;
+                } else {
+                    throw new IllegalArgumentException("Invalid type for args: " + c);
+                }
+
+                log.debug("execute: domain={}", domain);
+
+                T id = getGenerator().generate(domain);
+
+                log.debug("execute: id={}", id);
+
+                sender.lastResult(id);
             }
 
-            log.debug("execute: args={}", args);
-
-            if (args == null) {
-                throw new NullPointerException("Missing arguments");
-            }
-
-            Class<?> c = args.getClass();
-            String domain = null;
-
-            if (c.isArray()) {
-                String[] s = (String[]) args;
-                domain = s[0];
-            } else if (c == String.class) {
-                domain = (String) args;
-            } else {
-                throw new IllegalArgumentException("Invalid type for args: " + c);
-            }
-
-            log.debug("execute: domain={}", domain);
-
-            T id = getGenerator().generate(domain);
-
-            log.debug("execute: id={}", id);
-
-            sender.lastResult(id);
         } catch (Exception x) {
             log.error(x.toString(), x);
             throw new FunctionException(x.toString(), x);
