@@ -33,13 +33,40 @@ public abstract class BaseGenerateIDFunction<T> implements Function {
         ResultSender<T> sender = context.getResultSender();
 
         try {
+            Object args = context.getArguments();
+            log.debug("execute: args={}", args);
+
+            if (args == null) {
+                throw new NullPointerException("Missing arguments");
+            }
+
+            Class<?> c = args.getClass();
+            String domain = null;
+
+            if (c.isArray()) {
+                String[] s = (String[]) args;
+                domain = s[0];
+            } else if (c == String.class) {
+                domain = (String) args;
+            } else {
+                throw new IllegalArgumentException("Invalid type for args: " + c);
+            }
+
+            log.debug("execute: domain={}", domain);
+
             if (context instanceof RegionFunctionContext) {
+                // generate multiple keys, filter is not important, the number of objects in filter determines the number of keys
                 RegionFunctionContext rctx = (RegionFunctionContext) context;
                 Set<?> filter = rctx.getFilter();
+
+                if (filter.isEmpty()) {
+                    throw new IllegalArgumentException("Filter is empty");
+                }
+
                 Iterator<?> iter = filter.iterator();
 
                 while (iter.hasNext()) {
-                    String domain = iter.next().toString();
+                    iter.next();
                     log.debug("execute: domain={}", domain);
 
                     T id = getGenerator().generate(domain);
@@ -54,27 +81,6 @@ public abstract class BaseGenerateIDFunction<T> implements Function {
                 }
 
             } else {
-                Object args = context.getArguments();
-                log.debug("execute: args={}", args);
-
-                if (args == null) {
-                    throw new NullPointerException("Missing arguments");
-                }
-
-                Class<?> c = args.getClass();
-                String domain = null;
-
-                if (c.isArray()) {
-                    String[] s = (String[]) args;
-                    domain = s[0];
-                } else if (c == String.class) {
-                    domain = (String) args;
-                } else {
-                    throw new IllegalArgumentException("Invalid type for args: " + c);
-                }
-
-                log.debug("execute: domain={}", domain);
-
                 T id = getGenerator().generate(domain);
 
                 log.debug("execute: id={}", id);
