@@ -1,0 +1,25 @@
+[
+    {
+        "group": "Gemfire",
+        "name": "Gemfire",
+        "className": "io.pivotal.bds.gemfire.zeppelin.GemfireInterpreter",
+        "properties": 
+        {
+            "locator.host": 
+            {
+                "envName": null,
+                "propertyName": "locator.host",
+                "defaultValue": "localhost",
+                "description": "Locator host or IP address"
+            },
+
+            "locator.port": 
+            {
+                "envName": null,
+                "propertyName": "locator.port",
+                "defaultValue": "10334",
+                "description": "Locator port"
+            }
+        }
+    }
+]

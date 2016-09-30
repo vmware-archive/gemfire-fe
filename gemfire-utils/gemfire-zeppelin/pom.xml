@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>io.pivotal.bds.gemfire</groupId>
+		<artifactId>gemfire-utils</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>gemfire-zeppelin</artifactId>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<excludeScope>provided</excludeScope>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.zeppelin</groupId>
+			<artifactId>zeppelin-interpreter</artifactId>
+			<version>0.6.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.gemstone.gemfire</groupId>
+			<artifactId>gemfire</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+</project>
