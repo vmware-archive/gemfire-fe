@@ -1,7 +1,7 @@
 [
     {
-        "group": "Gemfire",
-        "name": "Gemfire",
+        "group": "gemfire",
+        "name": "oql",
         "className": "io.pivotal.bds.gemfire.zeppelin.GemfireInterpreter",
         "properties": 
         {

@@ -21,7 +21,7 @@ public class PopulateTestData {
     public static void main(String[] args) throws Exception {
         ClientCacheFactory ccf = new ClientCacheFactory();
 
-        ccf.addPoolLocator("tdalsing-mbp.local", 10334);
+        ccf.addPoolLocator("localhost", 10334);
         ccf.setPdxReadSerialized(true);
 
         ClientCache cc = ccf.create();

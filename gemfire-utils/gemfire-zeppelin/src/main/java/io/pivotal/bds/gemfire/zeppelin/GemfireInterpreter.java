@@ -51,6 +51,7 @@ public class GemfireInterpreter extends Interpreter {
     @SuppressWarnings("unchecked")
     @Override
     public InterpreterResult interpret(String st, InterpreterContext ctx) {
+        LOG.info("interpret: st={}", st);
         progress = 0;
         try {
             QueryService qa = cache.getQueryService();
@@ -59,20 +60,20 @@ public class GemfireInterpreter extends Interpreter {
             Iterator<Struct> iter = sr.iterator();
 
             StringBuilder buf = new StringBuilder();
-            
+
             while (iter.hasNext()) {
                 Struct str = iter.next();
-                
+
                 Object[] vals = str.getFieldValues();
-                
+
                 for (int i = 0; i < vals.length; ++i) {
                     if (i > 0) {
                         buf.append(' ');
                     }
-                    
+
                     buf.append(vals[i]);
                 }
-                
+
                 if (iter.hasNext()) {
                     buf.append('\n');
                 }
@@ -83,7 +84,7 @@ public class GemfireInterpreter extends Interpreter {
 
             return new InterpreterResult(Code.SUCCESS, resp);
         } catch (Exception x) {
-            LOG.error("interpret: x={}" + x.toString(), x);
+            LOG.error("interpret: x={}", x.toString(), x);
             return new InterpreterResult(Code.ERROR, x.getMessage());
         } finally {
             progress = 100;

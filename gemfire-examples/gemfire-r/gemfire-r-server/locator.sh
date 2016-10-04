@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gfsh start locator --name=locator --bind-address=`hostname`
+gfsh start locator --name=locator
