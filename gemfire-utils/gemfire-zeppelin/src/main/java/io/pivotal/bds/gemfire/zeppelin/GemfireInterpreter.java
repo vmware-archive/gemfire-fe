@@ -59,16 +59,33 @@ public class GemfireInterpreter extends Interpreter {
             SelectResults<Struct> sr = (SelectResults<Struct>) query.execute();
             Iterator<Struct> iter = sr.iterator();
 
-            StringBuilder buf = new StringBuilder();
+            StringBuilder buf = new StringBuilder("%table ");
+
+            boolean header = true;
 
             while (iter.hasNext()) {
                 Struct str = iter.next();
+
+                if (header) {
+                    String[] fieldNames = str.getStructType().getFieldNames();
+
+                    for (int i = 0; i < fieldNames.length; ++i) {
+                        if (i > 0) {
+                            buf.append('\t');
+                        }
+
+                        buf.append(fieldNames[i]);
+                    }
+
+                    buf.append('\n');
+                    header = false;
+                }
 
                 Object[] vals = str.getFieldValues();
 
                 for (int i = 0; i < vals.length; ++i) {
                     if (i > 0) {
-                        buf.append(' ');
+                        buf.append('\t');
                     }
 
                     buf.append(vals[i]);
