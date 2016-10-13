@@ -105,6 +105,7 @@ public class MongoDBAsyncEventListener implements AsyncEventListener, Declarable
     @Override
     public void init(Properties props) {
         String ignoredOpers = props.getProperty("ignoredOperations");
+        LOG.info("init: ignoredOperations={}", ignoredOpers);
 
         if (ignoredOpers != null && ignoredOpers.trim().length() > 0) {
             String[] sa = ignoredOpers.split(",");

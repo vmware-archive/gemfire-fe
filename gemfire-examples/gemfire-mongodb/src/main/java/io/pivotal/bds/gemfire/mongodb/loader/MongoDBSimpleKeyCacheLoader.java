@@ -18,11 +18,12 @@ import com.mongodb.client.MongoCursor;
 
 import io.pivotal.bds.gemfire.mongodb.util.MongoDBClientHelper;
 
-public class MongoDBCacheLoader<K, V> implements CacheLoader<K, V>, Declarable {
+public class MongoDBSimpleKeyCacheLoader<K, V> implements CacheLoader<K, V>, Declarable {
 
     private Class<V> valueClass;
+    private String keyFieldName;
     private static final Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();
-    private static final Logger LOG = LoggerFactory.getLogger(MongoDBCacheLoader.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MongoDBSimpleKeyCacheLoader.class);
 
     @Override
     public V load(LoaderHelper<K, V> helper) throws CacheLoaderException {
@@ -34,7 +35,8 @@ public class MongoDBCacheLoader<K, V> implements CacheLoader<K, V>, Declarable {
         K key = helper.getKey();
         LOG.debug("load: regionName={}, key={}", regionName, key);
 
-        Document kdoc = mapper.map(key, Document.class);
+        Document kdoc = new Document();
+        kdoc.put(keyFieldName, key);
         LOG.debug("load: regionName={}, key={}, keyDoc={}", regionName, key, kdoc);
 
         FindIterable<Document> iter = collection.find(kdoc);
@@ -63,7 +65,8 @@ public class MongoDBCacheLoader<K, V> implements CacheLoader<K, V>, Declarable {
     @Override
     public void init(Properties props) {
         String sc = props.getProperty("valueClass");
-        LOG.info("init: valueClass={}", sc);
+        keyFieldName = props.getProperty("keyFieldName", "id");
+        LOG.info("init: valueClass={}, keyFieldName={}", sc, keyFieldName);
 
         if (sc == null || sc.trim().length() == 0) {
             throw new IllegalArgumentException("Missing property 'valueClass'");

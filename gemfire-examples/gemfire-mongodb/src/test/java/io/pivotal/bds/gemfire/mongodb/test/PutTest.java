@@ -20,9 +20,11 @@ public class PutTest {
 
         ClientCache cc = ccf.create();
 
-        ClientRegionFactory<AccountKey, Account> crf = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
-        Region<AccountKey, Account> region1 = crf.create("region1");
-        Region<AccountKey, Account> region2 = crf.create("region2");
+        ClientRegionFactory<AccountKey, Account> crf1 = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
+        Region<AccountKey, Account> region1 = crf1.create("region1");
+
+        ClientRegionFactory<String, Account> crf2 = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
+        Region<String, Account> region2 = crf2.create("region2");
 
         for (int i = 0; i < 10; ++i) {
             String id = "id-" + i;
@@ -40,6 +42,7 @@ public class PutTest {
             acct.setCreatedOn(d);
 
             region1.put(key, acct);
+            region2.put(id, acct);
         }
     }
 }

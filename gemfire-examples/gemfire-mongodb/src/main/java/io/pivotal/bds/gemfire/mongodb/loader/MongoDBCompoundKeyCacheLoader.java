@@ -1,9 +1,5 @@
 package io.pivotal.bds.gemfire.mongodb.loader;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import org.bson.Document;
@@ -22,42 +18,45 @@ import com.mongodb.client.MongoCursor;
 
 import io.pivotal.bds.gemfire.mongodb.util.MongoDBClientHelper;
 
-public class MongoDBQueryCacheLoader<K, V> implements CacheLoader<K, Collection<V>>, Declarable {
+public class MongoDBCompoundKeyCacheLoader<K, V> implements CacheLoader<K, V>, Declarable {
 
     private Class<V> valueClass;
     private static final Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();
-    private static final Logger LOG = LoggerFactory.getLogger(MongoDBQueryCacheLoader.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MongoDBCompoundKeyCacheLoader.class);
 
     @Override
-    public Collection<V> load(LoaderHelper<K, Collection<V>> helper) throws CacheLoaderException {
-        @SuppressWarnings("unchecked")
-        Map<String, Object> criteria = (Map<String, Object>) helper.getArgument();
-
-        if (criteria == null || criteria.isEmpty()) {
-            throw new CacheLoaderException("Missing criteria");
-        }
-
+    public V load(LoaderHelper<K, V> helper) throws CacheLoaderException {
         String regionName = helper.getRegion().getName();
-        LOG.debug("load: regionName={}, criteria={}", regionName, criteria);
+        LOG.debug("load: regionName={}", regionName);
 
         MongoCollection<Document> collection = MongoDBClientHelper.getCollection(regionName);
 
-        Document critdoc = new Document(criteria);
-        LOG.debug("load: regionName={}, criteria={}, critdoc={}", regionName, criteria, critdoc);
+        K key = helper.getKey();
+        LOG.debug("load: regionName={}, key={}", regionName, key);
 
-        FindIterable<Document> iter = collection.find(critdoc);
+        Document kdoc = mapper.map(key, Document.class);
+        LOG.debug("load: regionName={}, key={}, keyDoc={}", regionName, key, kdoc);
+
+        FindIterable<Document> iter = collection.find(kdoc);
         MongoCursor<Document> cur = iter.iterator();
-        
-        List<V> list = new ArrayList<>();
-        
-        while (cur.hasNext()) {
-            Document vdoc = cur.next();
-            V value = mapper.map(vdoc, valueClass);
-            LOG.debug("load: regionName={}, criteria={}, valueDoc={}, value={}", regionName, criteria, vdoc, value);
-            list.add(value);
+
+        if (!cur.hasNext()) {
+            LOG.debug("load: regionName={}, key={}: value not found in mongodb", regionName, key);
+            return null;
         }
 
-        return list;
+        Document vdoc = cur.next();
+        LOG.debug("load: regionName={}, key={}, valueDoc={}", regionName, key, vdoc);
+
+        if (cur.hasNext()) {
+            LOG.debug("load: regionName={}, key={}: multiple values found in mongodb", regionName, key);
+            throw new CacheLoaderException("More than one document found for key " + kdoc);
+        }
+
+        V value = mapper.map(vdoc, valueClass);
+        LOG.debug("load: regionName={}, key={}, valueDoc={}, value={}", regionName, key, vdoc, value);
+
+        return value;
     }
 
     @SuppressWarnings("unchecked")

@@ -18,17 +18,22 @@ public class GetTest {
 
         ClientCache cc = ccf.create();
 
-        ClientRegionFactory<AccountKey, Account> crf = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
-        Region<AccountKey, Account> region1 = crf.create("region1");
-        Region<AccountKey, Account> region2 = crf.create("region2");
+        ClientRegionFactory<AccountKey, Account> crf1 = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
+        Region<AccountKey, Account> region1 = crf1.create("region1");
+
+        ClientRegionFactory<String, Account> crf2 = cc.createClientRegionFactory(ClientRegionShortcut.PROXY);
+        Region<String, Account> region2 = crf2.create("region2");
 
         for (int i = 0; i < 10; ++i) {
             String id = "id-" + i;
 
             AccountKey key = new AccountKey(id);
 
-            Account value = region1.get(key);
-            System.out.println("key=" + key + ", value=" + value);
+            Account value1 = region1.get(key);
+            System.out.println("key=" + key + ", value1=" + value1);
+
+            Account value2 = region2.get(id);
+            System.out.println("id=" + id + ", value2=" + value2);
         }
     }
 }
