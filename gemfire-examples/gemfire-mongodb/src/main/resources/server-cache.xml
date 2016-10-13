@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schema.pivotal.io/gemfire/cache"
+	xsi:schemaLocation="http://schema.pivotal.io/gemfire/cache http://schema.pivotal.io/gemfire/cache/cache-8.1.xsd" version="8.1">
+
+	<async-event-queue id="queue1">
+		<async-event-listener>
+			<class-name>io.pivotal.bds.gemfire.mongodb.listener.MongoDBAsyncEventListener</class-name>
+		</async-event-listener>
+	</async-event-queue>
+
+    <region name="region1" refid="REPLICATE">
+        <region-attributes async-event-queue-ids="queue1">
+            <cache-loader>
+                <class-name>io.pivotal.bds.gemfire.mongodb.loader.MongoDBCacheLoader</class-name>
+                <parameter name="valueClass">
+                    <string>io.pivotal.bds.gemfire.mongodb.data.Account</string>
+                </parameter>
+            </cache-loader>
+        </region-attributes>
+    </region>
+    
+    <region name="region2" refid="PARTITION">
+        <region-attributes async-event-queue-ids="queue1">
+            <cache-loader>
+                <class-name>io.pivotal.bds.gemfire.mongodb.loader.MongoDBCacheLoader</class-name>
+                <parameter name="valueClass">
+                    <string>io.pivotal.bds.gemfire.mongodb.data.Account</string>
+                </parameter>
+            </cache-loader>
+        </region-attributes>
+    </region>
+    
+</cache>

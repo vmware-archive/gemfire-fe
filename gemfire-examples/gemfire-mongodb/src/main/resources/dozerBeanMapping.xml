@@ -1,0 +1,14 @@
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<configuration>
+		<custom-converters>
+			<converter type="io.pivotal.bds.gemfire.mongodb.util.DozerPdxInstanceConverter">
+				<class-a>com.gemstone.gemfire.pdx.PdxInstance</class-a>
+				<class-b>org.bson.Document</class-b>
+			</converter>
+		</custom-converters>
+	</configuration>
+	
+</mappings>
