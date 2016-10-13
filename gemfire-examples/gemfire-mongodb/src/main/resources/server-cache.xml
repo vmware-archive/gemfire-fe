@@ -10,35 +10,52 @@
 
 	<region name="region1" refid="REPLICATE">
 		<region-attributes async-event-queue-ids="queue1">
-<!-- 			<entry-time-to-live> -->
-<!-- 				<expiration-attributes timeout="1" action="destroy" /> -->
-<!-- 			</entry-time-to-live> -->
+			<!-- <entry-time-to-live> -->
+			<!-- <expiration-attributes timeout="1" action="destroy" /> -->
+			<!-- </entry-time-to-live> -->
 			<cache-loader>
 				<class-name>io.pivotal.bds.gemfire.mongodb.loader.MongoDBCompoundKeyCacheLoader</class-name>
 				<parameter name="valueClass">
 					<string>io.pivotal.bds.gemfire.mongodb.data.Account</string>
 				</parameter>
 			</cache-loader>
-            <eviction-attributes>
-                <lru-entry-count maximum="5" action="local-destroy" />
-            </eviction-attributes>
+			<eviction-attributes>
+				<lru-entry-count maximum="5" action="local-destroy" />
+			</eviction-attributes>
 		</region-attributes>
 	</region>
 
 	<region name="region2" refid="PARTITION">
 		<region-attributes async-event-queue-ids="queue1">
-<!-- 			<entry-time-to-live> -->
-<!-- 				<expiration-attributes timeout="1" action="destroy" /> -->
-<!-- 			</entry-time-to-live> -->
+			<!-- <entry-time-to-live> -->
+			<!-- <expiration-attributes timeout="1" action="destroy" /> -->
+			<!-- </entry-time-to-live> -->
 			<cache-loader>
 				<class-name>io.pivotal.bds.gemfire.mongodb.loader.MongoDBSimpleKeyCacheLoader</class-name>
 				<parameter name="valueClass">
 					<string>io.pivotal.bds.gemfire.mongodb.data.Account</string>
 				</parameter>
 			</cache-loader>
-            <eviction-attributes>
-                <lru-entry-count maximum="5" action="local-destroy" />
-            </eviction-attributes>
+			<eviction-attributes>
+				<lru-entry-count maximum="5" action="local-destroy" />
+			</eviction-attributes>
+		</region-attributes>
+	</region>
+
+	<region name="region1Xref" refid="LOCAL">
+		<region-attributes>
+			<entry-time-to-live>
+				<expiration-attributes timeout="1" action="destroy" />
+			</entry-time-to-live>
+			<cache-loader>
+				<class-name>io.pivotal.bds.gemfire.mongodb.loader.MongoDBCriteriaCacheLoader</class-name>
+				<parameter name="valueClass">
+					<string>io.pivotal.bds.gemfire.mongodb.data.AccountKey</string>
+				</parameter>
+				<parameter name="regionName">
+					<string>region1</string>
+				</parameter>
+			</cache-loader>
 		</region-attributes>
 	</region>
 

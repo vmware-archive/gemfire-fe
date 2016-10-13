@@ -12,6 +12,7 @@ import org.dozer.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gemstone.gemfire.cache.CacheLoader;
 import com.gemstone.gemfire.cache.CacheLoaderException;
 import com.gemstone.gemfire.cache.Declarable;
@@ -22,23 +23,44 @@ import com.mongodb.client.MongoCursor;
 
 import io.pivotal.bds.gemfire.mongodb.util.MongoDBClientHelper;
 
-public class MongoDBQueryCacheLoader<K, V> implements CacheLoader<K, Collection<V>>, Declarable {
+public class MongoDBCriteriaCacheLoader<K, V> implements CacheLoader<K, Collection<V>>, Declarable {
 
     private Class<V> valueClass;
+    private String regionName;
     private static final Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();
-    private static final Logger LOG = LoggerFactory.getLogger(MongoDBQueryCacheLoader.class);
+    private static final ObjectMapper omapper = new ObjectMapper();
+    private static final Logger LOG = LoggerFactory.getLogger(MongoDBCriteriaCacheLoader.class);
 
+    @SuppressWarnings("unchecked")
     @Override
     public Collection<V> load(LoaderHelper<K, Collection<V>> helper) throws CacheLoaderException {
-        @SuppressWarnings("unchecked")
-        Map<String, Object> criteria = (Map<String, Object>) helper.getArgument();
+        Object arg = helper.getArgument();
+        LOG.debug("load: arg={}", arg);
 
-        if (criteria == null || criteria.isEmpty()) {
+        if (arg == null) {
             throw new CacheLoaderException("Missing criteria");
         }
 
-        String regionName = helper.getRegion().getName();
-        LOG.debug("load: regionName={}, criteria={}", regionName, criteria);
+        Map<String, Object> criteria = null;
+
+        if (arg instanceof Map) {
+            criteria = (Map<String, Object>) arg;
+        } else if (arg instanceof String) {
+            String s = (String) arg;
+            try {
+                criteria = omapper.readValue(s, Map.class);
+            } catch (Exception x) {
+                throw new CacheLoaderException(x.toString(), x);
+            }
+        }
+
+        if (criteria.isEmpty()) {
+            throw new CacheLoaderException("Criteria is empty");
+        }
+
+        String rn = this.regionName;
+        rn = rn == null ? helper.getRegion().getName() : rn;
+        LOG.debug("load: regionName={}, criteria={}", rn, criteria);
 
         MongoCollection<Document> collection = MongoDBClientHelper.getCollection(regionName);
 
@@ -47,9 +69,9 @@ public class MongoDBQueryCacheLoader<K, V> implements CacheLoader<K, Collection<
 
         FindIterable<Document> iter = collection.find(critdoc);
         MongoCursor<Document> cur = iter.iterator();
-        
+
         List<V> list = new ArrayList<>();
-        
+
         while (cur.hasNext()) {
             Document vdoc = cur.next();
             V value = mapper.map(vdoc, valueClass);
@@ -64,7 +86,8 @@ public class MongoDBQueryCacheLoader<K, V> implements CacheLoader<K, Collection<
     @Override
     public void init(Properties props) {
         String sc = props.getProperty("valueClass");
-        LOG.info("init: valueClass={}", sc);
+        regionName = props.getProperty("regionName");
+        LOG.info("init: valueClass={}, regionName={}", sc, regionName);
 
         if (sc == null || sc.trim().length() == 0) {
             throw new IllegalArgumentException("Missing property 'valueClass'");
