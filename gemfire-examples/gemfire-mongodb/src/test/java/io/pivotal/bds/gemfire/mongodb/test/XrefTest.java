@@ -45,10 +45,10 @@ public class XrefTest {
         oper.put("$in", ids);
 
         crit.put("id", oper);
-        List<AccountKey> list1 = region.get("in1", crit);
-        System.out.println("list1=" + list1);
 
-        List<AccountKey> list2 = region.get("in2", "{\"id\":{\"$in\":[\"id-0\",\"id-1\"]}}");
-        System.out.println("list2=" + list2);
+        System.out.println("list1=" + region.get("in1", crit));
+        System.out.println("list2=" + region.get(crit));
+        System.out.println("list3=" + region.get("in2", "{\"id\":{\"$in\":[\"id-2\",\"id-3\"]}}"));
+        System.out.println("list4=" + region.get("{\"id\":{\"$in\":[\"id-2\",\"id-3\"]}}"));
     }
 }

@@ -35,11 +35,8 @@ public class MongoDBCriteriaCacheLoader<K, V> implements CacheLoader<K, Collecti
     @Override
     public Collection<V> load(LoaderHelper<K, Collection<V>> helper) throws CacheLoaderException {
         Object arg = helper.getArgument();
+        arg = arg == null ? helper.getKey() : arg;
         LOG.debug("load: arg={}", arg);
-
-        if (arg == null) {
-            throw new CacheLoaderException("Missing criteria");
-        }
 
         Map<String, Object> criteria = null;
 
