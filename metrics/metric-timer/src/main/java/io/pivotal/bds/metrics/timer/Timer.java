@@ -66,7 +66,7 @@ public class Timer {
     }
 
     public void start() {
-        th.set(System.currentTimeMillis());
+        th.set(System.nanoTime());
     }
 
     public void end() {
@@ -76,7 +76,7 @@ public class Timer {
         if (s == null) {
             this.log.warn("start not called in this thread");
         } else {
-            long e = System.currentTimeMillis();
+            long e = System.nanoTime();
             long d = e - s;
 
             queue.offer(d);
@@ -134,11 +134,11 @@ public class Timer {
         List<MetricValue> values = metric.getValues();
 
         values.add(new MetricValue(prefix + "count", MetricType.latency, MetricUnit.count, stats.getN()));
-        values.add(new MetricValue(prefix + "mean", MetricType.latency, MetricUnit.milliseconds, stats.getMean()));
-        values.add(new MetricValue(prefix + "std", MetricType.latency, MetricUnit.milliseconds, stats.getStandardDeviation()));
-        values.add(new MetricValue(prefix + "variance", MetricType.latency, MetricUnit.milliseconds, stats.getVariance()));
-        values.add(new MetricValue(prefix + "minimum", MetricType.latency, MetricUnit.milliseconds, stats.getMin()));
-        values.add(new MetricValue(prefix + "maximum", MetricType.latency, MetricUnit.milliseconds, stats.getMax()));
+        values.add(new MetricValue(prefix + "mean", MetricType.latency, MetricUnit.nanoseconds, stats.getMean()));
+        values.add(new MetricValue(prefix + "std", MetricType.latency, MetricUnit.nanoseconds, stats.getStandardDeviation()));
+        values.add(new MetricValue(prefix + "variance", MetricType.latency, MetricUnit.nanoseconds, stats.getVariance()));
+        values.add(new MetricValue(prefix + "minimum", MetricType.latency, MetricUnit.nanoseconds, stats.getMin()));
+        values.add(new MetricValue(prefix + "maximum", MetricType.latency, MetricUnit.nanoseconds, stats.getMax()));
     }
 
     private class Processor extends Thread {
