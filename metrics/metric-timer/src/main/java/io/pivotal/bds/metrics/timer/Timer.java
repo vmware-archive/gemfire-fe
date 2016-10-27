@@ -24,7 +24,7 @@ public class Timer {
 
     private String name;
     private boolean writeEachTiming;
-    private static final ThreadLocal<Long> th = new ThreadLocal<>();
+    private final ThreadLocal<Long> th = new ThreadLocal<>();
     private BlockingQueue<Long> queue;
     private Logger log;
     private long reporterCycleTime;
