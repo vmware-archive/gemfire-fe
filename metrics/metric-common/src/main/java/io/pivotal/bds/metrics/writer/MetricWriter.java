@@ -15,11 +15,11 @@ public abstract class MetricWriter {
 
     public void write(Metric metric) {
         try {
-            doWriter(metric);
+            doWrite(metric);
         } catch (Exception x) {
             log.error(x.toString(), x);
         }
     }
 
-    protected abstract void doWriter(Metric metric) throws Exception;
+    protected abstract void doWrite(Metric metric) throws Exception;
 }

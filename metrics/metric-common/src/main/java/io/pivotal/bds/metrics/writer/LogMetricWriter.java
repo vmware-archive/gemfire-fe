@@ -13,7 +13,7 @@ public class LogMetricWriter extends MetricWriter {
     }
 
     @Override
-    protected void doWriter(Metric metric) {
+    protected void doWrite(Metric metric) {
         StringBuilder buf = new StringBuilder();
 
         buf.append("ts=").append(metric.getTs());

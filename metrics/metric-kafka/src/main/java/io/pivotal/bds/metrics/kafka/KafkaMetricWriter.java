@@ -31,7 +31,7 @@ public class KafkaMetricWriter extends MetricWriter {
     }
 
     @Override
-    protected void doWriter(Metric metric) throws Exception {
+    protected void doWrite(Metric metric) throws Exception {
         Map<CharSequence, CharSequence> tags = new HashMap<>();
 
         for (Map.Entry<String, String> e : metric.getTags().entrySet()) {

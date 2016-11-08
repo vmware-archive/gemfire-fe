@@ -10,7 +10,7 @@ public class CassandraMetricWriter extends MetricWriter {
     }
 
     @Override
-    protected void doWriter(Metric metric) throws Exception {
+    protected void doWrite(Metric metric) throws Exception {
 
     }
 
