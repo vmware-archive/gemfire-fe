@@ -1,0 +1,6 @@
+group = 'io.pivotal.bds.gemfire'
+description = ''
+dependencies {
+    compile group: 'com.gemstone.gemfire', name: 'gemfire', version:'8.2.1'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version:'1.1.3'
+}

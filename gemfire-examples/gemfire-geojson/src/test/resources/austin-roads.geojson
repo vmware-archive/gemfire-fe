@@ -1,0 +1,8337 @@
+
+
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1.0,
+        "osm_id": 4531214.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79575783685067,
+            30.46499414671925
+          ],
+          [
+            -97.79500681832631,
+            30.462219820587848
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2.0,
+        "osm_id": 4531215.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.7939534645545,
+            30.462351584105733
+          ],
+          [
+            -97.79544636532874,
+            30.465091628253163
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3.0,
+        "osm_id": 4358675.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 29.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79699316174037,
+            30.46891989488958
+          ],
+          [
+            -97.79725870043292,
+            30.469535461858644
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4.0,
+        "osm_id": 4531219.0,
+        "type": "motorway_link",
+        "name": "Lakeline Blvd Ramp",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 23.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79856594205185,
+            30.472763332770764
+          ],
+          [
+            -97.79876182712901,
+            30.47346313786673
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5.0,
+        "osm_id": 4531227.0,
+        "type": "primary",
+        "name": "Ranch Road 620",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "TX 45;RM 620",
+        "z_order": 6.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80300801545768,
+            30.46622729231413
+          ],
+          [
+            -97.80184871442975,
+            30.466598778262775
+          ],
+          [
+            -97.79969875626576,
+            30.467263966098642
+          ],
+          [
+            -97.79917622842191,
+            30.467425653010846
+          ],
+          [
+            -97.7987839553534,
+            30.4675470229688
+          ],
+          [
+            -97.79874640442718,
+            30.46755867381421
+          ],
+          [
+            -97.79837475084047,
+            30.46767367352575
+          ],
+          [
+            -97.79829260818937,
+            30.46769655612141
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6.0,
+        "osm_id": 4531218.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "US 183",
+        "z_order": 23.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79699316174037,
+            30.46891989488958
+          ],
+          [
+            -97.79721821584059,
+            30.469878030241343
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7.0,
+        "osm_id": 4358672.0,
+        "type": "motorway",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "US 183",
+        "z_order": 29.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79891773052805,
+            30.472806918667285
+          ],
+          [
+            -97.79882578105024,
+            30.4725753266826
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8.0,
+        "osm_id": 4531217.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 33.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79657121673462,
+            30.468906483844506
+          ],
+          [
+            -97.79773370288575,
+            30.468661899909904
+          ],
+          [
+            -97.79800510891052,
+            30.468604735330274
+          ],
+          [
+            -97.79848924763782,
+            30.468482862458135
+          ],
+          [
+            -97.79853576720043,
+            30.46847112779369
+          ],
+          [
+            -97.79872385710765,
+            30.468410275176637
+          ],
+          [
+            -97.79907011352775,
+            30.468298292950237
+          ],
+          [
+            -97.79953681789644,
+            30.468122524440698
+          ],
+          [
+            -97.80009698048553,
+            30.46793627855217
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9.0,
+        "osm_id": 4531236.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80343968347113,
+            30.481925088215547
+          ],
+          [
+            -97.80390907004885,
+            30.48321548220912
+          ],
+          [
+            -97.8041139237624,
+            30.48382384074145
+          ],
+          [
+            -97.8042380597484,
+            30.484748951394717
+          ],
+          [
+            -97.80427175499916,
+            30.48566526104963
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10.0,
+        "osm_id": 4531240.0,
+        "type": "primary",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "US 183",
+        "z_order": 6.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80223444961379,
+            30.480635867688417
+          ],
+          [
+            -97.80245657004791,
+            30.481019172120565
+          ],
+          [
+            -97.80334412977494,
+            30.482551216382603
+          ],
+          [
+            -97.80356893241806,
+            30.482997468907573
+          ],
+          [
+            -97.80376003981041,
+            30.48342033592269
+          ],
+          [
+            -97.80391510501913,
+            30.48385275830739
+          ],
+          [
+            -97.80392491184584,
+            30.483880083311732
+          ],
+          [
+            -97.80408022851165,
+            30.48443052289315
+          ],
+          [
+            -97.80419070199548,
+            30.484948021595073
+          ],
+          [
+            -97.80427175499916,
+            30.48566526104963
+          ],
+          [
+            -97.80426622294307,
+            30.485946473901095
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11.0,
+        "osm_id": 4531243.0,
+        "type": "secondary",
+        "name": "Avery Ranch Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 5.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80712914579101,
+            30.48595292796656
+          ],
+          [
+            -97.80667400844868,
+            30.486016965706796
+          ],
+          [
+            -97.8060504786716,
+            30.486233973179964
+          ],
+          [
+            -97.80541370548752,
+            30.486455423061813
+          ],
+          [
+            -97.8042121596676,
+            30.486806792442845
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12.0,
+        "osm_id": 4531225.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 43.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79350017123087,
+            30.460392649515057
+          ],
+          [
+            -97.79410526082097,
+            30.46226742979786
+          ],
+          [
+            -97.79519155547226,
+            30.465044857233437
+          ],
+          [
+            -97.79567435309505,
+            30.466314883202298
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13.0,
+        "osm_id": 4531244.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 9.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80506862253387,
+            30.486177143876432
+          ],
+          [
+            -97.80506694615323,
+            30.485243986596146
+          ],
+          [
+            -97.80493962504403,
+            30.484512917001354
+          ],
+          [
+            -97.80474717654717,
+            30.483749325622224
+          ],
+          [
+            -97.804461521287,
+            30.483054046753978
+          ],
+          [
+            -97.80379524380375,
+            30.481747643325374
+          ],
+          [
+            -97.80288555585233,
+            30.48019271646766
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14.0,
+        "osm_id": 4531246.0,
+        "type": "secondary_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80562736019941,
+            30.48380975914412
+          ],
+          [
+            -97.80566650368723,
+            30.483561654810188
+          ],
+          [
+            -97.80567421503815,
+            30.48328806949058
+          ],
+          [
+            -97.80565543957505,
+            30.482986991528602
+          ],
+          [
+            -97.80559576042445,
+            30.482687422309173
+          ],
+          [
+            -97.80548780151157,
+            30.482388858918142
+          ],
+          [
+            -97.80532242656194,
+            30.48201443930338
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 15.0,
+        "osm_id": 4531247.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80542485341874,
+            30.485496281881666
+          ],
+          [
+            -97.80529962778532,
+            30.484494392995316
+          ],
+          [
+            -97.80512587093254,
+            30.483917047504743
+          ],
+          [
+            -97.80482160784734,
+            30.483327296797455
+          ],
+          [
+            -97.80379524380375,
+            30.481747643325374
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 16.0,
+        "osm_id": 4531248.0,
+        "type": "primary",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": "US 183",
+        "z_order": 6.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.8072625018705,
+            30.486289796655083
+          ],
+          [
+            -97.80712914579101,
+            30.48595292796656
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 17.0,
+        "osm_id": 4531249.0,
+        "type": "motorway",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 9.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80272353366398,
+            30.49298316543431
+          ],
+          [
+            -97.80282881036784,
+            30.492173976501928
+          ],
+          [
+            -97.80309577398391,
+            30.491360680436998
+          ],
+          [
+            -97.80346826576096,
+            30.49049147707791
+          ],
+          [
+            -97.80413253158746,
+            30.489305773054976
+          ],
+          [
+            -97.80448415242557,
+            30.488634717886924
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 18.0,
+        "osm_id": 4531251.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80420092791734,
+            30.486969736640532
+          ],
+          [
+            -97.80415155850766,
+            30.487274837916033
+          ],
+          [
+            -97.80401904061848,
+            30.487842292760888
+          ],
+          [
+            -97.8035650767426,
+            30.488975442250936
+          ],
+          [
+            -97.80297163799791,
+            30.49013147433661
+          ],
+          [
+            -97.80243771076576,
+            30.49165865709483
+          ],
+          [
+            -97.80226387009395,
+            30.492471953159765
+          ],
+          [
+            -97.80225263834369,
+            30.493269155970577
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 19.0,
+        "osm_id": 4531250.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 29.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.8046368707014,
+            30.48635157128149
+          ],
+          [
+            -97.80456587598152,
+            30.487031427447874
+          ],
+          [
+            -97.8045021735174,
+            30.48733359505729
+          ],
+          [
+            -97.8044150017244,
+            30.4877467390647
+          ],
+          [
+            -97.8041952282232,
+            30.48836255749086
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 20.0,
+        "osm_id": 4531252.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 19.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80629380532073,
+            30.500229823641998
+          ],
+          [
+            -97.80527381152355,
+            30.49934913707557
+          ],
+          [
+            -97.80438650325361,
+            30.49836149742461
+          ],
+          [
+            -97.80409037061449,
+            30.498031669534754
+          ],
+          [
+            -97.80357312336963,
+            30.49712541816362
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 21.0,
+        "osm_id": 4531222.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79963002465973,
+            30.475615275325563
+          ],
+          [
+            -97.80055186637074,
+            30.477140865522156
+          ],
+          [
+            -97.80121847913014,
+            30.47802515630698
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 22.0,
+        "osm_id": 4531253.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 9.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80599113479714,
+            30.500422942691102
+          ],
+          [
+            -97.80676956214485,
+            30.50106776250226
+          ],
+          [
+            -97.80716753490755,
+            30.501457018085627
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 23.0,
+        "osm_id": 4531257.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.81046405360667,
+            30.507129554877338
+          ],
+          [
+            -97.81007002033847,
+            30.505314537564146
+          ],
+          [
+            -97.8095680281574,
+            30.503428357893
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 24.0,
+        "osm_id": 4358673.0,
+        "type": "motorway",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "US 183",
+        "z_order": 29.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.7965302292281,
+            30.467777692944143
+          ],
+          [
+            -97.79699316174037,
+            30.46891989488958
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 25.0,
+        "osm_id": 4648084.0,
+        "type": "trunk",
+        "name": "Ed Bluestein Boulevard",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "US 183",
+        "z_order": 8.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.67596250322835,
+            30.25860034226946
+          ],
+          [
+            -97.67757266682798,
+            30.255978231499682
+          ],
+          [
+            -97.67815923241207,
+            30.254873496661418
+          ],
+          [
+            -97.67861411829728,
+            30.25428776926765
+          ],
+          [
+            -97.67915952873679,
+            30.2537113457864
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 26.0,
+        "osm_id": 4531226.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 33.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79407525360762,
+            30.469051155493272
+          ],
+          [
+            -97.79226040393249,
+            30.469607630044973
+          ],
+          [
+            -97.79071335606373,
+            30.470114399910837
+          ],
+          [
+            -97.78998027481218,
+            30.470389242515893
+          ],
+          [
+            -97.78943687602944,
+            30.470581439555673
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 27.0,
+        "osm_id": 4531231.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80203873217471,
+            30.478722782108118
+          ],
+          [
+            -97.8013150386547,
+            30.477269946831054
+          ],
+          [
+            -97.80062026270065,
+            30.476035627769704
+          ],
+          [
+            -97.8004114694926,
+            30.475664644735243
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 28.0,
+        "osm_id": 4650967.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 23.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59683272722363,
+            30.475560122402666
+          ],
+          [
+            -97.59508803407806,
+            30.474755962612218
+          ],
+          [
+            -97.59423827673433,
+            30.474505343707335
+          ],
+          [
+            -97.59370636115895,
+            30.474428146379097
+          ],
+          [
+            -97.59293338204829,
+            30.47442646999846
+          ],
+          [
+            -97.5920959461022,
+            30.474529148312342
+          ],
+          [
+            -97.5913608531939,
+            30.47476535034377
+          ],
+          [
+            -97.59082700978078,
+            30.47501362231577
+          ],
+          [
+            -97.5903421166822,
+            30.475314616458714
+          ],
+          [
+            -97.58977290163767,
+            30.475786433788354
+          ],
+          [
+            -97.58935045371773,
+            30.476285995217495
+          ],
+          [
+            -97.58821453819967,
+            30.47808575746691
+          ],
+          [
+            -97.58782494734015,
+            30.478699061322118
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29.0,
+        "osm_id": 4652282.0,
+        "type": "primary",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "RM 620",
+        "z_order": 6.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80421232730566,
+            30.46679835137735
+          ],
+          [
+            -97.80444031507199,
+            30.466731128513885
+          ],
+          [
+            -97.80470711104999,
+            30.466639095217033
+          ],
+          [
+            -97.8049620047255,
+            30.46655091759567
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30.0,
+        "osm_id": 4531220.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "US 183",
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80066016055976,
+            30.475751229795033
+          ],
+          [
+            -97.80027291663315,
+            30.475203472422635
+          ],
+          [
+            -97.79996915646214,
+            30.474740623729414
+          ],
+          [
+            -97.79948241934484,
+            30.47386848670419
+          ],
+          [
+            -97.7991769827932,
+            30.473293991060697
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31.0,
+        "osm_id": 8142388.0,
+        "type": "motorway",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "US 183",
+        "z_order": 29.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79755801819525,
+            30.46941291843424
+          ],
+          [
+            -97.796852178129,
+            30.467703680739106
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32.0,
+        "osm_id": 8148215.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80300801545768,
+            30.46622729231413
+          ],
+          [
+            -97.80181602500738,
+            30.466728278666803
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 33.0,
+        "osm_id": 8148218.0,
+        "type": "secondary",
+        "name": "Research Boulevard",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 5.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.7939534645545,
+            30.462351584105733
+          ],
+          [
+            -97.79490883387822,
+            30.46473657083473
+          ],
+          [
+            -97.79522483162786,
+            30.465503431156066
+          ],
+          [
+            -97.7953168649247,
+            30.46570174698516
+          ],
+          [
+            -97.79550503865096,
+            30.46616878662996
+          ],
+          [
+            -97.79594014324469,
+            30.467271258354398
+          ],
+          [
+            -97.79605195783303,
+            30.467548950806528
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 34.0,
+        "osm_id": 8148222.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80272353366398,
+            30.49298316543431
+          ],
+          [
+            -97.80296543538955,
+            30.492124271816124
+          ],
+          [
+            -97.80333784334756,
+            30.49126135488441
+          ],
+          [
+            -97.80405801646823,
+            30.490094174867494
+          ],
+          [
+            -97.80449102558619,
+            30.489266042833943
+          ],
+          [
+            -97.80513483956892,
+            30.4879347451529
+          ],
+          [
+            -97.80524112210118,
+            30.487590835665685
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35.0,
+        "osm_id": 4531221.0,
+        "type": "motorway_link",
+        "name": "183A Toll Road Ramp",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 53.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79412965215921,
+            30.46979764778993
+          ],
+          [
+            -97.79501452967723,
+            30.469597655580202
+          ],
+          [
+            -97.79555885046932,
+            30.469538144067656
+          ],
+          [
+            -97.79608230032251,
+            30.469626992241302
+          ],
+          [
+            -97.79640391394727,
+            30.46973788482029
+          ],
+          [
+            -97.79669577181578,
+            30.469879958079076
+          ],
+          [
+            -97.79699743651099,
+            30.470100988865767
+          ],
+          [
+            -97.79742524884897,
+            30.470539278582716
+          ],
+          [
+            -97.79751451611777,
+            30.47069627162915
+          ],
+          [
+            -97.79760671705267,
+            30.470858293817486
+          ],
+          [
+            -97.7976699166026,
+            30.470969270215505
+          ],
+          [
+            -97.79819328263675,
+            30.472270057769006
+          ],
+          [
+            -97.79896978214674,
+            30.474175851093577
+          ],
+          [
+            -97.7993975106657,
+            30.475138847949182
+          ],
+          [
+            -97.79963002465973,
+            30.475615275325563
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 36.0,
+        "osm_id": 8148224.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 9.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.81046405360667,
+            30.507129554877338
+          ],
+          [
+            -97.80955570675974,
+            30.504548180157002
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 37.0,
+        "osm_id": 4531233.0,
+        "type": "primary",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "US 183",
+        "z_order": 6.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79833611026683,
+            30.47309014317551
+          ],
+          [
+            -97.79838807806651,
+            30.47321763192278
+          ],
+          [
+            -97.79854993261678,
+            30.473639996023678
+          ],
+          [
+            -97.79865671806323,
+            30.473918359028087
+          ],
+          [
+            -97.79875093065489,
+            30.474163948791073
+          ],
+          [
+            -97.79893231503956,
+            30.474654457764785
+          ],
+          [
+            -97.79903080240186,
+            30.474921421380856
+          ],
+          [
+            -97.79914504774212,
+            30.47515779105035
+          ],
+          [
+            -97.79970034882736,
+            30.47622916591399
+          ],
+          [
+            -97.79976472184373,
+            30.47635196079548
+          ],
+          [
+            -97.80021156110192,
+            30.47723926906542
+          ],
+          [
+            -97.80120640918958,
+            30.478890420171577
+          ],
+          [
+            -97.80125535950411,
+            30.47897298191785
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 38.0,
+        "osm_id": 4531230.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 43.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.8004114694926,
+            30.475664644735243
+          ],
+          [
+            -97.80008390471657,
+            30.47505025123263
+          ],
+          [
+            -97.79934537522796,
+            30.473262726561842
+          ],
+          [
+            -97.79854431674167,
+            30.47126096044596
+          ],
+          [
+            -97.79848421849591,
+            30.471105727599163
+          ],
+          [
+            -97.79825321324445,
+            30.470509439007397
+          ],
+          [
+            -97.79803687632355,
+            30.469950952798968
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39.0,
+        "osm_id": 8148229.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 19.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80407846831199,
+            30.498744466580636
+          ],
+          [
+            -97.80475463644098,
+            30.4993542500365
+          ],
+          [
+            -97.80599113479714,
+            30.500422942691102
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 40.0,
+        "osm_id": 8148230.0,
+        "type": "tertiary",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 24.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.8118679385692,
+            30.503484432825243
+          ],
+          [
+            -97.81182938181459,
+            30.50340857660152
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 41.0,
+        "osm_id": 15094315.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.61609107177414,
+            30.074494940367373
+          ],
+          [
+            -97.61651201095151,
+            30.074156982031436
+          ],
+          [
+            -97.61659004647005,
+            30.07407894651288
+          ],
+          [
+            -97.6166300281482,
+            30.074030918207708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 42.0,
+        "osm_id": 15094520.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.53208302812241,
+            30.07353496099691
+          ],
+          [
+            -97.53100603738365,
+            30.07283398243453
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 43.0,
+        "osm_id": 15094868.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.57690064529604,
+            30.098750575589914
+          ],
+          [
+            -97.57702846931944,
+            30.098853253903798
+          ],
+          [
+            -97.5770867235465,
+            30.098903880598982
+          ],
+          [
+            -97.57707993420493,
+            30.09902902241336
+          ],
+          [
+            -97.57710851649475,
+            30.099091383772958
+          ],
+          [
+            -97.57715243766738,
+            30.099123067366975
+          ],
+          [
+            -97.57721672686472,
+            30.09913983117332
+          ],
+          [
+            -97.57725234995321,
+            30.099118373501195
+          ],
+          [
+            -97.57727783093885,
+            30.09905576068448
+          ],
+          [
+            -97.57726643155054,
+            30.099006978008017
+          ],
+          [
+            -97.577177834834,
+            30.09893967132552
+          ],
+          [
+            -97.5770867235465,
+            30.098903880598982
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 44.0,
+        "osm_id": 4531212.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 53.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.78964717798006,
+            30.47105769929399
+          ],
+          [
+            -97.7907565228651,
+            30.470781096489272
+          ],
+          [
+            -97.7927823450431,
+            30.47018992085844
+          ],
+          [
+            -97.79412965215921,
+            30.46979764778993
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 45.0,
+        "osm_id": 15094894.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54145240330881,
+            30.13009914491596
+          ],
+          [
+            -97.54112601199922,
+            30.13275293927973
+          ],
+          [
+            -97.54050005147022,
+            30.133349982242777
+          ],
+          [
+            -97.5401000670508,
+            30.133301953937604
+          ],
+          [
+            -97.5398280742928,
+            30.132821922342853
+          ],
+          [
+            -97.53946002492447,
+            30.132309955697025
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 46.0,
+        "osm_id": 15094891.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.55438702101006,
+            30.136072089117423
+          ],
+          [
+            -97.55474400626622,
+            30.1359629567381
+          ],
+          [
+            -97.55552302034715,
+            30.13560194816841
+          ],
+          [
+            -97.55581001671182,
+            30.135234988447476
+          ],
+          [
+            -97.55608402112657,
+            30.13476996045941
+          ],
+          [
+            -97.55627035083411,
+            30.13460634570947
+          ],
+          [
+            -97.55631561311125,
+            30.134274087067663
+          ],
+          [
+            -97.55639113405883,
+            30.133945348825193
+          ],
+          [
+            -97.55671735773034,
+            30.133626082133333
+          ],
+          [
+            -97.5569200321491,
+            30.132916721667755
+          ],
+          [
+            -97.55703117618516,
+            30.13253266286435
+          ],
+          [
+            -97.55728405820392,
+            30.132229992340736
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 47.0,
+        "osm_id": 15095830.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52968907275702,
+            30.16820092980987
+          ],
+          [
+            -97.52919202589885,
+            30.16779499423919
+          ],
+          [
+            -97.52919604921237,
+            30.167753922913644
+          ],
+          [
+            -97.52918305726246,
+            30.167686951507278
+          ],
+          [
+            -97.52915305004908,
+            30.16762299758605
+          ],
+          [
+            -97.52910401591552,
+            30.167569940138975
+          ],
+          [
+            -97.5290440014888,
+            30.167527946804086
+          ],
+          [
+            -97.52832600766295,
+            30.16718194184108
+          ],
+          [
+            -97.52737306909115,
+            30.166753961865023
+          ],
+          [
+            -97.52712806606141,
+            30.16663594466834
+          ],
+          [
+            -97.5269630263879,
+            30.166565955776857
+          ],
+          [
+            -97.52692706802328,
+            30.166553969655325
+          ],
+          [
+            -97.52669203945831,
+            30.166474928308386
+          ],
+          [
+            -97.52625400119845,
+            30.16634693664693
+          ],
+          [
+            -97.52614101314369,
+            30.16632195857548
+          ],
+          [
+            -97.5260060645026,
+            30.166310978282326
+          ],
+          [
+            -97.52595401288387,
+            30.166320952747096
+          ],
+          [
+            -97.52590003342743,
+            30.16634693664693
+          ],
+          [
+            -97.5258510831129,
+            30.166381973002185
+          ],
+          [
+            -97.52572007396631,
+            30.166532931078333
+          ],
+          [
+            -97.52548705705807,
+            30.16687692438458
+          ],
+          [
+            -97.52512202517488,
+            30.16750799787451
+          ],
+          [
+            -97.52505002462662,
+            30.167596929867187
+          ],
+          [
+            -97.52494105988536,
+            30.167687957335655
+          ],
+          [
+            -97.52484802076015,
+            30.16774596010561
+          ],
+          [
+            -97.52475003631204,
+            30.167790970925665
+          ],
+          [
+            -97.52461802133706,
+            30.167828940947032
+          ],
+          [
+            -97.5244900296756,
+            30.167850985352377
+          ],
+          [
+            -97.52437201247892,
+            30.16785693650363
+          ],
+          [
+            -97.52425902442414,
+            30.16784897369561
+          ],
+          [
+            -97.52413103276268,
+            30.167829946775413
+          ],
+          [
+            -97.52400002361608,
+            30.16780195121882
+          ],
+          [
+            -97.52388502390454,
+            30.167771944005462
+          ],
+          [
+            -97.52283703455076,
+            30.16746298705448
+          ],
+          [
+            -97.52279001207395,
+            30.167428956527598
+          ],
+          [
+            -97.52275707119448,
+            30.167386963192683
+          ],
+          [
+            -97.52273804427428,
+            30.167336923230753
+          ],
+          [
+            -97.52273603261752,
+            30.167308927674156
+          ],
+          [
+            -97.5227420675878,
+            30.167256959874464
+          ],
+          [
+            -97.52275204205257,
+            30.167232987631394
+          ],
+          [
+            -97.52302302898218,
+            30.16678195742162
+          ],
+          [
+            -97.52344505780697,
+            30.16609799412268
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 48.0,
+        "osm_id": 4531232.0,
+        "type": "secondary",
+        "name": "Research Boulevard",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 5.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80066016055976,
+            30.475751229795033
+          ],
+          [
+            -97.80039395131497,
+            30.475267677800957
+          ],
+          [
+            -97.800264618549,
+            30.475043629529125
+          ],
+          [
+            -97.80007443316599,
+            30.474687147187154
+          ],
+          [
+            -97.79989824556128,
+            30.474316583247855
+          ],
+          [
+            -97.79960412457892,
+            30.473549890564584
+          ],
+          [
+            -97.79945576489274,
+            30.473213021876035
+          ],
+          [
+            -97.7993140269101,
+            30.472891492070286
+          ],
+          [
+            -97.79925501831175,
+            30.472762578399482
+          ],
+          [
+            -97.7991178065568,
+            30.472458399133327
+          ],
+          [
+            -97.79892636388831,
+            30.472033520461448
+          ],
+          [
+            -97.79857901782078,
+            30.47117202845328
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 49.0,
+        "osm_id": 15095835.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5273940238491,
+            30.16470198814912
+          ],
+          [
+            -97.527333003594,
+            30.164750938463666
+          ],
+          [
+            -97.5272770124808,
+            30.16480399591074
+          ],
+          [
+            -97.52720300027578,
+            30.164898962873703
+          ],
+          [
+            -97.52717106522468,
+            30.164952942330128
+          ],
+          [
+            -97.52712404274789,
+            30.165059979233657
+          ],
+          [
+            -97.5270860727265,
+            30.16519392204637
+          ],
+          [
+            -97.52692505636654,
+            30.166069998566083
+          ],
+          [
+            -97.52691206441662,
+            30.166190949428884
+          ],
+          [
+            -97.52690904693146,
+            30.166330927211874
+          ],
+          [
+            -97.52692706802328,
+            30.166553969655325
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 50.0,
+        "osm_id": 15095842.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5207760083794,
+            30.18052392003653
+          ],
+          [
+            -97.5209180816382,
+            30.180279922835155
+          ],
+          [
+            -97.52105906524957,
+            30.180064927018776
+          ],
+          [
+            -97.52118504525427,
+            30.17982998227282
+          ],
+          [
+            -97.52127506689438,
+            30.179625966749565
+          ],
+          [
+            -97.52136408270607,
+            30.179380963719808
+          ],
+          [
+            -97.52145402052713,
+            30.179072928778165
+          ],
+          [
+            -97.52148704522563,
+            30.178872936568467
+          ],
+          [
+            -97.52148704522563,
+            30.17885499929568
+          ],
+          [
+            -97.52165401273685,
+            30.178626927710326
+          ],
+          [
+            -97.52230302349956,
+            30.178076991043095
+          ],
+          [
+            -97.52276000486059,
+            30.17764599358193
+          ],
+          [
+            -97.52309905284396,
+            30.177013998082625
+          ],
+          [
+            -97.52319301397853,
+            30.17686697950097
+          ],
+          [
+            -97.52327306115384,
+            30.176703951484257
+          ],
+          [
+            -97.52336702228841,
+            30.17653899562978
+          ],
+          [
+            -97.52352007584037,
+            30.1763089962067
+          ],
+          [
+            -97.52363105223839,
+            30.176120990118534
+          ],
+          [
+            -97.52375200310118,
+            30.175919992080424
+          ],
+          [
+            -97.52390907996664,
+            30.17573299182064
+          ],
+          [
+            -97.52406406135633,
+            30.175576920783524
+          ],
+          [
+            -97.52423706383783,
+            30.175394949665645
+          ],
+          [
+            -97.52439305105588,
+            30.175238962447594
+          ],
+          [
+            -97.52450201579714,
+            30.175086998543037
+          ],
+          [
+            -97.52462707379249,
+            30.17492397052632
+          ],
+          [
+            -97.52478507266731,
+            30.17473697026651
+          ],
+          [
+            -97.52497701824998,
+            30.174487943923225
+          ],
+          [
+            -97.52513904043833,
+            30.174298932006675
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 51.0,
+        "osm_id": 15096108.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.53138800071127,
+            30.072168962236727
+          ],
+          [
+            -97.53191807226797,
+            30.072439949166323
+          ],
+          [
+            -97.53315004439642,
+            30.07278494830095
+          ],
+          [
+            -97.5342920787038,
+            30.073121984627562
+          ],
+          [
+            -97.53542606638413,
+            30.073689942386608
+          ],
+          [
+            -97.53672107042445,
+            30.073905944031395
+          ],
+          [
+            -97.53775707365669,
+            30.07336992132343
+          ],
+          [
+            -97.53884504468863,
+            30.07331795352377
+          ],
+          [
+            -97.54080406309832,
+            30.073905944031395
+          ],
+          [
+            -97.54115903669774,
+            30.074049945127907
+          ],
+          [
+            -97.54138300115054,
+            30.07457599337107
+          ],
+          [
+            -97.54143304111248,
+            30.07472091647693
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 52.0,
+        "osm_id": 15096103.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56166905084913,
+            30.076893924874668
+          ],
+          [
+            -97.56170106971926,
+            30.07650894406191
+          ],
+          [
+            -97.56162001671558,
+            30.075865968269483
+          ],
+          [
+            -97.56146000618399,
+            30.07548098745673
+          ],
+          [
+            -97.56130007947142,
+            30.075335980531804
+          ],
+          [
+            -97.56091602066803,
+            30.075191979435285
+          ],
+          [
+            -97.56072407508535,
+            30.07509592282491
+          ],
+          [
+            -97.56067604678017,
+            30.0749999500336
+          ],
+          [
+            -97.56067604678017,
+            30.0747759855808
+          ],
+          [
+            -97.56070806565029,
+            30.0746159750492
+          ],
+          [
+            -97.5607360612069,
+            30.074347921785716
+          ],
+          [
+            -97.5607920523201,
+            30.074049945127907
+          ],
+          [
+            -97.5604930698339,
+            30.07312491829367
+          ],
+          [
+            -97.56010004239408,
+            30.07263692389091
+          ],
+          [
+            -97.55981505768618,
+            30.072357974153302
+          ],
+          [
+            -97.55988102326417,
+            30.07197492117825
+          ],
+          [
+            -97.5591640352667,
+            30.071585917051976
+          ],
+          [
+            -97.5579490784017,
+            30.070901953753033
+          ],
+          [
+            -97.557625034025,
+            30.069757991607897
+          ],
+          [
+            -97.55727307791075,
+            30.069004961426803
+          ],
+          [
+            -97.55673504354604,
+            30.06868896367715
+          ],
+          [
+            -97.55560600118858,
+            30.068602965350607
+          ],
+          [
+            -97.55483201624953,
+            30.068604977007368
+          ],
+          [
+            -97.55399701105539,
+            30.068620986442426
+          ],
+          [
+            -97.55359803246434,
+            30.068851991693887
+          ],
+          [
+            -97.55323501223789,
+            30.06927192504287
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 53.0,
+        "osm_id": 8148219.0,
+        "type": "secondary",
+        "name": "Research Boulevard",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "Research Boulevard",
+        "z_order": 5.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80333977118528,
+            30.479427532526927
+          ],
+          [
+            -97.80306065380961,
+            30.479049843969936
+          ],
+          [
+            -97.80264893472574,
+            30.478492698866006
+          ],
+          [
+            -97.8017838384992,
+            30.477398441406706
+          ],
+          [
+            -97.8016245823389,
+            30.4771969404544
+          ],
+          [
+            -97.80120716356085,
+            30.4766132247174
+          ],
+          [
+            -97.80090516358952,
+            30.47613721643617
+          ],
+          [
+            -97.80066016055976,
+            30.475751229795033
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 54.0,
+        "osm_id": 4358677.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 9.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79966514483402,
+            30.475270360009972
+          ],
+          [
+            -97.80121847913014,
+            30.47802515630698
+          ],
+          [
+            -97.80209346600243,
+            30.479527277174697
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 55.0,
+        "osm_id": 15096117.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54095803865964,
+            30.063185992786657
+          ],
+          [
+            -97.54085100175611,
+            30.064182936350104
+          ],
+          [
+            -97.54084505060484,
+            30.064961950431037
+          ],
+          [
+            -97.54152800807543,
+            30.06527794818069
+          ],
+          [
+            -97.54191005522209,
+            30.06526797371592
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 56.0,
+        "osm_id": 15096401.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59365003476962,
+            30.103024927113267
+          ],
+          [
+            -97.59357602256459,
+            30.102820995409047
+          ],
+          [
+            -97.59353805254321,
+            30.10272192131353
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 57.0,
+        "osm_id": 15096398.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59257807317276,
+            30.10386797893446
+          ],
+          [
+            -97.59285903456714,
+            30.10364694814777
+          ],
+          [
+            -97.59329707282699,
+            30.10330295484152
+          ],
+          [
+            -97.59365003476962,
+            30.103024927113267
+          ],
+          [
+            -97.59375304835962,
+            30.103037919063183
+          ],
+          [
+            -97.59386402475762,
+            30.103064992610424
+          ],
+          [
+            -97.59403107608789,
+            30.103204970393417
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 58.0,
+        "osm_id": 15096609.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5715924698353,
+            30.09866223033049
+          ],
+          [
+            -97.57306190128062,
+            30.097362448605367
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 59.0,
+        "osm_id": 15096610.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.57184401074953,
+            30.096278919982126
+          ],
+          [
+            -97.57065000864246,
+            30.095126995028973
+          ],
+          [
+            -97.56967703732208,
+            30.09532396975357
+          ],
+          [
+            -97.56876106294328,
+            30.09532396975357
+          ],
+          [
+            -97.56841706963704,
+            30.095126995028973
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 60.0,
+        "osm_id": 15096822.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5502520605365,
+            30.101537977490295
+          ],
+          [
+            -97.55133500242651,
+            30.10051396037957
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 61.0,
+        "osm_id": 15096833.0,
+        "type": "track",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.53432108008879,
+            30.15880196650528
+          ],
+          [
+            -97.52919202589885,
+            30.16779499423919
+          ],
+          [
+            -97.5291890084137,
+            30.167821983967396
+          ],
+          [
+            -97.5291800397773,
+            30.16785492484686
+          ],
+          [
+            -97.52877804370111,
+            30.168514999721797
+          ],
+          [
+            -97.52765403048554,
+            30.170222980131452
+          ],
+          [
+            -97.52642901533673,
+            30.17213992138724
+          ],
+          [
+            -97.52574605786616,
+            30.173247925167743
+          ],
+          [
+            -97.52522604459327,
+            30.17406398726072
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 62.0,
+        "osm_id": 15096651.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.55394303159895,
+            30.10465998496531
+          ],
+          [
+            -97.55391604187074,
+            30.10472192722977
+          ],
+          [
+            -97.5538840230006,
+            30.104781941656483
+          ],
+          [
+            -97.55380707712948,
+            30.10488797273163
+          ],
+          [
+            -97.55360607909137,
+            30.105097939406136
+          ],
+          [
+            -97.5533760796683,
+            30.105315952707684
+          ],
+          [
+            -97.55333207467663,
+            30.1053479715778
+          ],
+          [
+            -97.55322604360148,
+            30.105413937155788
+          ],
+          [
+            -97.55318203860983,
+            30.105448973511045
+          ],
+          [
+            -97.55313501613303,
+            30.105499935482328
+          ],
+          [
+            -97.5530470061497,
+            30.105624993477676
+          ],
+          [
+            -97.55299503835003,
+            30.105738987360837
+          ],
+          [
+            -97.55296000199476,
+            30.105781986524132
+          ],
+          [
+            -97.55245105283407,
+            30.106161938194983
+          ],
+          [
+            -97.55199700513916,
+            30.10652294676467
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 63.0,
+        "osm_id": 15097726.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59726104247581,
+            30.1047809358281
+          ],
+          [
+            -97.59656207557016,
+            30.104831981618442
+          ],
+          [
+            -97.59627206172036,
+            30.104874980781712
+          ],
+          [
+            -97.5960130609123,
+            30.104925942753027
+          ],
+          [
+            -97.59589202623047,
+            30.10497095357306
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 64.0,
+        "osm_id": 15097876.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59068166757974,
+            30.105051168386435
+          ],
+          [
+            -97.58708750749895,
+            30.102063690457328
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 65.0,
+        "osm_id": 15098586.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59912006478065,
+            30.096787952961847
+          ],
+          [
+            -97.5995023633844,
+            30.097126330392967
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 66.0,
+        "osm_id": 15098598.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58110173898565,
+            30.095052899004937
+          ],
+          [
+            -97.58155595431862,
+            30.09538448709449
+          ],
+          [
+            -97.58176550189796,
+            30.09555933359468
+          ],
+          [
+            -97.58190405475742,
+            30.095760331632786
+          ],
+          [
+            -97.58210035892974,
+            30.095930819543327
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 67.0,
+        "osm_id": 15096956.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58232222790674,
+            30.106206362281792
+          ],
+          [
+            -97.5841086629301,
+            30.105876869668066
+          ],
+          [
+            -97.58451635870047,
+            30.105914085318147
+          ],
+          [
+            -97.58466086271119,
+            30.105972171907126
+          ],
+          [
+            -97.58501793178638,
+            30.1062713220314
+          ],
+          [
+            -97.5853558063033,
+            30.1066542911874
+          ],
+          [
+            -97.58722161794972,
+            30.10813537347815
+          ],
+          [
+            -97.58763744416616,
+            30.108445252438486
+          ],
+          [
+            -97.58791203531413,
+            30.108642730077232
+          ],
+          [
+            -97.5884431126992,
+            30.10917648967134
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 68.0,
+        "osm_id": 15099145.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.57643947298344,
+            30.099131616908206
+          ],
+          [
+            -97.57703333082328,
+            30.0997213676155
+          ],
+          [
+            -97.57777932020572,
+            30.100196286249286
+          ],
+          [
+            -97.5783283348636,
+            30.10043206918556
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 69.0,
+        "osm_id": 15098607.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52235105180475,
+            30.08545193183386
+          ],
+          [
+            -97.52229707234832,
+            30.086055931776542
+          ],
+          [
+            -97.52225306735664,
+            30.086809967786024
+          ],
+          [
+            -97.52226203599304,
+            30.087306930825203
+          ],
+          [
+            -97.52186205157359,
+            30.087478927478312
+          ],
+          [
+            -97.52139300027203,
+            30.087613959938437
+          ],
+          [
+            -97.52097901807429,
+            30.087924928546187
+          ],
+          [
+            -97.52034601674661,
+            30.088656920150328
+          ],
+          [
+            -97.52009808005074,
+            30.096778984325454
+          ],
+          [
+            -97.52069906250829,
+            30.09701292324303
+          ],
+          [
+            -97.52090006054638,
+            30.09756998452795
+          ],
+          [
+            -97.52120004886096,
+            30.09778699200109
+          ],
+          [
+            -97.52172400162834,
+            30.097804929273906
+          ],
+          [
+            -97.5215730435522,
+            30.098181947278643
+          ],
+          [
+            -97.52083208331163,
+            30.09863498914518
+          ],
+          [
+            -97.52074507915671,
+            30.09935893412228
+          ],
+          [
+            -97.52138503746399,
+            30.099654982942354
+          ],
+          [
+            -97.52158100636021,
+            30.099706950742014
+          ],
+          [
+            -97.522246026558,
+            30.099669986549028
+          ],
+          [
+            -97.5234750650203,
+            30.099727989319007
+          ],
+          [
+            -97.52477803186865,
+            30.100176924052956
+          ],
+          [
+            -97.5258940822762,
+            30.100425950396243
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 70.0,
+        "osm_id": 4651293.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 33.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.70236021762591,
+            30.473051083506732
+          ],
+          [
+            -97.70223876384894,
+            30.473914335714568
+          ],
+          [
+            -97.70204606389498,
+            30.474470977904303
+          ],
+          [
+            -97.70170290877905,
+            30.475067098858002
+          ],
+          [
+            -97.70129026768582,
+            30.475552494870783
+          ],
+          [
+            -97.70085172651177,
+            30.475919370772687
+          ],
+          [
+            -97.70039675680754,
+            30.47619756613903
+          ],
+          [
+            -97.69996374768958,
+            30.476418932201828
+          ],
+          [
+            -97.69967348238269,
+            30.476533764275302
+          ],
+          [
+            -97.696304124945,
+            30.477144888835685
+          ],
+          [
+            -97.6951673712366,
+            30.477357621538232
+          ],
+          [
+            -97.6937514163335,
+            30.477696837159666
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 71.0,
+        "osm_id": 15099438.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5499340511301,
+            30.100720993387966
+          ],
+          [
+            -97.55008903251975,
+            30.10064597535455
+          ],
+          [
+            -97.5503260727415,
+            30.10053499895653
+          ],
+          [
+            -97.55166105845994,
+            30.09969194713534
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 72.0,
+        "osm_id": 15099451.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54393805669491,
+            30.104096972529163
+          ],
+          [
+            -97.54253702157946,
+            30.10275092269853
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 73.0,
+        "osm_id": 8148223.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 9.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80225263834369,
+            30.493269155970577
+          ],
+          [
+            -97.80229144655539,
+            30.49425847200214
+          ],
+          [
+            -97.80238867663219,
+            30.49509967980464
+          ],
+          [
+            -97.80260995887598,
+            30.49591448461214
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 74.0,
+        "osm_id": 8148225.0,
+        "type": "motorway",
+        "name": "183A Toll Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "183A",
+        "z_order": 9.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.81023874804936,
+            30.50709259068435
+          ],
+          [
+            -97.81185100712479,
+            30.511452269981987
+          ],
+          [
+            -97.81312840916843,
+            30.514310247507066
+          ],
+          [
+            -97.81353761368136,
+            30.515320350658495
+          ],
+          [
+            -97.81382293366538,
+            30.516077990886345
+          ],
+          [
+            -97.81404463500432,
+            30.516670172345552
+          ],
+          [
+            -97.81419995167012,
+            30.51710754005316
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 75.0,
+        "osm_id": 15099603.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58542847740381,
+            30.10462494861005
+          ],
+          [
+            -97.58697032849257,
+            30.105892292369898
+          ],
+          [
+            -97.58845141078334,
+            30.107078164030895
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 76.0,
+        "osm_id": 15099617.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52375041053958,
+            30.1800468221079
+          ],
+          [
+            -97.52462003299382,
+            30.180837989948458
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 77.0,
+        "osm_id": 15099605.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58422911087871,
+            30.101402525934983
+          ],
+          [
+            -97.58380532185426,
+            30.10188054587297
+          ],
+          [
+            -97.58373566823889,
+            30.10201515923796
+          ],
+          [
+            -97.58376240651002,
+            30.10213577482463
+          ],
+          [
+            -97.58478390904978,
+            30.10305216829857
+          ],
+          [
+            -97.5889219708275,
+            30.106449018378672
+          ],
+          [
+            -97.5890862561297,
+            30.10653535198136
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 78.0,
+        "osm_id": 15099164.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58229800420656,
+            30.0940039876418
+          ],
+          [
+            -97.58232507775382,
+            30.094001975985037
+          ],
+          [
+            -97.5824040352817,
+            30.094014967934953
+          ],
+          [
+            -97.58250403138656,
+            30.094071964876548
+          ],
+          [
+            -97.58254703054986,
+            30.09411697569658
+          ],
+          [
+            -97.58258902388475,
+            30.09422191712431
+          ],
+          [
+            -97.58264107550345,
+            30.094288972349688
+          ],
+          [
+            -97.58270100611115,
+            30.09434798094804
+          ],
+          [
+            -97.5827420774367,
+            30.09438192765589
+          ],
+          [
+            -97.58284500720767,
+            30.094444959567767
+          ],
+          [
+            -97.58288800637095,
+            30.0944759726095
+          ],
+          [
+            -97.58295103828281,
+            30.094537998693
+          ],
+          [
+            -97.58297207685979,
+            30.094571945400848
+          ],
+          [
+            -97.58297601635427,
+            30.094606981756097
+          ],
+          [
+            -97.58296101274759,
+            30.09463992263556
+          ],
+          [
+            -97.58291700775592,
+            30.094707983689347
+          ],
+          [
+            -97.58285900498598,
+            30.09485198478586
+          ],
+          [
+            -97.58284500720767,
+            30.09493496562729
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 79.0,
+        "osm_id": 15099614.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52479940572174,
+            30.17844084945986
+          ],
+          [
+            -97.52503904433347,
+            30.17869599459246
+          ],
+          [
+            -97.52505404794015,
+            30.178770928806838
+          ],
+          [
+            -97.52614101314369,
+            30.179480959824673
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 80.0,
+        "osm_id": 15099909.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.60892840023624,
+            30.102339957985915
+          ],
+          [
+            -97.60882136333271,
+            30.10249284389982
+          ],
+          [
+            -97.60867518294137,
+            30.10249954942236
+          ],
+          [
+            -97.60465287524646,
+            30.106080298458064
+          ],
+          [
+            -97.60414836849445,
+            30.106546164636455
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 81.0,
+        "osm_id": 15096187.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58567306133841,
+            30.109586951469733
+          ],
+          [
+            -97.58824705998397,
+            30.11166398707616
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 82.0,
+        "osm_id": 4531238.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80245657004791,
+            30.481019172120565
+          ],
+          [
+            -97.80262605213008,
+            30.48116979492059
+          ],
+          [
+            -97.80281783007469,
+            30.48142058146354
+          ],
+          [
+            -97.80317707844469,
+            30.4819756310917
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 83.0,
+        "osm_id": 15100541.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.53252307803903,
+            30.076199987110954
+          ],
+          [
+            -97.53155706369829,
+            30.076737937656617
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 84.0,
+        "osm_id": 15100579.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54330907868078,
+            30.074500975337656
+          ],
+          [
+            -97.54258907319817,
+            30.07449695202413
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 85.0,
+        "osm_id": 15100973.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52725404606609,
+            30.08525093379578
+          ],
+          [
+            -97.52715807327476,
+            30.085513957917357
+          ],
+          [
+            -97.52693301917455,
+            30.08576197843226
+          ],
+          [
+            -97.52661308193042,
+            30.08578595067533
+          ],
+          [
+            -97.5259720339757,
+            30.0861059717385
+          ],
+          [
+            -97.5254590615015,
+            30.08639196227477
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 86.0,
+        "osm_id": 15100975.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52481005073875,
+            30.085350929900613
+          ],
+          [
+            -97.52477702604027,
+            30.08516594129759
+          ],
+          [
+            -97.52469404519884,
+            30.08452698881868
+          ],
+          [
+            -97.52456404188062,
+            30.084289948596933
+          ],
+          [
+            -97.52443504439078,
+            30.084119963600553
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 87.0,
+        "osm_id": 15100995.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.521253022489,
+            30.0854979484823
+          ],
+          [
+            -97.52099008218647,
+            30.0857599667755
+          ],
+          [
+            -97.52083501697774,
+            30.085883935123434
+          ],
+          [
+            -97.52076008276339,
+            30.086067917898074
+          ],
+          [
+            -97.52073200338776,
+            30.08620596784334
+          ],
+          [
+            -97.52072906972165,
+            30.086303952291445
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 88.0,
+        "osm_id": 15101041.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52676404000657,
+            30.172627999609034
+          ],
+          [
+            -97.5266450169815,
+            30.17233798575924
+          ],
+          [
+            -97.52934105613727,
+            30.168226997528734
+          ],
+          [
+            -97.52968907275702,
+            30.16820092980987
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 89.0,
+        "osm_id": 15101108.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52642901533673,
+            30.17213992138724
+          ],
+          [
+            -97.5266450169815,
+            30.17233798575924
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 90.0,
+        "osm_id": 15101183.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5820326331521,
+            30.103021741990066
+          ],
+          [
+            -97.58201972502121,
+            30.103296752233174
+          ],
+          [
+            -97.58204654711136,
+            30.103521722514355
+          ],
+          [
+            -97.58228258150473,
+            30.10376052293577
+          ],
+          [
+            -97.58243814962762,
+            30.103930927027275
+          ],
+          [
+            -97.58690335708623,
+            30.10767344679425
+          ],
+          [
+            -97.5871019243724,
+            30.10783178094522
+          ],
+          [
+            -97.58727366956843,
+            30.107937392925212
+          ],
+          [
+            -97.58738280194774,
+            30.107954994921872
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 91.0,
+        "osm_id": 15101244.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.64709204357557,
+            30.066304982776526
+          ],
+          [
+            -97.64629802588793,
+            30.06704795467385
+          ],
+          [
+            -97.64624102894636,
+            30.067030939410415
+          ],
+          [
+            -97.64606400315134,
+            30.06701199630922
+          ],
+          [
+            -97.6456410523172,
+            30.067138982142296
+          ],
+          [
+            -97.64536403041731,
+            30.067289940218473
+          ],
+          [
+            -97.64527602043398,
+            30.067416926051553
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 92.0,
+        "osm_id": 15101357.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52292487689601,
+            30.181293965481103
+          ],
+          [
+            -97.5227613459651,
+            30.181247697375568
+          ],
+          [
+            -97.52257945866623,
+            30.1811236452086
+          ],
+          [
+            -97.52234786668154,
+            30.181056422345165
+          ],
+          [
+            -97.52219447785347,
+            30.181081484235644
+          ],
+          [
+            -97.52197026194357,
+            30.181058266363863
+          ],
+          [
+            -97.52171645791549,
+            30.180963969953154
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 93.0,
+        "osm_id": 15101684.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52339501784502,
+            30.132085991244224
+          ],
+          [
+            -97.52293107950436,
+            30.131829924102277
+          ],
+          [
+            -97.52238701016937,
+            30.1314459491179
+          ],
+          [
+            -97.52235507511828,
+            30.130870950560197
+          ],
+          [
+            -97.52256303013601,
+            30.130038962851188
+          ],
+          [
+            -97.52320307226233,
+            30.128854935208892
+          ],
+          [
+            -97.5246910277137,
+            30.12711099643462
+          ],
+          [
+            -97.52481901937514,
+            30.125878940487127
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 94.0,
+        "osm_id": 15101754.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56480505610247,
+            30.10272192131353
+          ],
+          [
+            -97.56470003085572,
+            30.102722927141908
+          ],
+          [
+            -97.56459106611446,
+            30.10270691770685
+          ],
+          [
+            -97.56453700283899,
+            30.102685962948925
+          ],
+          [
+            -97.56441504614781,
+            30.10261195074389
+          ],
+          [
+            -97.56429904060789,
+            30.10255998294423
+          ],
+          [
+            -97.56427205087968,
+            30.102556965459087
+          ],
+          [
+            -97.56420600148265,
+            30.10256593409548
+          ],
+          [
+            -97.56416107448166,
+            30.102581943530538
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 95.0,
+        "osm_id": 15099690.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52022917301636,
+            30.171396027480593
+          ],
+          [
+            -97.5210863064349,
+            30.1700173720466
+          ],
+          [
+            -97.52273804427428,
+            30.167336923230753
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 96.0,
+        "osm_id": 15101759.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52086846077142,
+            30.182678823523418
+          ],
+          [
+            -97.52141714015316,
+            30.182941680006934
+          ],
+          [
+            -97.52175384120365,
+            30.18308366944672
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 97.0,
+        "osm_id": 15101760.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56454102615251,
+            30.10317093986654
+          ],
+          [
+            -97.56288803102767,
+            30.103264984820154
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 98.0,
+        "osm_id": 15101756.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56342103625045,
+            30.104164949763884
+          ],
+          [
+            -97.5636900115233,
+            30.103767982829595
+          ],
+          [
+            -97.56427607419319,
+            30.10325392070797
+          ],
+          [
+            -97.56454102615251,
+            30.10317093986654
+          ],
+          [
+            -97.56463901060062,
+            30.1031039684602
+          ],
+          [
+            -97.56468502724903,
+            30.103052922669857
+          ],
+          [
+            -97.56474604750413,
+            30.102926942665164
+          ],
+          [
+            -97.56478200586875,
+            30.102831975702202
+          ],
+          [
+            -97.56480505610247,
+            30.10272192131353
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 99.0,
+        "osm_id": 15101762.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52455364832068,
+            30.178759529418524
+          ],
+          [
+            -97.52418962226585,
+            30.178697587154062
+          ],
+          [
+            -97.52360976220432,
+            30.178402627981395
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 100.0,
+        "osm_id": 15101765.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.57325200284461,
+            30.0821219693411
+          ],
+          [
+            -97.5723420634361,
+            30.08280199314555
+          ],
+          [
+            -97.57196403960297,
+            30.08304297286179
+          ],
+          [
+            -97.57153404797016,
+            30.083524932294264
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 101.0,
+        "osm_id": 15101763.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.57135702217515,
+            30.08242899845433
+          ],
+          [
+            -97.57196403960297,
+            30.08304297286179
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 102.0,
+        "osm_id": 15101987.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54273684615112,
+            30.104699882824434
+          ],
+          [
+            -97.5425825353137,
+            30.104517827887488
+          ],
+          [
+            -97.54248362885625,
+            30.104313225631046
+          ],
+          [
+            -97.54229511985388,
+            30.10415908243166
+          ],
+          [
+            -97.54188004800872,
+            30.103940650034982
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 103.0,
+        "osm_id": 15101992.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54202203744848,
+            30.10509056333134
+          ],
+          [
+            -97.54178306938901,
+            30.104947568063206
+          ],
+          [
+            -97.54162205302903,
+            30.10482259388689
+          ],
+          [
+            -97.54131007859293,
+            30.104532580037073
+          ],
+          [
+            -97.54072703340816,
+            30.10400854345067
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 104.0,
+        "osm_id": 15102529.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52091506415307,
+            30.16442094293572
+          ],
+          [
+            -97.52224300907284,
+            30.164756973433953
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 105.0,
+        "osm_id": 15102133.0,
+        "type": "primary_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.57738394583303,
+            30.069651792894685
+          ],
+          [
+            -97.57608760068821,
+            30.070064853083093
+          ],
+          [
+            -97.57486501629133,
+            30.070427118938255
+          ],
+          [
+            -97.5738301027065,
+            30.070718138616428
+          ],
+          [
+            -97.5735889553522,
+            30.070809082265864
+          ],
+          [
+            -97.57338376636251,
+            30.070886363413106
+          ],
+          [
+            -97.57301228041385,
+            30.071052576553058
+          ],
+          [
+            -97.57219563158766,
+            30.07141794371239
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 106.0,
+        "osm_id": 15102962.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56756806666459,
+            30.079972933186436
+          ],
+          [
+            -97.56772103639751,
+            30.07979196789691
+          ],
+          [
+            -97.56789906802092,
+            30.079477981804047
+          ],
+          [
+            -97.56795405330574,
+            30.079383936850434
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 107.0,
+        "osm_id": 15103021.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52569107258134,
+            30.072236939471477
+          ],
+          [
+            -97.52603104257405,
+            30.071704940077037
+          ],
+          [
+            -97.52620806836907,
+            30.070070971872408
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 108.0,
+        "osm_id": 15102960.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56875100465948,
+            30.080676929233984
+          ],
+          [
+            -97.56894906903146,
+            30.080853955028996
+          ],
+          [
+            -97.56907102572264,
+            30.080737949489073
+          ],
+          [
+            -97.56912500517907,
+            30.08066293145569
+          ],
+          [
+            -97.56914202044251,
+            30.080606940342477
+          ],
+          [
+            -97.56924302237576,
+            30.080519936187525
+          ],
+          [
+            -97.56912500517907,
+            30.08036998393976
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 109.0,
+        "osm_id": 15103028.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5226860764746,
+            30.067820933784503
+          ],
+          [
+            -97.5241860180475,
+            30.06620892616618
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 110.0,
+        "osm_id": 15103534.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54050005147022,
+            30.133349982242777
+          ],
+          [
+            -97.54054807977542,
+            30.13390997719381
+          ],
+          [
+            -97.54048404203517,
+            30.135189977627444
+          ],
+          [
+            -97.53981206485776,
+            30.138453974542244
+          ],
+          [
+            -97.53987601877897,
+            30.139429963347762
+          ],
+          [
+            -97.5392680793418,
+            30.14112595763589
+          ],
+          [
+            -97.53907604994009,
+            30.143653939633023
+          ],
+          [
+            -97.53902802163489,
+            30.14426196288923
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 111.0,
+        "osm_id": 8148228.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80846203603366,
+            30.503278154188138
+          ],
+          [
+            -97.8084309391729,
+            30.503531790578165
+          ],
+          [
+            -97.80844166800895,
+            30.503647628480024
+          ],
+          [
+            -97.80849774294119,
+            30.503794563242646
+          ],
+          [
+            -97.80916888192829,
+            30.505425597781198
+          ],
+          [
+            -97.81023874804936,
+            30.50709259068435
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 112.0,
+        "osm_id": 15103539.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.53787207336825,
+            30.144179987876186
+          ],
+          [
+            -97.53690304154236,
+            30.1421579375546
+          ],
+          [
+            -97.53668402241242,
+            30.14182593036992
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 113.0,
+        "osm_id": 4652285.0,
+        "type": "primary",
+        "name": "Ranch Road 620",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "RM 620",
+        "z_order": 6.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.80502956286506,
+            30.465602840527705
+          ],
+          [
+            -97.80481565669609,
+            30.465665369525368
+          ],
+          [
+            -97.8047792792363,
+            30.465676517456586
+          ],
+          [
+            -97.80404812582249,
+            30.46590056572842
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 114.0,
+        "osm_id": 15099958.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52165610821264,
+            30.172205132593916
+          ],
+          [
+            -97.52148444683564,
+            30.172368328248723
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 115.0,
+        "osm_id": 15103948.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.61904703374731,
+            30.083989960282338
+          ],
+          [
+            -97.6169750272828,
+            30.085571960687304
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 116.0,
+        "osm_id": 15103922.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56633701654549,
+            30.13287296813317
+          ],
+          [
+            -97.56646308036923,
+            30.132811947878082
+          ],
+          [
+            -97.56702500315798,
+            30.132578930969853
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 117.0,
+        "osm_id": 15104012.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.6250610492743,
+            30.067063964108907
+          ],
+          [
+            -97.62516942728232,
+            30.066982072914897
+          ],
+          [
+            -97.62536522854045,
+            30.066622237811657
+          ],
+          [
+            -97.62539666067737,
+            30.06617782930539
+          ],
+          [
+            -97.62483683336441,
+            30.066255445728785
+          ],
+          [
+            -97.62443802241141,
+            30.066483936409295
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 118.0,
+        "osm_id": 15104044.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.64874403287203,
+            30.0674609310432
+          ],
+          [
+            -97.64833206233105,
+            30.068077922935796
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 119.0,
+        "osm_id": 4531224.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 43.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.79803687632355,
+            30.469950952798968
+          ],
+          [
+            -97.79787342921165,
+            30.469575946450988
+          ],
+          [
+            -97.797652482244,
+            30.469271934822867
+          ],
+          [
+            -97.79753681198021,
+            30.469160623148724
+          ],
+          [
+            -97.79728745036078,
+            30.46897119213702
+          ],
+          [
+            -97.79691705405955,
+            30.46876843389924
+          ],
+          [
+            -97.79657582678136,
+            30.468646393389037
+          ],
+          [
+            -97.79613242410349,
+            30.468583277658155
+          ],
+          [
+            -97.79579874053813,
+            30.468598029807733
+          ],
+          [
+            -97.79550671503159,
+            30.468639436409404
+          ],
+          [
+            -97.79407525360762,
+            30.469051155493272
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 120.0,
+        "osm_id": 15104047.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.64804305430962,
+            30.06726194466185
+          ],
+          [
+            -97.64775404628821,
+            30.06752899209698
+          ],
+          [
+            -97.64700001027872,
+            30.067715992356764
+          ],
+          [
+            -97.64684402306067,
+            30.06801799232812
+          ],
+          [
+            -97.64680605303928,
+            30.06812494541262
+          ],
+          [
+            -97.64549403373552,
+            30.06822997065936
+          ],
+          [
+            -97.64526805762597,
+            30.068434992010992
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 121.0,
+        "osm_id": 15104155.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54223736854101,
+            30.084678617447082
+          ],
+          [
+            -97.54238405184655,
+            30.08499696212959
+          ],
+          [
+            -97.54267205403958,
+            30.085544970959088
+          ],
+          [
+            -97.54241707654504,
+            30.08702596943081
+          ],
+          [
+            -97.54193805077868,
+            30.088039928257725
+          ],
+          [
+            -97.54171400250686,
+            30.08879698175235
+          ],
+          [
+            -97.5414260003138,
+            30.089344990581846
+          ],
+          [
+            -97.54145902501232,
+            30.090036916688803
+          ],
+          [
+            -97.54125106999459,
+            30.090567994073893
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 122.0,
+        "osm_id": 15104321.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5902140412017,
+            30.105541928817242
+          ],
+          [
+            -97.5912050336139,
+            30.106341981475136
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 123.0,
+        "osm_id": 15104707.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56754602225925,
+            30.079034998221317
+          ],
+          [
+            -97.56779203111739,
+            30.078759987978202
+          ],
+          [
+            -97.56711301314131,
+            30.078259923634878
+          ],
+          [
+            -97.56680305036195,
+            30.078399985236896
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 124.0,
+        "osm_id": 15104712.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58633464495588,
+            30.10198263745363
+          ],
+          [
+            -97.58691400210324,
+            30.10203368324397
+          ],
+          [
+            -97.58848586040538,
+            30.10332382578042
+          ],
+          [
+            -97.58851268249553,
+            30.10342591736108
+          ],
+          [
+            -97.58827128368414,
+            30.103620880428906
+          ],
+          [
+            -97.58821763950384,
+            30.10373688596883
+          ],
+          [
+            -97.58901157337243,
+            30.104344825406002
+          ],
+          [
+            -97.58936361330572,
+            30.104146928672062
+          ],
+          [
+            -97.59059365759643,
+            30.10516633573604
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 125.0,
+        "osm_id": 15103537.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.53586301499658,
+            30.143861978469772
+          ],
+          [
+            -97.53673900769725,
+            30.14409893487249
+          ],
+          [
+            -97.53787207336825,
+            30.144179987876186
+          ],
+          [
+            -97.53902802163489,
+            30.14426196288923
+          ],
+          [
+            -97.54318804399895,
+            30.145429981096438
+          ],
+          [
+            -97.54416403280447,
+            30.145077941163176
+          ],
+          [
+            -97.54483600998189,
+            30.145157988338465
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 126.0,
+        "osm_id": 15099943.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52277106897276,
+            30.12519095387466
+          ],
+          [
+            -97.52481901937514,
+            30.125878940487127
+          ],
+          [
+            -97.52725203440934,
+            30.12728894423898
+          ],
+          [
+            -97.52707500861432,
+            30.127923957223402
+          ],
+          [
+            -97.52678004944164,
+            30.128712945769138
+          ],
+          [
+            -97.52609005117239,
+            30.129835953156316
+          ],
+          [
+            -97.52547205345141,
+            30.130610943923756
+          ],
+          [
+            -97.52513501712481,
+            30.131180997158566
+          ],
+          [
+            -97.52476403409034,
+            30.131796983222785
+          ],
+          [
+            -97.5249540518353,
+            30.133057956736224
+          ],
+          [
+            -97.52400907607151,
+            30.134699971567926
+          ],
+          [
+            -97.52322201536352,
+            30.13709895607519
+          ],
+          [
+            -97.52251407982148,
+            30.138976921481227
+          ],
+          [
+            -97.5222870140645,
+            30.141491995347483
+          ],
+          [
+            -97.5224240581814,
+            30.14354698654853
+          ],
+          [
+            -97.5227420675878,
+            30.14604898464583
+          ],
+          [
+            -97.52300802537549,
+            30.148046978905285
+          ],
+          [
+            -97.52331304283197,
+            30.15040095259255
+          ],
+          [
+            -97.52302504063893,
+            30.151561930001094
+          ],
+          [
+            -97.52271306620281,
+            30.152434989035665
+          ],
+          [
+            -97.52245305956636,
+            30.15315893401276
+          ],
+          [
+            -97.52190102742337,
+            30.15365095172905
+          ],
+          [
+            -97.52142401331376,
+            30.154547983006665
+          ],
+          [
+            -97.52177001827677,
+            30.15520093326387
+          ],
+          [
+            -97.5228590789561,
+            30.15628597062968
+          ],
+          [
+            -97.52179206268211,
+            30.15691293698708
+          ],
+          [
+            -97.52231500962111,
+            30.15756395940656
+          ],
+          [
+            -97.5221950645867,
+            30.158188997926203
+          ],
+          [
+            -97.52171905630547,
+            30.158613960417114
+          ],
+          [
+            -97.52259504900614,
+            30.159067924293
+          ],
+          [
+            -97.5231620009368,
+            30.159550973372884
+          ],
+          [
+            -97.5234150505936,
+            30.160329987453817
+          ],
+          [
+            -97.52353105613352,
+            30.160871961313006
+          ],
+          [
+            -97.52321002924198,
+            30.161175972941123
+          ],
+          [
+            -97.52223303460808,
+            30.161617950695472
+          ],
+          [
+            -97.52186900855324,
+            30.162092953148317
+          ],
+          [
+            -97.52088706859647,
+            30.16221298200176
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 127.0,
+        "osm_id": 15104779.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52440201969227,
+            30.063233937272795
+          ],
+          [
+            -97.52427603968758,
+            30.063756968030816
+          ],
+          [
+            -97.52367304557328,
+            30.064486947978192
+          ],
+          [
+            -97.52310005867234,
+            30.06509195374926
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 128.0,
+        "osm_id": 15104780.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52445105382584,
+            30.064991957644427
+          ],
+          [
+            -97.52566500486246,
+            30.06651293779427
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 129.0,
+        "osm_id": 4650855.0,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58693084972863,
+            30.481680420461913
+          ],
+          [
+            -97.58851813073261,
+            30.479435327696876
+          ],
+          [
+            -97.58946176539187,
+            30.47796514188025
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 130.0,
+        "osm_id": 15104983.0,
+        "type": "residential",
+        "name": "Oak Hollow",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59981970223855,
+            30.068906054969347
+          ],
+          [
+            -97.5976033594014,
+            30.07086708503581
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 131.0,
+        "osm_id": 15105032.0,
+        "type": "residential",
+        "name": "James McHugh Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58917007516143,
+            30.06616399916516
+          ],
+          [
+            -97.58881803522814,
+            30.066455940852705
+          ],
+          [
+            -97.58873606021511,
+            30.06653992752248
+          ],
+          [
+            -97.5886430210899,
+            30.066614945555898
+          ],
+          [
+            -97.5885390016715,
+            30.066678983296157
+          ],
+          [
+            -97.58845107550721,
+            30.066720976631043
+          ],
+          [
+            -97.58835501889685,
+            30.066756934995652
+          ],
+          [
+            -97.58475800896896,
+            30.068368942614
+          ],
+          [
+            -97.58466706531952,
+            30.06840498479764
+          ],
+          [
+            -97.584560028416,
+            30.06846298756758
+          ],
+          [
+            -97.58444402287608,
+            30.06854898589415
+          ],
+          [
+            -97.58435106756988,
+            30.068637917886832
+          ],
+          [
+            -97.58412903095483,
+            30.06887495810858
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 132.0,
+        "osm_id": 15103857.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5723420634361,
+            30.08280199314555
+          ],
+          [
+            -97.57279703314035,
+            30.083678991674613
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 133.0,
+        "osm_id": 15105211.0,
+        "type": "residential",
+        "name": "Port Magee Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59327704007839,
+            30.074007951792996
+          ],
+          [
+            -97.59355506780666,
+            30.0742419745296
+          ],
+          [
+            -97.59557401682407,
+            30.07660994599516
+          ],
+          [
+            -97.59566605012091,
+            30.076740955141755
+          ],
+          [
+            -97.59572204123411,
+            30.07684095124662
+          ],
+          [
+            -97.5957700695393,
+            30.076940947351485
+          ],
+          [
+            -97.59582304316734,
+            30.077087965933146
+          ],
+          [
+            -97.59585807952261,
+            30.07723992983767
+          ],
+          [
+            -97.59596603843549,
+            30.078212984977082
+          ],
+          [
+            -97.59622302758679,
+            30.08025397839984
+          ],
+          [
+            -97.5962610814272,
+            30.080405942304363
+          ],
+          [
+            -97.59630600842821,
+            30.08053091648068
+          ],
+          [
+            -97.59637608113874,
+            30.080672989739497
+          ],
+          [
+            -97.596448081687,
+            30.080789917288772
+          ],
+          [
+            -97.5965500056296,
+            30.08091799276926
+          ],
+          [
+            -97.59734704080236,
+            30.081523920549667
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 134.0,
+        "osm_id": 15105512.0,
+        "type": "residential",
+        "name": "McGillecuddy Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59835504847801,
+            30.075824980762945
+          ],
+          [
+            -97.59811700242788,
+            30.076207949918963
+          ],
+          [
+            -97.59804801936475,
+            30.07634599986423
+          ],
+          [
+            -97.59799705739347,
+            30.076493940455236
+          ],
+          [
+            -97.59796604435172,
+            30.076646994007177
+          ],
+          [
+            -97.59795405823019,
+            30.07680096956849
+          ],
+          [
+            -97.59796302686658,
+            30.07695494512978
+          ],
+          [
+            -97.59842704902627,
+            30.08071095976086
+          ],
+          [
+            -97.59845403875448,
+            30.080818918673742
+          ],
+          [
+            -97.59850106123129,
+            30.08094397666909
+          ],
+          [
+            -97.59856300349574,
+            30.081062999694154
+          ],
+          [
+            -97.59861203762931,
+            30.08114095139365
+          ],
+          [
+            -97.59871404539093,
+            30.081266931398375
+          ],
+          [
+            -97.5987910750811,
+            30.08134295526014
+          ],
+          [
+            -97.59950906890694,
+            30.08197997990132
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 135.0,
+        "osm_id": 15100552.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.53753906035516,
+            30.078396967751754
+          ],
+          [
+            -97.5379340156327,
+            30.07909895214254
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 136.0,
+        "osm_id": 15105744.0,
+        "type": "residential",
+        "name": "Headquarters Road",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.57669302555443,
+            30.108831993450902
+          ],
+          [
+            -97.57773900325147,
+            30.107916941081445
+          ],
+          [
+            -97.57778200241475,
+            30.107862961625017
+          ],
+          [
+            -97.577809075962,
+            30.10779992971314
+          ],
+          [
+            -97.57781502711325,
+            30.107730946650037
+          ],
+          [
+            -97.57780102933495,
+            30.10766498107205
+          ],
+          [
+            -97.57776708262708,
+            30.10760597247372
+          ],
+          [
+            -97.57774403239337,
+            30.107577976917124
+          ],
+          [
+            -97.57615105169523,
+            30.10619093957996
+          ],
+          [
+            -97.57373203443935,
+            30.1041089586507
+          ],
+          [
+            -97.57338804113313,
+            30.103795978386184
+          ],
+          [
+            -97.5732910625134,
+            30.103730934817577
+          ],
+          [
+            -97.573187043095,
+            30.103673937875982
+          ],
+          [
+            -97.57307606669701,
+            30.10362699921822
+          ],
+          [
+            -97.57296006115709,
+            30.103588945377822
+          ],
+          [
+            -97.57284003230365,
+            30.103561955649578
+          ],
+          [
+            -97.57218205290452,
+            30.10348098646494
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 137.0,
+        "osm_id": 15105813.0,
+        "type": "residential",
+        "name": "Ennishilen Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.60276200170955,
+            30.077711998624405
+          ],
+          [
+            -97.60216705422229,
+            30.078199993027166
+          ],
+          [
+            -97.60015707384127,
+            30.080084999231875
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 138.0,
+        "osm_id": 15104017.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56316304127078,
+            30.063328988054792
+          ],
+          [
+            -97.56291602658426,
+            30.063591928357344
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 139.0,
+        "osm_id": 15100561.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54258907319817,
+            30.07449695202413
+          ],
+          [
+            -97.5424430604449,
+            30.07410291875596
+          ],
+          [
+            -97.54240307876675,
+            30.073803936269773
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 140.0,
+        "osm_id": 15099445.0,
+        "type": "residential",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54574502738106,
+            30.103135987330315
+          ],
+          [
+            -97.5455560154645,
+            30.10303892489156
+          ],
+          [
+            -97.54533506849685,
+            30.10287296320874
+          ],
+          [
+            -97.54511504353853,
+            30.102714964333895
+          ],
+          [
+            -97.54487800331678,
+            30.10258697267244
+          ],
+          [
+            -97.54464305857083,
+            30.102548918832042
+          ],
+          [
+            -97.54437005998449,
+            30.102624942693836
+          ],
+          [
+            -97.54413301976274,
+            30.102704989869125
+          ],
+          [
+            -97.5439060378248,
+            30.102889978472174
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 141.0,
+        "osm_id": 15104952.0,
+        "type": "residential",
+        "name": "Braedon Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59337200704135,
+            30.077010936242967
+          ],
+          [
+            -97.59262300017377,
+            30.07764896671256
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 142.0,
+        "osm_id": 15106699.0,
+        "type": "residential",
+        "name": "Oak Forest Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.57077900613228,
+            30.081871937169435
+          ],
+          [
+            -97.57135702217515,
+            30.08242899845433
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 143.0,
+        "osm_id": 15095029.0,
+        "type": "service",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 0.0,
+        "access": "private",
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.6210680782405,
+            30.063694941947343
+          ],
+          [
+            -97.62081201109855,
+            30.065847917596496
+          ],
+          [
+            -97.62067404497232,
+            30.066222923944476
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 144.0,
+        "osm_id": 15107018.0,
+        "type": "residential",
+        "name": "Lakeside Circle",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59390735919705,
+            30.10212932075916
+          ],
+          [
+            -97.59467103439519,
+            30.102734997082507
+          ],
+          [
+            -97.59477103050004,
+            30.102797945175325
+          ],
+          [
+            -97.59487706157519,
+            30.10284999679402
+          ],
+          [
+            -97.59499004962997,
+            30.102890984300558
+          ],
+          [
+            -97.5951060551699,
+            30.102923925180022
+          ],
+          [
+            -97.59609302426857,
+            30.10309298816702
+          ],
+          [
+            -97.596213053122,
+            30.103122995380403
+          ],
+          [
+            -97.59633006449032,
+            30.103161971230154
+          ],
+          [
+            -97.5964430525451,
+            30.10320798787856
+          ],
+          [
+            -97.5965500056296,
+            30.103264984820154
+          ],
+          [
+            -97.5966520133912,
+            30.103327932912975
+          ],
+          [
+            -97.5967470641732,
+            30.103398927632867
+          ],
+          [
+            -97.59685108359159,
+            30.10348894927296
+          ],
+          [
+            -97.59698804388944,
+            30.103598919842597
+          ],
+          [
+            -97.597111006409,
+            30.103719954524422
+          ],
+          [
+            -97.5972190491409,
+            30.103851969499402
+          ],
+          [
+            -97.59730907078098,
+            30.10399094145401
+          ],
+          [
+            -97.59736103858066,
+            30.104090937558876
+          ],
+          [
+            -97.5973920516224,
+            30.104193951148883
+          ],
+          [
+            -97.5974060494007,
+            30.10429797056724
+          ],
+          [
+            -97.59740806105745,
+            30.104350944195318
+          ],
+          [
+            -97.59740001443042,
+            30.1044549636137
+          ],
+          [
+            -97.59737604218732,
+            30.104558983032092
+          ],
+          [
+            -97.5973360605092,
+            30.104656967480167
+          ],
+          [
+            -97.59726104247581,
+            30.1047809358281
+          ],
+          [
+            -97.59722600612054,
+            30.10483893859808
+          ],
+          [
+            -97.59716406385608,
+            30.104922925267886
+          ],
+          [
+            -97.59709407496459,
+            30.10500397827155
+          ],
+          [
+            -97.5970180511028,
+            30.105079918314317
+          ],
+          [
+            -97.59619201454505,
+            30.10580998208073
+          ],
+          [
+            -97.59587006564415,
+            30.106094966788618
+          ],
+          [
+            -97.59508107709843,
+            30.106784965057866
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 145.0,
+        "osm_id": 15107032.0,
+        "type": "residential",
+        "name": "Jeffery Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52011107200066,
+            30.09318197439757
+          ],
+          [
+            -97.52012800344508,
+            30.093154984669354
+          ],
+          [
+            -97.52016806894223,
+            30.093114919172194
+          ],
+          [
+            -97.52022003674192,
+            30.093090946929124
+          ],
+          [
+            -97.52062806778841,
+            30.092711917267593
+          ],
+          [
+            -97.52206204378332,
+            30.091403921277387
+          ],
+          [
+            -97.52240301960443,
+            30.091089935184502
+          ],
+          [
+            -97.52359501005473,
+            30.090026942224032
+          ],
+          [
+            -97.52436404967091,
+            30.089314983368464
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 146.0,
+        "osm_id": 15107034.0,
+        "type": "residential",
+        "name": "Jeffery Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.52821905457847,
+            30.088783989802433
+          ],
+          [
+            -97.52864108340326,
+            30.088752976760702
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 147.0,
+        "osm_id": 15106135.0,
+        "type": "residential",
+        "name": "Saldana Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54686401145473,
+            30.111956934592058
+          ],
+          [
+            -97.54575500184583,
+            30.112930995559854
+          ],
+          [
+            -97.54536406988183,
+            30.113254956117515
+          ],
+          [
+            -97.54312006676422,
+            30.11527692262004
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 148.0,
+        "osm_id": 15107186.0,
+        "type": "residential",
+        "name": "Forest Run",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.60127270515368,
+            30.07030264767613
+          ],
+          [
+            -97.60074757891985,
+            30.07071721660708
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 149.0,
+        "osm_id": 15107204.0,
+        "type": "residential",
+        "name": "Reeves Lane",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.54392104143147,
+            30.109895992239757
+          ],
+          [
+            -97.54275805236614,
+            30.1109209313598
+          ],
+          [
+            -97.54077606754174,
+            30.112631929254633
+          ],
+          [
+            -97.5398520465359,
+            30.11344296220568
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 150.0,
+        "osm_id": 15107252.0,
+        "type": "residential",
+        "name": "High Ridge Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56904705347957,
+            30.134721932154235
+          ],
+          [
+            -97.56915802987757,
+            30.13464993160596
+          ],
+          [
+            -97.5693820781494,
+            30.134502996843338
+          ],
+          [
+            -97.56944804372738,
+            30.134438959103075
+          ],
+          [
+            -97.56953907119585,
+            30.13431096744162
+          ],
+          [
+            -97.57006503561999,
+            30.13338795226417
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 151.0,
+        "osm_id": 15107256.0,
+        "type": "residential",
+        "name": "High Ridge Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56809906023064,
+            30.13714296106687
+          ],
+          [
+            -97.56825605327708,
+            30.13687691946015
+          ],
+          [
+            -97.56830701524837,
+            30.136776923355285
+          ],
+          [
+            -97.56834708074554,
+            30.136678938907178
+          ],
+          [
+            -97.56842302078829,
+            30.13639998916958
+          ],
+          [
+            -97.56861102687647,
+            30.135633967038526
+          ],
+          [
+            -97.56867104130319,
+            30.135510920699943
+          ],
+          [
+            -97.56873801270956,
+            30.135407990928968
+          ],
+          [
+            -97.56879601547952,
+            30.135331967067206
+          ],
+          [
+            -97.56887807431158,
+            30.135248986225776
+          ],
+          [
+            -97.56897706458805,
+            30.135159970414065
+          ],
+          [
+            -97.56918703126256,
+            30.135001971539253
+          ],
+          [
+            -97.5692550084973,
+            30.134964923527235
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 152.0,
+        "osm_id": 15107520.0,
+        "type": "residential",
+        "name": "Oriole Cove",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.55051525229612,
+            30.138958146018123
+          ],
+          [
+            -97.55061156036359,
+            30.138576685604704
+          ],
+          [
+            -97.55084373908151,
+            30.138187849116463
+          ],
+          [
+            -97.55097634078972,
+            30.137967656520118
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 153.0,
+        "osm_id": 15106693.0,
+        "type": "residential",
+        "name": "Hume Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.58784707556453,
+            30.072161921438063
+          ],
+          [
+            -97.58712505842516,
+            30.072800957736007
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 154.0,
+        "osm_id": 15107065.0,
+        "type": "unclassified",
+        "name": "Mesa Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.56072902040823,
+            30.122332976349583
+          ],
+          [
+            -97.56077201957152,
+            30.12230892028748
+          ],
+          [
+            -97.56079004066333,
+            30.12229492250918
+          ],
+          [
+            -97.56087402733313,
+            30.122205990516505
+          ],
+          [
+            -97.56094200456786,
+            30.122119992189937
+          ],
+          [
+            -97.56104904147139,
+            30.12196492698123
+          ],
+          [
+            -97.56107401954286,
+            30.12191899415185
+          ],
+          [
+            -97.56109606394818,
+            30.12186694253313
+          ],
+          [
+            -97.56114501426272,
+            30.121700980850303
+          ],
+          [
+            -97.5611520550614,
+            30.121502916478306
+          ],
+          [
+            -97.56115800621265,
+            30.121439968385488
+          ],
+          [
+            -97.56119103091115,
+            30.121280963682267
+          ],
+          [
+            -97.56121408114487,
+            30.121214998104303
+          ],
+          [
+            -97.56124308252986,
+            30.12115598950595
+          ],
+          [
+            -97.56128004672286,
+            30.1210929575941
+          ],
+          [
+            -97.56132807502803,
+            30.12102799784449
+          ],
+          [
+            -97.56147500979067,
+            30.12086597565616
+          ],
+          [
+            -97.56163703197902,
+            30.12070194181103
+          ],
+          [
+            -97.56178203890391,
+            30.12057596180634
+          ],
+          [
+            -97.56185504528055,
+            30.120524999835055
+          ],
+          [
+            -97.56192503417206,
+            30.120482922681134
+          ],
+          [
+            -97.5619930114068,
+            30.120453921296136
+          ],
+          [
+            -97.56206107246057,
+            30.1204329665382
+          ],
+          [
+            -97.56213106135205,
+            30.120417962931526
+          ],
+          [
+            -97.56220406772869,
+            30.120408994295133
+          ],
+          [
+            -97.56235603163324,
+            30.12040396515323
+          ],
+          [
+            -97.56273900078922,
+            30.12042299207343
+          ],
+          [
+            -97.56296304906107,
+            30.12042299207343
+          ],
+          [
+            -97.56304703573086,
+            30.120418968759903
+          ],
+          [
+            -97.56312104793587,
+            30.12040991630448
+          ],
+          [
+            -97.56329606207414,
+            30.120374963768256
+          ],
+          [
+            -97.56390106784521,
+            30.120205984600258
+          ],
+          [
+            -97.56417800592607,
+            30.1201159629602
+          ],
+          [
+            -97.56427003922292,
+            30.120076987110423
+          ],
+          [
+            -97.56435302006433,
+            30.120034993775533
+          ],
+          [
+            -97.56442703226935,
+            30.119989982955502
+          ],
+          [
+            -97.56456508221461,
+            30.11988294605197
+          ],
+          [
+            -97.56469500171382,
+            30.11976199518918
+          ],
+          [
+            -97.56489801140867,
+            30.119523949139055
+          ],
+          [
+            -97.56562304603318,
+            30.11884099166846
+          ],
+          [
+            -97.5658140696065,
+            30.118635970316827
+          ],
+          [
+            -97.5659910115825,
+            30.118422986157213
+          ],
+          [
+            -97.5661500162857,
+            30.118197932056997
+          ],
+          [
+            -97.5663190792727,
+            30.11791797649099
+          ],
+          [
+            -97.5664460651058,
+            30.117741956524355
+          ],
+          [
+            -97.56658805454555,
+            30.117571971528005
+          ],
+          [
+            -97.5673480417063,
+            30.11680192608344
+          ],
+          [
+            -97.56749304863119,
+            30.116633952743854
+          ],
+          [
+            -97.56762003446427,
+            30.116455921120433
+          ],
+          [
+            -97.56773101086229,
+            30.116267998851296
+          ],
+          [
+            -97.56784601057383,
+            30.116025929487652
+          ],
+          [
+            -97.56789806219254,
+            30.115927945039545
+          ],
+          [
+            -97.56795707079088,
+            30.11583599556172
+          ],
+          [
+            -97.56802303636884,
+            30.115745973921634
+          ],
+          [
+            -97.5680960427455,
+            30.115659975595094
+          ],
+          [
+            -97.56817701193015,
+            30.115578922591396
+          ],
+          [
+            -97.56900103683114,
+            30.11487593237223
+          ],
+          [
+            -97.56903003821611,
+            30.114860928765548
+          ],
+          [
+            -97.56909407595636,
+            30.114836956522478
+          ],
+          [
+            -97.56912802266422,
+            30.114831927380575
+          ],
+          [
+            -97.56919608371798,
+            30.1148309215522
+          ],
+          [
+            -97.56923003042584,
+            30.114836956522478
+          ],
+          [
+            -97.56929406816609,
+            30.11485799509944
+          ],
+          [
+            -97.56932407537944,
+            30.11487492654385
+          ],
+          [
+            -97.57113205189397,
+            30.116462961919098
+          ],
+          [
+            -97.57118904883554,
+            30.116488945818958
+          ],
+          [
+            -97.57125300275676,
+            30.11649799827438
+          ],
+          [
+            -97.57131704049701,
+            30.11649397496086
+          ],
+          [
+            -97.57134905936714,
+            30.116483916677023
+          ],
+          [
+            -97.57140505048034,
+            30.116454999111085
+          ],
+          [
+            -97.57178600797957,
+            30.116129948906035
+          ],
+          [
+            -97.57274104202716,
+            30.115294943711884
+          ],
+          [
+            -97.57333707916183,
+            30.114777947924125
+          ],
+          [
+            -97.57477901796477,
+            30.11346391696361
+          ],
+          [
+            -97.57480407985526,
+            30.113444973862443
+          ],
+          [
+            -97.57486401046295,
+            30.113409937507182
+          ],
+          [
+            -97.5749320715167,
+            30.113392922243747
+          ],
+          [
+            -97.57500206040821,
+            30.113390994406018
+          ],
+          [
+            -97.57510205651307,
+            30.11341798413423
+          ],
+          [
+            -97.57515905345464,
+            30.113454948327213
+          ],
+          [
+            -97.57607502783345,
+            30.114261957964768
+          ],
+          [
+            -97.57717607463431,
+            30.115189918465116
+          ],
+          [
+            -97.57806505928491,
+            30.116006986386477
+          ],
+          [
+            -97.57809800016439,
+            30.11602693531603
+          ],
+          [
+            -97.57813303651965,
+            30.116041938922702
+          ],
+          [
+            -97.57820805455306,
+            30.116061971671286
+          ],
+          [
+            -97.57828701208095,
+            30.116066916994154
+          ],
+          [
+            -97.57832607174973,
+            30.116061971671286
+          ],
+          [
+            -97.57840201179248,
+            30.116044956407844
+          ],
+          [
+            -97.57847007284626,
+            30.116009920052594
+          ],
+          [
+            -97.57938001225477,
+            30.11527097146879
+          ],
+          [
+            -97.58073301906504,
+            30.114031958541684
+          ],
+          [
+            -97.5811420559399,
+            30.113608923888535
+          ],
+          [
+            -97.58166600870729,
+            30.113066950029317
+          ],
+          [
+            -97.58396902042324,
+            30.111202982401604
+          ],
+          [
+            -97.58428811947705,
+            30.1108260482159
+          ],
+          [
+            -97.58512706416569,
+            30.110013925617405
+          ],
+          [
+            -97.58555361921817,
+            30.109680325871093
+          ],
+          [
+            -97.58567306133841,
+            30.109586951469733
+          ],
+          [
+            -97.58618703964102,
+            30.109171376710407
+          ],
+          [
+            -97.58631151090314,
+            30.109046653991182
+          ],
+          [
+            -97.58722161794972,
+            30.10813537347815
+          ],
+          [
+            -97.58738280194774,
+            30.107954994921872
+          ],
+          [
+            -97.58807707498761,
+            30.107407489006558
+          ],
+          [
+            -97.58839525203207,
+            30.107127533440575
+          ],
+          [
+            -97.58845141078334,
+            30.107078164030895
+          ],
+          [
+            -97.58888106714002,
+            30.106749928702612
+          ],
+          [
+            -97.58893345403484,
+            30.106695194874877
+          ],
+          [
+            -97.58902951064522,
+            30.106594528217784
+          ],
+          [
+            -97.5890862561297,
+            30.10653535198136
+          ],
+          [
+            -97.5892870027107,
+            30.106381963153297
+          ],
+          [
+            -97.58938800464395,
+            30.106289929856445
+          ],
+          [
+            -97.58959101433881,
+            30.106105947081772
+          ],
+          [
+            -97.58998303595024,
+            30.105751979310785
+          ],
+          [
+            -97.5902140412017,
+            30.105541928817242
+          ],
+          [
+            -97.59042107421008,
+            30.10535392272905
+          ],
+          [
+            -97.59059365759643,
+            30.10516633573604
+          ],
+          [
+            -97.59064520630095,
+            30.105119899992445
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 155.0,
+        "osm_id": 15107542.0,
+        "type": "residential",
+        "name": "Privada Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5693900409574,
+            30.11171494904744
+          ],
+          [
+            -97.5686290479683,
+            30.111053952163157
+          ],
+          [
+            -97.56861102687647,
+            30.11103391941458
+          ],
+          [
+            -97.56859803492655,
+            30.111011958828268
+          ],
+          [
+            -97.56858303131987,
+            30.110961918866337
+          ],
+          [
+            -97.568586048805,
+            30.110911962723407
+          ],
+          [
+            -97.5686060815536,
+            30.110862928589853
+          ],
+          [
+            -97.56862200716962,
+            30.11084197383192
+          ],
+          [
+            -97.57012605587508,
+            30.109536995326835
+          ],
+          [
+            -97.5701720725235,
+            30.10948896702166
+          ],
+          [
+            -97.5701900097963,
+            30.10945895980828
+          ],
+          [
+            -97.57020207973687,
+            30.10942895259492
+          ],
+          [
+            -97.57024407307178,
+            30.10926793623497
+          ],
+          [
+            -97.57028506057827,
+            30.109171963443625
+          ],
+          [
+            -97.57033803420634,
+            30.109082947631915
+          ],
+          [
+            -97.57040106611821,
+            30.108998960962108
+          ],
+          [
+            -97.57076308051627,
+            30.108618925472225
+          ],
+          [
+            -97.57138501773174,
+            30.107966981043404
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 156.0,
+        "osm_id": 15107571.0,
+        "type": "residential",
+        "name": "Legend Oaks Drive",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.59394281464746,
+            30.063073926741225
+          ],
+          [
+            -97.59443164724055,
+            30.06382712456039
+          ],
+          [
+            -97.59482283066166,
+            30.06444797212845
+          ],
+          [
+            -97.59504168215352,
+            30.06482842671349
+          ],
+          [
+            -97.59524963717125,
+            30.065016265163617
+          ],
+          [
+            -97.59610735732299,
+            30.065759739975107
+          ],
+          [
+            -97.5978133260759,
+            30.067196062902923
+          ],
+          [
+            -97.59981970223855,
+            30.068906054969347
+          ],
+          [
+            -97.60127270515368,
+            30.07030264767613
+          ],
+          [
+            -97.60286065670988,
+            30.071625228177876
+          ],
+          [
+            -97.6044248036611,
+            30.072992065128375
+          ],
+          [
+            -97.60497951801311,
+            30.073392384823933
+          ],
+          [
+            -97.60540565397048,
+            30.0736096437542
+          ],
+          [
+            -97.60639136578368,
+            30.07444783407155
+          ],
+          [
+            -97.60640737521874,
+            30.074489827406435
+          ],
+          [
+            -97.60641030888485,
+            30.074533832398114
+          ],
+          [
+            -97.60640134024845,
+            30.074577837389768
+          ],
+          [
+            -97.60637937966214,
+            30.074615891230163
+          ],
+          [
+            -97.60634836662038,
+            30.07464782628128
+          ],
+          [
+            -97.60413923221998,
+            30.076591254351086
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 157.0,
+        "osm_id": 15107631.0,
+        "type": "residential",
+        "name": "View Ridge",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5908080666796,
+            30.063888983005796
+          ],
+          [
+            -97.59083002726591,
+            30.063951931098643
+          ],
+          [
+            -97.59118407885597,
+            30.064963962087806
+          ],
+          [
+            -97.59138407106569,
+            30.06596098947031
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 158.0,
+        "osm_id": 15107684.0,
+        "type": "residential",
+        "name": "Rainbow Lane",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.57938001225477,
+            30.11527097146879
+          ],
+          [
+            -97.58122805426646,
+            30.11682598214554
+          ],
+          [
+            -97.58132100957266,
+            30.11689395938029
+          ],
+          [
+            -97.58142402316267,
+            30.116950956321855
+          ],
+          [
+            -97.58153407755134,
+            30.116994961313537
+          ],
+          [
+            -97.58165100510061,
+            30.11702496852689
+          ],
+          [
+            -97.58177002812567,
+            30.11704097796195
+          ],
+          [
+            -97.58189206863588,
+            30.11704399544709
+          ],
+          [
+            -97.58201301949866,
+            30.117032931334904
+          ],
+          [
+            -97.58213003086698,
+            30.11700795326345
+          ],
+          [
+            -97.58224301892176,
+            30.116968977413705
+          ],
+          [
+            -97.58235005582526,
+            30.116915919966598
+          ],
+          [
+            -97.582447034445,
+            30.116854983530544
+          ],
+          [
+            -97.5829240485546,
+            30.116454999111085
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 159.0,
+        "osm_id": 15107790.0,
+        "type": "residential",
+        "name": "Shadow Wood Trail",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.55128621975004,
+            30.138694451344293
+          ],
+          [
+            -97.55161034794577,
+            30.139363578674615
+          ],
+          [
+            -97.55169366406331,
+            30.139761635256317
+          ],
+          [
+            -97.55153600046461,
+            30.14005835462868
+          ],
+          [
+            -97.55083904521572,
+            30.14119636562253
+          ],
+          [
+            -97.5501020244697,
+            30.14081934761779
+          ],
+          [
+            -97.54943214276804,
+            30.140489435908904
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 160.0,
+        "osm_id": 15107796.0,
+        "type": "residential",
+        "name": "Mockingbird Cove",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.55185208203329,
+            30.136711963605677
+          ],
+          [
+            -97.55146601157311,
+            30.13654399026609
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 161.0,
+        "osm_id": 15107837.0,
+        "type": "residential",
+        "name": "Winecup Path",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5501020244697,
+            30.14081934761779
+          ],
+          [
+            -97.5509710601907,
+            30.139597685230257
+          ],
+          [
+            -97.55161034794577,
+            30.139363578674615
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 162.0,
+        "osm_id": 15107874.0,
+        "type": "residential",
+        "name": "High Point Boulevard",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3.0,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.545972009319,
+            30.142150980574968
+          ],
+          [
+            -97.54618105398416,
+            30.141805981440342
+          ],
+          [
+            -97.54620502622721,
+            30.14178192537824
+          ],
+          [
+            -97.54626302899719,
+            30.141738926214966
+          ],
+          [
+            -97.54633100623192,
+            30.141709924829996
+          ],
+          [
+            -97.54636906007232,
+            30.141702967850367
+          ],
+          [
+            -97.54644407810574,
+            30.141695927051696
+          ],
+          [
+            -97.54648305395548,
+            30.141699950365222
+          ],
+          [
+            -97.54655606033214,
+            30.1417149539719
+          ],
+          [
+            -97.54659000703998,
+            30.141728951750196
+          ],
+          [
+            -97.54724605860136,
+            30.142051990298484
+          ],
+          [
+            -97.54813135521457,
+            30.142450885070527
+          ],
+          [
+            -97.54934497097506,
+            30.14304633547198
+          ],
+          [
+            -97.54985836254444,
+            30.143294691263005
+          ]
+        ]
+      }
+    }
+  ]
+}

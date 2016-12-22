@@ -30,6 +30,7 @@ public class EntryEventSpecificRecordSerializer implements Serializer<EntryEvent
             BinaryEncoder encoder = factory.directBinaryEncoder(bos, null);
             SpecificDatumWriter<SpecificRecord> writer = new SpecificDatumWriter<SpecificRecord>(rec.getSchema());
             writer.write(rec, encoder);
+            encoder.flush();
             byte[] b = bos.toByteArray();
             return b;
         } catch (Exception x) {

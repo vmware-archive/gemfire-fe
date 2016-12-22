@@ -1,0 +1,11 @@
+group = 'io.pivotal.bds.gemfire'
+apply plugin: 'war'
+
+description = ''
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.4.1.RELEASE'
+    compile group: 'com.gemstone.gemfire', name: 'gemfire', version:'8.2.1'
+  compile project(':gemfire-examples:gemfire-xrefs:gemfire-xrefs-common')
+    compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.21'
+  compile project(':gemfire-utils:gemfire-keyfw')
+}

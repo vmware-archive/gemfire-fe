@@ -1,0 +1,31 @@
+allprojects  {
+  apply plugin: 'maven'
+
+  group = 'io.pivotal.bds'
+version = '0.0.1-SNAPSHOT'
+}
+
+subprojects {
+  apply plugin: 'java'
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+  tasks.withType(JavaCompile) {
+  	options.encoding = 'UTF-8'
+  }
+
+  
+  repositories {
+    mavenLocal()
+    
+    maven { url "http://dist.gemstone.com/maven/release" }
+    maven { url "http://repo.spring.io/release/" }
+    maven { url "http://repo.spring.io/milestone/" }
+    maven { url "http://repo.springsource.org/libs-release" }
+    maven { url "http://download.osgeo.org/webdav/geotools/" }
+    maven { url "http://repo.maven.apache.org/maven2" }
+  }
+
+  
+  
+  
+}

@@ -1,0 +1,8 @@
+group = 'io.pivotal.bds.gemfire'
+description = ''
+dependencies {
+    compile group: 'com.gemstone.gemfire', name: 'gemfire', version:'8.2.1'
+    compile group: 'com.datastax.cassandra', name: 'cassandra-driver-mapping', version:'3.0.2'
+    compile group: 'com.datastax.cassandra', name: 'cassandra-driver-extras', version:'3.0.2'
+  compile project(':gemfire-utils:gemfire-keyfw')
+}

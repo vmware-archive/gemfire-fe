@@ -1,0 +1,118 @@
+rootProject.name = 'parent-pom'
+include ':metrics:metric-common'
+include ':metrics:metric-timer'
+include ':metrics:metric-avro'
+include ':metrics:metric-jmx'
+include ':metrics:metric-kafka'
+include ':metrics:collectd-message-producer'
+include ':metrics:collectd-values-transformer'
+include ':metrics:metric-avro-transformer'
+include ':metrics'
+include ':gemfire-utils:gemfire-key'
+include ':gemfire-utils:gemfire-keyfw'
+include ':gemfire-utils:gemfire-dao'
+include ':gemfire-utils:gemfire-security'
+include ':gemfire-utils:gemfire-federated'
+include ':gemfire-utils:gemfire-spark'
+include ':gemfire-utils:gemfire-ml'
+include ':gemfire-utils:gemfire-util'
+include ':gemfire-utils:gemfire-kafka'
+include ':gemfire-utils'
+include ':gemfire-examples:gemfire-data'
+include ':gemfire-examples:gemfire-analytics:gemfire-analytics-common'
+include ':gemfire-examples:gemfire-analytics:gemfire-analytics-server'
+include ':gemfire-examples:gemfire-analytics:gemfire-analytics-client'
+include ':gemfire-examples:gemfire-analytics'
+include ':gemfire-examples:gemfire-bitcoinj'
+include ':gemfire-examples:gemfire-cassandra'
+include ':gemfire-examples:gemfire-complexobjs:gemfire-complexobjs-common'
+include ':gemfire-examples:gemfire-complexobjs:gemfire-complexobjs-server'
+include ':gemfire-examples:gemfire-complexobjs:gemfire-complexobjs-client'
+include ':gemfire-examples:gemfire-complexobjs'
+include ':gemfire-examples:gemfire-drools:gemfire-drools-common'
+include ':gemfire-examples:gemfire-drools:gemfire-drools-server'
+include ':gemfire-examples:gemfire-drools'
+include ':gemfire-examples:gemfire-fraud:gemfire-fraud-common'
+include ':gemfire-examples:gemfire-fraud:gemfire-fraud-server'
+include ':gemfire-examples:gemfire-fraud'
+include ':gemfire-examples:gemfire-geo'
+include ':gemfire-examples:gemfire-groovy:gemfire-groovy-common'
+include ':gemfire-examples:gemfire-groovy:gemfire-groovy-server'
+include ':gemfire-examples:gemfire-groovy:gemfire-groovy-client'
+include ':gemfire-examples:gemfire-groovy'
+include ':gemfire-examples:gemfire-hbase'
+include ':gemfire-examples:gemfire-jdbc'
+include ':gemfire-examples:gemfire-local-region'
+include ':gemfire-examples:gemfire-locking'
+include ':gemfire-examples:gemfire-pmml'
+include ':gemfire-examples:gemfire-r:gemfire-r-common'
+include ':gemfire-examples:gemfire-r:gemfire-r-server'
+include ':gemfire-examples:gemfire-r:gemfire-r-shell-dsl'
+include ':gemfire-examples:gemfire-r:gemfire-r-shell'
+include ':gemfire-examples:gemfire-r'
+include ':gemfire-examples:gemfire-s3'
+include ':gemfire-examples:gemfire-script'
+include ':gemfire-examples:gemfire-xrefs:gemfire-xrefs-common'
+include ':gemfire-examples:gemfire-xrefs:gemfire-xrefs-server'
+include ':gemfire-examples:gemfire-xrefs:gemfire-xrefs-client'
+include ':gemfire-examples:gemfire-xrefs'
+include ':gemfire-examples'
+
+project(':metrics:metric-common').projectDir = "$rootDir/metrics/metric-common" as File
+project(':metrics:metric-timer').projectDir = "$rootDir/metrics/metric-timer" as File
+project(':metrics:metric-avro').projectDir = "$rootDir/metrics/metric-avro" as File
+project(':metrics:metric-jmx').projectDir = "$rootDir/metrics/metric-jmx" as File
+project(':metrics:metric-kafka').projectDir = "$rootDir/metrics/metric-kafka" as File
+project(':metrics:collectd-message-producer').projectDir = "$rootDir/metrics/collectd-message-producer" as File
+project(':metrics:collectd-values-transformer').projectDir = "$rootDir/metrics/collectd-values-transformer" as File
+project(':metrics:metric-avro-transformer').projectDir = "$rootDir/metrics/metric-avro-transformer" as File
+project(':metrics').projectDir = "$rootDir/metrics" as File
+project(':gemfire-utils:gemfire-key').projectDir = "$rootDir/gemfire-utils/gemfire-key" as File
+project(':gemfire-utils:gemfire-keyfw').projectDir = "$rootDir/gemfire-utils/gemfire-keyfw" as File
+project(':gemfire-utils:gemfire-dao').projectDir = "$rootDir/gemfire-utils/gemfire-dao" as File
+project(':gemfire-utils:gemfire-security').projectDir = "$rootDir/gemfire-utils/gemfire-security" as File
+project(':gemfire-utils:gemfire-federated').projectDir = "$rootDir/gemfire-utils/gemfire-federated" as File
+project(':gemfire-utils:gemfire-spark').projectDir = "$rootDir/gemfire-utils/gemfire-spark" as File
+project(':gemfire-utils:gemfire-ml').projectDir = "$rootDir/gemfire-utils/gemfire-ml" as File
+project(':gemfire-utils:gemfire-util').projectDir = "$rootDir/gemfire-utils/gemfire-util" as File
+project(':gemfire-utils:gemfire-kafka').projectDir = "$rootDir/gemfire-utils/gemfire-kafka" as File
+project(':gemfire-utils').projectDir = "$rootDir/gemfire-utils" as File
+project(':gemfire-examples:gemfire-data').projectDir = "$rootDir/gemfire-examples/gemfire-data" as File
+project(':gemfire-examples:gemfire-analytics:gemfire-analytics-common').projectDir = "$rootDir/gemfire-examples/gemfire-analytics/gemfire-analytics-common" as File
+project(':gemfire-examples:gemfire-analytics:gemfire-analytics-server').projectDir = "$rootDir/gemfire-examples/gemfire-analytics/gemfire-analytics-server" as File
+project(':gemfire-examples:gemfire-analytics:gemfire-analytics-client').projectDir = "$rootDir/gemfire-examples/gemfire-analytics/gemfire-analytics-client" as File
+project(':gemfire-examples:gemfire-analytics').projectDir = "$rootDir/gemfire-examples/gemfire-analytics" as File
+project(':gemfire-examples:gemfire-bitcoinj').projectDir = "$rootDir/gemfire-examples/gemfire-bitcoinj" as File
+project(':gemfire-examples:gemfire-cassandra').projectDir = "$rootDir/gemfire-examples/gemfire-cassandra" as File
+project(':gemfire-examples:gemfire-complexobjs:gemfire-complexobjs-common').projectDir = "$rootDir/gemfire-examples/gemfire-complexobjs/gemfire-complexobjs-common" as File
+project(':gemfire-examples:gemfire-complexobjs:gemfire-complexobjs-server').projectDir = "$rootDir/gemfire-examples/gemfire-complexobjs/gemfire-complexobjs-server" as File
+project(':gemfire-examples:gemfire-complexobjs:gemfire-complexobjs-client').projectDir = "$rootDir/gemfire-examples/gemfire-complexobjs/gemfire-complexobjs-client" as File
+project(':gemfire-examples:gemfire-complexobjs').projectDir = "$rootDir/gemfire-examples/gemfire-complexobjs" as File
+project(':gemfire-examples:gemfire-drools:gemfire-drools-common').projectDir = "$rootDir/gemfire-examples/gemfire-drools/gemfire-drools-common" as File
+project(':gemfire-examples:gemfire-drools:gemfire-drools-server').projectDir = "$rootDir/gemfire-examples/gemfire-drools/gemfire-drools-server" as File
+project(':gemfire-examples:gemfire-drools').projectDir = "$rootDir/gemfire-examples/gemfire-drools" as File
+project(':gemfire-examples:gemfire-fraud:gemfire-fraud-common').projectDir = "$rootDir/gemfire-examples/gemfire-fraud/gemfire-fraud-common" as File
+project(':gemfire-examples:gemfire-fraud:gemfire-fraud-server').projectDir = "$rootDir/gemfire-examples/gemfire-fraud/gemfire-fraud-server" as File
+project(':gemfire-examples:gemfire-fraud').projectDir = "$rootDir/gemfire-examples/gemfire-fraud" as File
+project(':gemfire-examples:gemfire-geo').projectDir = "$rootDir/gemfire-examples/gemfire-geo" as File
+project(':gemfire-examples:gemfire-groovy:gemfire-groovy-common').projectDir = "$rootDir/gemfire-examples/gemfire-groovy/gemfire-groovy-common" as File
+project(':gemfire-examples:gemfire-groovy:gemfire-groovy-server').projectDir = "$rootDir/gemfire-examples/gemfire-groovy/gemfire-groovy-server" as File
+project(':gemfire-examples:gemfire-groovy:gemfire-groovy-client').projectDir = "$rootDir/gemfire-examples/gemfire-groovy/gemfire-groovy-client" as File
+project(':gemfire-examples:gemfire-groovy').projectDir = "$rootDir/gemfire-examples/gemfire-groovy" as File
+project(':gemfire-examples:gemfire-hbase').projectDir = "$rootDir/gemfire-examples/gemfire-hbase" as File
+project(':gemfire-examples:gemfire-jdbc').projectDir = "$rootDir/gemfire-examples/gemfire-jdbc" as File
+project(':gemfire-examples:gemfire-local-region').projectDir = "$rootDir/gemfire-examples/gemfire-local-region" as File
+project(':gemfire-examples:gemfire-locking').projectDir = "$rootDir/gemfire-examples/gemfire-locking" as File
+project(':gemfire-examples:gemfire-pmml').projectDir = "$rootDir/gemfire-examples/gemfire-pmml" as File
+project(':gemfire-examples:gemfire-r:gemfire-r-common').projectDir = "$rootDir/gemfire-examples/gemfire-r/gemfire-r-common" as File
+project(':gemfire-examples:gemfire-r:gemfire-r-server').projectDir = "$rootDir/gemfire-examples/gemfire-r/gemfire-r-server" as File
+project(':gemfire-examples:gemfire-r:gemfire-r-shell-dsl').projectDir = "$rootDir/gemfire-examples/gemfire-r/gemfire-r-shell-dsl" as File
+project(':gemfire-examples:gemfire-r:gemfire-r-shell').projectDir = "$rootDir/gemfire-examples/gemfire-r/gemfire-r-shell" as File
+project(':gemfire-examples:gemfire-r').projectDir = "$rootDir/gemfire-examples/gemfire-r" as File
+project(':gemfire-examples:gemfire-s3').projectDir = "$rootDir/gemfire-examples/gemfire-s3" as File
+project(':gemfire-examples:gemfire-script').projectDir = "$rootDir/gemfire-examples/gemfire-script" as File
+project(':gemfire-examples:gemfire-xrefs:gemfire-xrefs-common').projectDir = "$rootDir/gemfire-examples/gemfire-xrefs/gemfire-xrefs-common" as File
+project(':gemfire-examples:gemfire-xrefs:gemfire-xrefs-server').projectDir = "$rootDir/gemfire-examples/gemfire-xrefs/gemfire-xrefs-server" as File
+project(':gemfire-examples:gemfire-xrefs:gemfire-xrefs-client').projectDir = "$rootDir/gemfire-examples/gemfire-xrefs/gemfire-xrefs-client" as File
+project(':gemfire-examples:gemfire-xrefs').projectDir = "$rootDir/gemfire-examples/gemfire-xrefs" as File
+project(':gemfire-examples').projectDir = "$rootDir/gemfire-examples" as File

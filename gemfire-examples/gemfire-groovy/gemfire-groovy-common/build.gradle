@@ -1,0 +1,5 @@
+group = 'io.pivotal.bds.gemfire'
+description = ''
+dependencies {
+  compile project(':gemfire-examples:gemfire-data')
+}

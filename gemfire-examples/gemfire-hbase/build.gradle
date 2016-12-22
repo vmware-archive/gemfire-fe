@@ -1,0 +1,28 @@
+group = 'io.pivotal.bds.gemfire'
+description = ''
+dependencies {
+    compile(group: 'org.apache.hbase', name: 'hbase-client', version:'1.2.1') {
+exclude(module: 'slf4j-log4j12')
+    }
+    compile(group: 'org.apache.hadoop', name: 'hadoop-client', version:'2.7.2') {
+exclude(module: 'xercesImpl')
+exclude(module: 'xml-apis')
+exclude(module: 'slf4j-log4j12')
+    }
+  compile project(':metrics:metric-timer')
+    compile group: 'org.springframework', name: 'spring-core', version:'4.3.3.RELEASE'
+  compile project(':gemfire-utils:gemfire-util')
+    compile group: 'org.apache.hadoop', name: 'hadoop-auth', version:'2.7.2'
+    compile group: 'org.apache.hadoop', name: 'hadoop-common', version:'2.7.2'
+    compile group: 'org.apache.hadoop', name: 'hadoop-mapreduce-client-core', version:'2.7.2'
+    compile(group: 'com.gemstone.gemfire', name: 'gemfire', version:'8.2.1') {
+       /* This dependency was originally in the Maven provided scope, but the project was not of type war.
+       This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
+       Please review and delete this closure when resolved. */
+    }
+    compile(group: 'org.slf4j', name: 'slf4j-api', version:'1.7.21') {
+       /* This dependency was originally in the Maven provided scope, but the project was not of type war.
+       This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
+       Please review and delete this closure when resolved. */
+    }
+}

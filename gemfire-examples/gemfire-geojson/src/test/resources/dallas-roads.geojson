@@ -1,0 +1,1812 @@
+
+
+{
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "osm_id": 4343084,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 29,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.992738236672,
+            32.986420322103
+          ],
+          [
+            -96.994004239328,
+            32.986852325393
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "osm_id": 4343115,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 29,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.975063233631,
+            32.992423189699
+          ],
+          [
+            -96.974011807697,
+            32.992711024254
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "osm_id": 4343117,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.969327916385,
+            32.993745518743
+          ],
+          [
+            -96.971125750797,
+            32.993444440781
+          ],
+          [
+            -96.973056941288,
+            32.993143027543
+          ],
+          [
+            -96.974076180714,
+            32.992936078354
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "osm_id": 4343138,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 53,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.953470780504,
+            32.997020998866
+          ],
+          [
+            -96.955288647664,
+            32.998102767289
+          ],
+          [
+            -96.955683519123,
+            32.998469978467
+          ],
+          [
+            -96.956037654532,
+            32.998946657301
+          ],
+          [
+            -96.956284333942,
+            32.999506484614
+          ],
+          [
+            -96.956327249287,
+            32.999974362449
+          ],
+          [
+            -96.956275700582,
+            33.000399073483
+          ],
+          [
+            -96.95605257432,
+            33.001018160851
+          ],
+          [
+            -96.955692068664,
+            33.001471621813
+          ],
+          [
+            -96.954061369402,
+            33.003033673288
+          ],
+          [
+            -96.952205448401,
+            33.004548031734
+          ],
+          [
+            -96.951540260565,
+            33.005146499621
+          ],
+          [
+            -96.9510057466,
+            33.005610521781
+          ],
+          [
+            -96.950430664223,
+            33.006186358529
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "osm_id": 4343142,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.958002456455,
+            32.998339723692
+          ],
+          [
+            -96.957566513671,
+            32.998158423126
+          ],
+          [
+            -96.956270000888,
+            32.997667159781
+          ],
+          [
+            -96.956025500772,
+            32.997580490902
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "osm_id": 4343145,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 13,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.950917820436,
+            32.995239257708
+          ],
+          [
+            -96.951699349087,
+            32.995871672302
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "osm_id": 4343152,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "TX 121",
+        "z_order": 39,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.946602649044,
+            33.00956929465
+          ],
+          [
+            -96.952682881606,
+            33.004885487156
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "osm_id": 4343153,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "TX 121",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.946380109515,
+            33.009330158952
+          ],
+          [
+            -96.943447952146,
+            33.011676756564
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "osm_id": 4343154,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "TX 121",
+        "z_order": 19,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.940510346541,
+            33.014619726588
+          ],
+          [
+            -96.943087446491,
+            33.012346051533
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 10,
+        "osm_id": 4343101,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.985212712546,
+            32.986807733668
+          ],
+          [
+            -96.985507755538,
+            32.986681753663
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 11,
+        "osm_id": 4343165,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.934641002663,
+            33.02217333009
+          ],
+          [
+            -96.936647965559,
+            33.019423730573
+          ],
+          [
+            -96.937366629937,
+            33.018391163921
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 12,
+        "osm_id": 4343185,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 29,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.934212938868,
+            33.02276542773
+          ],
+          [
+            -96.934641002663,
+            33.02217333009
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 13,
+        "osm_id": 4343186,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 29,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.934365321868,
+            33.02203217884
+          ],
+          [
+            -96.933971456237,
+            33.022622264824
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 14,
+        "osm_id": 4343333,
+        "type": "tertiary",
+        "name": "Carrollton Parkway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 4,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.924280383607,
+            33.035444816479
+          ],
+          [
+            -96.924052060565,
+            33.035373486483
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 15,
+        "osm_id": 4343343,
+        "type": "motorway_link",
+        "name": "121",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.922308373248,
+            33.040797583665
+          ],
+          [
+            -96.922569218074,
+            33.041915478091
+          ],
+          [
+            -96.922668878903,
+            33.042804965656
+          ],
+          [
+            -96.92283190692,
+            33.043416425493
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 16,
+        "osm_id": 4343344,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.933971456237,
+            33.022622264824
+          ],
+          [
+            -96.933214067467,
+            33.023651562533
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 17,
+        "osm_id": 4343106,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.975165157574,
+            32.992657044797
+          ],
+          [
+            -96.976082473057,
+            32.992342136695
+          ],
+          [
+            -96.977155356663,
+            32.991838132857
+          ],
+          [
+            -96.978147019628,
+            32.991279898106
+          ],
+          [
+            -96.979563225988,
+            32.990361995889
+          ],
+          [
+            -96.98022355232,
+            32.989934686466
+          ],
+          [
+            -96.981065346856,
+            32.989390030397
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 18,
+        "osm_id": 4343351,
+        "type": "motorway_link",
+        "name": "121 Toll WB",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.921336240118,
+            33.050334429277
+          ],
+          [
+            -96.921542183479,
+            33.049924386574
+          ],
+          [
+            -96.921894139593,
+            33.049341676665
+          ],
+          [
+            -96.922122965549,
+            33.048887126056
+          ],
+          [
+            -96.92232890891,
+            33.048189248798
+          ],
+          [
+            -96.922524039616,
+            33.047324739304
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 19,
+        "osm_id": 4652033,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.744349923857,
+            32.917542368051
+          ],
+          [
+            -96.745400260144,
+            32.918455995497
+          ],
+          [
+            -96.74642813293,
+            32.919107017916
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 20,
+        "osm_id": 4342988,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.997574678623,
+            32.988347740738
+          ],
+          [
+            -96.999345355668,
+            32.98904955749
+          ],
+          [
+            -97.002625613475,
+            32.990335341437
+          ],
+          [
+            -97.003336482683,
+            32.990561485185
+          ],
+          [
+            -97.004186659122,
+            32.990717891498
+          ],
+          [
+            -97.005050330425,
+            32.990839345275
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 21,
+        "osm_id": 4794217,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.758845503386,
+            32.929812049373
+          ],
+          [
+            -96.759586128351,
+            32.92933185014
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 22,
+        "osm_id": 5070339,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.93492514918,
+            32.985888490347
+          ],
+          [
+            -96.934319472857,
+            32.985231935871
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 23,
+        "osm_id": 5070516,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 33,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.925942515007,
+            32.98345312838
+          ],
+          [
+            -96.926591609588,
+            32.983471149471
+          ],
+          [
+            -96.927301556787,
+            32.983432676536
+          ],
+          [
+            -96.928634363211,
+            32.983282724288
+          ],
+          [
+            -96.929424022309,
+            32.983214747053
+          ],
+          [
+            -96.929890726677,
+            32.983223799509
+          ],
+          [
+            -96.930314515702,
+            32.983277778965
+          ],
+          [
+            -96.930651300571,
+            32.983361933273
+          ],
+          [
+            -96.93105480539,
+            32.983502665427
+          ],
+          [
+            -96.931526957996,
+            32.983777172756
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 24,
+        "osm_id": 5070519,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 33,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.922042666917,
+            32.983435191107
+          ],
+          [
+            -96.923954159936,
+            32.983526218575
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 25,
+        "osm_id": 5960516,
+        "type": "secondary",
+        "name": "Geralt",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 5,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.043698363949,
+            32.985955042658
+          ],
+          [
+            -97.043634326208,
+            32.986081860853
+          ],
+          [
+            -97.043475656781,
+            32.986491484461
+          ],
+          [
+            -97.043446236301,
+            32.986793232975
+          ],
+          [
+            -97.043441374797,
+            32.986844194947
+          ],
+          [
+            -97.043509938765,
+            32.987175363941
+          ],
+          [
+            -97.043655951519,
+            32.98744894926
+          ],
+          [
+            -97.045304336597,
+            32.989831169961
+          ],
+          [
+            -97.045430148963,
+            32.9900546315
+          ],
+          [
+            -97.045450265531,
+            32.990090338408
+          ],
+          [
+            -97.045570462022,
+            32.990522257878
+          ],
+          [
+            -97.045506172825,
+            32.994733326032
+          ],
+          [
+            -97.04550315534,
+            32.994931222766
+          ],
+          [
+            -97.045506675739,
+            32.995327183872
+          ],
+          [
+            -97.045592506428,
+            32.995849041164
+          ],
+          [
+            -97.046154010121,
+            32.997454762355
+          ],
+          [
+            -97.046282839973,
+            32.998117016525
+          ],
+          [
+            -97.046298430313,
+            32.998586486921
+          ],
+          [
+            -97.04629960378,
+            32.998696876586
+          ],
+          [
+            -97.046308572416,
+            32.999484775484
+          ],
+          [
+            -97.046263058682,
+            32.999880233676
+          ],
+          [
+            -97.046145041485,
+            33.000298658283
+          ],
+          [
+            -97.045050700207,
+            33.002602172913
+          ],
+          [
+            -97.044959337462,
+            33.002845918657
+          ],
+          [
+            -97.044873674412,
+            33.003087988021
+          ],
+          [
+            -97.04485221674,
+            33.00333994803
+          ],
+          [
+            -97.044862945576,
+            33.003668350996
+          ],
+          [
+            -97.044943411846,
+            33.004118291559
+          ],
+          [
+            -97.045104344387,
+            33.004716591807
+          ],
+          [
+            -97.04513267522,
+            33.004926558482
+          ],
+          [
+            -97.045227055449,
+            33.005675146254
+          ],
+          [
+            -97.045090849523,
+            33.007173830542
+          ],
+          [
+            -97.044977777649,
+            33.008418291706
+          ],
+          [
+            -97.044972580869,
+            33.008526082981
+          ],
+          [
+            -97.044891863142,
+            33.010210426423
+          ],
+          [
+            -97.044883229781,
+            33.01035442752
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 26,
+        "osm_id": 4343164,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "TX 121",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.940209939131,
+            33.014331892033
+          ],
+          [
+            -96.939008225673,
+            33.015699399536
+          ],
+          [
+            -96.93832551966,
+            33.016521245142
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 27,
+        "osm_id": 4343130,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 1,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 39,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.964821805239,
+            32.995275299892
+          ],
+          [
+            -96.963000250041,
+            32.996625959769
+          ],
+          [
+            -96.962273958131,
+            32.997164497048
+          ],
+          [
+            -96.961785460814,
+            32.997532127321
+          ],
+          [
+            -96.959929539814,
+            32.999000552938
+          ],
+          [
+            -96.957382949991,
+            33.000859742881
+          ],
+          [
+            -96.95564915332,
+            33.002177042784
+          ],
+          [
+            -96.95494532491,
+            33.002724129604
+          ],
+          [
+            -96.954275862304,
+            33.003242382677
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 28,
+        "osm_id": 4343350,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.933214067467,
+            33.023651562533
+          ],
+          [
+            -96.931208445675,
+            33.026444580309
+          ],
+          [
+            -96.929657961226,
+            33.028503091909
+          ],
+          [
+            -96.927483444086,
+            33.031604060807
+          ],
+          [
+            -96.926668052545,
+            33.032733857536
+          ],
+          [
+            -96.926029016247,
+            33.033644467497
+          ],
+          [
+            -96.925123016333,
+            33.034935699681
+          ],
+          [
+            -96.923981568759,
+            33.036482747549
+          ],
+          [
+            -96.923552331498,
+            33.03715187488
+          ],
+          [
+            -96.923243374547,
+            33.037749085481
+          ],
+          [
+            -96.923003568297,
+            33.038394324387
+          ],
+          [
+            -96.922892005166,
+            33.038883659894
+          ],
+          [
+            -96.922780442034,
+            33.039459245185
+          ],
+          [
+            -96.922728977149,
+            33.040013288985
+          ],
+          [
+            -96.92283190692,
+            33.043416425493
+          ],
+          [
+            -96.922857639363,
+            33.044186387118
+          ],
+          [
+            -96.922823357379,
+            33.044862639066
+          ],
+          [
+            -96.92273752669,
+            33.045567724761
+          ],
+          [
+            -96.922591681575,
+            33.046208018345
+          ],
+          [
+            -96.922368471493,
+            33.046884354112
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 29,
+        "osm_id": 8141288,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.991682200692,
+            32.986119244141
+          ],
+          [
+            -96.992738236672,
+            32.986420322103
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 30,
+        "osm_id": 8141289,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.987642710095,
+            32.986060738457
+          ],
+          [
+            -96.987970023414,
+            32.986078759549
+          ],
+          [
+            -96.988608305341,
+            32.986056296048
+          ],
+          [
+            -96.989622264168,
+            32.986083285776
+          ],
+          [
+            -96.990357105619,
+            32.986182276053
+          ],
+          [
+            -96.990839903242,
+            32.986321750922
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 31,
+        "osm_id": 8141291,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.980936517004,
+            32.989120133115
+          ],
+          [
+            -96.979821723882,
+            32.989836199103
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 32,
+        "osm_id": 8141292,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.979338674802,
+            32.990146497159
+          ],
+          [
+            -96.977953900579,
+            32.991081833734
+          ],
+          [
+            -96.977009846824,
+            32.991621879755
+          ],
+          [
+            -96.975948362607,
+            32.99212613505
+          ],
+          [
+            -96.975063233631,
+            32.992423189699
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 33,
+        "osm_id": 8141293,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.981065346856,
+            32.989390030397
+          ],
+          [
+            -96.982835772444,
+            32.98823064555
+          ],
+          [
+            -96.983217735772,
+            32.987980445741
+          ],
+          [
+            -96.984479463656,
+            32.987188523529
+          ],
+          [
+            -96.985212712546,
+            32.986807733668
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 34,
+        "osm_id": 8141295,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.979338674802,
+            32.990146497159
+          ],
+          [
+            -96.978067307729,
+            32.990789892046
+          ],
+          [
+            -96.977504043835,
+            32.9910327996
+          ],
+          [
+            -96.977132054973,
+            32.991190966113
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 35,
+        "osm_id": 4343118,
+        "type": "motorway",
+        "name": "Sam Rayburn Tollway",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": "SRT",
+        "z_order": 9,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.968701033847,
+            32.993595147401
+          ],
+          [
+            -96.968566923396,
+            32.993619957834
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 36,
+        "osm_id": 8141301,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.969327916385,
+            32.993745518743
+          ],
+          [
+            -96.970934811042,
+            32.99368173246
+          ],
+          [
+            -96.972532066511,
+            32.993597997248
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 37,
+        "osm_id": 8141345,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.923142456432,
+            33.044087899756
+          ],
+          [
+            -96.923312022334,
+            33.041871892195
+          ],
+          [
+            -96.923379412835,
+            33.040972597803
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 38,
+        "osm_id": 8141342,
+        "type": "motorway_link",
+        "name": null,
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 1,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.923981568759,
+            33.036482747549
+          ],
+          [
+            -96.923391231319,
+            33.037145672271
+          ],
+          [
+            -96.923132817244,
+            33.037533670569
+          ],
+          [
+            -96.922556729039,
+            33.039008298795
+          ],
+          [
+            -96.922376434301,
+            33.039454383682
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 39,
+        "osm_id": 9936844,
+        "type": "residential",
+        "name": "Cromwell Circle",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.863996059603,
+            32.906105931723
+          ],
+          [
+            -96.864561083696,
+            32.90611397835
+          ],
+          [
+            -96.865146056718,
+            32.906133927279
+          ],
+          [
+            -96.865224008418,
+            32.90616594615
+          ],
+          [
+            -96.865275054208,
+            32.906207939484
+          ],
+          [
+            -96.865304055593,
+            32.906269965568
+          ],
+          [
+            -96.865283017016,
+            32.906777992719
+          ],
+          [
+            -96.865233060873,
+            32.906826943034
+          ],
+          [
+            -96.865194001204,
+            32.906866924712
+          ],
+          [
+            -96.865101045898,
+            32.906891986602
+          ],
+          [
+            -96.864000082916,
+            32.906888969117
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 40,
+        "osm_id": 9936845,
+        "type": "residential",
+        "name": "Trellis Court",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.774619071692,
+            32.794809931737
+          ],
+          [
+            -96.774185308203,
+            32.795276971382
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 41,
+        "osm_id": 9936846,
+        "type": "residential",
+        "name": "Oak Stream Street",
+        "tunnel": 0,
+        "bridge": 0,
+        "oneway": 0,
+        "ref": null,
+        "z_order": 3,
+        "access": null,
+        "service": null,
+        "class": "highway"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -96.725995064649,
+            32.894958922511
+          ],
+          [
+            -96.725925075758,
+            32.894975937775
+          ],
+          [
+            -96.725510003913,
+            32.894985996059
+          ],
+          [
+            -96.725379078585,
+            32.894968980795
+          ],
+          [
+            -96.725278076652,
+            32.89493394444
+          ],
+          [
+            -96.725197023648,
+            32.89484995777
+          ],
+          [
+            -96.725096021715,
+            32.894764965272
+          ],
+          [
+            -96.725005078066,
+            32.8947399872
+          ],
+          [
+            -96.724621019262,
+            32.894747950008
+          ],
+          [
+            -96.724530075613,
+            32.894756918645
+          ],
+          [
+            -96.724355061474,
+            32.894898991904
+          ],
+          [
+            -96.723787019896,
+            32.895402995742
+          ],
+          [
+            -96.723160053539,
+            32.895955949894
+          ],
+          [
+            -96.722555047768,
+            32.896464982874
+          ],
+          [
+            -96.722236032533,
+            32.896743932611
+          ],
+          [
+            -96.722132013115,
+            32.89683496008
+          ],
+          [
+            -96.721874018135,
+            32.897032940633
+          ]
+        ]
+      }
+    }
+  ]
+}
+

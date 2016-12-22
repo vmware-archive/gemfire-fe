@@ -1,0 +1,12 @@
+group = 'io.pivotal.bds.gemfire'
+description = ''
+dependencies {
+    compile(group: 'com.gemstone.gemfire', name: 'gemfire', version:'8.2.1') {
+exclude(module: 'jline')
+    }
+    compile group: 'com.github.haifengl', name: 'smile-core', version:'1.0.4'
+    compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.21'
+    compile group: 'org.springframework', name: 'spring-core', version:'4.3.3.RELEASE'
+    compile group: 'org.springframework', name: 'spring-beans', version:'4.3.3.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version:'4.3.3.RELEASE'
+}

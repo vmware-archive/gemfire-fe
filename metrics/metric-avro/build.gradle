@@ -1,0 +1,5 @@
+group = 'io.pivotal.bds.metrics'
+description = ''
+dependencies {
+    compile group: 'org.apache.parquet', name: 'parquet-avro', version:'1.8.1'
+}

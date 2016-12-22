@@ -1,0 +1,7 @@
+group = 'io.pivotal.bds.metrics'
+description = ''
+dependencies {
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version:'0.8.2.1'
+  compile project(':metrics:metric-avro')
+  compile project(':metrics:metric-common')
+}

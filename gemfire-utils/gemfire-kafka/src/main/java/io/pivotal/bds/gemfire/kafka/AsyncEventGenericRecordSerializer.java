@@ -29,6 +29,7 @@ public class AsyncEventGenericRecordSerializer implements Serializer<AsyncEvent>
             BinaryEncoder encoder = factory.directBinaryEncoder(bos, null);
             GenericDatumWriter<GenericRecord> writer = new GenericDatumWriter<GenericRecord>(rec.getSchema());
             writer.write(rec, encoder);
+            encoder.flush();
             byte[] b = bos.toByteArray();
             return b;
         } catch (Exception x) {

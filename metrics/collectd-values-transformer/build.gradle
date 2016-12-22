@@ -1,0 +1,6 @@
+group = 'io.pivotal.bds.metrics'
+description = ''
+dependencies {
+  providedCompile project(':jcollectd')
+  providedCompile project(':metrics:metric-common')
+}

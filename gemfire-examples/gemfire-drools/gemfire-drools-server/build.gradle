@@ -1,0 +1,14 @@
+group = 'io.pivotal.bds.gemfire'
+apply plugin: 'war'
+
+description = ''
+dependencies {
+    compile group: 'com.gemstone.gemfire', name: 'gemfire', version:'8.2.1'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.4.1.RELEASE'
+  compile project(':gemfire-utils:gemfire-key')
+  compile project(':metrics:metric-timer')
+  compile project(':gemfire-examples:gemfire-data')
+  compile project(':gemfire-utils:gemfire-util')
+  compile project(':gemfire-examples:gemfire-drools:gemfire-drools-common')
+    compile group: 'org.eclipse.jdt.core.compiler', name: 'ecj', version:'4.4.2'
+}
