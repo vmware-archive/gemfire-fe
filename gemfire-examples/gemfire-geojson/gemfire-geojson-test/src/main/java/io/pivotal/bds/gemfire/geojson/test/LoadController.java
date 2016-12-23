@@ -14,9 +14,9 @@ import org.json.simple.JSONValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gemstone.gemfire.cache.Region;
@@ -33,8 +33,8 @@ public class LoadController {
     private static Executor exec = Executors.newFixedThreadPool(10);
     private static final Logger LOG = LoggerFactory.getLogger(LoadController.class);
 
-    @RequestMapping(value = "/load/{fileName}", method = RequestMethod.POST)
-    public void load(@PathVariable("fileName") String fileName) throws Exception {
+    @RequestMapping(value = "/load", method = RequestMethod.POST)
+    public void load(@RequestParam("fileName") String fileName) throws Exception {
         LOG.info("load: loading file {}", fileName);
         BufferedReader reader = Files.newBufferedReader(Paths.get(fileName));
 

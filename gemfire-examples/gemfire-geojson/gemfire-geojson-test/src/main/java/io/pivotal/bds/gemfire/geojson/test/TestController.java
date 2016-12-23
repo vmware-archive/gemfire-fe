@@ -17,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,9 +46,9 @@ public class TestController {
     private static final Rater rater = new Rater("TestController");
     private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
 
-    @RequestMapping(value = "/start/{fileName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/start", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public synchronized void start(@PathVariable("fileName") String fileName,
+    public synchronized void start(@RequestParam(name = "fileName") String fileName,
             @RequestParam(name = "threadcount", required = false, defaultValue = "1") int threadCount) throws Exception {
         if (running) {
             throw new IllegalArgumentException("Test is already running");
@@ -65,7 +64,6 @@ public class TestController {
         JSONArray features = (JSONArray) root.get("features");
 
         for (Object feature : features) {
-            System.out.println(feature);
             SimpleFeature sf = (SimpleFeature) featureJson.readFeature(new StringReader(feature.toString()));
             LineString geo = (LineString) sf.getAttribute("geometry");
             Coordinate coord = geo.getCoordinate();

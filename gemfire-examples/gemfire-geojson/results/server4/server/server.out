@@ -1,0 +1,958 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.4.1.RELEASE)
+
+2016-12-23 03:55:45.859 INFO GeoJSONGemfireServerApplication: Starting GeoJSONGemfireServerApplication on gf-server-4 with PID 3707 (/home/tdalsing/gemfire-geojson-server-0.0.1-SNAPSHOT.jar started by tdalsing in /home/tdalsing/server)
+2016-12-23 03:55:45.870 INFO GeoJSONGemfireServerApplication: No active profile set, falling back to default profiles: default
+2016-12-23 03:55:45.934 INFO AnnotationConfigEmbeddedWebApplicationContext: Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77a567e1: startup date [Fri Dec 23 03:55:45 UTC 2016]; root of context hierarchy
+2016-12-23 03:55:46.148 INFO Version: HV000001: Hibernate Validator 5.2.4.Final
+2016-12-23 03:55:48.009 INFO TomcatEmbeddedServletContainer: Tomcat initialized with port(s): 8080 (http)
+2016-12-23 03:55:48.028 INFO StandardService: Starting service Tomcat
+2016-12-23 03:55:48.032 INFO StandardEngine: Starting Servlet Engine: Apache Tomcat/8.5.5
+2016-12-23 03:55:48.201 INFO [/]: Initializing Spring embedded WebApplicationContext
+2016-12-23 03:55:48.201 INFO ContextLoader: Root WebApplicationContext: initialization completed in 2270 ms
+2016-12-23 03:55:48.382 INFO ServletRegistrationBean: Mapping servlet: 'dispatcherServlet' to [/]
+2016-12-23 03:55:48.390 INFO FilterRegistrationBean: Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-12-23 03:55:48.390 INFO FilterRegistrationBean: Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-12-23 03:55:48.390 INFO FilterRegistrationBean: Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-12-23 03:55:48.390 INFO FilterRegistrationBean: Mapping filter: 'requestContextFilter' to: [/*]
+2016-12-23 03:55:48.473 INFO BoundaryConfig: rootBoundary
+2016-12-23 03:55:48.498 INFO CacheConfig: creating Cache: locators=10.138.0.3[10334], port=40404
+[info 2016/12/23 03:55:50.050 UTC <main> tid=0x1] 
+---------------------------------------------------------------------------
+
+  Copyright (C) 1997-2016 Pivotal Software, Inc. All rights reserved. This
+  product is protected by U.S. and international copyright and intellectual
+  property laws. Pivotal products are covered by one or more patents listed
+  at http://www.pivotal.io/patents.  Pivotal is a registered trademark
+  of trademark of Pivotal Software, Inc. in the United States and/or other
+  jurisdictions.  All other marks and names mentioned herein may be
+  trademarks of their respective companies.
+
+---------------------------------------------------------------------------
+Java version:   8.2.1 build 18207 05/04/2016 16:48:01 PDT javac 1.7.0_79
+Native version: native code unavailable
+Source revision: d0baa293ed00397177eda6054ddd07d4bbfdf4b8
+Source repository: gemfire821X_maint
+Running on: gf-server-4/10.142.0.8, 4 cpu(s), amd64 Linux 3.10.0-327.36.2.el7.x86_64
+Process ID: 3707
+User: tdalsing
+Current dir: /home/tdalsing/server
+Home dir: /home/tdalsing
+Command Line Parameters:
+  -Xms16g
+  -Xmx16g
+  -XX:NewSize=4g
+  -XX:MaxNewSize=4g
+  -XX:+UseConcMarkSweepGC
+  -XX:CMSInitiatingOccupancyFraction=60
+  -XX:+DisableExplicitGC
+  -Dgemfire.name=gf-server-4
+  -XX:OnOutOfMemoryError=kill -KILL %p
+Class Path:
+  ../gemfire-geojson-server-0.0.1-SNAPSHOT.jar
+Library Path:
+  /usr/java/packages/lib/amd64
+  /usr/lib64
+  /lib64
+  /lib
+  /usr/lib
+System Properties:
+    PID = 3707
+    awt.toolkit = sun.awt.X11.XToolkit
+    catalina.base = /tmp/tomcat.1941776911957372278.8080
+    catalina.home = /tmp/tomcat.1941776911957372278.8080
+    catalina.useNaming = false
+    file.encoding = UTF-8
+    file.encoding.pkg = sun.io
+    file.separator = /
+    gemfire.name = gf-server-4
+    java.awt.graphicsenv = sun.awt.X11GraphicsEnvironment
+    java.awt.headless = true
+    java.awt.printerjob = sun.print.PSPrinterJob
+    java.class.version = 52.0
+    java.endorsed.dirs = /opt/jdk1.8.0_112/jre/lib/endorsed
+    java.ext.dirs = /opt/jdk1.8.0_112/jre/lib/ext:/usr/java/packages/lib/ext
+    java.home = /opt/jdk1.8.0_112/jre
+    java.io.tmpdir = /tmp
+    java.protocol.handler.pkgs = org.springframework.boot.loader
+    java.runtime.name = Java(TM) SE Runtime Environment
+    java.runtime.version = 1.8.0_112-b15
+    java.specification.name = Java Platform API Specification
+    java.specification.vendor = Oracle Corporation
+    java.specification.version = 1.8
+    java.vendor = Oracle Corporation
+    java.vendor.url = http://java.oracle.com/
+    java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+    java.version = 1.8.0_112
+    java.vm.info = mixed mode
+    java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+    java.vm.specification.name = Java Virtual Machine Specification
+    java.vm.specification.vendor = Oracle Corporation
+    java.vm.specification.version = 1.8
+    java.vm.vendor = Oracle Corporation
+    java.vm.version = 25.112-b15
+    line.separator = 
+
+    log4j.configurationFile = jar:file:/home/tdalsing/gemfire-geojson-server-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/gemfire-8.2.1.jar!/com/gemstone/gemfire/internal/logging/log4j/log4j2-default.xml
+    org.jboss.logging.provider = slf4j
+    os.version = 3.10.0-327.36.2.el7.x86_64
+    p2p.useSSL = false
+    path.separator = :
+    spring.beaninfo.ignore = true
+    sun.arch.data.model = 64
+    sun.boot.class.path = /opt/jdk1.8.0_112/jre/lib/resources.jar:/opt/jdk1.8.0_112/jre/lib/rt.jar:/opt/jdk1.8.0_112/jre/lib/sunrsasign.jar:/opt/jdk1.8.0_112/jre/lib/jsse.jar:/opt/jdk1.8.0_112/jre/lib/jce.jar:/opt/jdk1.8.0_112/jre/lib/charsets.jar:/opt/jdk1.8.0_112/jre/lib/jfr.jar:/opt/jdk1.8.0_112/jre/classes
+    sun.boot.library.path = /opt/jdk1.8.0_112/jre/lib/amd64
+    sun.cpu.endian = little
+    sun.cpu.isalist = 
+    sun.io.unicode.encoding = UnicodeLittle
+    sun.java.command = ../gemfire-geojson-server-0.0.1-SNAPSHOT.jar --locators=10.138.0.3[10334]
+    sun.java.launcher = SUN_STANDARD
+    sun.jnu.encoding = UTF-8
+    sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+    sun.nio.ch.bugLevel = 
+    sun.os.patch.level = unknown
+    user.country = US
+    user.language = en
+    user.timezone = UTC
+Log4J 2 Configuration:
+    Setting log4j.configurationFile to specify log4j configuration file: 'jar:file:/home/tdalsing/gemfire-geojson-server-0.0.1-SNAPSHOT.jar!/BOOT-INF/lib/gemfire-8.2.1.jar!/com/gemstone/gemfire/internal/logging/log4j/log4j2-default.xml'
+---------------------------------------------------------------------------
+
+
+[info 2016/12/23 03:55:50.072 UTC <main> tid=0x1] Startup Configuration:
+ ### GemFire Properties defined with system property ###
+name=gf-server-4
+### GemFire Properties defined with api ###
+locators=10.138.0.3[10334]
+### GemFire Properties using default values ###
+ack-severe-alert-threshold=0
+ack-wait-threshold=15
+archive-disk-space-limit=0
+archive-file-size-limit=0
+async-distribution-timeout=0
+async-max-queue-size=8
+async-queue-timeout=60000
+bind-address=
+cache-xml-file=cache.xml
+cluster-configuration-dir=.
+cluster-ssl-ciphers=any
+cluster-ssl-enabled=false
+cluster-ssl-keystore=
+cluster-ssl-keystore-password=
+cluster-ssl-keystore-type=
+cluster-ssl-protocols=any
+cluster-ssl-require-authentication=true
+cluster-ssl-truststore=
+cluster-ssl-truststore-password=
+conflate-events=server
+conserve-sockets=true
+delta-propagation=true
+deploy-working-dir=.
+disable-auto-reconnect=false
+disable-tcp=false
+distributed-system-id=-1
+durable-client-id=
+durable-client-timeout=300
+enable-cluster-configuration=true
+enable-network-partition-detection=false
+enable-time-statistics=false
+enforce-unique-host=false
+gateway-ssl-ciphers=any
+gateway-ssl-enabled=false
+gateway-ssl-keystore=
+gateway-ssl-keystore-password=
+gateway-ssl-keystore-type=
+gateway-ssl-protocols=any
+gateway-ssl-require-authentication=true
+gateway-ssl-truststore=
+gateway-ssl-truststore-password=
+groups=
+http-service-bind-address=
+http-service-port=7070
+http-service-ssl-ciphers=any
+http-service-ssl-enabled=false
+http-service-ssl-keystore=
+http-service-ssl-keystore-password=
+http-service-ssl-keystore-type=
+http-service-ssl-protocols=any
+http-service-ssl-require-authentication=false
+http-service-ssl-truststore=
+http-service-ssl-truststore-password=
+jmx-manager=false
+jmx-manager-access-file=
+jmx-manager-bind-address=
+jmx-manager-hostname-for-clients=
+jmx-manager-http-port=7070
+jmx-manager-password-file=
+jmx-manager-port=1099
+jmx-manager-ssl=false
+jmx-manager-ssl-ciphers=any
+jmx-manager-ssl-enabled=false
+jmx-manager-ssl-keystore=
+jmx-manager-ssl-keystore-password=
+jmx-manager-ssl-keystore-type=
+jmx-manager-ssl-protocols=any
+jmx-manager-ssl-require-authentication=true
+jmx-manager-ssl-truststore=
+jmx-manager-ssl-truststore-password=
+jmx-manager-start=false
+jmx-manager-update-rate=2000
+license-application-cache=
+license-data-management=
+license-server-timeout=10000
+license-working-dir=
+load-cluster-configuration-from-dir=false
+locator-wait-time=0
+log-disk-space-limit=0
+log-file=
+log-file-size-limit=0
+log-level=config
+max-num-reconnect-tries=3
+max-wait-time-reconnect=60000
+mcast-address=239.192.81.1
+mcast-flow-control=1048576, 0.25, 5000
+mcast-port=0
+mcast-recv-buffer-size=1048576
+mcast-send-buffer-size=65535
+mcast-ttl=32
+member-timeout=5000
+membership-port-range=1024-65535
+memcached-bind-address=
+memcached-port=0
+memcached-protocol=ASCII
+redundancy-zone=
+remote-locators=
+remove-unresponsive-client=false
+roles=
+security-=
+security-client-accessor=
+security-client-accessor-pp=
+security-client-auth-init=
+security-client-authenticator=
+security-client-dhalgo=
+security-log-file=
+security-log-level=config
+security-peer-auth-init=
+security-peer-authenticator=
+security-peer-verifymember-timeout=1000
+server-bind-address=
+server-ssl-ciphers=any
+server-ssl-enabled=false
+server-ssl-keystore=
+server-ssl-keystore-password=
+server-ssl-keystore-type=
+server-ssl-protocols=any
+server-ssl-require-authentication=true
+server-ssl-truststore=
+server-ssl-truststore-password=
+socket-buffer-size=32768
+socket-lease-time=60000
+ssl-ciphers=any
+ssl-enabled=false
+ssl-protocols=any
+ssl-require-authentication=true
+start-dev-rest-api=false
+start-locator=
+statistic-archive-file=
+statistic-sample-rate=1000
+statistic-sampling-enabled=true
+tcp-port=0
+udp-fragment-size=60000
+udp-recv-buffer-size=1048576
+udp-send-buffer-size=65535
+use-cluster-configuration=true
+user-command-packages=
+writable-working-dir=
+
+
+[info 2016/12/23 03:55:50.078 UTC <main> tid=0x1] Defaulting license-working-dir to current working directory "/home/tdalsing/server".
+
+[info 2016/12/23 03:55:50.084 UTC <main> tid=0x1] Licensing required 7 milliseconds.
+
+[info 2016/12/23 03:55:50.181 UTC <main> tid=0x1] GemFire P2P Listener started on  tcp:///10.142.0.8:14770
+
+[info 2016/12/23 03:55:50.837 UTC <PingSender> tid=0x24] locator general(null)<v0>:10334 member address is general(locator:1321:locator)<v0>:38155
+
+[info 2016/12/23 03:55:50.856 UTC <main> tid=0x1] Attempting to join distributed system whose membership coordinator is general(locator:1321:locator)<v0>:38155 using membership ID gf-server-4(gf-server-4:3707):39758
+
+[info 2016/12/23 03:55:51.143 UTC <main> tid=0x1] Membership: lead member is now gf-server-1(gf-server-1:4765)<v18>:41536
+
+[info 2016/12/23 03:55:51.171 UTC <main> tid=0x1] Entered into membership with ID gf-server-4(gf-server-4:3707)<v21>:39758.
+
+[info 2016/12/23 03:55:51.176 UTC <main> tid=0x1] Starting DistributionManager gf-server-4(gf-server-4:3707)<v21>:39758.  (took 1012/ ms)
+
+[info 2016/12/23 03:55:51.177 UTC <FD_SOCK Ping thread> tid=0x26] GemFire failure detection is now monitoring general(locator:1321:locator)<v0>:38155
+
+[info 2016/12/23 03:55:51.177 UTC <main> tid=0x1] Initial (membershipManager) view =  [general(locator:1321:locator)<v0>:38155, gf-server-1(gf-server-1:4765)<v18>:41536{lead}, gf-server-2(gf-server-2:3735)<v19>:29957, gf-server-3(gf-server-3:4008)<v20>:64437, gf-server-4(gf-server-4:3707)<v21>:39758]
+
+[info 2016/12/23 03:55:51.178 UTC <main> tid=0x1] Admitting member <general(locator:1321:locator)<v0>:38155>. Now there are 1 non-admin member(s).
+
+[info 2016/12/23 03:55:51.178 UTC <main> tid=0x1] Admitting member <gf-server-1(gf-server-1:4765)<v18>:41536>. Now there are 2 non-admin member(s).
+
+[info 2016/12/23 03:55:51.178 UTC <main> tid=0x1] Admitting member <gf-server-2(gf-server-2:3735)<v19>:29957>. Now there are 3 non-admin member(s).
+
+[info 2016/12/23 03:55:51.178 UTC <main> tid=0x1] Admitting member <gf-server-3(gf-server-3:4008)<v20>:64437>. Now there are 4 non-admin member(s).
+
+[info 2016/12/23 03:55:51.179 UTC <main> tid=0x1] Admitting member <gf-server-4(gf-server-4:3707)<v21>:39758>. Now there are 5 non-admin member(s).
+
+[info 2016/12/23 03:55:51.529 UTC <P2P message reader for gf-server-1(gf-server-1:4765)<v18>:41536 shared unordered uid=6 port=37958> tid=0x36] Member gf-server-1(gf-server-1:4765)<v18>:41536 is not equivalent or in the same redundancy zone.
+
+[info 2016/12/23 03:55:51.547 UTC <P2P message reader for gf-server-3(gf-server-3:4008)<v20>:64437 shared unordered uid=7 port=38536> tid=0x35] Member gf-server-3(gf-server-3:4008)<v20>:64437 is not equivalent or in the same redundancy zone.
+
+[info 2016/12/23 03:55:51.547 UTC <P2P message reader for gf-server-2(gf-server-2:3735)<v19>:29957 shared unordered uid=6 port=33902> tid=0x34] Member gf-server-2(gf-server-2:3735)<v19>:29957 is not equivalent or in the same redundancy zone.
+
+[info 2016/12/23 03:55:51.547 UTC <P2P message reader for general(locator:1321:locator)<v0>:38155 shared unordered uid=13 port=40906> tid=0x2c] Member general(locator:1321:locator)<v0>:38155 is not equivalent or in the same redundancy zone.
+
+[info 2016/12/23 03:55:52.022 UTC <main> tid=0x1] Initializing region _monitoringRegion_10.142.0.8<v21>39758
+
+[info 2016/12/23 03:55:52.234 UTC <main> tid=0x1] Region _monitoringRegion_10.142.0.8<v21>39758 requesting initial image from general(locator:1321:locator)<v0>:38155
+
+[info 2016/12/23 03:55:52.307 UTC <main> tid=0x1] _monitoringRegion_10.142.0.8<v21>39758 is done getting image from general(locator:1321:locator)<v0>:38155. isDeltaGII is false
+
+[info 2016/12/23 03:55:52.308 UTC <main> tid=0x1] Initialization of region _monitoringRegion_10.142.0.8<v21>39758 completed
+
+[warn 2016/12/23 03:55:52.622 UTC <main> tid=0x1] (tid=1 msgId=3) Required Commands classes were not loaded. Check logs for errors.
+java.lang.IllegalStateException: Required Commands classes were not loaded. Check logs for errors.
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.raiseExceptionIfEmpty(CommandManager.java:240)
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.loadCommands(CommandManager.java:179)
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.<init>(CommandManager.java:77)
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.getInstance(CommandManager.java:269)
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.getInstance(CommandManager.java:249)
+	at com.gemstone.gemfire.management.internal.cli.remote.CommandProcessor.<init>(CommandProcessor.java:50)
+	at com.gemstone.gemfire.management.internal.cli.remote.MemberCommandService.<init>(MemberCommandService.java:32)
+	at com.gemstone.gemfire.management.cli.CommandService.createLocalCommandService(CommandService.java:138)
+	at com.gemstone.gemfire.management.internal.beans.MemberMBeanBridge.<init>(MemberMBeanBridge.java:352)
+	at com.gemstone.gemfire.management.internal.beans.ManagementAdapter.handleCacheCreation(ManagementAdapter.java:152)
+	at com.gemstone.gemfire.management.internal.beans.ManagementListener.handleEvent(ManagementListener.java:111)
+	at com.gemstone.gemfire.distributed.internal.InternalDistributedSystem.notifyResourceEventListeners(InternalDistributedSystem.java:2249)
+	at com.gemstone.gemfire.distributed.internal.InternalDistributedSystem.handleResourceEvent(InternalDistributedSystem.java:505)
+	at com.gemstone.gemfire.internal.cache.GemFireCacheImpl.init(GemFireCacheImpl.java:1009)
+	at com.gemstone.gemfire.internal.cache.GemFireCacheImpl.create(GemFireCacheImpl.java:682)
+	at com.gemstone.gemfire.cache.CacheFactory.create(CacheFactory.java:182)
+	at com.gemstone.gemfire.cache.CacheFactory.create(CacheFactory.java:229)
+	at io.pivotal.bds.gemfire.geojson.conf.CacheConfig.createCache(CacheConfig.java:28)
+	at io.pivotal.bds.gemfire.geojson.conf.CacheConfig$$EnhancerBySpringCGLIB$$ebf538d5.CGLIB$createCache$0(<generated>)
+	at io.pivotal.bds.gemfire.geojson.conf.CacheConfig$$EnhancerBySpringCGLIB$$ebf538d5$$FastClassBySpringCGLIB$$f170c77d.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356)
+	at io.pivotal.bds.gemfire.geojson.conf.CacheConfig$$EnhancerBySpringCGLIB$$ebf538d5.createCache(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1023)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:751)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:861)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:371)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at io.pivotal.bds.gemfire.geojson.GeoJSONGemfireServerApplication.main(GeoJSONGemfireServerApplication.java:10)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:58)
+
+[info 2016/12/23 03:55:52.628 UTC <main> tid=0x1] Command Service could not be initialized. Required Commands classes were not loaded. Check logs for errors.
+com.gemstone.gemfire.management.cli.CommandServiceException: Required Commands classes were not loaded. Check logs for errors.
+	at com.gemstone.gemfire.management.internal.cli.remote.MemberCommandService.<init>(MemberCommandService.java:38)
+	at com.gemstone.gemfire.management.cli.CommandService.createLocalCommandService(CommandService.java:138)
+	at com.gemstone.gemfire.management.internal.beans.MemberMBeanBridge.<init>(MemberMBeanBridge.java:352)
+	at com.gemstone.gemfire.management.internal.beans.ManagementAdapter.handleCacheCreation(ManagementAdapter.java:152)
+	at com.gemstone.gemfire.management.internal.beans.ManagementListener.handleEvent(ManagementListener.java:111)
+	at com.gemstone.gemfire.distributed.internal.InternalDistributedSystem.notifyResourceEventListeners(InternalDistributedSystem.java:2249)
+	at com.gemstone.gemfire.distributed.internal.InternalDistributedSystem.handleResourceEvent(InternalDistributedSystem.java:505)
+	at com.gemstone.gemfire.internal.cache.GemFireCacheImpl.init(GemFireCacheImpl.java:1009)
+	at com.gemstone.gemfire.internal.cache.GemFireCacheImpl.create(GemFireCacheImpl.java:682)
+	at com.gemstone.gemfire.cache.CacheFactory.create(CacheFactory.java:182)
+	at com.gemstone.gemfire.cache.CacheFactory.create(CacheFactory.java:229)
+	at io.pivotal.bds.gemfire.geojson.conf.CacheConfig.createCache(CacheConfig.java:28)
+	at io.pivotal.bds.gemfire.geojson.conf.CacheConfig$$EnhancerBySpringCGLIB$$ebf538d5.CGLIB$createCache$0(<generated>)
+	at io.pivotal.bds.gemfire.geojson.conf.CacheConfig$$EnhancerBySpringCGLIB$$ebf538d5$$FastClassBySpringCGLIB$$f170c77d.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356)
+	at io.pivotal.bds.gemfire.geojson.conf.CacheConfig$$EnhancerBySpringCGLIB$$ebf538d5.createCache(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1023)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:751)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:861)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:371)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at io.pivotal.bds.gemfire.geojson.GeoJSONGemfireServerApplication.main(GeoJSONGemfireServerApplication.java:10)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87)
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50)
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:58)
+Caused by: java.lang.IllegalStateException: Required Commands classes were not loaded. Check logs for errors.
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.raiseExceptionIfEmpty(CommandManager.java:240)
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.loadCommands(CommandManager.java:179)
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.<init>(CommandManager.java:77)
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.getInstance(CommandManager.java:269)
+	at com.gemstone.gemfire.management.internal.cli.CommandManager.getInstance(CommandManager.java:249)
+	at com.gemstone.gemfire.management.internal.cli.remote.CommandProcessor.<init>(CommandProcessor.java:50)
+	at com.gemstone.gemfire.management.internal.cli.remote.MemberCommandService.<init>(MemberCommandService.java:32)
+	... 46 more
+
+[info 2016/12/23 03:55:53.081 UTC <main> tid=0x1] Received cluster configuration from the locator
+
+[info 2016/12/23 03:55:53.081 UTC <main> tid=0x1] Received an empty shared configuration
+
+[info 2016/12/23 03:55:53.099 UTC <main> tid=0x1] Initializing region PdxTypes
+
+[info 2016/12/23 03:55:53.177 UTC <main> tid=0x1] Region PdxTypes requesting initial image from gf-server-3(gf-server-3:4008)<v20>:64437
+
+[info 2016/12/23 03:55:53.181 UTC <main> tid=0x1] PdxTypes is done getting image from gf-server-3(gf-server-3:4008)<v20>:64437. isDeltaGII is false
+
+[info 2016/12/23 03:55:53.181 UTC <main> tid=0x1] Initialization of region PdxTypes completed
+
+[info 2016/12/23 03:55:53.187 UTC <main> tid=0x1] Overriding MemoryPoolMXBean heap threshold bytes 0 on pool CMS Old Gen with 103,079,216
+
+2016-12-23 03:55:53.187 INFO CacheConfig: creating CacheServer
+[info 2016/12/23 03:55:53.410 UTC <main> tid=0x1] Bridge server connection listener bound to address 0.0.0.0/0.0.0.0:40404 with backlog 1,000.
+
+[info 2016/12/23 03:55:53.421 UTC <main> tid=0x1] ClientHealthMonitorThread maximum allowed time between pings: 60,000
+
+[info 2016/12/23 03:55:53.498 UTC <main> tid=0x1] CacheServer Configuration:   port=40404 max-connections=800 max-threads=0 notify-by-subscription=true socket-buffer-size=32768 maximum-time-between-pings=60000 maximum-message-count=230000 message-time-to-live=180 eviction-policy=none capacity=1 overflow directory=. groups=[] loadProbe=ConnectionCountProbe loadPollInterval=5000 tcpNoDelay=true
+
+2016-12-23 03:55:53.540 INFO FunctionConfig: addFeatureFunction
+2016-12-23 03:55:53.572 INFO FunctionConfig: findFeaturesFunction
+2016-12-23 03:55:53.583 INFO RegionConfig: routingRegion
+[info 2016/12/23 03:55:53.624 UTC <main> tid=0x1] Initializing region __PR
+
+[info 2016/12/23 03:55:53.698 UTC <main> tid=0x1] Region __PR requesting initial image from gf-server-2(gf-server-2:3735)<v19>:29957
+
+[info 2016/12/23 03:55:53.717 UTC <main> tid=0x1] __PR is done getting image from gf-server-2(gf-server-2:3735)<v19>:29957. isDeltaGII is false
+
+[info 2016/12/23 03:55:53.718 UTC <main> tid=0x1] Initialization of region __PR completed
+
+[info 2016/12/23 03:55:53.810 UTC <main> tid=0x1] Partitioned Region /routing is created with prId=6
+
+2016-12-23 03:55:54.302 INFO RequestMappingHandlerAdapter: Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77a567e1: startup date [Fri Dec 23 03:55:45 UTC 2016]; root of context hierarchy
+2016-12-23 03:55:54.397 INFO RequestMappingHandlerMapping: Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-12-23 03:55:54.399 INFO RequestMappingHandlerMapping: Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-12-23 03:55:54.439 INFO SimpleUrlHandlerMapping: Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-23 03:55:54.439 INFO SimpleUrlHandlerMapping: Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-23 03:55:54.494 INFO SimpleUrlHandlerMapping: Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-12-23 03:55:54.802 INFO AnnotationMBeanExporter: Registering beans for JMX exposure on startup
+2016-12-23 03:55:54.824 INFO Http11NioProtocol: Initializing ProtocolHandler ["http-nio-8080"]
+2016-12-23 03:55:54.840 INFO Http11NioProtocol: Starting ProtocolHandler [http-nio-8080]
+2016-12-23 03:55:54.840 INFO NioSelectorPool: Using a shared selector for servlet write/read
+2016-12-23 03:55:54.864 INFO TomcatEmbeddedServletContainer: Tomcat started on port(s): 8080 (http)
+2016-12-23 03:55:54.869 INFO GeoJSONGemfireServerApplication: Started GeoJSONGemfireServerApplication in 9.501 seconds (JVM running for 10.087)
+[info 2016/12/23 04:00:28.615 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_20
+
+[info 2016/12/23 04:00:28.618 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_20 completed
+
+[info 2016/12/23 04:00:28.682 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_32
+
+[info 2016/12/23 04:00:28.684 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_32 completed
+
+[info 2016/12/23 04:00:28.718 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_29
+
+[info 2016/12/23 04:00:28.719 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_29 completed
+
+[info 2016/12/23 04:00:28.746 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_93
+
+[info 2016/12/23 04:00:28.747 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_93 completed
+
+[info 2016/12/23 04:00:28.761 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_92
+
+[info 2016/12/23 04:00:28.762 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_92 completed
+
+[info 2016/12/23 04:00:28.791 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_53
+
+[info 2016/12/23 04:00:28.793 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_53 completed
+
+[info 2016/12/23 04:00:28.828 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_58
+
+[info 2016/12/23 04:00:28.830 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_58 completed
+
+[info 2016/12/23 04:00:28.852 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_99
+
+[info 2016/12/23 04:00:28.854 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_99 completed
+
+[info 2016/12/23 04:00:28.884 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_60
+
+[info 2016/12/23 04:00:28.885 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_60 completed
+
+[info 2016/12/23 04:00:28.903 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_79
+
+[info 2016/12/23 04:00:28.905 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_79 completed
+
+[info 2016/12/23 04:00:28.919 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_48
+
+[info 2016/12/23 04:00:28.920 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_48 completed
+
+[info 2016/12/23 04:00:28.970 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_78
+
+[info 2016/12/23 04:00:28.971 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_78 completed
+
+[info 2016/12/23 04:00:28.991 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_10
+
+[info 2016/12/23 04:00:28.992 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_10 completed
+
+[info 2016/12/23 04:00:29.009 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_40
+
+[info 2016/12/23 04:00:29.010 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_40 completed
+
+[info 2016/12/23 04:00:29.046 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_69
+
+[info 2016/12/23 04:00:29.047 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_69 completed
+
+[info 2016/12/23 04:00:29.062 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_77
+
+[info 2016/12/23 04:00:29.063 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_77 completed
+
+[info 2016/12/23 04:00:29.091 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_65
+
+[info 2016/12/23 04:00:29.092 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_65 completed
+
+[info 2016/12/23 04:00:29.119 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_47
+
+[info 2016/12/23 04:00:29.120 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_47 completed
+
+[info 2016/12/23 04:00:29.143 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_52
+
+[info 2016/12/23 04:00:29.144 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_52 completed
+
+[info 2016/12/23 04:00:29.158 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_44
+
+[info 2016/12/23 04:00:29.159 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_44 completed
+
+[info 2016/12/23 04:00:29.187 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_97
+
+[info 2016/12/23 04:00:29.188 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_97 completed
+
+[info 2016/12/23 04:00:29.211 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_51
+
+[info 2016/12/23 04:00:29.212 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_51 completed
+
+[info 2016/12/23 04:00:29.239 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_50
+
+[info 2016/12/23 04:00:29.240 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_50 completed
+
+[info 2016/12/23 04:00:29.261 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_16
+
+[info 2016/12/23 04:00:29.262 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_16 completed
+
+[info 2016/12/23 04:00:29.281 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_30
+
+[info 2016/12/23 04:00:29.283 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_30 completed
+
+[info 2016/12/23 04:00:29.300 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_7
+
+[info 2016/12/23 04:00:29.301 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_7 completed
+
+[info 2016/12/23 04:00:29.318 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initializing region _B__routing_83
+
+[info 2016/12/23 04:00:29.319 UTC <Pooled Waiting Message Processor 1> tid=0x5d] Initialization of region _B__routing_83 completed
+
+[info 2016/12/23 04:00:29.349 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initializing region _B__routing_0
+
+[info 2016/12/23 04:00:29.352 UTC <Pooled Waiting Message Processor 2> tid=0x5f] Initialization of region _B__routing_0 completed
+
+2016-12-23 04:00:33.575 INFO AddFeatureFunction: ts=1482465633571,name=AddFeatureFunction,rater.overall.count=3185.0,rater.overall.rate=818.0,rater.overall.minimum=0.0,rater.overall.maximum=818.0,rater.window.count=3185.0,rater.window.rate=818.0,rater.window.minimum=0.0,rater.window.maximum=818.0,rater.rolling.count=28.0,rater.rolling.rate=29.0,rater.rolling.minimum=0.0,rater.rolling.maximum=818.0
+2016-12-23 04:00:33.576 INFO AddFeatureFunction: ts=1482465633576,name=AddFeatureFunction,timer.overall.count=3185.0,timer.overall.mean=25060.076295133444,timer.overall.std=287008.87098155677,timer.overall.variance=8.237409202210791E10,timer.overall.minimum=6971.0,timer.overall.maximum=1.4766761E7,timer.rolling.count=100.0,timer.rolling.mean=14383.109999999999,timer.rolling.std=2962.4837275945724,timer.rolling.variance=8776309.836262634,timer.rolling.minimum=9981.0,timer.rolling.maximum=27538.0
+2016-12-23 04:00:43.575 INFO AddFeatureFunction: ts=1482465643575,name=AddFeatureFunction,rater.overall.count=73161.0,rater.overall.rate=5265.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=69976.0,rater.window.rate=6994.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=29.0,rater.rolling.rate=209.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:00:43.576 INFO AddFeatureFunction: ts=1482465643576,name=AddFeatureFunction,timer.overall.count=73169.0,timer.overall.mean=47859.75011275288,timer.overall.std=803549.8837243153,timer.overall.variance=6.456924156333606E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=25228.769999999997,timer.rolling.std=10322.646802403526,timer.rolling.variance=1.0655703700717172E8,timer.rolling.minimum=17772.0,timer.rolling.maximum=82834.0
+2016-12-23 04:00:53.576 INFO AddFeatureFunction: ts=1482465653576,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=4175.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=26605.0,rater.window.rate=2660.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=30.0,rater.rolling.rate=341.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:00:53.577 INFO AddFeatureFunction: ts=1482465653576,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:01:03.576 INFO AddFeatureFunction: ts=1482465663576,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=2943.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=31.0,rater.rolling.rate=425.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:01:03.577 INFO AddFeatureFunction: ts=1482465663577,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:01:13.577 INFO AddFeatureFunction: ts=1482465673576,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=2272.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=32.0,rater.rolling.rate=483.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:01:13.577 INFO AddFeatureFunction: ts=1482465673577,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:01:23.577 INFO AddFeatureFunction: ts=1482465683577,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=1851.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=33.0,rater.rolling.rate=524.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:01:23.577 INFO AddFeatureFunction: ts=1482465683577,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:01:33.577 INFO AddFeatureFunction: ts=1482465693577,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=1561.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=34.0,rater.rolling.rate=555.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:01:33.578 INFO AddFeatureFunction: ts=1482465693578,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:01:43.578 INFO AddFeatureFunction: ts=1482465703578,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=1350.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=35.0,rater.rolling.rate=578.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:01:43.578 INFO AddFeatureFunction: ts=1482465703578,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:01:53.578 INFO AddFeatureFunction: ts=1482465713578,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=1189.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=36.0,rater.rolling.rate=595.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:01:53.578 INFO AddFeatureFunction: ts=1482465713578,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:02:03.578 INFO AddFeatureFunction: ts=1482465723578,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=1062.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=37.0,rater.rolling.rate=607.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:02:03.579 INFO AddFeatureFunction: ts=1482465723578,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:02:13.579 INFO AddFeatureFunction: ts=1482465733579,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=960.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=38.0,rater.rolling.rate=617.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:02:13.579 INFO AddFeatureFunction: ts=1482465733579,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:02:23.579 INFO AddFeatureFunction: ts=1482465743579,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=875.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=39.0,rater.rolling.rate=623.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:02:23.579 INFO AddFeatureFunction: ts=1482465743579,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:02:33.580 INFO AddFeatureFunction: ts=1482465753579,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=805.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=40.0,rater.rolling.rate=628.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:02:33.580 INFO AddFeatureFunction: ts=1482465753580,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:02:43.580 INFO AddFeatureFunction: ts=1482465763580,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=745.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=41.0,rater.rolling.rate=631.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:02:43.580 INFO AddFeatureFunction: ts=1482465763580,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:02:53.580 INFO AddFeatureFunction: ts=1482465773580,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=693.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=42.0,rater.rolling.rate=632.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:02:53.580 INFO AddFeatureFunction: ts=1482465773580,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:03:03.580 INFO AddFeatureFunction: ts=1482465783580,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=648.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=43.0,rater.rolling.rate=632.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:03:03.581 INFO AddFeatureFunction: ts=1482465783581,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:03:13.581 INFO AddFeatureFunction: ts=1482465793581,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=608.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=44.0,rater.rolling.rate=632.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:03:13.581 INFO AddFeatureFunction: ts=1482465793581,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:03:23.580 INFO FindFeaturesFunction: ts=1482465803580,name=FindFeaturesFunction,rater.overall.count=26.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=26.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=4.0,rater.rolling.count=45.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:03:23.581 INFO AddFeatureFunction: ts=1482465803581,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=573.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=45.0,rater.rolling.rate=630.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:03:23.581 INFO AddFeatureFunction: ts=1482465803581,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:03:23.581 INFO FindFeaturesFunction: ts=1482465803581,name=FindFeaturesFunction,timer.overall.count=26.0,timer.overall.mean=1161896.1153846155,timer.overall.std=3751419.0222072313,timer.overall.variance=1.407314468017826E13,timer.overall.minimum=132791.0,timer.overall.maximum=1.948446E7,timer.rolling.count=26.0,timer.rolling.mean=1161896.1153846155,timer.rolling.std=3751419.0222072313,timer.rolling.variance=1.407314468017826E13,timer.rolling.minimum=132791.0,timer.rolling.maximum=1.948446E7
+2016-12-23 04:03:33.581 INFO FindFeaturesFunction: ts=1482465813581,name=FindFeaturesFunction,rater.overall.count=76.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=4.0,rater.rolling.count=46.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:03:33.581 INFO AddFeatureFunction: ts=1482465813581,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=542.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=46.0,rater.rolling.rate=629.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:03:33.582 INFO AddFeatureFunction: ts=1482465813581,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:03:33.582 INFO FindFeaturesFunction: ts=1482465813582,name=FindFeaturesFunction,timer.overall.count=76.0,timer.overall.mean=556237.0000000001,timer.overall.std=2215658.8657027925,timer.overall.variance=4.909144209167386E12,timer.overall.minimum=64686.0,timer.overall.maximum=1.948446E7,timer.rolling.count=76.0,timer.rolling.mean=556237.0000000001,timer.rolling.std=2215658.8657027925,timer.rolling.variance=4.909144209167386E12,timer.rolling.minimum=64686.0,timer.rolling.maximum=1.948446E7
+2016-12-23 04:03:43.581 INFO FindFeaturesFunction: ts=1482465823581,name=FindFeaturesFunction,rater.overall.count=123.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=47.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=4.0,rater.rolling.count=47.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:03:43.582 INFO AddFeatureFunction: ts=1482465823582,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=514.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=47.0,rater.rolling.rate=626.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:03:43.582 INFO AddFeatureFunction: ts=1482465823582,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:03:43.582 INFO FindFeaturesFunction: ts=1482465823582,name=FindFeaturesFunction,timer.overall.count=123.0,timer.overall.mean=448885.5447154472,timer.overall.std=1746270.7295092891,timer.overall.variance=3.0494614607409053E12,timer.overall.minimum=64686.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=258582.88999999998,timer.rolling.std=189554.911917839,timer.rolling.variance=3.5931064632179695E10,timer.rolling.minimum=64686.0,timer.rolling.maximum=902770.0
+2016-12-23 04:03:53.581 INFO FindFeaturesFunction: ts=1482465833581,name=FindFeaturesFunction,rater.overall.count=173.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=48.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:03:53.582 INFO AddFeatureFunction: ts=1482465833582,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=489.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=48.0,rater.rolling.rate=623.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:03:53.582 INFO AddFeatureFunction: ts=1482465833582,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:03:53.582 INFO FindFeaturesFunction: ts=1482465833582,name=FindFeaturesFunction,timer.overall.count=173.0,timer.overall.mean=395644.9826589595,timer.overall.std=1476788.721122927,timer.overall.variance=2.1809049268358904E12,timer.overall.minimum=53278.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=264826.6199999997,timer.rolling.std=188426.92453428757,timer.rolling.variance=3.5504705889450096E10,timer.rolling.minimum=53278.0,timer.rolling.maximum=771765.0
+2016-12-23 04:04:03.582 INFO FindFeaturesFunction: ts=1482465843581,name=FindFeaturesFunction,rater.overall.count=222.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=49.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=49.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:04:03.582 INFO AddFeatureFunction: ts=1482465843582,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=466.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=49.0,rater.rolling.rate=620.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:04:03.582 INFO AddFeatureFunction: ts=1482465843582,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:04:03.582 INFO FindFeaturesFunction: ts=1482465843582,name=FindFeaturesFunction,timer.overall.count=222.0,timer.overall.mean=364246.7747747749,timer.overall.std=1307189.5453736421,timer.overall.variance=1.708744507534149E12,timer.overall.minimum=53278.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=259627.88,timer.rolling.std=191359.37772299247,timer.rolling.variance=3.661841144253091E10,timer.rolling.minimum=53278.0,timer.rolling.maximum=807207.0
+2016-12-23 04:04:13.582 INFO FindFeaturesFunction: ts=1482465853582,name=FindFeaturesFunction,rater.overall.count=272.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=50.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:04:13.582 INFO AddFeatureFunction: ts=1482465853582,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=445.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=50.0,rater.rolling.rate=616.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:04:13.582 INFO AddFeatureFunction: ts=1482465853582,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:04:13.583 INFO FindFeaturesFunction: ts=1482465853583,name=FindFeaturesFunction,timer.overall.count=272.0,timer.overall.mean=340455.28308823565,timer.overall.std=1183450.5953239028,timer.overall.variance=1.4005553115725E12,timer.overall.minimum=53278.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=242499.38999999993,timer.rolling.std=174360.46841459064,timer.rolling.variance=3.0401572945755455E10,timer.rolling.minimum=54857.0,timer.rolling.maximum=807207.0
+2016-12-23 04:04:23.582 INFO FindFeaturesFunction: ts=1482465863582,name=FindFeaturesFunction,rater.overall.count=321.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=49.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=51.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:04:23.582 INFO AddFeatureFunction: ts=1482465863582,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=426.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=51.0,rater.rolling.rate=613.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:04:23.583 INFO AddFeatureFunction: ts=1482465863583,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:04:23.583 INFO FindFeaturesFunction: ts=1482465863583,name=FindFeaturesFunction,timer.overall.count=322.0,timer.overall.mean=325974.70807453484,timer.overall.std=1090055.164492016,timer.overall.variance=1.1882202616357158E12,timer.overall.minimum=52349.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=241010.72,timer.rolling.std=166336.19209282447,timer.rolling.variance=2.7667728799941E10,timer.rolling.minimum=52349.0,timer.rolling.maximum=796180.0
+2016-12-23 04:04:33.583 INFO FindFeaturesFunction: ts=1482465873583,name=FindFeaturesFunction,rater.overall.count=371.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=52.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:04:33.583 INFO AddFeatureFunction: ts=1482465873583,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=409.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=52.0,rater.rolling.rate=609.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:04:33.583 INFO AddFeatureFunction: ts=1482465873583,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:04:33.583 INFO FindFeaturesFunction: ts=1482465873583,name=FindFeaturesFunction,timer.overall.count=371.0,timer.overall.mean=307147.42048517603,timer.overall.std=1017622.2889401584,timer.overall.variance=1.0355551229478073E12,timer.overall.minimum=47358.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=214526.38,timer.rolling.std=158472.23809546407,timer.rolling.variance=2.5113450246985455E10,timer.rolling.minimum=47358.0,timer.rolling.maximum=796180.0
+2016-12-23 04:04:43.583 INFO FindFeaturesFunction: ts=1482465883583,name=FindFeaturesFunction,rater.overall.count=421.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=53.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:04:43.583 INFO AddFeatureFunction: ts=1482465883583,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=392.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=53.0,rater.rolling.rate=605.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:04:43.583 INFO AddFeatureFunction: ts=1482465883583,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:04:43.583 INFO FindFeaturesFunction: ts=1482465883583,name=FindFeaturesFunction,timer.overall.count=421.0,timer.overall.mean=298814.14014251856,timer.overall.std=956304.7050920851,timer.overall.variance=9.145186889812598E11,timer.overall.minimum=47358.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=211455.80999999994,timer.rolling.std=130211.82275153308,timer.rolling.variance=1.6955118784276669E10,timer.rolling.minimum=47358.0,timer.rolling.maximum=553599.0
+2016-12-23 04:04:53.584 INFO FindFeaturesFunction: ts=1482465893584,name=FindFeaturesFunction,rater.overall.count=470.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=49.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=54.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:04:53.584 INFO AddFeatureFunction: ts=1482465893584,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=378.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=54.0,rater.rolling.rate=601.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:04:53.584 INFO FindFeaturesFunction: ts=1482465893584,name=FindFeaturesFunction,timer.overall.count=470.0,timer.overall.mean=289158.01489361766,timer.overall.std=906379.7775453923,timer.overall.variance=8.215243011432349E11,timer.overall.minimum=47358.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=222950.14000000007,timer.rolling.std=126488.30755681041,timer.rolling.variance=1.599929194858626E10,timer.rolling.minimum=53566.0,timer.rolling.maximum=595300.0
+2016-12-23 04:04:53.584 INFO AddFeatureFunction: ts=1482465893584,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:05:03.584 INFO FindFeaturesFunction: ts=1482465903584,name=FindFeaturesFunction,rater.overall.count=520.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=55.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:05:03.584 INFO AddFeatureFunction: ts=1482465903584,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=364.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=55.0,rater.rolling.rate=596.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:05:03.584 INFO FindFeaturesFunction: ts=1482465903584,name=FindFeaturesFunction,timer.overall.count=520.0,timer.overall.mean=283218.5692307699,timer.overall.std=862693.092041669,timer.overall.variance=7.442393710564154E11,timer.overall.minimum=47358.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=217795.0,timer.rolling.std=128413.3959148493,timer.rolling.variance=1.6490000250383837E10,timer.rolling.minimum=60320.0,timer.rolling.maximum=643178.0
+2016-12-23 04:05:03.584 INFO AddFeatureFunction: ts=1482465903584,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:05:13.584 INFO FindFeaturesFunction: ts=1482465913584,name=FindFeaturesFunction,rater.overall.count=562.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=42.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=56.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:05:13.584 INFO AddFeatureFunction: ts=1482465913584,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=351.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=56.0,rater.rolling.rate=592.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:05:13.584 INFO FindFeaturesFunction: ts=1482465913584,name=FindFeaturesFunction,timer.overall.count=562.0,timer.overall.mean=281887.8967971535,timer.overall.std=831212.1710164042,timer.overall.variance=6.90913673245804E11,timer.overall.minimum=46914.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=242276.38999999996,timer.rolling.std=151238.9365529077,timer.rolling.variance=2.2873215929654438E10,timer.rolling.minimum=46914.0,timer.rolling.maximum=751406.0
+2016-12-23 04:05:13.585 INFO AddFeatureFunction: ts=1482465913584,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:05:23.585 INFO FindFeaturesFunction: ts=1482465923585,name=FindFeaturesFunction,rater.overall.count=611.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=49.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=57.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:05:23.585 INFO AddFeatureFunction: ts=1482465923585,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=339.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=57.0,rater.rolling.rate=587.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:05:23.585 INFO FindFeaturesFunction: ts=1482465923585,name=FindFeaturesFunction,timer.overall.count=611.0,timer.overall.mean=276270.3306055651,timer.overall.std=798112.6854441547,timer.overall.variance=6.369838586668802E11,timer.overall.minimum=46914.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=240638.35000000006,timer.rolling.std=154899.93157430622,timer.rolling.variance=2.3993988801724747E10,timer.rolling.minimum=46914.0,timer.rolling.maximum=751406.0
+2016-12-23 04:05:23.585 INFO AddFeatureFunction: ts=1482465923585,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:05:33.585 INFO FindFeaturesFunction: ts=1482465933585,name=FindFeaturesFunction,rater.overall.count=661.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=58.0,rater.rolling.rate=0.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:05:33.585 INFO AddFeatureFunction: ts=1482465933585,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=328.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=58.0,rater.rolling.rate=583.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:05:33.587 INFO AddFeatureFunction: ts=1482465933587,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:05:33.587 INFO FindFeaturesFunction: ts=1482465933587,name=FindFeaturesFunction,timer.overall.count=661.0,timer.overall.mean=272099.9591527992,timer.overall.std=768545.184788118,timer.overall.variance=5.906617010610024E11,timer.overall.minimum=46914.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=220113.38000000003,timer.rolling.std=142181.857474946,timer.rolling.variance=2.021568059502586E10,timer.rolling.minimum=51302.0,timer.rolling.maximum=734966.0
+2016-12-23 04:05:43.585 INFO FindFeaturesFunction: ts=1482465943585,name=FindFeaturesFunction,rater.overall.count=711.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=59.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:05:43.585 INFO AddFeatureFunction: ts=1482465943585,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=317.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=59.0,rater.rolling.rate=578.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:05:43.587 INFO AddFeatureFunction: ts=1482465943587,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:05:43.587 INFO FindFeaturesFunction: ts=1482465943587,name=FindFeaturesFunction,timer.overall.count=711.0,timer.overall.mean=267389.32630098495,timer.overall.std=741906.8863256432,timer.overall.variance=5.504258279774109E11,timer.overall.minimum=46914.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=213126.3899999999,timer.rolling.std=138518.36892657483,timer.rolling.variance=1.9187338530078693E10,timer.rolling.minimum=46918.0,timer.rolling.maximum=734966.0
+2016-12-23 04:05:53.586 INFO FindFeaturesFunction: ts=1482465953586,name=FindFeaturesFunction,rater.overall.count=760.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=49.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=60.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:05:53.586 INFO AddFeatureFunction: ts=1482465953586,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=308.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=60.0,rater.rolling.rate=574.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:05:53.587 INFO AddFeatureFunction: ts=1482465953587,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:05:53.587 INFO FindFeaturesFunction: ts=1482465953587,name=FindFeaturesFunction,timer.overall.count=760.0,timer.overall.mean=262170.90131578984,timer.overall.std=718739.7125722396,timer.overall.variance=5.1658677442842554E11,timer.overall.minimum=46914.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=197263.92000000007,timer.rolling.std=133765.40126010298,timer.rolling.variance=1.789318257427636E10,timer.rolling.minimum=46918.0,timer.rolling.maximum=609702.0
+2016-12-23 04:06:03.586 INFO FindFeaturesFunction: ts=1482465963586,name=FindFeaturesFunction,rater.overall.count=810.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=61.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:06:03.586 INFO AddFeatureFunction: ts=1482465963586,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=298.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=61.0,rater.rolling.rate=569.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:06:03.588 INFO AddFeatureFunction: ts=1482465963588,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:06:03.588 INFO FindFeaturesFunction: ts=1482465963588,name=FindFeaturesFunction,timer.overall.count=810.0,timer.overall.mean=255982.31604938308,timer.overall.std=697049.565650819,timer.overall.variance=4.858780969739954E11,timer.overall.minimum=46914.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=173541.22999999998,timer.rolling.std=123858.67953322544,timer.rolling.variance=1.534097249571424E10,timer.rolling.minimum=47322.0,timer.rolling.maximum=609702.0
+2016-12-23 04:06:13.586 INFO AddFeatureFunction: ts=1482465973586,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=290.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=62.0,rater.rolling.rate=565.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:06:13.586 INFO FindFeaturesFunction: ts=1482465973586,name=FindFeaturesFunction,rater.overall.count=860.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=62.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:06:13.588 INFO AddFeatureFunction: ts=1482465973588,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:06:13.588 INFO FindFeaturesFunction: ts=1482465973588,name=FindFeaturesFunction,timer.overall.count=860.0,timer.overall.mean=252795.53837209343,timer.overall.std=677165.2676987151,timer.overall.variance=4.585527997774725E11,timer.overall.minimum=46914.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=181542.7799999999,timer.rolling.std=111599.73629920509,timer.rolling.variance=1.2454501142052114E10,timer.rolling.minimum=50374.0,timer.rolling.maximum=586276.0
+2016-12-23 04:06:23.587 INFO FindFeaturesFunction: ts=1482465983587,name=FindFeaturesFunction,rater.overall.count=909.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=49.0,rater.window.rate=4.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=63.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:06:23.587 INFO AddFeatureFunction: ts=1482465983587,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=281.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=63.0,rater.rolling.rate=560.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:06:23.588 INFO AddFeatureFunction: ts=1482465983588,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:06:23.588 INFO FindFeaturesFunction: ts=1482465983588,name=FindFeaturesFunction,timer.overall.count=909.0,timer.overall.mean=248437.87898789914,timer.overall.std=659385.8879350914,timer.overall.variance=4.34789749207949E11,timer.overall.minimum=46914.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=185928.47000000003,timer.rolling.std=114435.3872136432,timer.rolling.variance=1.3095457846736456E10,timer.rolling.minimum=50374.0,timer.rolling.maximum=586276.0
+2016-12-23 04:06:33.587 INFO FindFeaturesFunction: ts=1482465993587,name=FindFeaturesFunction,rater.overall.count=959.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=64.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:06:33.587 INFO AddFeatureFunction: ts=1482465993587,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=274.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=64.0,rater.rolling.rate=556.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:06:33.588 INFO AddFeatureFunction: ts=1482465993588,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:06:33.588 INFO FindFeaturesFunction: ts=1482465993588,name=FindFeaturesFunction,timer.overall.count=959.0,timer.overall.mean=244315.66006256544,timer.overall.std=642611.9885575377,timer.overall.variance=4.129501678378729E11,timer.overall.minimum=41939.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=169629.55000000002,timer.rolling.std=106396.88547203336,timer.rolling.variance=1.1320297238148985E10,timer.rolling.minimum=41939.0,timer.rolling.maximum=499701.0
+2016-12-23 04:06:43.587 INFO FindFeaturesFunction: ts=1482466003587,name=FindFeaturesFunction,rater.overall.count=1009.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=50.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=65.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:06:43.587 INFO AddFeatureFunction: ts=1482466003587,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=266.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=65.0,rater.rolling.rate=551.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:06:43.589 INFO AddFeatureFunction: ts=1482466003589,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:06:43.589 INFO FindFeaturesFunction: ts=1482466003589,name=FindFeaturesFunction,timer.overall.count=1009.0,timer.overall.mean=243669.47373637286,timer.overall.std=631692.8791394776,timer.overall.variance=3.9903589355552264E11,timer.overall.minimum=41939.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=200324.66999999993,timer.rolling.std=270251.33575162303,timer.rolling.variance=7.303578447553648E10,timer.rolling.minimum=41939.0,timer.rolling.maximum=2676550.0
+2016-12-23 04:06:53.588 INFO AddFeatureFunction: ts=1482466013588,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=259.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=66.0,rater.rolling.rate=547.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:06:53.588 INFO FindFeaturesFunction: ts=1482466013588,name=FindFeaturesFunction,rater.overall.count=1068.0,rater.overall.rate=4.0,rater.overall.minimum=0.0,rater.overall.maximum=4.0,rater.window.count=59.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=5.0,rater.rolling.count=66.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=4.0
+2016-12-23 04:06:53.589 INFO AddFeatureFunction: ts=1482466013589,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:06:53.589 INFO FindFeaturesFunction: ts=1482466013589,name=FindFeaturesFunction,timer.overall.count=1068.0,timer.overall.mean=239562.49625468184,timer.overall.std=614672.0019137813,timer.overall.variance=3.778216699366955E11,timer.overall.minimum=41939.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=199609.49999999994,timer.rolling.std=269693.11748200323,timer.rolling.variance=7.27343776171616E10,timer.rolling.minimum=50560.0,timer.rolling.maximum=2676550.0
+2016-12-23 04:07:03.588 INFO FindFeaturesFunction: ts=1482466023588,name=FindFeaturesFunction,rater.overall.count=1163.0,rater.overall.rate=5.0,rater.overall.minimum=0.0,rater.overall.maximum=5.0,rater.window.count=95.0,rater.window.rate=9.0,rater.window.minimum=0.0,rater.window.maximum=9.0,rater.rolling.count=67.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5.0
+2016-12-23 04:07:03.588 INFO AddFeatureFunction: ts=1482466023588,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=253.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=67.0,rater.rolling.rate=543.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:07:03.589 INFO AddFeatureFunction: ts=1482466023589,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:07:03.589 INFO FindFeaturesFunction: ts=1482466023589,name=FindFeaturesFunction,timer.overall.count=1163.0,timer.overall.mean=232131.96474634585,timer.overall.std=589977.2493397985,timer.overall.variance=3.480731547385547E11,timer.overall.minimum=41939.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=147627.50000000006,timer.rolling.std=80296.87792369595,timer.rolling.variance=6.44758860429293E9,timer.rolling.minimum=48173.0,timer.rolling.maximum=421372.0
+2016-12-23 04:07:13.588 INFO AddFeatureFunction: ts=1482466033588,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=247.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=68.0,rater.rolling.rate=538.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:07:13.588 INFO FindFeaturesFunction: ts=1482466033588,name=FindFeaturesFunction,rater.overall.count=1262.0,rater.overall.rate=5.0,rater.overall.minimum=0.0,rater.overall.maximum=5.0,rater.window.count=99.0,rater.window.rate=9.0,rater.window.minimum=0.0,rater.window.maximum=9.0,rater.rolling.count=68.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5.0
+2016-12-23 04:07:13.589 INFO FindFeaturesFunction: ts=1482466033589,name=FindFeaturesFunction,timer.overall.count=1262.0,timer.overall.mean=226767.84786053904,timer.overall.std=567178.3515140802,timer.overall.variance=3.2169128242622955E11,timer.overall.minimum=41939.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=164121.69999999998,timer.rolling.std=87989.16000401479,timer.rolling.variance=7.742092278212117E9,timer.rolling.minimum=49375.0,timer.rolling.maximum=420799.0
+2016-12-23 04:07:13.589 INFO AddFeatureFunction: ts=1482466033589,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:07:23.589 INFO AddFeatureFunction: ts=1482466043589,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=241.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=69.0,rater.rolling.rate=534.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:07:23.589 INFO FindFeaturesFunction: ts=1482466043589,name=FindFeaturesFunction,rater.overall.count=1362.0,rater.overall.rate=5.0,rater.overall.minimum=0.0,rater.overall.maximum=5.0,rater.window.count=100.0,rater.window.rate=9.0,rater.window.minimum=0.0,rater.window.maximum=9.0,rater.rolling.count=69.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5.0
+2016-12-23 04:07:23.590 INFO FindFeaturesFunction: ts=1482466043590,name=FindFeaturesFunction,timer.overall.count=1362.0,timer.overall.mean=220999.715859031,timer.overall.std=546997.410818752,timer.overall.variance=2.992061674424185E11,timer.overall.minimum=41939.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=148205.88999999998,timer.rolling.std=100252.41888271955,timer.rolling.variance=1.0050547491836264E10,timer.rolling.minimum=44189.0,timer.rolling.maximum=506322.0
+2016-12-23 04:07:23.590 INFO AddFeatureFunction: ts=1482466043590,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:07:33.589 INFO AddFeatureFunction: ts=1482466053589,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=235.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=70.0,rater.rolling.rate=530.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:07:33.589 INFO FindFeaturesFunction: ts=1482466053589,name=FindFeaturesFunction,rater.overall.count=1480.0,rater.overall.rate=5.0,rater.overall.minimum=0.0,rater.overall.maximum=5.0,rater.window.count=118.0,rater.window.rate=11.0,rater.window.minimum=0.0,rater.window.maximum=11.0,rater.rolling.count=70.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5.0
+2016-12-23 04:07:33.590 INFO FindFeaturesFunction: ts=1482466053590,name=FindFeaturesFunction,timer.overall.count=1480.0,timer.overall.mean=215524.37837837852,timer.overall.std=525578.0865103325,timer.overall.variance=2.7623232501986255E11,timer.overall.minimum=39162.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=154169.47999999992,timer.rolling.std=83907.65774692647,timer.rolling.variance=7.040495028575351E9,timer.rolling.minimum=39162.0,timer.rolling.maximum=329939.0
+2016-12-23 04:07:33.590 INFO AddFeatureFunction: ts=1482466053590,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:07:43.590 INFO AddFeatureFunction: ts=1482466063590,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=229.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=71.0,rater.rolling.rate=525.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:07:43.590 INFO FindFeaturesFunction: ts=1482466063590,name=FindFeaturesFunction,rater.overall.count=1629.0,rater.overall.rate=6.0,rater.overall.minimum=0.0,rater.overall.maximum=6.0,rater.window.count=149.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=14.0,rater.rolling.count=71.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=6.0
+2016-12-23 04:07:43.590 INFO FindFeaturesFunction: ts=1482466063590,name=FindFeaturesFunction,timer.overall.count=1629.0,timer.overall.mean=209972.06138735445,timer.overall.std=501838.90628861915,timer.overall.variance=2.5184228786495746E11,timer.overall.minimum=39162.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=154875.08999999994,timer.rolling.std=76487.20217109211,timer.rolling.variance=5.850292095961517E9,timer.rolling.minimum=45901.0,timer.rolling.maximum=376253.0
+2016-12-23 04:07:43.590 INFO AddFeatureFunction: ts=1482466063590,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:07:53.590 INFO AddFeatureFunction: ts=1482466073590,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=224.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=72.0,rater.rolling.rate=521.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:07:53.590 INFO FindFeaturesFunction: ts=1482466073590,name=FindFeaturesFunction,rater.overall.count=1778.0,rater.overall.rate=6.0,rater.overall.minimum=0.0,rater.overall.maximum=6.0,rater.window.count=149.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=14.0,rater.rolling.count=72.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=6.0
+2016-12-23 04:07:53.590 INFO FindFeaturesFunction: ts=1482466073590,name=FindFeaturesFunction,timer.overall.count=1778.0,timer.overall.mean=205734.93307086625,timer.overall.std=481233.19182415365,timer.overall.variance=2.3158538491326266E11,timer.overall.minimum=39162.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=153219.42999999993,timer.rolling.std=87965.36843120409,timer.rolling.variance=7.737906043237477E9,timer.rolling.minimum=43332.0,timer.rolling.maximum=357232.0
+2016-12-23 04:07:53.590 INFO AddFeatureFunction: ts=1482466073590,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:08:03.590 INFO AddFeatureFunction: ts=1482466083590,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=219.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=73.0,rater.rolling.rate=517.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:08:03.590 INFO FindFeaturesFunction: ts=1482466083590,name=FindFeaturesFunction,rater.overall.count=1928.0,rater.overall.rate=6.0,rater.overall.minimum=0.0,rater.overall.maximum=6.0,rater.window.count=150.0,rater.window.rate=15.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=73.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=6.0
+2016-12-23 04:08:03.591 INFO FindFeaturesFunction: ts=1482466083590,name=FindFeaturesFunction,timer.overall.count=1928.0,timer.overall.mean=202685.19865145232,timer.overall.std=462810.1049444994,timer.overall.variance=2.1419319323873856E11,timer.overall.minimum=39162.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=168604.25999999995,timer.rolling.std=85497.97259461948,timer.rolling.variance=7.309903317790303E9,timer.rolling.minimum=46814.0,timer.rolling.maximum=412720.0
+2016-12-23 04:08:03.591 INFO AddFeatureFunction: ts=1482466083591,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:08:13.591 INFO AddFeatureFunction: ts=1482466093591,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=215.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=74.0,rater.rolling.rate=513.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:08:13.591 INFO FindFeaturesFunction: ts=1482466093591,name=FindFeaturesFunction,rater.overall.count=2076.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=7.0,rater.window.count=148.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=74.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=7.0
+2016-12-23 04:08:13.591 INFO AddFeatureFunction: ts=1482466093591,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:08:13.591 INFO FindFeaturesFunction: ts=1482466093591,name=FindFeaturesFunction,timer.overall.count=2076.0,timer.overall.mean=200324.78131021207,timer.overall.std=446729.08389548666,timer.overall.variance=1.9956687439810074E11,timer.overall.minimum=39162.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=158369.62999999998,timer.rolling.std=85649.06529750612,timer.rolling.variance=7.335762386336469E9,timer.rolling.minimum=44113.0,timer.rolling.maximum=372926.0
+2016-12-23 04:08:23.591 INFO AddFeatureFunction: ts=1482466103591,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=210.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=75.0,rater.rolling.rate=509.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:08:23.591 INFO FindFeaturesFunction: ts=1482466103591,name=FindFeaturesFunction,rater.overall.count=2225.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=7.0,rater.window.count=149.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=75.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=7.0
+2016-12-23 04:08:23.591 INFO AddFeatureFunction: ts=1482466103591,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:08:23.591 INFO FindFeaturesFunction: ts=1482466103591,name=FindFeaturesFunction,timer.overall.count=2225.0,timer.overall.mean=198525.50606741596,timer.overall.std=432169.27332364616,timer.overall.variance=1.867702808050884E11,timer.overall.minimum=39162.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=175922.16000000006,timer.rolling.std=92250.9859136191,timer.rolling.variance=8.510244402034748E9,timer.rolling.minimum=51686.0,timer.rolling.maximum=447541.0
+2016-12-23 04:08:33.591 INFO AddFeatureFunction: ts=1482466113591,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=206.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=76.0,rater.rolling.rate=505.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:08:33.591 INFO FindFeaturesFunction: ts=1482466113591,name=FindFeaturesFunction,rater.overall.count=2375.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=7.0,rater.window.count=150.0,rater.window.rate=15.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=76.0,rater.rolling.rate=1.0,rater.rolling.minimum=0.0,rater.rolling.maximum=7.0
+2016-12-23 04:08:33.592 INFO AddFeatureFunction: ts=1482466113592,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:08:33.592 INFO FindFeaturesFunction: ts=1482466113592,name=FindFeaturesFunction,timer.overall.count=2375.0,timer.overall.mean=195784.17852631593,timer.overall.std=418937.67851633264,timer.overall.variance=1.7550877848065408E11,timer.overall.minimum=39162.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=156276.02000000002,timer.rolling.std=86488.04532652843,timer.rolling.variance=7.480181984403637E9,timer.rolling.minimum=45718.0,timer.rolling.maximum=466839.0
+2016-12-23 04:08:43.592 INFO AddFeatureFunction: ts=1482466123592,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=201.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=77.0,rater.rolling.rate=501.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:08:43.592 INFO FindFeaturesFunction: ts=1482466123592,name=FindFeaturesFunction,rater.overall.count=2525.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=7.0,rater.window.count=150.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=77.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=7.0
+2016-12-23 04:08:43.592 INFO AddFeatureFunction: ts=1482466123592,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:08:43.592 INFO FindFeaturesFunction: ts=1482466123592,name=FindFeaturesFunction,timer.overall.count=2525.0,timer.overall.mean=192595.5231683171,timer.overall.std=407005.9193048273,timer.overall.variance=1.6565381834916757E11,timer.overall.minimum=39162.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=141386.04000000007,timer.rolling.std=82744.49654205637,timer.rolling.variance=6.846651707998378E9,timer.rolling.minimum=40143.0,timer.rolling.maximum=396247.0
+2016-12-23 04:08:53.592 INFO AddFeatureFunction: ts=1482466133592,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=197.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=78.0,rater.rolling.rate=497.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:08:53.592 INFO FindFeaturesFunction: ts=1482466133592,name=FindFeaturesFunction,rater.overall.count=2672.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=7.0,rater.window.count=147.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=78.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=7.0
+2016-12-23 04:08:53.592 INFO AddFeatureFunction: ts=1482466133592,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:08:53.592 INFO FindFeaturesFunction: ts=1482466133592,name=FindFeaturesFunction,timer.overall.count=2672.0,timer.overall.mean=190541.95434131747,timer.overall.std=396294.7175006634,timer.overall.variance=1.5704950311893063E11,timer.overall.minimum=37784.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=165134.75000000003,timer.rolling.std=90206.11043015253,timer.rolling.variance=8.137142358936874E9,timer.rolling.minimum=48072.0,timer.rolling.maximum=551675.0
+2016-12-23 04:09:03.592 INFO AddFeatureFunction: ts=1482466143592,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=194.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=79.0,rater.rolling.rate=493.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:09:03.592 INFO FindFeaturesFunction: ts=1482466143592,name=FindFeaturesFunction,rater.overall.count=2822.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=150.0,rater.window.rate=15.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=79.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:09:03.593 INFO AddFeatureFunction: ts=1482466143593,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:09:03.593 INFO FindFeaturesFunction: ts=1482466143593,name=FindFeaturesFunction,timer.overall.count=2822.0,timer.overall.mean=188633.56130403973,timer.overall.std=386342.80000796844,timer.overall.variance=1.492607591179971E11,timer.overall.minimum=37784.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=159516.25,timer.rolling.std=100401.52480324019,timer.rolling.variance=1.0080466182815655E10,timer.rolling.minimum=42512.0,timer.rolling.maximum=562828.0
+2016-12-23 04:09:13.593 INFO AddFeatureFunction: ts=1482466153593,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=190.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=80.0,rater.rolling.rate=489.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:09:13.593 INFO FindFeaturesFunction: ts=1482466153593,name=FindFeaturesFunction,rater.overall.count=2972.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=150.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=80.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:09:13.593 INFO AddFeatureFunction: ts=1482466153593,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:09:13.593 INFO FindFeaturesFunction: ts=1482466153593,name=FindFeaturesFunction,timer.overall.count=2972.0,timer.overall.mean=187221.19246298796,timer.overall.std=376976.9744394936,timer.overall.variance=1.4211163925755463E11,timer.overall.minimum=37678.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=164381.17000000007,timer.rolling.std=87882.92662010205,timer.rolling.variance=7.723408791314241E9,timer.rolling.minimum=37678.0,timer.rolling.maximum=492728.0
+2016-12-23 04:09:23.593 INFO AddFeatureFunction: ts=1482466163593,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=186.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=81.0,rater.rolling.rate=486.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:09:23.593 INFO FindFeaturesFunction: ts=1482466163593,name=FindFeaturesFunction,rater.overall.count=3122.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=150.0,rater.window.rate=15.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=81.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:09:23.593 INFO AddFeatureFunction: ts=1482466163593,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:09:23.593 INFO FindFeaturesFunction: ts=1482466163593,name=FindFeaturesFunction,timer.overall.count=3122.0,timer.overall.mean=185565.9336963486,timer.overall.std=368268.84441678616,timer.overall.variance=1.3562194176807506E11,timer.overall.minimum=36865.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=155240.64999999997,timer.rolling.std=84125.91664223614,timer.rolling.variance=7.077169850896463E9,timer.rolling.minimum=36865.0,timer.rolling.maximum=416144.0
+2016-12-23 04:09:33.593 INFO AddFeatureFunction: ts=1482466173593,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=183.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=82.0,rater.rolling.rate=482.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:09:33.594 INFO FindFeaturesFunction: ts=1482466173593,name=FindFeaturesFunction,rater.overall.count=3269.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=147.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=82.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:09:33.594 INFO AddFeatureFunction: ts=1482466173594,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:09:33.594 INFO FindFeaturesFunction: ts=1482466173594,name=FindFeaturesFunction,timer.overall.count=3269.0,timer.overall.mean=183365.35393086597,timer.overall.std=360389.17808978603,timer.overall.variance=1.2988035968423149E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=132660.85,timer.rolling.std=77398.1245812484,timer.rolling.variance=5.990469688694447E9,timer.rolling.minimum=36867.0,timer.rolling.maximum=399392.0
+2016-12-23 04:09:43.594 INFO AddFeatureFunction: ts=1482466183594,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=180.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=83.0,rater.rolling.rate=478.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:09:43.594 INFO FindFeaturesFunction: ts=1482466183594,name=FindFeaturesFunction,rater.overall.count=3369.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=100.0,rater.window.rate=9.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=83.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:09:43.594 INFO AddFeatureFunction: ts=1482466183594,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:09:43.594 INFO FindFeaturesFunction: ts=1482466183594,name=FindFeaturesFunction,timer.overall.count=3369.0,timer.overall.mean=182310.74057583886,timer.overall.std=355328.8952469335,timer.overall.variance=1.2625862379740623E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=147835.43000000002,timer.rolling.std=82114.66394040443,timer.rolling.variance=6.742818034045554E9,timer.rolling.minimum=46719.0,timer.rolling.maximum=406463.0
+2016-12-23 04:09:53.594 INFO AddFeatureFunction: ts=1482466193594,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=176.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=84.0,rater.rolling.rate=475.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:09:53.594 INFO FindFeaturesFunction: ts=1482466193594,name=FindFeaturesFunction,rater.overall.count=3469.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=100.0,rater.window.rate=10.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=84.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:09:53.594 INFO AddFeatureFunction: ts=1482466193594,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:09:53.594 INFO FindFeaturesFunction: ts=1482466193594,name=FindFeaturesFunction,timer.overall.count=3469.0,timer.overall.mean=181206.51628711467,timer.overall.std=350528.3085468143,timer.overall.variance=1.2287009509269067E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=144005.20000000004,timer.rolling.std=85984.68143674069,timer.rolling.variance=7.393365441777779E9,timer.rolling.minimum=48343.0,timer.rolling.maximum=429392.0
+2016-12-23 04:10:03.594 INFO AddFeatureFunction: ts=1482466203594,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=173.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=85.0,rater.rolling.rate=471.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:10:03.595 INFO FindFeaturesFunction: ts=1482466203594,name=FindFeaturesFunction,rater.overall.count=3569.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=100.0,rater.window.rate=10.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=85.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:10:03.595 INFO AddFeatureFunction: ts=1482466203595,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:10:03.595 INFO FindFeaturesFunction: ts=1482466203595,name=FindFeaturesFunction,timer.overall.count=3569.0,timer.overall.mean=180328.2451667135,timer.overall.std=345898.8432525599,timer.overall.variance=1.19646009763459E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=149861.0199999999,timer.rolling.std=83361.93601471123,timer.rolling.variance=6.949212376120809E9,timer.rolling.minimum=46090.0,timer.rolling.maximum=447890.0
+2016-12-23 04:10:13.595 INFO AddFeatureFunction: ts=1482466213595,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=170.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=86.0,rater.rolling.rate=468.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:10:13.595 INFO FindFeaturesFunction: ts=1482466213595,name=FindFeaturesFunction,rater.overall.count=3669.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=100.0,rater.window.rate=9.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=86.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:10:13.595 INFO FindFeaturesFunction: ts=1482466213595,name=FindFeaturesFunction,timer.overall.count=3669.0,timer.overall.mean=179823.310166258,timer.overall.std=341368.2133190369,timer.overall.variance=1.1653225706463148E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=161802.17999999996,timer.rolling.std=71771.94619933334,timer.rolling.variance=5.151212261239999E9,timer.rolling.minimum=47692.0,timer.rolling.maximum=356713.0
+2016-12-23 04:10:13.595 INFO AddFeatureFunction: ts=1482466213595,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:10:23.595 INFO AddFeatureFunction: ts=1482466223595,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=167.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=87.0,rater.rolling.rate=464.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:10:23.595 INFO FindFeaturesFunction: ts=1482466223595,name=FindFeaturesFunction,rater.overall.count=3767.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=98.0,rater.window.rate=9.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=87.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:10:23.595 INFO FindFeaturesFunction: ts=1482466223595,name=FindFeaturesFunction,timer.overall.count=3767.0,timer.overall.mean=179536.96602070634,timer.overall.std=337237.06697536504,timer.overall.variance=1.1372883934214685E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=167619.77,timer.rolling.std=93237.44184995822,timer.rolling.variance=8.693220562724342E9,timer.rolling.minimum=47583.0,timer.rolling.maximum=484196.0
+2016-12-23 04:10:23.596 INFO AddFeatureFunction: ts=1482466223595,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:10:33.595 INFO AddFeatureFunction: ts=1482466233595,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=165.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=88.0,rater.rolling.rate=461.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:10:33.596 INFO FindFeaturesFunction: ts=1482466233596,name=FindFeaturesFunction,rater.overall.count=3829.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=62.0,rater.window.rate=6.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=88.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:10:33.596 INFO FindFeaturesFunction: ts=1482466233596,name=FindFeaturesFunction,timer.overall.count=3829.0,timer.overall.mean=179470.2034473755,timer.overall.std=334656.4031018781,timer.overall.variance=1.1199490813708673E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=178698.90999999992,timer.rolling.std=89113.80258780613,timer.rolling.variance=7.941269811658483E9,timer.rolling.minimum=47583.0,timer.rolling.maximum=484196.0
+2016-12-23 04:10:33.596 INFO AddFeatureFunction: ts=1482466233596,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:10:43.596 INFO AddFeatureFunction: ts=1482466243596,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=162.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=89.0,rater.rolling.rate=457.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:10:43.596 INFO FindFeaturesFunction: ts=1482466243596,name=FindFeaturesFunction,rater.overall.count=3837.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=8.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=89.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:10:43.596 INFO AddFeatureFunction: ts=1482466243596,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:10:43.596 INFO FindFeaturesFunction: ts=1482466243596,name=FindFeaturesFunction,timer.overall.count=3837.0,timer.overall.mean=179387.4138649989,timer.overall.std=334324.22564736026,timer.overall.variance=1.1177268785470706E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=176759.4099999999,timer.rolling.std=88962.26224313352,timer.rolling.variance=7.914284103416059E9,timer.rolling.minimum=47583.0,timer.rolling.maximum=484196.0
+2016-12-23 04:10:53.596 INFO AddFeatureFunction: ts=1482466253596,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=159.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=90.0,rater.rolling.rate=454.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:10:53.596 INFO FindFeaturesFunction: ts=1482466253596,name=FindFeaturesFunction,rater.overall.count=3837.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=90.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:10:53.596 INFO AddFeatureFunction: ts=1482466253596,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:10:53.597 INFO FindFeaturesFunction: ts=1482466253597,name=FindFeaturesFunction,timer.overall.count=3837.0,timer.overall.mean=179387.4138649989,timer.overall.std=334324.22564736026,timer.overall.variance=1.1177268785470706E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=176759.4099999999,timer.rolling.std=88962.26224313352,timer.rolling.variance=7.914284103416059E9,timer.rolling.minimum=47583.0,timer.rolling.maximum=484196.0
+2016-12-23 04:11:03.597 INFO AddFeatureFunction: ts=1482466263596,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=157.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=91.0,rater.rolling.rate=451.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:11:03.597 INFO FindFeaturesFunction: ts=1482466263596,name=FindFeaturesFunction,rater.overall.count=3837.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=91.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:11:03.597 INFO AddFeatureFunction: ts=1482466263597,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:11:03.597 INFO FindFeaturesFunction: ts=1482466263597,name=FindFeaturesFunction,timer.overall.count=3837.0,timer.overall.mean=179387.4138649989,timer.overall.std=334324.22564736026,timer.overall.variance=1.1177268785470706E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=176759.4099999999,timer.rolling.std=88962.26224313352,timer.rolling.variance=7.914284103416059E9,timer.rolling.minimum=47583.0,timer.rolling.maximum=484196.0
+2016-12-23 04:11:13.597 INFO AddFeatureFunction: ts=1482466273597,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=154.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=92.0,rater.rolling.rate=448.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:11:13.597 INFO FindFeaturesFunction: ts=1482466273597,name=FindFeaturesFunction,rater.overall.count=3837.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=92.0,rater.rolling.rate=2.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:11:13.597 INFO AddFeatureFunction: ts=1482466273597,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:11:13.598 INFO FindFeaturesFunction: ts=1482466273598,name=FindFeaturesFunction,timer.overall.count=3837.0,timer.overall.mean=179387.4138649989,timer.overall.std=334324.22564736026,timer.overall.variance=1.1177268785470706E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=176759.4099999999,timer.rolling.std=88962.26224313352,timer.rolling.variance=7.914284103416059E9,timer.rolling.minimum=47583.0,timer.rolling.maximum=484196.0
+2016-12-23 04:11:23.597 INFO AddFeatureFunction: ts=1482466283597,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=152.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=93.0,rater.rolling.rate=444.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:11:23.597 INFO FindFeaturesFunction: ts=1482466283597,name=FindFeaturesFunction,rater.overall.count=3872.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=35.0,rater.window.rate=3.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=93.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:11:23.598 INFO AddFeatureFunction: ts=1482466283598,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:11:23.598 INFO FindFeaturesFunction: ts=1482466283598,name=FindFeaturesFunction,timer.overall.count=3872.0,timer.overall.mean=179102.8600206614,timer.overall.std=332901.4767890627,timer.overall.variance=1.1082339324833885E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=165059.85000000012,timer.rolling.std=80572.00110176568,timer.rolling.variance=6.49184736154293E9,timer.rolling.minimum=58334.0,timer.rolling.maximum=393155.0
+2016-12-23 04:11:33.598 INFO AddFeatureFunction: ts=1482466293598,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=150.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=94.0,rater.rolling.rate=441.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:11:33.598 INFO FindFeaturesFunction: ts=1482466293598,name=FindFeaturesFunction,rater.overall.count=3928.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=56.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=94.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:11:33.598 INFO AddFeatureFunction: ts=1482466293598,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:11:33.598 INFO FindFeaturesFunction: ts=1482466293598,name=FindFeaturesFunction,timer.overall.count=3928.0,timer.overall.mean=178727.23548879867,timer.overall.std=330693.56769400364,timer.overall.variance=1.0935823571418857E11,timer.overall.minimum=36764.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=150627.14000000007,timer.rolling.std=81241.64098216599,timer.rolling.variance=6.600204229475153E9,timer.rolling.minimum=46015.0,timer.rolling.maximum=393155.0
+2016-12-23 04:11:43.598 INFO AddFeatureFunction: ts=1482466303598,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=148.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=95.0,rater.rolling.rate=438.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:11:43.598 INFO FindFeaturesFunction: ts=1482466303598,name=FindFeaturesFunction,rater.overall.count=4040.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=112.0,rater.window.rate=11.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=95.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:11:43.598 INFO AddFeatureFunction: ts=1482466303598,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:11:43.598 INFO FindFeaturesFunction: ts=1482466303598,name=FindFeaturesFunction,timer.overall.count=4040.0,timer.overall.mean=177153.2554455448,timer.overall.std=326384.24399014964,timer.overall.variance=1.0652667472502151E11,timer.overall.minimum=36564.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=120607.48,timer.rolling.std=64535.36979216682,timer.rolling.variance=4.1648139542117176E9,timer.rolling.minimum=36564.0,timer.rolling.maximum=381911.0
+2016-12-23 04:11:53.598 INFO AddFeatureFunction: ts=1482466313598,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=145.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=96.0,rater.rolling.rate=435.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:11:53.598 INFO FindFeaturesFunction: ts=1482466313598,name=FindFeaturesFunction,rater.overall.count=4188.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=148.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=96.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:11:53.599 INFO AddFeatureFunction: ts=1482466313598,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:11:53.602 INFO FindFeaturesFunction: ts=1482466313602,name=FindFeaturesFunction,timer.overall.count=4188.0,timer.overall.mean=175742.26552053523,timer.overall.std=320975.92155502946,timer.overall.variance=1.0302554221810042E11,timer.overall.minimum=36564.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=131031.92000000001,timer.rolling.std=78646.08335566019,timer.rolling.variance=6.185206427185451E9,timer.rolling.minimum=41353.0,timer.rolling.maximum=461815.0
+2016-12-23 04:12:03.599 INFO AddFeatureFunction: ts=1482466323599,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=143.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=97.0,rater.rolling.rate=432.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:12:03.599 INFO FindFeaturesFunction: ts=1482466323599,name=FindFeaturesFunction,rater.overall.count=4337.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=149.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=97.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:12:03.599 INFO AddFeatureFunction: ts=1482466323599,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:12:03.602 INFO FindFeaturesFunction: ts=1482466323602,name=FindFeaturesFunction,timer.overall.count=4338.0,timer.overall.mean=174307.53780544052,timer.overall.std=315825.51685559686,timer.overall.variance=9.974575709710489E10,timer.overall.minimum=36564.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=133266.99000000002,timer.rolling.std=67999.90875684535,timer.rolling.variance=4.623987590939294E9,timer.rolling.minimum=37807.0,timer.rolling.maximum=363453.0
+2016-12-23 04:12:13.599 INFO AddFeatureFunction: ts=1482466333599,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=141.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=98.0,rater.rolling.rate=429.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:12:13.600 INFO FindFeaturesFunction: ts=1482466333600,name=FindFeaturesFunction,rater.overall.count=4487.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=150.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=98.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:12:13.600 INFO AddFeatureFunction: ts=1482466333600,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:12:13.602 INFO FindFeaturesFunction: ts=1482466333602,name=FindFeaturesFunction,timer.overall.count=4487.0,timer.overall.mean=172790.31089815032,timer.overall.std=310928.09469975455,timer.overall.variance=9.667628007361954E10,timer.overall.minimum=36564.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=132263.04999999996,timer.rolling.std=79027.84216310774,timer.rolling.variance=6.245399836957069E9,timer.rolling.minimum=39247.0,timer.rolling.maximum=413993.0
+2016-12-23 04:12:23.600 INFO AddFeatureFunction: ts=1482466343600,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=139.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=99.0,rater.rolling.rate=426.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:12:23.600 INFO FindFeaturesFunction: ts=1482466343600,name=FindFeaturesFunction,rater.overall.count=4637.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=150.0,rater.window.rate=15.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=99.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:12:23.600 INFO AddFeatureFunction: ts=1482466343600,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:12:23.602 INFO FindFeaturesFunction: ts=1482466343602,name=FindFeaturesFunction,timer.overall.count=4637.0,timer.overall.mean=171540.6193659694,timer.overall.std=306212.60231867636,timer.overall.variance=9.376615781877585E10,timer.overall.minimum=36564.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=131466.79000000004,timer.rolling.std=71403.74588174876,timer.rolling.variance=5.098494925945354E9,timer.rolling.minimum=36601.0,timer.rolling.maximum=465371.0
+2016-12-23 04:12:33.600 INFO AddFeatureFunction: ts=1482466353600,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=137.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=423.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:12:33.600 INFO FindFeaturesFunction: ts=1482466353600,name=FindFeaturesFunction,rater.overall.count=4785.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=148.0,rater.window.rate=14.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:12:33.600 INFO AddFeatureFunction: ts=1482466353600,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:12:33.603 INFO FindFeaturesFunction: ts=1482466353603,name=FindFeaturesFunction,timer.overall.count=4785.0,timer.overall.mean=170513.5571577846,timer.overall.std=301949.7191329866,timer.overall.variance=9.11736328844895E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=131227.08000000007,timer.rolling.std=81437.27494680315,timer.rolling.variance=6.632029750761213E9,timer.rolling.minimum=35705.0,timer.rolling.maximum=670011.0
+2016-12-23 04:12:43.600 INFO AddFeatureFunction: ts=1482466363600,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=135.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=425.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:12:43.600 INFO FindFeaturesFunction: ts=1482466363600,name=FindFeaturesFunction,rater.overall.count=4896.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=111.0,rater.window.rate=11.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:12:43.601 INFO AddFeatureFunction: ts=1482466363601,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:12:43.603 INFO FindFeaturesFunction: ts=1482466363603,name=FindFeaturesFunction,timer.overall.count=4896.0,timer.overall.mean=169846.74571078413,timer.overall.std=298746.05522523256,timer.overall.variance=8.92492055126377E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=144131.72,timer.rolling.std=74366.62745324205,timer.rolling.variance=5.530395278769295E9,timer.rolling.minimum=47629.0,timer.rolling.maximum=386969.0
+2016-12-23 04:12:53.601 INFO AddFeatureFunction: ts=1482466373601,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=134.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=426.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:12:53.601 INFO FindFeaturesFunction: ts=1482466373601,name=FindFeaturesFunction,rater.overall.count=4984.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=88.0,rater.window.rate=8.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:12:53.601 INFO AddFeatureFunction: ts=1482466373601,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:12:53.603 INFO FindFeaturesFunction: ts=1482466373603,name=FindFeaturesFunction,timer.overall.count=4984.0,timer.overall.mean=169526.50702247163,timer.overall.std=296293.2581484929,timer.overall.variance=8.778969482424947E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=154666.86,timer.rolling.std=80866.9751679169,timer.rolling.variance=6.539467672808489E9,timer.rolling.minimum=45182.0,timer.rolling.maximum=494643.0
+2016-12-23 04:13:03.601 INFO AddFeatureFunction: ts=1482466383601,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=132.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=427.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:13:03.601 INFO FindFeaturesFunction: ts=1482466383601,name=FindFeaturesFunction,rater.overall.count=5035.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=51.0,rater.window.rate=5.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:13:03.601 INFO AddFeatureFunction: ts=1482466383601,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:13:03.603 INFO FindFeaturesFunction: ts=1482466383603,name=FindFeaturesFunction,timer.overall.count=5035.0,timer.overall.mean=169565.33982125096,timer.overall.std=294907.94915687566,timer.overall.variance=8.697069847591435E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=162089.14,timer.rolling.std=81302.64828703464,timer.rolling.variance=6.610120618485255E9,timer.rolling.minimum=54252.0,timer.rolling.maximum=494643.0
+2016-12-23 04:13:13.601 INFO AddFeatureFunction: ts=1482466393601,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=130.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=429.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:13:13.601 INFO FindFeaturesFunction: ts=1482466393601,name=FindFeaturesFunction,rater.overall.count=5100.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=65.0,rater.window.rate=6.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:13:13.602 INFO AddFeatureFunction: ts=1482466393601,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:13:13.603 INFO FindFeaturesFunction: ts=1482466393603,name=FindFeaturesFunction,timer.overall.count=5100.0,timer.overall.mean=168995.3127450978,timer.overall.std=293187.8464845348,timer.overall.variance=8.595911332623914E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=147575.06,timer.rolling.std=86914.81919310483,timer.rolling.variance=7.554185795370104E9,timer.rolling.minimum=48305.0,timer.rolling.maximum=434172.0
+2016-12-23 04:13:23.602 INFO AddFeatureFunction: ts=1482466403602,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=128.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=430.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:13:23.602 INFO FindFeaturesFunction: ts=1482466403602,name=FindFeaturesFunction,rater.overall.count=5167.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=67.0,rater.window.rate=6.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:13:23.602 INFO AddFeatureFunction: ts=1482466403602,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:13:23.604 INFO FindFeaturesFunction: ts=1482466403604,name=FindFeaturesFunction,timer.overall.count=5167.0,timer.overall.mean=168411.60770272856,timer.overall.std=291403.47089826316,timer.overall.variance=8.491598285155492E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=120250.79999999999,timer.rolling.std=59173.425782938146,timer.rolling.variance=3.501494318888889E9,timer.rolling.minimum=46752.0,timer.rolling.maximum=329001.0
+2016-12-23 04:13:33.602 INFO AddFeatureFunction: ts=1482466413602,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=127.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=431.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:13:33.602 INFO FindFeaturesFunction: ts=1482466413602,name=FindFeaturesFunction,rater.overall.count=5267.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=100.0,rater.window.rate=10.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:13:33.602 INFO AddFeatureFunction: ts=1482466413602,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:13:33.604 INFO FindFeaturesFunction: ts=1482466413604,name=FindFeaturesFunction,timer.overall.count=5267.0,timer.overall.mean=167849.55933168755,timer.overall.std=288797.86747542676,timer.overall.variance=8.340420825835414E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=138808.51999999993,timer.rolling.std=67015.96628159711,timer.rolling.variance=4.49113973665616E9,timer.rolling.minimum=46600.0,timer.rolling.maximum=349131.0
+2016-12-23 04:13:43.602 INFO AddFeatureFunction: ts=1482466423602,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=125.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=432.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:13:43.602 INFO FindFeaturesFunction: ts=1482466423602,name=FindFeaturesFunction,rater.overall.count=5367.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=100.0,rater.window.rate=10.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:13:43.603 INFO AddFeatureFunction: ts=1482466423602,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:13:43.604 INFO FindFeaturesFunction: ts=1482466423604,name=FindFeaturesFunction,timer.overall.count=5367.0,timer.overall.mean=167208.25041922828,timer.overall.std=286272.7781949546,timer.overall.variance=8.195210353545767E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=133430.51,timer.rolling.std=66070.60131030253,timer.rolling.variance=4.365324357504951E9,timer.rolling.minimum=46642.0,timer.rolling.maximum=317171.0
+2016-12-23 04:13:53.603 INFO AddFeatureFunction: ts=1482466433603,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=124.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=434.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:13:53.603 INFO FindFeaturesFunction: ts=1482466433603,name=FindFeaturesFunction,rater.overall.count=5465.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=98.0,rater.window.rate=9.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=3.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:13:53.603 INFO AddFeatureFunction: ts=1482466433603,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:13:53.604 INFO FindFeaturesFunction: ts=1482466433604,name=FindFeaturesFunction,timer.overall.count=5465.0,timer.overall.mean=166876.6627630373,timer.overall.std=283872.546987165,timer.overall.variance=8.05836229329802E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=149844.45000000004,timer.rolling.std=73873.61119874219,timer.rolling.variance=5.457310431542928E9,timer.rolling.minimum=43417.0,timer.rolling.maximum=409395.0
+2016-12-23 04:14:03.603 INFO AddFeatureFunction: ts=1482466443603,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=122.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=435.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:14:03.603 INFO FindFeaturesFunction: ts=1482466443603,name=FindFeaturesFunction,rater.overall.count=5547.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=82.0,rater.window.rate=8.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=4.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:14:03.603 INFO AddFeatureFunction: ts=1482466443603,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:14:03.604 INFO FindFeaturesFunction: ts=1482466443604,name=FindFeaturesFunction,timer.overall.count=5547.0,timer.overall.mean=166615.04056246608,timer.overall.std=281970.3097525075,timer.overall.variance=7.950725558192503E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=146879.1699999999,timer.rolling.std=82860.87756675297,timer.rolling.variance=6.865925031132425E9,timer.rolling.minimum=43751.0,timer.rolling.maximum=449751.0
+2016-12-23 04:14:13.603 INFO AddFeatureFunction: ts=1482466453603,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=121.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=436.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:14:13.603 INFO FindFeaturesFunction: ts=1482466453603,name=FindFeaturesFunction,rater.overall.count=5547.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=4.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:14:13.603 INFO AddFeatureFunction: ts=1482466453603,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:14:13.605 INFO FindFeaturesFunction: ts=1482466453605,name=FindFeaturesFunction,timer.overall.count=5547.0,timer.overall.mean=166615.04056246608,timer.overall.std=281970.3097525075,timer.overall.variance=7.950725558192503E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=146879.1699999999,timer.rolling.std=82860.87756675297,timer.rolling.variance=6.865925031132425E9,timer.rolling.minimum=43751.0,timer.rolling.maximum=449751.0
+2016-12-23 04:14:23.604 INFO AddFeatureFunction: ts=1482466463604,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=119.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=437.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:14:23.604 INFO FindFeaturesFunction: ts=1482466463604,name=FindFeaturesFunction,rater.overall.count=5547.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=4.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:14:23.604 INFO AddFeatureFunction: ts=1482466463604,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:14:23.605 INFO FindFeaturesFunction: ts=1482466463605,name=FindFeaturesFunction,timer.overall.count=5547.0,timer.overall.mean=166615.04056246608,timer.overall.std=281970.3097525075,timer.overall.variance=7.950725558192503E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=146879.1699999999,timer.rolling.std=82860.87756675297,timer.rolling.variance=6.865925031132425E9,timer.rolling.minimum=43751.0,timer.rolling.maximum=449751.0
+[info 2016/12/23 04:14:29.256 UTC <ServerConnection on port 40404 Thread 7> tid=0x7b] Server connection from [identity(kafka-1(7203:loner):50504:8700d529,connection=1; port=60040]: connection disconnect detected by EOF.
+
+2016-12-23 04:14:33.604 INFO AddFeatureFunction: ts=1482466473604,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=118.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=438.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:14:33.604 INFO FindFeaturesFunction: ts=1482466473604,name=FindFeaturesFunction,rater.overall.count=5547.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=4.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:14:33.604 INFO AddFeatureFunction: ts=1482466473604,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:14:33.605 INFO FindFeaturesFunction: ts=1482466473605,name=FindFeaturesFunction,timer.overall.count=5547.0,timer.overall.mean=166615.04056246608,timer.overall.std=281970.3097525075,timer.overall.variance=7.950725558192503E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=146879.1699999999,timer.rolling.std=82860.87756675297,timer.rolling.variance=6.865925031132425E9,timer.rolling.minimum=43751.0,timer.rolling.maximum=449751.0
+2016-12-23 04:14:43.604 INFO AddFeatureFunction: ts=1482466483604,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=116.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=440.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:14:43.604 INFO FindFeaturesFunction: ts=1482466483604,name=FindFeaturesFunction,rater.overall.count=5547.0,rater.overall.rate=8.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=4.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:14:43.604 INFO AddFeatureFunction: ts=1482466483604,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:14:43.605 INFO FindFeaturesFunction: ts=1482466483605,name=FindFeaturesFunction,timer.overall.count=5547.0,timer.overall.mean=166615.04056246608,timer.overall.std=281970.3097525075,timer.overall.variance=7.950725558192503E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=146879.1699999999,timer.rolling.std=82860.87756675297,timer.rolling.variance=6.865925031132425E9,timer.rolling.minimum=43751.0,timer.rolling.maximum=449751.0
+[info 2016/12/23 04:14:43.787 UTC <UDP ucast receiver> tid=0x20] Received Suspect notification for member(s) [gf-server-1(gf-server-1:4765)<v18>:41536] from general(locator:1321:locator)<v0>:38155.  Reason=Socket was not closed nicely
+
+[info 2016/12/23 04:14:43.788 UTC <UDP ucast receiver> tid=0x20] Received Suspect notification for member(s) [gf-server-1(gf-server-1:4765)<v18>:41536] from general(locator:1321:locator)<v0>:38155. 
+
+[info 2016/12/23 04:14:46.949 UTC <UDP ucast receiver> tid=0x20] Received Suspect notification for member(s) [gf-server-1(gf-server-1:4765)<v18>:41536] from general(locator:1321:locator)<v0>:38155.  Reason=still being suspected
+
+[info 2016/12/23 04:14:48.787 UTC <VERIFY_SUSPECT.TimerThread> tid=0x85] gf-server-4(gf-server-4:3707)<v21>:39758: No suspect verification response received from gf-server-1(gf-server-1:4765)<v18>:41536 in 5000 milliseconds: I believe it is gone.
+
+[info 2016/12/23 04:14:49.008 UTC <UDP ucast receiver> tid=0x20] Membership: received new view  [general(locator:1321:locator)<v0>:38155|22] [general(locator:1321:locator)<v0>:38155/5593, gf-server-2(gf-server-2:3735)<v19>:29957/17322, gf-server-3(gf-server-3:4008)<v20>:64437/54604, gf-server-4(gf-server-4:3707)<v21>:39758/14770] crashed mbrs: [gf-server-1(gf-server-1:4765)<v18>:41536/49541]
+
+[info 2016/12/23 04:14:49.009 UTC <UDP ucast receiver> tid=0x20] Membership: lead member is now gf-server-2(gf-server-2:3735)<v19>:29957
+
+[info 2016/12/23 04:14:49.017 UTC <View Message Processor> tid=0x87] Member at gf-server-1(gf-server-1:4765)<v18>:41536 unexpectedly left the distributed cache: departed JGroups view
+
+[info 2016/12/23 04:14:52.351 UTC <UDP ucast receiver> tid=0x20] Received Suspect notification for member(s) [gf-server-2(gf-server-2:3735)<v19>:29957] from general(locator:1321:locator)<v0>:38155.  Reason=Socket was not closed nicely
+
+2016-12-23 04:14:53.605 INFO FindFeaturesFunction: ts=1482466493605,name=FindFeaturesFunction,rater.overall.count=5547.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=4.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:14:53.605 INFO AddFeatureFunction: ts=1482466493605,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=115.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=441.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:14:53.605 INFO AddFeatureFunction: ts=1482466493605,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:14:53.605 INFO FindFeaturesFunction: ts=1482466493605,name=FindFeaturesFunction,timer.overall.count=5547.0,timer.overall.mean=166615.04056246608,timer.overall.std=281970.3097525075,timer.overall.variance=7.950725558192503E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=146879.1699999999,timer.rolling.std=82860.87756675297,timer.rolling.variance=6.865925031132425E9,timer.rolling.minimum=43751.0,timer.rolling.maximum=449751.0
+[info 2016/12/23 04:14:56.948 UTC <UDP ucast receiver> tid=0x20] Received Suspect notification for member(s) [gf-server-2(gf-server-2:3735)<v19>:29957] from general(locator:1321:locator)<v0>:38155.  Reason=still being suspected
+
+[info 2016/12/23 04:14:57.351 UTC <VERIFY_SUSPECT.TimerThread> tid=0x85] gf-server-4(gf-server-4:3707)<v21>:39758: No suspect verification response received from gf-server-2(gf-server-2:3735)<v19>:29957 in 5000 milliseconds: I believe it is gone.
+
+[info 2016/12/23 04:14:57.571 UTC <UDP ucast receiver> tid=0x20] Membership: received new view  [general(locator:1321:locator)<v0>:38155|23] [general(locator:1321:locator)<v0>:38155/5593, gf-server-3(gf-server-3:4008)<v20>:64437/54604, gf-server-4(gf-server-4:3707)<v21>:39758/14770] crashed mbrs: [gf-server-2(gf-server-2:3735)<v19>:29957/17322]
+
+[info 2016/12/23 04:14:57.572 UTC <UDP ucast receiver> tid=0x20] Membership: lead member is now gf-server-3(gf-server-3:4008)<v20>:64437
+
+[info 2016/12/23 04:14:57.573 UTC <View Message Processor> tid=0x87] Member at gf-server-2(gf-server-2:3735)<v19>:29957 unexpectedly left the distributed cache: departed JGroups view
+
+[info 2016/12/23 04:15:03.498 UTC <UDP ucast receiver> tid=0x20] Received Suspect notification for member(s) [gf-server-3(gf-server-3:4008)<v20>:64437] from general(locator:1321:locator)<v0>:38155.  Reason=Socket was not closed nicely
+
+[info 2016/12/23 04:15:03.499 UTC <UDP ucast receiver> tid=0x20] Received Suspect notification for member(s) [gf-server-3(gf-server-3:4008)<v20>:64437] from general(locator:1321:locator)<v0>:38155. 
+
+2016-12-23 04:15:03.605 INFO FindFeaturesFunction: ts=1482466503605,name=FindFeaturesFunction,rater.overall.count=5547.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=4.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:15:03.605 INFO AddFeatureFunction: ts=1482466503605,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=114.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=442.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:15:03.605 INFO AddFeatureFunction: ts=1482466503605,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:15:03.606 INFO FindFeaturesFunction: ts=1482466503606,name=FindFeaturesFunction,timer.overall.count=5547.0,timer.overall.mean=166615.04056246608,timer.overall.std=281970.3097525075,timer.overall.variance=7.950725558192503E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=146879.1699999999,timer.rolling.std=82860.87756675297,timer.rolling.variance=6.865925031132425E9,timer.rolling.minimum=43751.0,timer.rolling.maximum=449751.0
+[info 2016/12/23 04:15:06.948 UTC <UDP ucast receiver> tid=0x20] Received Suspect notification for member(s) [gf-server-3(gf-server-3:4008)<v20>:64437] from general(locator:1321:locator)<v0>:38155.  Reason=still being suspected
+
+[info 2016/12/23 04:15:08.498 UTC <VERIFY_SUSPECT.TimerThread> tid=0x9d] gf-server-4(gf-server-4:3707)<v21>:39758: No suspect verification response received from gf-server-3(gf-server-3:4008)<v20>:64437 in 5000 milliseconds: I believe it is gone.
+
+[info 2016/12/23 04:15:08.718 UTC <UDP ucast receiver> tid=0x20] Membership: received new view  [general(locator:1321:locator)<v0>:38155|24] [general(locator:1321:locator)<v0>:38155/5593, gf-server-4(gf-server-4:3707)<v21>:39758/14770] crashed mbrs: [gf-server-3(gf-server-3:4008)<v20>:64437/54604]
+
+[info 2016/12/23 04:15:08.719 UTC <UDP ucast receiver> tid=0x20] old membership weight=28, loss threshold=14 and failed weight=15
+
+[info 2016/12/23 04:15:08.719 UTC <UDP ucast receiver> tid=0x20] Membership: lead member is now gf-server-4(gf-server-4:3707)<v21>:39758
+
+[info 2016/12/23 04:15:08.723 UTC <View Message Processor> tid=0x87] Member at gf-server-3(gf-server-3:4008)<v20>:64437 unexpectedly left the distributed cache: departed JGroups view
+
+2016-12-23 04:15:13.605 INFO AddFeatureFunction: ts=1482466513605,name=AddFeatureFunction,rater.overall.count=99766.0,rater.overall.rate=112.0,rater.overall.minimum=0.0,rater.overall.maximum=5265.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=6994.0,rater.rolling.count=100.0,rater.rolling.rate=443.0,rater.rolling.minimum=0.0,rater.rolling.maximum=5265.0
+2016-12-23 04:15:13.605 INFO FindFeaturesFunction: ts=1482466513605,name=FindFeaturesFunction,rater.overall.count=5547.0,rater.overall.rate=7.0,rater.overall.minimum=0.0,rater.overall.maximum=8.0,rater.window.count=0.0,rater.window.rate=0.0,rater.window.minimum=0.0,rater.window.maximum=15.0,rater.rolling.count=100.0,rater.rolling.rate=4.0,rater.rolling.minimum=0.0,rater.rolling.maximum=8.0
+2016-12-23 04:15:13.605 INFO AddFeatureFunction: ts=1482466513605,name=AddFeatureFunction,timer.overall.count=99766.0,timer.overall.mean=40606.23064972045,timer.overall.std=688381.8903745159,timer.overall.variance=4.73869626995592E11,timer.overall.minimum=5723.0,timer.overall.maximum=1.38693694E8,timer.rolling.count=100.0,timer.rolling.mean=14459.810000000001,timer.rolling.std=1589.9248104640963,timer.rolling.variance=2527860.902929292,timer.rolling.minimum=10635.0,timer.rolling.maximum=20709.0
+2016-12-23 04:15:13.606 INFO FindFeaturesFunction: ts=1482466513606,name=FindFeaturesFunction,timer.overall.count=5547.0,timer.overall.mean=166615.04056246608,timer.overall.std=281970.3097525075,timer.overall.variance=7.950725558192503E10,timer.overall.minimum=35705.0,timer.overall.maximum=1.948446E7,timer.rolling.count=100.0,timer.rolling.mean=146879.1699999999,timer.rolling.std=82860.87756675297,timer.rolling.variance=6.865925031132425E9,timer.rolling.minimum=43751.0,timer.rolling.maximum=449751.0
