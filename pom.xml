@@ -12,6 +12,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
+		<geode.version>1.0.0-incubating</geode.version>
 		<spring.version>4.3.3.RELEASE</spring.version>
 		<spring-boot.version>1.4.1.RELEASE</spring-boot.version>
 		<spring-integration.version>4.3.4.RELEASE</spring-integration.version>
@@ -78,11 +79,11 @@
 	</build>
 
 	<repositories>
-<!-- 		<repository> -->
-<!-- 			<id>gemfire-release-repo</id> -->
-<!-- 			<name>Pivotal GemFire Release Repository</name> -->
-<!-- 			<url>https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire</url> -->
-<!-- 		</repository> -->
+		<!-- <repository> -->
+		<!-- <id>gemfire-release-repo</id> -->
+		<!-- <name>Pivotal GemFire Release Repository</name> -->
+		<!-- <url>https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire</url> -->
+		<!-- </repository> -->
 		<repository>
 			<id>gemfire</id>
 			<name>Gemfire</name>
@@ -118,6 +119,11 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.apache.geode</groupId>
+				<artifactId>geode-core</artifactId>
+				<version>${geode.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>

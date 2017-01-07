@@ -6,26 +6,27 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.client.ClientCache;
+import org.apache.geode.cache.client.ClientCacheFactory;
+import org.apache.geode.cache.client.ClientRegionFactory;
+import org.apache.geode.cache.client.ClientRegionShortcut;
+import org.apache.geode.cache.execute.FunctionService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.client.ClientCache;
-import com.gemstone.gemfire.cache.client.ClientCacheFactory;
-import com.gemstone.gemfire.cache.client.ClientRegionFactory;
-import com.gemstone.gemfire.cache.client.ClientRegionShortcut;
-import com.gemstone.gemfire.cache.execute.FunctionService;
-
-import io.pivotal.bds.gemfire.geojson.common.AddFeatureRequest;
+import io.pivotal.bds.gemfire.geojson.data.AddFeatureRequest;
 
 public class LoadRawTest {
 
     private static ClientCache cache;
     private static Region<Integer, Integer> routingRegion;
-    private static final String path = "/Users/tdalsing/projects/allstate/docs/data/ex_5WHPthk5aWhLByKoCNVCCYHNWNEdr.imposm-geojson/ex_5WHPthk5aWhLByKoCNVCCYHNWNEdr_roads.geojson";
+    // private static final String path =
+    // "/Users/tdalsing/projects/gemfire-fe/gemfire-examples/gemfire-geojson/data/ex_5WHPthk5aWhLByKoCNVCCYHNWNEdr.imposm-geojson/ex_5WHPthk5aWhLByKoCNVCCYHNWNEdr_roads.geojson";
+    private static final String path = "src/test/resources/phoenix-roads.geojson";
 
     @BeforeClass
     public static void before() throws Exception {
@@ -47,6 +48,7 @@ public class LoadRawTest {
         JSONObject root = (JSONObject) JSONValue.parse(reader);
         JSONArray features = (JSONArray) root.get("features");
 
+        int count = 0;
         System.out.println("test: creating features");
         Set<AddFeatureRequest> filter = new HashSet<>();
 
@@ -58,10 +60,14 @@ public class LoadRawTest {
 
             AddFeatureRequest req = new AddFeatureRequest(id, jo.toJSONString());
             filter.add(req);
+
+            if (++count % 10 == 0) {
+                FunctionService.onRegion(routingRegion).withFilter(filter).execute("AddFeatureFunction").getResult();
+                filter = new HashSet<>();
+            }
         }
 
         System.out.println("test: calling function");
-        FunctionService.onRegion(routingRegion).withFilter(filter).execute("AddFeatureFunction").getResult();
         System.out.println("test: done");
     }
 }

@@ -1,6 +1,7 @@
 package io.pivotal.bds.gemfire.geojson.function;
 
 import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.List;
 
 import org.geotools.feature.DefaultFeatureCollection;
@@ -9,16 +10,18 @@ import org.opengis.feature.simple.SimpleFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.execute.Function;
-import com.gemstone.gemfire.cache.execute.FunctionContext;
-import com.gemstone.gemfire.cache.execute.FunctionException;
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
+import com.codahale.metrics.Timer.Context;
+import org.apache.geode.cache.execute.Function;
+import org.apache.geode.cache.execute.FunctionContext;
+import org.apache.geode.cache.execute.FunctionException;
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Point;
 
 import io.pivotal.bds.gemfire.geojson.data.Boundary;
-import io.pivotal.bds.metrics.rater.Rater;
-import io.pivotal.bds.metrics.timer.Timer;
 
 @SuppressWarnings("serial")
 public class FindFeaturesFunction implements Function {
@@ -26,26 +29,39 @@ public class FindFeaturesFunction implements Function {
     private Boundary rootBoundary;
     private static final GeometryFactory factory = new GeometryFactory();
     private static final FeatureJSON json = new FeatureJSON();
-    private static final Timer timer = new Timer("FindFeaturesFunction");
-    private static final Rater rater = new Rater("FindFeaturesFunction");
+    private final Timer timer;
+    private final Meter meter;
     private static final Logger LOG = LoggerFactory.getLogger(FindFeaturesFunction.class);
 
-    public FindFeaturesFunction(Boundary rootBoundary) {
+    public FindFeaturesFunction(Boundary rootBoundary, MetricRegistry registry) {
         this.rootBoundary = rootBoundary;
+        this.timer = registry.timer("FindFeaturesFunction-Timer");
+        this.meter = registry.meter("FindFeaturesFunction-Meter");
     }
 
     @Override
     public void execute(FunctionContext context) {
         try {
-            Coordinate coord = (Coordinate) context.getArguments();
-            LOG.debug("execute: coord={}", coord);
+            Coordinate[] coords = (Coordinate[]) context.getArguments();
+            LOG.debug("execute: coords={}", Arrays.toString(coords));
 
-            Point pt = factory.createPoint(coord);
+            Geometry geom = null;
+            if (coords.length == 1) {
+                geom = factory.createPoint(coords[0]);
+            } else {
+                geom = factory.createPolygon(coords);
+            }
 
-            timer.start();
-            List<SimpleFeature> fl = rootBoundary.getIntersectingFeatures(pt);
-            timer.end();
-            rater.increment();
+            List<SimpleFeature> fl = null;
+
+            Context ctx = timer.time();
+            try {
+                fl = rootBoundary.getIntersectingFeatures(geom);
+            } finally {
+                ctx.stop();
+            }
+
+            meter.mark();
 
             if (fl.isEmpty()) {
                 context.getResultSender().lastResult("{}");

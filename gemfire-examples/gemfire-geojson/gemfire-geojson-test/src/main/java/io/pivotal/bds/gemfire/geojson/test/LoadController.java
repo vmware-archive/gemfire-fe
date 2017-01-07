@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.execute.FunctionService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -19,10 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.execute.FunctionService;
-
-import io.pivotal.bds.gemfire.geojson.common.AddFeatureRequest;
+import io.pivotal.bds.gemfire.geojson.data.AddFeatureRequest;
 
 @RestController
 public class LoadController {

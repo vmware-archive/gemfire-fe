@@ -1,4 +1,4 @@
-package io.pivotal.bds.gemfire.geojson.common;
+package io.pivotal.bds.gemfire.geojson.data;
 
 import java.io.Serializable;
 

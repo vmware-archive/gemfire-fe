@@ -22,7 +22,7 @@ public class SimpleLoadTest {
     @Test
     public void test() throws Exception {
         FeatureJSON fj = new FeatureJSON();
-        BufferedReader reader = Files.newBufferedReader(Paths.get("src/test/resources/phoenix.geojson"));
+        BufferedReader reader = Files.newBufferedReader(Paths.get("src/test/resources/phoenix-roads.geojson"));
 
         JSONObject root = (JSONObject) JSONValue.parse(reader);
         System.out.println(root);

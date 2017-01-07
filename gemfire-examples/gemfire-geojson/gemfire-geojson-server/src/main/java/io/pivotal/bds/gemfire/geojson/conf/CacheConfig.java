@@ -1,14 +1,13 @@
 package io.pivotal.bds.gemfire.geojson.conf;
 
+import org.apache.geode.cache.Cache;
+import org.apache.geode.cache.CacheFactory;
+import org.apache.geode.cache.control.ResourceManager;
+import org.apache.geode.cache.server.CacheServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.gemstone.gemfire.cache.Cache;
-import com.gemstone.gemfire.cache.CacheFactory;
-import com.gemstone.gemfire.cache.control.ResourceManager;
-import com.gemstone.gemfire.cache.server.CacheServer;
 
 @Configuration
 public class CacheConfig {
@@ -24,13 +23,13 @@ public class CacheConfig {
 
         CacheFactory cf = new CacheFactory();
         cf.set("locators", locators);
-        
+
         Cache c = cf.create();
-        
+
         ResourceManager rm = c.getResourceManager();
-        rm.setEvictionHeapPercentage((float)0.70);
-        rm.setCriticalHeapPercentage((float)0.80);
-        
+        rm.setEvictionHeapPercentage((float) 70.0);
+        rm.setCriticalHeapPercentage((float) 80.0);
+
         LOG.info("creating CacheServer");
         CacheServer cs = c.addCacheServer();
         cs.setPort(port);

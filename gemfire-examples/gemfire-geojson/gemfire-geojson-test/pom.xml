@@ -42,15 +42,6 @@
 			<version>1.13</version>
 		</dependency>
 		<dependency>
-			<groupId>com.gemstone.gemfire</groupId>
-			<artifactId>gemfire</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.pivotal.bds.gemfire</groupId>
-			<artifactId>gemfire-util</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>org.geotools</groupId>
 			<artifactId>gt-api</artifactId>
 			<version>16.1</version>
@@ -69,6 +60,10 @@
 			<groupId>io.pivotal.bds.metrics</groupId>
 			<artifactId>metric-timer</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geode</groupId>
+			<artifactId>geode-core</artifactId>
 		</dependency>
 	</dependencies>
 

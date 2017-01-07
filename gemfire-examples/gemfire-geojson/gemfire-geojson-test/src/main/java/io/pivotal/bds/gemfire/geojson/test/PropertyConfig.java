@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PropertyConfig {
 
-    @Value("${locators:localhost[10334]}")
-    public String locators;
+    @Value("${locator-host:localhost}")
+    public String locatorHost;
     
 }

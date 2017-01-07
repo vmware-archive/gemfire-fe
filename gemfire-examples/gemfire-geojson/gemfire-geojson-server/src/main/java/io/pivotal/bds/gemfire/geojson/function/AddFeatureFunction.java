@@ -3,20 +3,22 @@ package io.pivotal.bds.gemfire.geojson.function;
 import java.io.StringReader;
 import java.util.Set;
 
+import org.apache.geode.cache.execute.Function;
+import org.apache.geode.cache.execute.FunctionContext;
+import org.apache.geode.cache.execute.FunctionException;
+import org.apache.geode.cache.execute.RegionFunctionContext;
 import org.geotools.geojson.feature.FeatureJSON;
 import org.opengis.feature.simple.SimpleFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.execute.Function;
-import com.gemstone.gemfire.cache.execute.FunctionContext;
-import com.gemstone.gemfire.cache.execute.FunctionException;
-import com.gemstone.gemfire.cache.execute.RegionFunctionContext;
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
+import com.codahale.metrics.Timer.Context;
 
-import io.pivotal.bds.gemfire.geojson.common.AddFeatureRequest;
+import io.pivotal.bds.gemfire.geojson.data.AddFeatureRequest;
 import io.pivotal.bds.gemfire.geojson.data.Boundary;
-import io.pivotal.bds.metrics.rater.Rater;
-import io.pivotal.bds.metrics.timer.Timer;
 
 @SuppressWarnings("serial")
 public class AddFeatureFunction implements Function {
@@ -24,12 +26,15 @@ public class AddFeatureFunction implements Function {
     private Boundary rootBoundary;
 
     private static final FeatureJSON json = new FeatureJSON();
-    private static final Timer timer = new Timer("AddFeatureFunction");
-    private static final Rater rater = new Rater("AddFeatureFunction");
+    private final Timer timer;
+    private final Meter meter;
     private static final Logger LOG = LoggerFactory.getLogger(AddFeatureFunction.class);
 
-    public AddFeatureFunction(Boundary rootBoundary) {
+    public AddFeatureFunction(Boundary rootBoundary, MetricRegistry registry) {
         this.rootBoundary = rootBoundary;
+        
+        this.timer = registry.timer("AddFeatureFunction-Timer");
+        this.meter = registry.meter("AddFeatureFunction-Meter");
     }
 
     @SuppressWarnings("unchecked")
@@ -49,10 +54,14 @@ public class AddFeatureFunction implements Function {
                 LOG.debug("execute: feature={}, req={}", feature, req);
 
                 // add to boundary
-                timer.start();
-                rootBoundary.addFeature(feature);
-                timer.end();
-                rater.increment();
+                Context ctx = timer.time();
+                try {
+                    rootBoundary.addFeature(feature);
+                } finally {
+                    ctx.stop();
+                }
+                
+                meter.mark();
             }
 
             context.getResultSender().lastResult(Boolean.TRUE);
