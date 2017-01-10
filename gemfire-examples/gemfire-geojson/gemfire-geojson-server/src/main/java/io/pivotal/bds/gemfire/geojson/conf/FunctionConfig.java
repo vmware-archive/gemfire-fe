@@ -9,21 +9,12 @@ import org.springframework.context.annotation.Configuration;
 import com.codahale.metrics.MetricRegistry;
 
 import io.pivotal.bds.gemfire.geojson.data.Boundary;
-import io.pivotal.bds.gemfire.geojson.function.AddFeatureFunction;
 import io.pivotal.bds.gemfire.geojson.function.FindFeaturesFunction;
 
 @Configuration
 public class FunctionConfig {
 
     private static final Logger LOG = LoggerFactory.getLogger(FunctionConfig.class);
-
-    @Bean
-    public AddFeatureFunction addFeatureFunction(Boundary rootBoundary, MetricRegistry registry) {
-        LOG.info("addFeatureFunction");
-        AddFeatureFunction f = new AddFeatureFunction(rootBoundary, registry);
-        FunctionService.registerFunction(f);
-        return f;
-    }
 
     @Bean
     public FindFeaturesFunction findFeaturesFunction(Boundary rootBoundary, MetricRegistry registry) {

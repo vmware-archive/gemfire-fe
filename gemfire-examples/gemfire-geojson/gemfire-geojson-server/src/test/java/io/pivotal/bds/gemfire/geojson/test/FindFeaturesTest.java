@@ -63,8 +63,8 @@ public class FindFeaturesTest {
         JSONObject root = (JSONObject) JSONValue.parse(reader);
         JSONArray features = (JSONArray) root.get("features");
 
-        int count = 0;
         System.out.println("test: calling function");
+        
         for (Object feature : features) {
             JSONObject jo = (JSONObject) feature;
             SimpleFeature sf = json.readFeature(jo.toString());
@@ -83,10 +83,10 @@ public class FindFeaturesTest {
             double x = cartCoord.x;
             double y = cartCoord.y;
 
-            double left = x - 10.0;
-            double right = x + 10.0;
-            double bottom = y - 10.0;
-            double top = y + 10.0;
+            double left = x - 25.0;
+            double right = x + 25.0;
+            double bottom = y - 25.0;
+            double top = y + 25.0;
 
             Coordinate[] arg = new Coordinate[5];
 
@@ -95,12 +95,9 @@ public class FindFeaturesTest {
             arg[2] = JTS.transform(new Coordinate(right, top), null, toLatLon);
             arg[3] = JTS.transform(new Coordinate(right, bottom), null, toLatLon);
             arg[4] = JTS.transform(new Coordinate(left, bottom), null, toLatLon);
-            
-            FunctionService.onServers(pool).withArgs(arg).execute("FindFeaturesFunction").getResult();
 
-            if (++count % 100 == 0) {
-                System.out.println("test: processed " + count);
-            }
+            Object res = FunctionService.onServers(pool).withArgs(arg).execute("FindFeaturesFunction").getResult();
+            System.out.println("res = " + res);
         }
 
         System.out.println("test: done");

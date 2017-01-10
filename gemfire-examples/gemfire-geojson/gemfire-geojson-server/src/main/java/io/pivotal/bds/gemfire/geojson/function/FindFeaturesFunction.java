@@ -2,9 +2,9 @@ package io.pivotal.bds.gemfire.geojson.function;
 
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
-import org.geotools.feature.DefaultFeatureCollection;
 import org.geotools.geojson.feature.FeatureJSON;
 import org.opengis.feature.simple.SimpleFeature;
 import org.slf4j.Logger;
@@ -17,6 +17,8 @@ import com.codahale.metrics.Timer.Context;
 import org.apache.geode.cache.execute.Function;
 import org.apache.geode.cache.execute.FunctionContext;
 import org.apache.geode.cache.execute.FunctionException;
+import org.apache.geode.cache.execute.ResultSender;
+
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -62,18 +64,26 @@ public class FindFeaturesFunction implements Function {
             }
 
             meter.mark();
+            
+            ResultSender<String> sender = context.getResultSender();
 
             if (fl.isEmpty()) {
-                context.getResultSender().lastResult("{}");
+                sender.lastResult("");
             } else {
-                DefaultFeatureCollection coll = new DefaultFeatureCollection();
-                coll.addAll(fl);
-
-                StringWriter sw = new StringWriter();
-                json.writeFeatureCollection(coll, sw);
-
-                String resp = sw.toString();
-                context.getResultSender().lastResult(resp);
+                Iterator<SimpleFeature> iter = fl.iterator();
+                
+                while (iter.hasNext()) {
+                    SimpleFeature sf = iter.next();
+                    StringWriter sw = new StringWriter();
+                    json.writeFeature(sf, sw);
+                    String resp = sw.toString();
+                    
+                    if (iter.hasNext()) {
+                        sender.sendResult(resp);
+                    } else {
+                        sender.lastResult(resp);
+                    }
+                }
             }
         } catch (Exception x) {
             LOG.error("execute: x={}", x.toString(), x);

@@ -3,27 +3,22 @@ package io.pivotal.bds.gemfire.geojson.test;
 import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
 import org.apache.geode.cache.client.ClientCacheFactory;
 import org.apache.geode.cache.client.ClientRegionFactory;
 import org.apache.geode.cache.client.ClientRegionShortcut;
-import org.apache.geode.cache.execute.FunctionService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import io.pivotal.bds.gemfire.geojson.data.AddFeatureRequest;
-
 public class LoadRawTest {
 
     private static ClientCache cache;
-    private static Region<Integer, Integer> routingRegion;
+    private static Region<Integer, String> jsonFeatureRegion;
     // private static final String path =
     // "/Users/tdalsing/projects/gemfire-fe/gemfire-examples/gemfire-geojson/data/ex_5WHPthk5aWhLByKoCNVCCYHNWNEdr.imposm-geojson/ex_5WHPthk5aWhLByKoCNVCCYHNWNEdr_roads.geojson";
     private static final String path = "src/test/resources/phoenix-roads.geojson";
@@ -35,8 +30,8 @@ public class LoadRawTest {
         ccf.addPoolLocator("localhost", 10334);
         cache = ccf.create();
 
-        ClientRegionFactory<Integer, Integer> crf = cache.createClientRegionFactory(ClientRegionShortcut.PROXY);
-        routingRegion = crf.create("routing");
+        ClientRegionFactory<Integer, String> crf = cache.createClientRegionFactory(ClientRegionShortcut.PROXY);
+        jsonFeatureRegion = crf.create("jsonFeature");
     }
 
     @Test
@@ -50,24 +45,23 @@ public class LoadRawTest {
 
         int count = 0;
         System.out.println("test: creating features");
-        Set<AddFeatureRequest> filter = new HashSet<>();
 
         for (Object feature : features) {
             JSONObject jo = (JSONObject) feature;
             JSONObject props = (JSONObject) jo.get("properties");
+
             Number nid = (Number) props.get("osm_id");
             Integer id = nid.intValue();
 
-            AddFeatureRequest req = new AddFeatureRequest(id, jo.toJSONString());
-            filter.add(req);
+            String json = jo.toJSONString();
 
-            if (++count % 10 == 0) {
-                FunctionService.onRegion(routingRegion).withFilter(filter).execute("AddFeatureFunction").getResult();
-                filter = new HashSet<>();
+            jsonFeatureRegion.put(id, json);
+
+            if (++count % 100 == 0) {
+                System.out.println("test: written " + count + " features");
             }
         }
 
-        System.out.println("test: calling function");
         System.out.println("test: done");
     }
 }
