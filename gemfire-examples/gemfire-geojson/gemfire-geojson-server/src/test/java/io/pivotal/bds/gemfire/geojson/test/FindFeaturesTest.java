@@ -70,31 +70,38 @@ public class FindFeaturesTest {
             SimpleFeature sf = json.readFeature(jo.toString());
             LineString ls = (LineString) sf.getAttribute("geometry");
 
+            // use first coordinate as lookup point
             Coordinate coord = ls.getCoordinate();
 
             Point pt = factory.createPoint(coord);
 
+            // get CRS for UTM for point
             CoordinateReferenceSystem cartCRS = UTMHelper.getUTM(pt);
+            
+            // get transforms for to/from cartesian
             MathTransform toCart = CRS.findMathTransform(wgs84, cartCRS);
             MathTransform toLatLon = CRS.findMathTransform(cartCRS, wgs84);
 
+            // transform the point to cartesian
             Coordinate cartCoord = JTS.transform(coord, null, toCart);
 
             double x = cartCoord.x;
             double y = cartCoord.y;
 
+            // create boundaries that are +/-25 meters from point
             double left = x - 25.0;
             double right = x + 25.0;
             double bottom = y - 25.0;
             double top = y + 25.0;
 
+            // create polygon using boundaries
             Coordinate[] arg = new Coordinate[5];
 
             arg[0] = JTS.transform(new Coordinate(left, bottom), null, toLatLon);
             arg[1] = JTS.transform(new Coordinate(left, top), null, toLatLon);
             arg[2] = JTS.transform(new Coordinate(right, top), null, toLatLon);
             arg[3] = JTS.transform(new Coordinate(right, bottom), null, toLatLon);
-            arg[4] = JTS.transform(new Coordinate(left, bottom), null, toLatLon);
+            arg[4] = arg[0]; // polygon must be closed
 
             Object res = FunctionService.onServers(pool).withArgs(arg).execute("FindFeaturesFunction").getResult();
             System.out.println("res = " + res);
