@@ -53,6 +53,8 @@ public class BucketMappingChangeCacheListener extends CacheListenerAdapter<Integ
         String myNodeId = cache.getDistributedSystem().getDistributedMember().getId();
 
         if (nodeId.equals(myNodeId)) {
+            LOG.info("add: adding features, nodeId={}", nodeId);
+            
             try {
                 Region<Integer, String> jsonRegion = cache.getRegion("jsonFeature");
                 PartitionedRegion pr = (PartitionedRegion) jsonRegion;
@@ -85,6 +87,8 @@ public class BucketMappingChangeCacheListener extends CacheListenerAdapter<Integ
         String myNodeId = cache.getDistributedSystem().getDistributedMember().getId();
 
         if (nodeId.equals(myNodeId)) {
+            LOG.info("remove: removing features, nodeId={}", nodeId);
+            
             Region<Integer, String> jsonRegion = cache.getRegion("jsonFeature");
             PartitionedRegion pr = (PartitionedRegion) jsonRegion;
 

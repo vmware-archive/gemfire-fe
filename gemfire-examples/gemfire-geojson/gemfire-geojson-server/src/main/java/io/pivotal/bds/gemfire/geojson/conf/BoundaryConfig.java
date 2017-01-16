@@ -32,12 +32,12 @@ public class BoundaryConfig {
         newCoords[1] = new Coordinate(minLon, maxLat);
         newCoords[2] = new Coordinate(maxLon, maxLat);
         newCoords[3] = new Coordinate(maxLon, minLat);
-        newCoords[4] = new Coordinate(minLon, minLat);
+        newCoords[4] = newCoords[0]; // polygon must be closed
 
         Polygon poly = factory.createPolygon(newCoords);
         Boundary bound = new Boundary(poly);
 
-        // do initial split
+        // do initial split into 100 sub-boundaries (10x10)
         bound.split();
 
         return bound;

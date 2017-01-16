@@ -26,6 +26,7 @@ public class UTMHelper {
                 left += 6.0;
             }
         } catch (Exception x) {
+            // unlikely unless the classpath doesn't include gt-epsg-hsql
             x.printStackTrace();
         }
     }
@@ -55,7 +56,7 @@ public class UTMHelper {
         coords[1] = new Coordinate(left, top);
         coords[2] = new Coordinate(right, top);
         coords[3] = new Coordinate(right, bottom);
-        coords[4] = new Coordinate(left, bottom);
+        coords[4] = coords[0]; // polygons must be closed
 
         Geometry bound = factory.createPolygon(coords);
 
@@ -65,18 +66,5 @@ public class UTMHelper {
         h.boundary = bound;
 
         holders.add(h);
-    }
-
-    public static void main(String[] args) throws Exception {
-        Coordinate c = new Coordinate(-87.630748, 41.882355);
-        Point pt = factory.createPoint(c);
-
-        long start = System.nanoTime();
-        CoordinateReferenceSystem crs = getUTM(pt);
-        long end = System.nanoTime();
-        long delta = end - start;
-        System.out.println(delta);
-
-        System.out.println(crs);
     }
 }
