@@ -36,6 +36,10 @@
 			<artifactId>gt-epsg-extension</artifactId>
 			<version>16.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.geode</groupId>
+			<artifactId>geode-core</artifactId>
+		</dependency>
 	</dependencies>
 
 </project>

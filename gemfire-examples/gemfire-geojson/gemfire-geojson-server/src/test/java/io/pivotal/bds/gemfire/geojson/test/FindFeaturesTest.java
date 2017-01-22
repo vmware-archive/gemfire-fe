@@ -26,6 +26,8 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.Point;
 
+import io.pivotal.bds.gemfire.geojson.comp.ComparisonType;
+import io.pivotal.bds.gemfire.geojson.data.FindFeaturesRequest;
 import io.pivotal.bds.gemfire.geojson.util.UTMHelper;
 
 public class FindFeaturesTest {
@@ -95,15 +97,17 @@ public class FindFeaturesTest {
             double top = y + 25.0;
 
             // create polygon using boundaries
-            Coordinate[] arg = new Coordinate[5];
+            Coordinate[] coords = new Coordinate[5];
 
-            arg[0] = JTS.transform(new Coordinate(left, bottom), null, toLatLon);
-            arg[1] = JTS.transform(new Coordinate(left, top), null, toLatLon);
-            arg[2] = JTS.transform(new Coordinate(right, top), null, toLatLon);
-            arg[3] = JTS.transform(new Coordinate(right, bottom), null, toLatLon);
-            arg[4] = arg[0]; // polygon must be closed
+            coords[0] = JTS.transform(new Coordinate(left, bottom), null, toLatLon);
+            coords[1] = JTS.transform(new Coordinate(left, top), null, toLatLon);
+            coords[2] = JTS.transform(new Coordinate(right, top), null, toLatLon);
+            coords[3] = JTS.transform(new Coordinate(right, bottom), null, toLatLon);
+            coords[4] = coords[0]; // polygon must be closed
+            
+            FindFeaturesRequest req = new FindFeaturesRequest(coords, "", ComparisonType.intersects);
 
-            Object res = FunctionService.onServers(pool).withArgs(arg).execute("FindFeaturesFunction").getResult();
+            Object res = FunctionService.onServers(pool).withArgs(req).execute("FindFeaturesFunction").getResult();
             System.out.println("res = " + res);
         }
 

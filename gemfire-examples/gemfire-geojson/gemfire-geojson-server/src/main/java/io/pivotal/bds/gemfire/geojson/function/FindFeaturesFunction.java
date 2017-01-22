@@ -25,6 +25,7 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 
 import io.pivotal.bds.gemfire.geojson.comp.ComparisonType;
 import io.pivotal.bds.gemfire.geojson.data.Boundary;
+import io.pivotal.bds.gemfire.geojson.data.FindFeaturesRequest;
 
 @SuppressWarnings("serial")
 public class FindFeaturesFunction implements Function {
@@ -45,8 +46,12 @@ public class FindFeaturesFunction implements Function {
     @Override
     public void execute(FunctionContext context) {
         try {
-            Coordinate[] coords = (Coordinate[]) context.getArguments();
-            LOG.debug("execute: coords={}", Arrays.toString(coords));
+            FindFeaturesRequest req = (FindFeaturesRequest) context.getArguments();
+            
+            Coordinate[] coords = req.getCoordinates();
+            String typeName = req.getTypeName();
+            ComparisonType compType = req.getComparisonType();
+            LOG.debug("execute: typeName={}, compType={}, coords={}", typeName, compType, Arrays.toString(coords));
 
             Geometry geom = null;
             if (coords.length == 1) {
@@ -59,7 +64,7 @@ public class FindFeaturesFunction implements Function {
 
             Context ctx = timer.time();
             try {
-                fl = rootBoundary.findFeatures(geom, ComparisonType.intersects);
+                fl = rootBoundary.findFeatures(geom, compType, typeName);
             } finally {
                 ctx.stop();
             }
