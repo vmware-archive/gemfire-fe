@@ -48,8 +48,8 @@ public class RegionConfig {
     }
 
     @Bean
-    public static Region<String, PdxInstance> gazetterRegion(Cache cache, Region<String, String> jsonFeatureRegion) {
-        LOG.info("gazetterRegion");
+    public static Region<String, PdxInstance> gazetteerRegion(Cache cache, Region<String, String> jsonFeatureRegion) {
+        LOG.info("gazetteerRegion");
         RegionFactory<String, PdxInstance> rf = cache.createRegionFactory(RegionShortcut.PARTITION);
         
         PartitionAttributesFactory<String, PdxInstance> paf = new PartitionAttributesFactory<>();
@@ -58,7 +58,7 @@ public class RegionConfig {
         
         rf.setPartitionAttributes(pa);
         
-        return rf.create("gazetter");
+        return rf.create("gazetteer");
     }
 
 }

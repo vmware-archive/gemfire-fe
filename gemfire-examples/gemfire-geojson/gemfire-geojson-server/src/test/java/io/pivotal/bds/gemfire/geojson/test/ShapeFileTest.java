@@ -34,7 +34,7 @@ public class ShapeFileTest {
 
     private static ClientCache cache;
     private static Region<String, String> jsonFeatureRegion;
-    private static Region<String, PdxInstance> gazetterRegion;
+    private static Region<String, PdxInstance> gazetteerRegion;
     private static Map<String, Map<String, Object>> gaz;
     private static SimpleFeatureCollection features;
 
@@ -56,7 +56,7 @@ public class ShapeFileTest {
         jsonFeatureRegion = crf.create("jsonFeature");
 
         ClientRegionFactory<String, PdxInstance> gcrf = cache.createClientRegionFactory(ClientRegionShortcut.PROXY);
-        gazetterRegion = gcrf.create("gazetter");
+        gazetteerRegion = gcrf.create("gazetteer");
 
         gaz = getGaz();
 
@@ -116,7 +116,7 @@ public class ShapeFileTest {
                 jsonFeatureRegion.put(geoId, data);
 
                 PdxInstance inst = convertGaz(gazProps);
-                gazetterRegion.put(geoId, inst);
+                gazetteerRegion.put(geoId, inst);
 
                 if (++count % 1000 == 0) {
                     System.out.println("written " + count + " features");
@@ -126,7 +126,7 @@ public class ShapeFileTest {
     }
 
     private static PdxInstance convertGaz(Map<String, Object> map) throws Exception {
-        PdxInstanceFactory fact = cache.createPdxInstanceFactory("Gazetter");
+        PdxInstanceFactory fact = cache.createPdxInstanceFactory("Gazetteer");
 
         for (Map.Entry<String, Object> e : map.entrySet()) {
             fact.writeObject(e.getKey(), e.getValue());
