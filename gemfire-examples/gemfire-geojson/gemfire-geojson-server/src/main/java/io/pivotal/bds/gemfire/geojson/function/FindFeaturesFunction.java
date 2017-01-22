@@ -23,6 +23,7 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 
+import io.pivotal.bds.gemfire.geojson.comp.ComparisonType;
 import io.pivotal.bds.gemfire.geojson.data.Boundary;
 
 @SuppressWarnings("serial")
@@ -58,26 +59,26 @@ public class FindFeaturesFunction implements Function {
 
             Context ctx = timer.time();
             try {
-                fl = rootBoundary.getIntersectingFeatures(geom);
+                fl = rootBoundary.findFeatures(geom, ComparisonType.intersects);
             } finally {
                 ctx.stop();
             }
 
             meter.mark();
-            
+
             ResultSender<String> sender = context.getResultSender();
 
             if (fl.isEmpty()) {
                 sender.lastResult("");
             } else {
                 Iterator<SimpleFeature> iter = fl.iterator();
-                
+
                 while (iter.hasNext()) {
                     SimpleFeature sf = iter.next();
                     StringWriter sw = new StringWriter();
                     json.writeFeature(sf, sw);
                     String resp = sw.toString();
-                    
+
                     if (iter.hasNext()) {
                         sender.sendResult(resp);
                     } else {

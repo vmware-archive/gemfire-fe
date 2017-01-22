@@ -36,10 +36,6 @@ public class BoundaryConfig {
 
         Polygon poly = factory.createPolygon(newCoords);
         Boundary bound = new Boundary(poly);
-
-        // do initial split into 100 sub-boundaries (10x10)
-        bound.split();
-
         return bound;
     }
 }

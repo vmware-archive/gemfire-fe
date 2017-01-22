@@ -96,7 +96,6 @@ public class ShapeFileTest {
                 String gazId = geoId.substring(0, 11);
 
                 Map<String, Object> gazProps = gaz.get(gazId);
-                Assert.notNull(gazProps, geoId);
 
                 SimpleFeatureTypeBuilder sftb = new SimpleFeatureTypeBuilder();
 
@@ -115,8 +114,10 @@ public class ShapeFileTest {
                 String data = writer.toString();
                 jsonFeatureRegion.put(geoId, data);
 
-                PdxInstance inst = convertGaz(gazProps);
-                gazetteerRegion.put(geoId, inst);
+                if (gazProps != null) {
+                    PdxInstance inst = convertGaz(gazProps);
+                    gazetteerRegion.put(geoId, inst);
+                }
 
                 if (++count % 1000 == 0) {
                     System.out.println("written " + count + " features");
