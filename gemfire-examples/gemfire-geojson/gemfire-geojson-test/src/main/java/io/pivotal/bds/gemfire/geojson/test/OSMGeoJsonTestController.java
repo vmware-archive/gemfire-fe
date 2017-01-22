@@ -32,7 +32,7 @@ import io.pivotal.bds.metrics.rater.Rater;
 import io.pivotal.bds.metrics.timer.Timer;
 
 @RestController
-public class TestController {
+public class OSMGeoJsonTestController {
 
     @Autowired
     private Pool pool;
@@ -42,9 +42,9 @@ public class TestController {
 
     private static final Random random = new Random();
     private static final FeatureJSON featureJson = new FeatureJSON();
-    private static final Timer timer = new Timer("TestController");
-    private static final Rater rater = new Rater("TestController");
-    private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
+    private static final Timer timer = new Timer("OSMGeoJsonTestController");
+    private static final Rater rater = new Rater("OSMGeoJsonTestController");
+    private static final Logger LOG = LoggerFactory.getLogger(OSMGeoJsonTestController.class);
 
     @RequestMapping(value = "/start", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.NO_CONTENT)

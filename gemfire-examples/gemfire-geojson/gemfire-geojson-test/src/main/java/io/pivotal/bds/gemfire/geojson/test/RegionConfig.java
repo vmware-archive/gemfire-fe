@@ -15,9 +15,9 @@ public class RegionConfig {
     private static final Logger LOG = LoggerFactory.getLogger(RegionConfig.class);
 
     @Bean
-    public Region<Integer, Integer> routingRegion(ClientCache cache) {
-        LOG.info("routingRegion");
-        ClientRegionFactory<Integer, Integer> crf = cache.createClientRegionFactory(ClientRegionShortcut.PROXY);
-        return crf.create("routing");
+    public Region<String, String> jsonFeatureRegion(ClientCache cache) {
+        LOG.info("jsonFeatureRegion");
+        ClientRegionFactory<String, String> crf = cache.createClientRegionFactory(ClientRegionShortcut.PROXY);
+        return crf.create("jsonFeature");
     }
 }

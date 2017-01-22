@@ -25,19 +25,16 @@ public class SimpleLoadTest {
         BufferedReader reader = Files.newBufferedReader(Paths.get("src/test/resources/phoenix-roads.geojson"));
 
         JSONObject root = (JSONObject) JSONValue.parse(reader);
-        System.out.println(root);
 
-//        JSONObject crs = (JSONObject) root.get("crs");
-//        JSONObject crsProps = (JSONObject) crs.get("properties");
-//        String crsName = (String) crsProps.get("name");
-//        CoordinateReferenceSystem coordRefSys = CRS.decode(crsName);
+        // JSONObject crs = (JSONObject) root.get("crs");
+        // JSONObject crsProps = (JSONObject) crs.get("properties");
+        // String crsName = (String) crsProps.get("name");
+        // CoordinateReferenceSystem coordRefSys = CRS.decode(crsName);
 
         JSONArray features = (JSONArray) root.get("features");
         for (Object feature : features) {
-            System.out.println(feature);
             SimpleFeature sf = (SimpleFeature) fj.readFeature(new StringReader(feature.toString()));
-            LineString geo = (LineString) sf.getAttribute("geometry");
-            System.out.println(geo);
+            System.out.println(sf.getID() + ": " + sf);
         }
     }
 }
