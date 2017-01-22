@@ -93,9 +93,9 @@ public class BucketMappingChangeCacheListener extends CacheListenerAdapter<Integ
             PartitionedRegion pr = (PartitionedRegion) jsonRegion;
 
             int bucketId = event.getKey();
-            Set<Integer> keys = pr.getBucketKeys(bucketId);
+            Set<String> keys = pr.getBucketKeys(bucketId);
 
-            for (Integer id : keys) {
+            for (String id : keys) {
                 LOG.debug("remove: id={}", id);
                 rootBoundary.removeFeature(id);
             }

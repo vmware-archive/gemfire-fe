@@ -6,6 +6,7 @@ import org.apache.geode.cache.PartitionAttributesFactory;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.RegionFactory;
 import org.apache.geode.cache.RegionShortcut;
+import org.apache.geode.pdx.PdxInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -32,18 +33,32 @@ public class RegionConfig {
     }
 
     @Bean
-    public static Region<Integer, String> jsonFeatureRegion(Cache cache, Boundary rootBoundary, MetricRegistry registry) {
+    public static Region<String, String> jsonFeatureRegion(Cache cache, Boundary rootBoundary, MetricRegistry registry) {
         LOG.info("jsonFeatureRegion");
-        RegionFactory<Integer, String> rf = cache.createRegionFactory(RegionShortcut.PARTITION);
+        RegionFactory<String, String> rf = cache.createRegionFactory(RegionShortcut.PARTITION);
         rf.setCacheWriter(new GeoJsonCacheWriter(rootBoundary, registry));
         
-        PartitionAttributesFactory<Integer, String> paf = new PartitionAttributesFactory<>();
+        PartitionAttributesFactory<String, String> paf = new PartitionAttributesFactory<>();
         paf.addPartitionListener(new NotifyPartitionListener());
-        PartitionAttributes<Integer, String> pa = paf.create();
+        PartitionAttributes<String, String> pa = paf.create();
         
         rf.setPartitionAttributes(pa);
         
         return rf.create("jsonFeature");
+    }
+
+    @Bean
+    public static Region<String, PdxInstance> gazetterRegion(Cache cache, Region<String, String> jsonFeatureRegion) {
+        LOG.info("gazetterRegion");
+        RegionFactory<String, PdxInstance> rf = cache.createRegionFactory(RegionShortcut.PARTITION);
+        
+        PartitionAttributesFactory<String, PdxInstance> paf = new PartitionAttributesFactory<>();
+        paf.setColocatedWith(jsonFeatureRegion.getFullPath());
+        PartitionAttributes<String, PdxInstance> pa = paf.create();
+        
+        rf.setPartitionAttributes(pa);
+        
+        return rf.create("gazetter");
     }
 
 }

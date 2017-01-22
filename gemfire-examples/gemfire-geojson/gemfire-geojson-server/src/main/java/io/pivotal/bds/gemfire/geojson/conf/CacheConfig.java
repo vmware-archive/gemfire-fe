@@ -23,6 +23,9 @@ public class CacheConfig {
 
         CacheFactory cf = new CacheFactory();
         cf.set("locators", locators);
+        
+        cf.setPdxPersistent(true);
+        cf.setPdxReadSerialized(true);
 
         Cache c = cf.create();
 

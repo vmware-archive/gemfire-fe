@@ -18,7 +18,7 @@ import com.codahale.metrics.Timer.Context;
 
 import io.pivotal.bds.gemfire.geojson.data.Boundary;
 
-public class GeoJsonCacheWriter extends CacheWriterAdapter<Integer, String> {
+public class GeoJsonCacheWriter extends CacheWriterAdapter<String, String> {
 
     private Boundary rootBoundary;
 
@@ -35,11 +35,11 @@ public class GeoJsonCacheWriter extends CacheWriterAdapter<Integer, String> {
     }
 
     @Override
-    public void beforeCreate(EntryEvent<Integer, String> event) throws CacheWriterException {
+    public void beforeCreate(EntryEvent<String, String> event) throws CacheWriterException {
         try {
             Context ctx = timer.time();
 
-            Integer id = event.getKey();
+            String id = event.getKey();
             String raw = event.getNewValue();
             LOG.debug("beforeCreate: id={}, raw={}", id, raw);
 
@@ -56,19 +56,19 @@ public class GeoJsonCacheWriter extends CacheWriterAdapter<Integer, String> {
     }
 
     @Override
-    public void beforeDestroy(EntryEvent<Integer, String> event) throws CacheWriterException {
-        Integer id = event.getKey();
+    public void beforeDestroy(EntryEvent<String, String> event) throws CacheWriterException {
+        String id = event.getKey();
         LOG.debug("beforeDestroy: id={}", id);
         rootBoundary.removeFeature(id);
         meter.mark();
     }
 
     @Override
-    public void beforeUpdate(EntryEvent<Integer, String> event) throws CacheWriterException {
+    public void beforeUpdate(EntryEvent<String, String> event) throws CacheWriterException {
         try {
             Context ctx = timer.time();
 
-            Integer id = event.getKey();
+            String id = event.getKey();
             String raw = event.getNewValue();
             LOG.debug("beforeUpdate: id={}, raw={}", id, raw);
 
