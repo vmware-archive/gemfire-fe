@@ -1,5 +1,6 @@
 package io.pivotal.bds.gemfire.geojson.test;
 
+import java.io.File;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -45,8 +46,9 @@ public class ShapeFileLoadController {
             @Override
             public void run() {
                 try {
+                    int count = 0;
                     Map params = new HashMap();
-                    params.put("url", fileName);
+                    params.put("url", new File(fileName).toURI().toString());
 
                     DataStore dataStore = DataStoreFinder.getDataStore(params);
 
@@ -55,29 +57,44 @@ public class ShapeFileLoadController {
                     String[] typeNames = dataStore.getTypeNames();
                     Assert.notNull(typeNames);
                     Assert.isTrue(typeNames.length > 0, "No type names found");
-                    
-                    for (String typeName: typeNames) {
+
+                    Map<String, String> map = new HashMap<>();
+
+                    for (String typeName : typeNames) {
+                        LOG.info("load: found type {} in file {}", typeName, fileName);
+
                         SimpleFeatureSource src = dataStore.getFeatureSource(typeName);
                         SimpleFeatureCollection coll = src.getFeatures();
                         SimpleFeatureIterator iter = coll.features();
-                        
+
                         while (iter.hasNext()) {
                             SimpleFeature feature = iter.next();
 
                             String geoId = (String) feature.getAttribute("GEOID10");
-                            Assert.notNull(geoId,"Missing 'GEOID10' attribute");
-                            
+                            Assert.notNull(geoId, "Missing 'GEOID10' attribute");
+
                             SimpleFeatureBuilder sfb = new SimpleFeatureBuilder(feature.getFeatureType());
                             sfb.init(feature);
 
                             SimpleFeature newFeature = sfb.buildFeature(geoId);
                             StringWriter sw = new StringWriter();
                             json.writeFeature(newFeature, sw);
-                            
+
                             String sfs = sw.toString();
-                            
-                            jsonFeatureRegion.put(geoId, sfs);
+                            map.put(geoId, sfs);
+
+                            if (++count % 1000 == 0) {
+                                jsonFeatureRegion.putAll(map);
+                                map.clear();
+                                LOG.info("load: loaded {} features of type {} from file {}", count, typeName, fileName);
+                            }
                         }
+
+                        if (!map.isEmpty()) {
+                            jsonFeatureRegion.putAll(map);
+                        }
+                        
+                        LOG.info("load: loaded {} features from file {}", count, fileName);
                     }
                 } catch (Exception x) {
                     LOG.error("load: x={}", x.toString(), x);

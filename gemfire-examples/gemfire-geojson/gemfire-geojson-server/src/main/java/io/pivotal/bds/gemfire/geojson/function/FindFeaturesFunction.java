@@ -10,15 +10,12 @@ import org.opengis.feature.simple.SimpleFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.codahale.metrics.Meter;
-import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.Timer;
-import com.codahale.metrics.Timer.Context;
 import org.apache.geode.cache.execute.Function;
 import org.apache.geode.cache.execute.FunctionContext;
 import org.apache.geode.cache.execute.FunctionException;
 import org.apache.geode.cache.execute.ResultSender;
 
+import com.codahale.metrics.MetricRegistry;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -26,6 +23,8 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import io.pivotal.bds.gemfire.geojson.comp.ComparisonType;
 import io.pivotal.bds.gemfire.geojson.data.Boundary;
 import io.pivotal.bds.gemfire.geojson.data.FindFeaturesRequest;
+import io.pivotal.bds.metrics.rater.Rater;
+import io.pivotal.bds.metrics.timer.Timer;
 
 @SuppressWarnings("serial")
 public class FindFeaturesFunction implements Function {
@@ -33,21 +32,20 @@ public class FindFeaturesFunction implements Function {
     private Boundary rootBoundary;
     private static final GeometryFactory factory = new GeometryFactory();
     private static final FeatureJSON json = new FeatureJSON();
-    private final Timer timer;
-    private final Meter meter;
     private static final Logger LOG = LoggerFactory.getLogger(FindFeaturesFunction.class);
+
+    private static final Timer timer = new Timer("FindFeaturesFunction-Timer");
+    private static final Rater rater = new Rater("FindFeaturesFunction-Rater");
 
     public FindFeaturesFunction(Boundary rootBoundary, MetricRegistry registry) {
         this.rootBoundary = rootBoundary;
-        this.timer = registry.timer("FindFeaturesFunction-Timer");
-        this.meter = registry.meter("FindFeaturesFunction-Meter");
     }
 
     @Override
     public void execute(FunctionContext context) {
         try {
             FindFeaturesRequest req = (FindFeaturesRequest) context.getArguments();
-            
+
             Coordinate[] coords = req.getCoordinates();
             String typeName = req.getTypeName();
             ComparisonType compType = req.getComparisonType();
@@ -60,16 +58,10 @@ public class FindFeaturesFunction implements Function {
                 geom = factory.createPolygon(coords);
             }
 
-            List<SimpleFeature> fl = null;
-
-            Context ctx = timer.time();
-            try {
-                fl = rootBoundary.findFeatures(geom, compType, typeName);
-            } finally {
-                ctx.stop();
-            }
-
-            meter.mark();
+            timer.start();
+            List<SimpleFeature> fl = rootBoundary.findFeatures(geom, compType, typeName);
+            timer.end();
+            rater.increment();
 
             ResultSender<String> sender = context.getResultSender();
 

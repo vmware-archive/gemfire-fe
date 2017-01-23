@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -51,6 +53,7 @@ public class OSMGeoJsonLoadController {
 
                         LOG.info("load: creating features, file={}", fileName);
                         int count = 0;
+                        Map<String, String> map = new HashMap<>();
 
                         for (Object feature : features) {
                             JSONObject jo = (JSONObject) feature;
@@ -58,7 +61,7 @@ public class OSMGeoJsonLoadController {
                             // get the osm_id property to use as the feature ID
                             JSONObject props = (JSONObject) jo.get("properties");
                             Number nid = (Number) props.get("osm_id");
-                            String id = Integer.toString(nid.intValue());
+                            String id = nid.toString();
 
                             // convert json to feature
                             SimpleFeature sf = json.readFeature(jo.toString());
@@ -72,13 +75,20 @@ public class OSMGeoJsonLoadController {
                             StringWriter sw = new StringWriter();
                             json.writeFeature(nsf, sw);
                             String sfs = sw.toString();
-
-                            // write to region
-                            jsonFeatureRegion.put(id, sfs);
+                            
+                            map.put(id, sfs);
 
                             if (++count % 1000 == 0) {
+                                // write to region
+                                jsonFeatureRegion.putAll(map);
+                                map.clear();
+
                                 LOG.info("load: writing, count={}, file={}", count, fileName);
                             }
+                        }
+                        
+                        if (!map.isEmpty()) {
+                            jsonFeatureRegion.putAll(map);
                         }
 
                         LOG.info("load: done, count={}, file={}", count, fileName);
