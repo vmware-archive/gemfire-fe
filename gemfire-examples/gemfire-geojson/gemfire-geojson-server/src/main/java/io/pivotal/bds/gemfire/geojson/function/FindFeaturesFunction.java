@@ -1,11 +1,8 @@
 package io.pivotal.bds.gemfire.geojson.function;
 
-import java.io.StringWriter;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import org.geotools.geojson.feature.FeatureJSON;
 import org.opengis.feature.simple.SimpleFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +13,7 @@ import org.apache.geode.cache.execute.FunctionException;
 import org.apache.geode.cache.execute.ResultSender;
 
 import com.codahale.metrics.MetricRegistry;
-import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
 
 import io.pivotal.bds.gemfire.geojson.comp.ComparisonType;
 import io.pivotal.bds.gemfire.geojson.data.Boundary;
@@ -30,8 +25,6 @@ import io.pivotal.bds.metrics.timer.Timer;
 public class FindFeaturesFunction implements Function {
 
     private Boundary rootBoundary;
-    private static final GeometryFactory factory = new GeometryFactory();
-    private static final FeatureJSON json = new FeatureJSON();
     private static final Logger LOG = LoggerFactory.getLogger(FindFeaturesFunction.class);
 
     private static final Timer timer = new Timer("FindFeaturesFunction-Timer");
@@ -46,17 +39,10 @@ public class FindFeaturesFunction implements Function {
         try {
             FindFeaturesRequest req = (FindFeaturesRequest) context.getArguments();
 
-            Coordinate[] coords = req.getCoordinates();
+            Geometry geom = req.getGeometry();
             String typeName = req.getTypeName();
             ComparisonType compType = req.getComparisonType();
-            LOG.debug("execute: typeName={}, compType={}, coords={}", typeName, compType, Arrays.toString(coords));
-
-            Geometry geom = null;
-            if (coords.length == 1) {
-                geom = factory.createPoint(coords[0]);
-            } else {
-                geom = factory.createPolygon(coords);
-            }
+            LOG.debug("execute: typeName={}, compType={}, geom={}", typeName, compType, geom);
 
             timer.start();
             List<SimpleFeature> fl = rootBoundary.findFeatures(geom, compType, typeName);
@@ -72,14 +58,10 @@ public class FindFeaturesFunction implements Function {
 
                 while (iter.hasNext()) {
                     SimpleFeature sf = iter.next();
-                    StringWriter sw = new StringWriter();
-                    json.writeFeature(sf, sw);
-                    String resp = sw.toString();
-
                     if (iter.hasNext()) {
-                        sender.sendResult(resp);
+                        sender.sendResult(sf.getID());
                     } else {
-                        sender.lastResult(resp);
+                        sender.lastResult(sf.getID());
                     }
                 }
             }

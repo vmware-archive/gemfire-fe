@@ -34,9 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.Point;
 
 import io.pivotal.bds.gemfire.geojson.comp.ComparisonType;
 import io.pivotal.bds.gemfire.geojson.data.FindFeaturesRequest;
@@ -122,9 +120,7 @@ public class TestController {
                 for (Object feature : features) {
                     SimpleFeature sf = (SimpleFeature) featureJson.readFeature(new StringReader(feature.toString()));
                     Geometry geo = (Geometry) sf.getAttribute("geometry");
-                    Point pt = geo.getCentroid();
-                    Geometry buf = pt.buffer(0.0001);
-                    geometries.add(buf);
+                    geometries.add(geo.getEnvelope()); // use envelope for intersects test
                 }
 
                 LOG.info("start: starting threads, file={}", fileName);
@@ -133,7 +129,6 @@ public class TestController {
                 }
             } catch (Exception x) {
                 LOG.error("GeoJsonStarter: x={}", x.toString(), x);
-            } finally {
                 running = false;
             }
         }
@@ -177,19 +172,16 @@ public class TestController {
                     while (iter.hasNext()) {
                         SimpleFeature feature = iter.next();
                         Geometry geo = (Geometry) feature.getDefaultGeometry();
-                        Point cent = geo.getCentroid();
-                        Geometry buf = cent.buffer(0.0001);
-                        geometries.add(buf);
+                        geometries.add(geo.getEnvelope()); // use envelope for intersects test
                     }
                 }
 
-                LOG.info("start: starting threads, file={}", fileName);
+                LOG.info("start: starting threads, file={}, threadCount={}", fileName, threadCount);
                 for (int i = 0; i < threadCount; ++i) {
                     new Runner().start();
                 }
             } catch (Exception x) {
                 LOG.error("ShapeFileStarter: x={}", x.toString(), x);
-            } finally {
                 running = false;
             }
         }
@@ -205,8 +197,7 @@ public class TestController {
                 while (running) {
                     int index = random.nextInt(size);
                     Geometry geo = geometries.get(index);
-                    Coordinate[] coords = geo.getCoordinates();
-                    FindFeaturesRequest req = new FindFeaturesRequest(coords, "", ComparisonType.intersects);
+                    FindFeaturesRequest req = new FindFeaturesRequest(geo, null, ComparisonType.intersects);
 
                     timer.start();
                     FunctionService.onServers(pool).withArgs(req).execute("FindFeaturesFunction").getResult();

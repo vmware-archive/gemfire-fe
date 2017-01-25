@@ -14,8 +14,12 @@ public class GeoToolsSpeedTest {
         Coordinate coord = new Coordinate(0.0, 0.0);
         Point pt = new GeometryFactory().createPoint(coord);
         Geometry geom = pt.buffer(0.0001);
+        int count = 1000;
 
-        int count = 10000;
+        for (int i = 0; i < count * 100; ++i) {
+            geom.intersects(geom);
+        }
+
         long start = System.nanoTime();
 
         for (int i = 0; i < count; ++i) {

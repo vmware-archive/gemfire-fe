@@ -115,6 +115,11 @@
 			<name>Geotools</name>
 			<url>http://download.osgeo.org/webdav/geotools/</url>
 		</repository>
+<!-- 		<repository> -->
+<!-- 			<id>gemfire-release-repo</id> -->
+<!-- 			<name>Pivotal GemFire Release Repository</name> -->
+<!-- 			<url>https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire</url> -->
+<!-- 		</repository> -->
 	</repositories>
 
 	<dependencyManagement>

@@ -9,26 +9,18 @@ import org.apache.geode.cache.client.ClientCacheFactory;
 import org.apache.geode.cache.client.Pool;
 import org.apache.geode.cache.execute.FunctionService;
 import org.geotools.geojson.feature.FeatureJSON;
-import org.geotools.geometry.jts.JTS;
-import org.geotools.referencing.CRS;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.operation.MathTransform;
 
-import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Point;
 
 import io.pivotal.bds.gemfire.geojson.comp.ComparisonType;
 import io.pivotal.bds.gemfire.geojson.data.FindFeaturesRequest;
-import io.pivotal.bds.gemfire.geojson.util.UTMHelper;
 
 public class FindFeaturesTest {
 
@@ -36,9 +28,6 @@ public class FindFeaturesTest {
     private static Pool pool;
 
     private static final FeatureJSON json = new FeatureJSON();
-    private static final GeometryFactory factory = new GeometryFactory();
-
-    private static CoordinateReferenceSystem wgs84 = DefaultGeographicCRS.WGS84;
 
     // private static final String path =
     // "/Users/tdalsing/projects/allstate/docs/data/ex_5WHPthk5aWhLByKoCNVCCYHNWNEdr.imposm-geojson/ex_5WHPthk5aWhLByKoCNVCCYHNWNEdr_roads.geojson";
@@ -66,46 +55,15 @@ public class FindFeaturesTest {
         JSONArray features = (JSONArray) root.get("features");
 
         System.out.println("test: calling function");
-        
+
         for (Object feature : features) {
             JSONObject jo = (JSONObject) feature;
             SimpleFeature sf = json.readFeature(jo.toString());
-            LineString ls = (LineString) sf.getAttribute("geometry");
+            Geometry ls = (Geometry) sf.getDefaultGeometry();
+            Point pt = ls.getCentroid();
+            Geometry geo = pt.buffer(0.0001);
 
-            // use first coordinate as lookup point
-            Coordinate coord = ls.getCoordinate();
-
-            Point pt = factory.createPoint(coord);
-
-            // get CRS for UTM for point
-            CoordinateReferenceSystem cartCRS = UTMHelper.getUTM(pt);
-            
-            // get transforms for to/from cartesian
-            MathTransform toCart = CRS.findMathTransform(wgs84, cartCRS);
-            MathTransform toLatLon = CRS.findMathTransform(cartCRS, wgs84);
-
-            // transform the point to cartesian
-            Coordinate cartCoord = JTS.transform(coord, null, toCart);
-
-            double x = cartCoord.x;
-            double y = cartCoord.y;
-
-            // create boundaries that are +/-25 meters from point
-            double left = x - 25.0;
-            double right = x + 25.0;
-            double bottom = y - 25.0;
-            double top = y + 25.0;
-
-            // create polygon using boundaries
-            Coordinate[] coords = new Coordinate[5];
-
-            coords[0] = JTS.transform(new Coordinate(left, bottom), null, toLatLon);
-            coords[1] = JTS.transform(new Coordinate(left, top), null, toLatLon);
-            coords[2] = JTS.transform(new Coordinate(right, top), null, toLatLon);
-            coords[3] = JTS.transform(new Coordinate(right, bottom), null, toLatLon);
-            coords[4] = coords[0]; // polygon must be closed
-            
-            FindFeaturesRequest req = new FindFeaturesRequest(coords, "", ComparisonType.intersects);
+            FindFeaturesRequest req = new FindFeaturesRequest(geo, null, ComparisonType.intersects);
 
             Object res = FunctionService.onServers(pool).withArgs(req).execute("FindFeaturesFunction").getResult();
             System.out.println("res = " + res);
