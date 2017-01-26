@@ -200,7 +200,7 @@ public class TestController {
                     FindFeaturesRequest req = new FindFeaturesRequest(geo, null, ComparisonType.intersects);
 
                     timer.start();
-                    FunctionService.onServers(pool).withArgs(req).execute("FindFeaturesFunction").getResult();
+                    FunctionService.onServer(pool).withArgs(req).execute("FindFeaturesFunction").getResult();
                     timer.end();
                     rater.increment();
                 }
