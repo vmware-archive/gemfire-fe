@@ -46,12 +46,4 @@ public class RegionConfig {
         return rf.create("gazetteer");
     }
 
-    @Bean
-    public static Region<String, PdxInstance> navLinkRegion(Cache cache) {
-        LOG.info("navLinkRegion");
-        RegionFactory<String, PdxInstance> rf = cache.createRegionFactory(RegionShortcut.REPLICATE);
-        
-        return rf.create("navLink");
-    }
-
 }

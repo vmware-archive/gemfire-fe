@@ -32,12 +32,4 @@ public class RegionConfig {
         return crf.create("jsonFeature");
     }
 
-    @Bean
-    public Region<String, PdxInstance> navLinkRegion() {
-        LOG.info("navLinkRegion");
-        Assert.notNull(cache);
-        ClientRegionFactory<String, PdxInstance> rf = cache.createClientRegionFactory(ClientRegionShortcut.PROXY);
-        return rf.create("navLink");
-    }
-
 }
