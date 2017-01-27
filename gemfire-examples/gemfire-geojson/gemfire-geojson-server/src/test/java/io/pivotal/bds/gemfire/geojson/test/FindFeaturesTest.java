@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.apache.geode.DataSerializer;
 import org.apache.geode.cache.client.ClientCache;
 import org.apache.geode.cache.client.ClientCacheFactory;
 import org.apache.geode.cache.client.Pool;
@@ -21,6 +22,7 @@ import com.vividsolutions.jts.geom.Point;
 
 import io.pivotal.bds.gemfire.geojson.comp.ComparisonType;
 import io.pivotal.bds.gemfire.geojson.data.FindFeaturesRequest;
+import io.pivotal.bds.gemfire.geojson.serializer.SimpleFeatureSerializer;
 
 public class FindFeaturesTest {
 
@@ -41,6 +43,8 @@ public class FindFeaturesTest {
         ccf.addPoolLocator("localhost", 10334);
         cache = ccf.create();
         pool = cache.getDefaultPool();
+        
+        DataSerializer.register(SimpleFeatureSerializer.class);
 
         System.out.println("before: done");
     }

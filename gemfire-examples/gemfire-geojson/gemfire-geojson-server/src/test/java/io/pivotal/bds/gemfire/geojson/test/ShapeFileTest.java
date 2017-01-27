@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.geode.DataSerializer;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.client.ClientCache;
 import org.apache.geode.cache.client.ClientCacheFactory;
@@ -29,6 +30,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.opengis.feature.simple.SimpleFeature;
 import org.opengis.feature.simple.SimpleFeatureType;
+
+import io.pivotal.bds.gemfire.geojson.serializer.SimpleFeatureSerializer;
 
 public class ShapeFileTest {
 
@@ -51,6 +54,7 @@ public class ShapeFileTest {
         ccf.setPdxReadSerialized(true);
 
         cache = ccf.create();
+        DataSerializer.register(SimpleFeatureSerializer.class);
 
         ClientRegionFactory<String, String> crf = cache.createClientRegionFactory(ClientRegionShortcut.PROXY);
         jsonFeatureRegion = crf.create("jsonFeature");

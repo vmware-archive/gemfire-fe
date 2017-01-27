@@ -39,11 +39,19 @@ public class RegionConfig {
     }
 
     @Bean
-    public static Region<String, PdxInstance> gazetteerRegion(Cache cache, Region<String, String> jsonFeatureRegion) {
+    public static Region<String, PdxInstance> gazetteerRegion(Cache cache) {
         LOG.info("gazetteerRegion");
         RegionFactory<String, PdxInstance> rf = cache.createRegionFactory(RegionShortcut.REPLICATE);
         
         return rf.create("gazetteer");
+    }
+
+    @Bean
+    public static Region<String, PdxInstance> navLinkRegion(Cache cache) {
+        LOG.info("navLinkRegion");
+        RegionFactory<String, PdxInstance> rf = cache.createRegionFactory(RegionShortcut.REPLICATE);
+        
+        return rf.create("navLink");
     }
 
 }

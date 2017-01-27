@@ -1,5 +1,8 @@
 package io.pivotal.bds.gemfire.geojson.conf;
 
+import javax.annotation.PostConstruct;
+
+import org.apache.geode.DataSerializer;
 import org.apache.geode.cache.Cache;
 import org.apache.geode.cache.CacheFactory;
 import org.apache.geode.cache.control.ResourceManager;
@@ -8,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import io.pivotal.bds.gemfire.geojson.serializer.SimpleFeatureSerializer;
 
 @Configuration
 public class CacheConfig {
@@ -23,7 +28,7 @@ public class CacheConfig {
 
         CacheFactory cf = new CacheFactory();
         cf.set("locators", locators);
-        
+
         cf.setPdxPersistent(true);
         cf.setPdxReadSerialized(true);
 
@@ -39,5 +44,11 @@ public class CacheConfig {
         cs.start();
 
         return c;
+    }
+
+    @PostConstruct
+    public void post() {
+        LOG.info("post: registering SimpleFeatureSerializer");
+        DataSerializer.register(SimpleFeatureSerializer.class);
     }
 }
