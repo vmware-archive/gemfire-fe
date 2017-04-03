@@ -24,7 +24,8 @@
         
         
         <module>gemfire-util</module>
-        <module>gemfire-kafka</module>
+		<module>gemfire-kafka</module>
+		<module>gemfire-mock</module>
 	</modules>
 
 </project>
