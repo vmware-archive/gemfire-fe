@@ -1,8 +1,0 @@
-group = 'io.pivotal.bds.gemfire'
-description = ''
-dependencies {
-    compile group: 'org.kie', name: 'kie-api', version:'6.3.0.Final'
-    compile group: 'org.drools', name: 'drools-compiler', version:'6.3.0.Final'
-  compile project(':gemfire-utils:gemfire-keyfw')
-    compile group: 'com.gemstone.gemfire', name: 'gemfire', version:'8.2.1'
-}

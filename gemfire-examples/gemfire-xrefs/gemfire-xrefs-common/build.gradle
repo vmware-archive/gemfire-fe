@@ -1,6 +1,0 @@
-group = 'io.pivotal.bds.gemfire'
-description = ''
-dependencies {
-  compile project(':gemfire-utils:gemfire-key')
-  compile project(':gemfire-examples:gemfire-data')
-}

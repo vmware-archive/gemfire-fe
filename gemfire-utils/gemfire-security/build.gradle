@@ -1,5 +1,0 @@
-group = 'io.pivotal.bds.gemfire'
-description = ''
-dependencies {
-    compile group: 'com.gemstone.gemfire', name: 'gemfire', version:'8.2.1'
-}

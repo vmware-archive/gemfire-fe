@@ -1,9 +1,0 @@
-group = 'io.pivotal.bds.gemfire'
-description = ''
-dependencies {
-  compile project(':gemfire-utils:gemfire-ml')
-  compile project(':gemfire-utils:gemfire-keyfw')
-    compile group: 'org.apache.commons', name: 'commons-collections4', version:'4.1'
-    compile group: 'org.apache.commons', name: 'commons-math3', version:'3.6'
-    compile group: 'org.jpmml', name: 'pmml-evaluator', version:'1.2.11'
-}

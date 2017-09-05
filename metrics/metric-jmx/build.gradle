@@ -1,7 +1,0 @@
-group = 'io.pivotal.bds.metrics'
-description = ''
-dependencies {
-    compile group: 'org.json', name: 'json', version:'20141113'
-  compile project(':metrics:metric-common')
-    testCompile group: 'ch.qos.logback', name: 'logback-classic', version:'1.1.3'
-}
