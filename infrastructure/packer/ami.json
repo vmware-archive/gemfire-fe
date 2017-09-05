@@ -1,0 +1,65 @@
+{
+    "variables": {
+        "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+        "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+        "aws_region": "{{env `AWS_REGION`}}",
+        "ami_id": "ami-f4533694",
+        "security_group_id": "sg-24c9065e",
+        "subnet_id": "subnet-0a57466d",
+        "iam_instance_profile": "gemfire-fe",
+        "ssh_user_name": "centos",
+        "ssh_keypair_name": "gemfire-fe",
+        "ssh_private_key_file": "{{env `AWS_SSH_PRIVATE_KEY_FILE`}}",
+        "version": "gemfire-fe-ami-{{isotime \"20060102-1504\"}}"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "{{user `aws_region`}}",
+            "security_group_id": "{{user `security_group_id`}}",
+            "subnet_id": "{{user `subnet_id`}}",
+            "associate_public_ip_address": true,
+            "launch_block_device_mappings": [{
+                "device_name": "/dev/sda1",
+                "volume_size": 20,
+                "volume_type": "gp2",
+                "delete_on_termination": true
+            }],
+            "source_ami": "{{user `ami_id`}}",
+            "instance_type": "c4.large",
+            "iam_instance_profile": "{{user `iam_instance_profile`}}",
+            "ebs_optimized": true,
+            "enhanced_networking": true,
+            "ssh_username": "{{user `ssh_user_name`}}",
+            "ami_name": "{{user `version`}}",
+            "communicator": "ssh",
+            "ssh_pty": true,
+            "ssh_keypair_name": "{{user `ssh_keypair_name`}}",
+            "ssh_private_key_file": "{{user `ssh_private_key_file`}}",
+            "tags": { "Name": "{{user `version`}}" }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "ami-init.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "execute_command": "{{ .Vars }} sudo -E sh -c '{{ .Path }}'",
+            "inline": [
+                "reboot now"
+            ]
+        },
+        {
+            "type": "shell",
+            "execute_command": "{{ .Vars }} sudo -E sh -c '{{ .Path }}'",
+            "inline": [
+                "true"
+            ]
+        }
+    ]
+}

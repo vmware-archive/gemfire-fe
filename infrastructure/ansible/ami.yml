@@ -1,0 +1,77 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: create instance for building ami
+    ec2:
+      image: ami-f4533694
+      instance_type: t2.micro
+      group_id: sg-4cf03b2a
+      key_name: tdalsing@tdalsing-mbp.local
+      instance_profile_name: s3_read_role
+      wait: true
+      volumes:
+      - device_name: /dev/sda1
+        volume_type: gp2
+        volume_size: "10"
+        delete_on_termination: yes
+    register: ami
+  - name: add ami instance to group
+    add_host: hostname={{ item.public_ip }} groupname=ami
+    with_items: "{{ ami.instances }}"
+    
+- hosts: ami
+  remote_user: centos
+  become: true
+  gather_facts: false
+  tasks:
+  - name: update yum
+    yum:
+      name: '*'
+      state: latest
+  - name: install parted
+    yum:
+      name: 'parted'
+      state: latest
+      
+- hosts: ami
+  remote_user: centos
+  become: true
+  gather_facts: false
+  tasks:
+  - name: download jvm
+    s3:
+      bucket: pivotal-iot-demo-files
+      object: jdk-8u131-linux-x64.rpm
+      dest: /tmp/jdk.rpm
+      mode: get
+  - name: install jvm
+    yum:
+      name: /tmp/jdk.rpm
+      state: present
+  - name: delete rpm
+    file:
+      path: /tmp/jdk.rpm
+      state: absent
+
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: create ami
+    ec2_ami:
+      name: base
+      instance_id: "{{ item.id }}"
+      wait: true
+    with_items: "{{ ami.instances }}"
+      
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+  - name: delete ami instance
+    ec2:
+      instance_ids: "{{ item.id }}"
+      state: 'absent'
+    with_items: "{{ ami.instances }}"

@@ -1,0 +1,13 @@
+---
+- hosts: all
+  remote_user: root
+  become: yes
+  tasks:
+  - name: download jvm
+    s3:
+      bucket: pivotal-iot-demo-files
+      object: jdk-8u131-linux-x64.rpm
+      dest: /tmp/jdk.rpm
+      mode: get
+  - name: install jvm
+    shell: yum localinstall /tmp/jdk.rpm
