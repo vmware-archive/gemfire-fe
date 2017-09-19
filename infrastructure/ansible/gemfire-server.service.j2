@@ -1,0 +1,17 @@
+[Unit]
+Description=Gemfire Server
+Requires=network.target
+After=network.target
+
+[Service]
+Type=forking
+User={{ server_user }}
+Group={{ server_group }}
+ExecStart=/opt/gemfire/bin/gfsh start server --name={{ ansible_hostname }} --server-port={{ server_port }} --locators={{ locator_spec }}
+TimeoutSec=5min
+ExecStop=/opt/gemfire/bin/gfsh stop server --dir={{ ansible_hostname }}
+WorkingDirectory=/home/{{ server_user }}
+PIDFile=/home/{{ server_user }}/{{ ansible_hostname }}/vf.gf.server.pid
+
+[Install]
+WantedBy=multi-user.target

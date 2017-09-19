@@ -1,0 +1,21 @@
+---
+- name: create gemfire locator spec 'hostname[port]' for each locator
+  set_fact:
+    host_port: "{{ hostvars[item].ansible_hostname }}[{{ locator_port }}]"
+  with_items: "{{ groups['locators'] }}"
+  register: host_port_list
+
+- name: generate list of 'hostname[port],...'
+  set_fact:
+    locator_spec: "{{ host_port_list | json_query('results[*].ansible_facts.host_port') | join(',') }}"
+
+- name: create systemd unit for locator
+  template:
+    src: gemfire-locator.service.j2
+    dest: /usr/lib/systemd/system/gemfire-locator.service
+
+- name: start locator
+  systemd:
+    name: gemfire-locator.service
+    enabled: true
+    state: started

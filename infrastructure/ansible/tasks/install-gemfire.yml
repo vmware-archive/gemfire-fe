@@ -1,0 +1,32 @@
+---
+- name: "download gemfire from file {{ gemfire_file_name }} in bucket {{ bucket_name }}"
+  s3:
+    bucket: "{{ bucket_name }}"
+    object: "{{ gemfire_file_name }}"
+    dest: "/tmp/{{ gemfire_file_name }}"
+    mode: get
+
+- name: "untar gemfire from file {{ gemfire_file_name }}"
+  unarchive:
+    src: "/tmp/{{ gemfire_file_name }}"
+    dest: /opt
+    remote_src: yes
+
+- name: locate gemfire directory
+  find:
+    paths: /opt
+    patterns: "*gemfire*"
+    file_type: directory
+  register: gemfire_files
+
+- name: create symlimk for gemfire
+  file:
+    src: "{{ item.path }}"
+    dest: /opt/gemfire
+    state: link
+  with_items: "{{ gemfire_files.files }}"
+
+- name: add gemfire to path
+  template:
+    src: gemfire.sh.j2
+    dest: /etc/profile.d/gemfire.sh

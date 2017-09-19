@@ -1,0 +1,12 @@
+---
+- name: "download jdk rpm file {{ jdk_file_name }} from s3 bucket {{ bucket_name }}"
+  s3:
+    bucket: "{{ bucket_name }}"
+    object: "{{ jdk_file_name }}"
+    dest: "/tmp/{{ jdk_file_name }}"
+    mode: get
+
+- name: "install jdk from rpm file {{ jdk_file_name }}"
+  yum:
+    name: "/tmp/{{ jdk_file_name }}"
+    state: present

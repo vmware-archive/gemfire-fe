@@ -10,8 +10,14 @@ variable "aws_key_name" {
   description = "The name of the AWS key pair"
 }
 
-variable "subnet_id" {
+variable "subnet_ids" {
+  type = "list"
   description = "The subnet id"
+}
+
+variable "availability_zones" {
+  type = "list"
+  description = "The availability zone"
 }
 
 variable "security_group_ids" {
@@ -31,7 +37,28 @@ variable "instance_profile_name" {
   description = "The name of the IAM instance profile for downloading artifacts from S3"
 }
 
-variable "gemfire_locator_private_ips" {
+variable "locator_count" {
+  description = "The locator count"
+}
+
+variable "locator_instance_type" {
+  description = "The locator instance type"
+}
+
+variable "locator_private_ips" {
+  type = "list"
+  description = "A list of IPs for the gemfire locators"
+}
+
+variable "server_count" {
+  description = "The server count"
+}
+
+variable "server_instance_type" {
+  description = "The locator instance type"
+}
+
+variable "server_private_ips" {
   type = "list"
   description = "A list of IPs for the gemfire locators"
 }
