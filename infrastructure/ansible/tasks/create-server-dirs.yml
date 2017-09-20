@@ -1,0 +1,23 @@
+---
+- name: partition data volume
+  parted:
+    device: /dev/xvdf
+    number: 1
+    state: present
+
+- name: format data volume
+  filesystem:
+    dev: /dev/xvdf1
+    fstype: ext4
+
+- name: mount data volume
+  mount:
+    fstype: ext4
+    path: /data
+    src: /dev/xvdf1
+    state: mounted
+
+- name: create directory for app jars
+  file:
+    path: /opt/app/jars
+    state: directory

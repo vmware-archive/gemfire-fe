@@ -22,7 +22,9 @@
     locator_user: centos
     locator_group: centos
     locator_port: 10334
+    properties_file: locator.properties
   tasks:
+    - include: tasks/copy-gemfire-properties.yml
     - include: tasks/create-locator-unit.yml
 
 - name: provision servers
@@ -35,5 +37,8 @@
     server_group: centos
     locator_port: 10334
     server_port: 40404
+    properties_file: server.properties
   tasks:
+    - include: tasks/copy-gemfire-properties.yml
+    - include: tasks/create-server-dirs.yml
     - include: tasks/create-server-unit.yml

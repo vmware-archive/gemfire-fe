@@ -1,0 +1,5 @@
+---
+- name: "copy properties file {{ properties_file }} to /etc/gemfire.properties"
+  copy:
+    dest: /etc/gemfire.properties
+    src: "{{ properties_file }}"

@@ -17,7 +17,7 @@ resource "aws_instance" "gemfire_server" {
   }
 
   ebs_block_device {
-    device_name = "/dev/sdf"
+    device_name = "/dev/xvdf"
     volume_type = "gp2"
     volume_size = "10"
     delete_on_termination = true

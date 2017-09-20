@@ -7,7 +7,7 @@ After=network.target
 Type=forking
 User={{ locator_user }}
 Group={{ locator_group }}
-ExecStart=/opt/gemfire/bin/gfsh start locator --name={{ ansible_hostname }} --port={{ locator_port }} --locators={{ locator_spec }}
+ExecStart=/opt/gemfire/bin/gfsh start locator --name={{ ansible_hostname }} --port={{ locator_port }} --locators={{ locator_spec }} --properties-file=/etc/gemfire.properties
 TimeoutSec=5min
 ExecStop=/opt/gemfire/bin/gfsh stop locator --dir={{ ansible_hostname }}
 WorkingDirectory=/home/{{ locator_user }}
