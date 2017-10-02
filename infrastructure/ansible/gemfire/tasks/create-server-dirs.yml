@@ -17,6 +17,11 @@
     src: /dev/xvdf1
     state: mounted
 
+- name: create directory for app scripts
+  file:
+    path: /opt/app/bin
+    state: directory
+
 - name: create directory for app jars
   file:
     path: /opt/app/jars

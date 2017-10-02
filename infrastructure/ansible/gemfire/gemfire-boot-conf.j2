@@ -1,0 +1,14 @@
+export JAVA_OPTS="-Xms{{ java_heap }} -Xmx{{ java_heap }} \\
+    -XX:NewSize={{ java_new_size }} -XX:MaxNewSize={{ java_new_size }} \\
+    -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=60 -XX:+DisableExplicitGC \\
+    -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCCause \\
+    -Xloggc:/var/log/{{ ansible_hostname}}.gc -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=5M \\
+    -XX:OnOutOfMemoryError='kill -3 %p'"
+
+export GEMFIRE_OPTS="-Dgemfire.locators={{ locator_spec }} \\
+    -Dgemfire.name={{ ansible_hostname }} \\
+    -Dgemfire.archive-disk-space-limit=100 \\
+    -Dgemfire.archive-file-size-limit=10 \\
+    -Dgemfire.socket-buffer-size=262144 \\
+    -Dgemfire.statistic-archive-file=/var/log/{ ansible_hostname }}.gfs \\
+    -Dgemfire.statistic-sampling-enabled=true"

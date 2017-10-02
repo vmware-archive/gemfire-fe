@@ -9,7 +9,10 @@ yum -y install epel-release
 yum update -y
 
 ## install basic and useful tools
-yum -y install net-tools bind-utils sysstat hdparm iotop traceroute strace iperf3 ntp tcpdump wget unzip vim awscli
+yum -y install net-tools bind-utils sysstat hdparm iotop traceroute strace iperf3 ntp tcpdump wget unzip vim awscli python python-pip
+
+## install boto, boto3, psycopg2 for ansible 
+pip install boto boto3 psycopg2
 
 ## disable selinux
 cat <<EOF >/etc/selinux/config

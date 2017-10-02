@@ -1,0 +1,16 @@
+[Unit]
+Description=Gemfire Server
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+User={{ server_user }}
+Group={{ server_group }}
+ExecStart=/opt/app/bin/server-start.sh
+TimeoutSec=5min
+WorkingDirectory=/home/{{ server_user }}
+PIDFile=/var/run/gemfire-boot.pid
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,51 @@
+---
+- name: install java
+  hosts: all
+  remote_user: centos
+  become: true
+  gather_facts: true
+  vars:
+    bucket_name: gemfire-fe-artifacts
+    jdk_file_name: jdk-8u144-linux-x64.rpm
+  tasks:
+    - include: tasks/yum-update.yml
+    - include: tasks/install-jdk.yml
+
+- name: install gemfire
+  hosts: locators
+  remote_user: centos
+  become: true
+  gather_facts: true
+  vars:
+    bucket_name: gemfire-fe-artifacts
+    jdk_file_name: jdk-8u144-linux-x64.rpm
+    gemfire_file_name: pivotal-gemfire-9.1.0.tar.gz
+  tasks:
+    - include: tasks/install-gemfire.yml
+
+- name: provision locators
+  hosts: locators
+  remote_user: centos
+  become: true
+  gather_facts: true
+  vars:
+    locator_user: centos
+    locator_group: centos
+    locator_port: 10334
+    properties_file: locator.properties
+  tasks:
+    - include: tasks/copy-gemfire-properties.yml
+    - include: tasks/create-locator-unit.yml
+
+- name: provision servers
+  hosts: servers
+  remote_user: centos
+  become: true
+  gather_facts: true
+  vars:
+    server_user: centos
+    server_group: centos
+    locator_port: 10334
+  tasks:
+    - include: tasks/create-server-dirs.yml
+    - include: tasks/create-server-unit.yml

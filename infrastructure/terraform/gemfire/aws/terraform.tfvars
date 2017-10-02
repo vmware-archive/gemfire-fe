@@ -1,4 +1,4 @@
-ami_id = "ami-d946b4a1"
+ami_id = "ami-c2f803ba"
 security_group_ids = ["sg-4cf03b2a"]
 aws_key_name = "gemfire-fe"
 ssh_user = "centos"

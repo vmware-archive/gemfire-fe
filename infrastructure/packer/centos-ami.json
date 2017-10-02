@@ -10,7 +10,7 @@
         "ssh_user_name": "centos",
         "ssh_keypair_name": "gemfire-fe",
         "ssh_private_key_file": "{{env `AWS_SSH_PRIVATE_KEY_FILE`}}",
-        "version": "gemfire-fe-ami-{{isotime \"20060102-1504\"}}"
+        "version": "gemfire-fe-centos-ami-{{isotime \"20060102-1504\"}}"
     },
     "builders": [
         {
@@ -31,7 +31,7 @@
             "instance_type": "c4.large",
             "iam_instance_profile": "{{user `iam_instance_profile`}}",
             "ebs_optimized": true,
-            "enhanced_networking": true,
+            "ena_support": true,
             "ssh_username": "{{user `ssh_user_name`}}",
             "ami_name": "{{user `version`}}",
             "communicator": "ssh",
@@ -44,22 +44,8 @@
     "provisioners": [
         {
             "type": "shell",
-            "script": "ami-init.sh",
+            "script": "centos-ami-init.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "execute_command": "{{ .Vars }} sudo -E sh -c '{{ .Path }}'",
-            "inline": [
-                "reboot now"
-            ]
-        },
-        {
-            "type": "shell",
-            "execute_command": "{{ .Vars }} sudo -E sh -c '{{ .Path }}'",
-            "inline": [
-                "true"
-            ]
         }
     ]
 }

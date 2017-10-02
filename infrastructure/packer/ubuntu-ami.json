@@ -1,0 +1,49 @@
+{
+    "variables": {
+        "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+        "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+        "aws_region": "{{env `AWS_REGION`}}",
+        "ami_id": "ami-9d04e4e5",
+        "security_group_id": "sg-4cf03b2a",
+        "subnet_id": "subnet-914ebfc9",
+        "iam_instance_profile": "gemfire-fe",
+        "ssh_user_name": "ubuntu",
+        "ssh_keypair_name": "gemfire-fe",
+        "ssh_private_key_file": "{{env `AWS_SSH_PRIVATE_KEY_FILE`}}",
+        "version": "gemfire-fe-ubuntu-ami-{{isotime \"20060102-1504\"}}"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "{{user `aws_region`}}",
+            "security_group_id": "{{user `security_group_id`}}",
+            "subnet_id": "{{user `subnet_id`}}",
+            "associate_public_ip_address": true,
+            "launch_block_device_mappings": [{
+                "device_name": "/dev/sda1",
+                "volume_size": 20,
+                "volume_type": "gp2",
+                "delete_on_termination": true
+            }],
+            "source_ami": "{{user `ami_id`}}",
+            "instance_type": "t2.medium",
+            "iam_instance_profile": "{{user `iam_instance_profile`}}",
+            "ssh_username": "{{user `ssh_user_name`}}",
+            "ami_name": "{{user `version`}}",
+            "communicator": "ssh",
+            "ssh_pty": true,
+            "ssh_keypair_name": "{{user `ssh_keypair_name`}}",
+            "ssh_private_key_file": "{{user `ssh_private_key_file`}}",
+            "tags": { "Name": "{{user `version`}}" }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "ubuntu-ami-init.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        }
+    ]
+}
