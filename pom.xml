@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.pivotal.bds</groupId>
-	<artifactId>parent-pom</artifactId>
+	<artifactId>gemfire-fe</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
