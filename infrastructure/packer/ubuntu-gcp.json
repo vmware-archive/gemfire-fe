@@ -1,0 +1,14 @@
+{
+    "builders": [
+        {
+            "type": "googlecompute",
+            "project_id": "fe-tdalsing",
+            "account_file": "/Users/tdalsing/.sensitive/gcp/FE-tdalsing-9cf74aef62c3.json",
+            "source_image": "ubuntu-1704-zesty-v20171002",
+            "zone": "us-west1-a",
+            "startup_script_file": "ubuntu-gcp-init.sh",
+            "image_name": "base-ubuntu-{{timestamp}}",
+            "ssh_username": "tdalsing"
+        }
+    ]
+}
