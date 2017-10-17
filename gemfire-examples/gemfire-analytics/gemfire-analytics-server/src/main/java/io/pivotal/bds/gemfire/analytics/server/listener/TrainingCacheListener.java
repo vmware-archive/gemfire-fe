@@ -1,10 +1,13 @@
 package io.pivotal.bds.gemfire.analytics.server.listener;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.gemstone.gemfire.cache.EntryEvent;
 import com.gemstone.gemfire.cache.Region;
+import com.gemstone.gemfire.cache.RegionEvent;
 import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
 
 import io.pivotal.bds.gemfire.analytics.common.TrainingParameters;
@@ -49,6 +52,15 @@ public class TrainingCacheListener extends CacheListenerAdapter<TrainingParamete
         String name = event.getKey().getId();
         LOG.debug("afterDestroy: name={}", name);
         svmRegion.remove(name);
+    }
+
+    @Override
+    public void afterRegionCreate(RegionEvent<TrainingParametersKey, TrainingParameters> event) {
+        LOG.info("afterRegionCreate");
+        Region<TrainingParametersKey, TrainingParameters> trainingRegion = event.getRegion();
+        for (Map.Entry<TrainingParametersKey, TrainingParameters> entry: trainingRegion.entrySet()) {
+            train(entry.getKey().getId(), entry.getValue());
+        }
     }
 
     private void train(String name, TrainingParameters params) {
