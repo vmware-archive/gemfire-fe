@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Application {
+public class GemfirePMMLServerApplication {
 
 	public static void main(String[] args) throws Exception {
-		new SpringApplication(Application.class).run(args);
+		new SpringApplication(GemfirePMMLServerApplication.class).run(args);
 	}
 }

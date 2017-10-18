@@ -1,5 +1,7 @@
 package io.pivotal.bds.gemfire.pmml.common.data;
 
+import io.pivotal.bds.gemfire.pmml.common.keys.ModelKey;
+
 public class Model {
 
     private ModelKey key;

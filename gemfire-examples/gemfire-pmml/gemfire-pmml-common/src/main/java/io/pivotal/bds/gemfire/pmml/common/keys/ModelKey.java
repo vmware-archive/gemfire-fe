@@ -1,4 +1,4 @@
-package io.pivotal.bds.gemfire.pmml.common.data;
+package io.pivotal.bds.gemfire.pmml.common.keys;
 
 import io.pivotal.bds.gemfire.key.BaseKey;
 

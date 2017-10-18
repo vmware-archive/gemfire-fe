@@ -12,8 +12,8 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 
-        <geode.version>1.2.0</geode.version>
-        <gemfire.version>9.1.0</gemfire.version>
+		<geode.version>1.2.0</geode.version>
+		<gemfire.version>9.1.0</gemfire.version>
 		<spring.version>4.3.11.RELEASE</spring.version>
 		<spring-boot.version>1.4.7.RELEASE</spring-boot.version>
 		<spring-integration.version>4.3.12.RELEASE</spring-integration.version>
@@ -80,11 +80,8 @@
 	</build>
 
 	<repositories>
-<!-- 		<repository>
-			<id>gemfire-release-repo</id>
-			<name>Pivotal GemFire Release Repository</name>
-			<url>https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire</url>
-		</repository> -->
+		<!-- <repository> <id>gemfire-release-repo</id> <name>Pivotal GemFire Release Repository</name> <url>https://commercial-repo.pivotal.io/data3/gemfire-release-repo/gemfire</url> 
+			</repository> -->
 		<repository>
 			<id>gemfire</id>
 			<name>Gemfire</name>
@@ -125,26 +122,26 @@
 
 	<dependencyManagement>
 		<dependencies>
-            <dependency>
-                <groupId>org.apache.geode</groupId>
-                <artifactId>geode-core</artifactId>
-                <version>${geode.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.pivotal.gemfire</groupId>
-                <artifactId>geode-core</artifactId>
-                <version>${gemfire.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.pivotal.gemfire</groupId>
-                <artifactId>geode-common</artifactId>
-                <version>${gemfire.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.pivotal.gemfire</groupId>
-                <artifactId>geode-json</artifactId>
-                <version>${gemfire.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>org.apache.geode</groupId>
+				<artifactId>geode-core</artifactId>
+				<version>${geode.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.pivotal.gemfire</groupId>
+				<artifactId>geode-core</artifactId>
+				<version>${gemfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.pivotal.gemfire</groupId>
+				<artifactId>geode-common</artifactId>
+				<version>${gemfire.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.pivotal.gemfire</groupId>
+				<artifactId>geode-json</artifactId>
+				<version>${gemfire.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
@@ -536,6 +533,11 @@
 				<groupId>org.json</groupId>
 				<artifactId>json</artifactId>
 				<version>20160810</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.6</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
