@@ -14,7 +14,7 @@
 	<modules>
 		<module>gemfire-pmml-common</module>
 		<module>gemfire-pmml-server</module>
-		<module>gemfire-pmml-train</module>
+		<module>gemfire-pmml-load</module>
 	</modules>
-	
+
 </project>

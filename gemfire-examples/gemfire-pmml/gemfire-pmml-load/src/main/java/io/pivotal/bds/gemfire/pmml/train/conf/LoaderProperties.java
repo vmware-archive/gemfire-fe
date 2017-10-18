@@ -1,4 +1,4 @@
-package io.pivotal.bds.gemfire.pmml.train.loader;
+package io.pivotal.bds.gemfire.pmml.train.conf;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -6,5 +6,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class LoaderProperties {
 
     public String pmmlModelName = "test";
-    public String pmmlModelFile = "pmml.xml";
+    public String pmmlModelFile = "gbm.xml";
 }

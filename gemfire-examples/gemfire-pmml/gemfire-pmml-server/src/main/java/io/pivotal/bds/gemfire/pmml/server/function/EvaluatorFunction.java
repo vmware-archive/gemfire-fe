@@ -33,7 +33,7 @@ public class EvaluatorFunction implements Function<EvaluatorParams> {
     public void execute(FunctionContext<EvaluatorParams> context) {
         try {
             EvaluatorParams params = context.getArguments();
-            LOG.info("execute: params={}", params);
+            LOG.debug("execute: params={}", params);
             
             String name = params.getName();
 
@@ -45,7 +45,7 @@ public class EvaluatorFunction implements Function<EvaluatorParams> {
             }
 
             EvaluatorResults evaluatorResults = evaluatorService.evaluate(params, pmml);
-            LOG.info("execute: evaluatorResults={}", evaluatorResults);
+            LOG.debug("execute: evaluatorResults={}", evaluatorResults);
 
             ResultSender<EvaluatorResults> sender = context.getResultSender();
             sender.lastResult(evaluatorResults);
