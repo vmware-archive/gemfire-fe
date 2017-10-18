@@ -1,8 +1,9 @@
 package io.pivotal.bds.gemfire.pmml.common.keys;
 
-import io.pivotal.bds.gemfire.key.BaseKey;
+import io.pivotal.bds.gemfire.keyfw.BaseStringDSKey;
 
-public class ModelKey extends BaseKey<String> {
+@SuppressWarnings("serial")
+public class ModelKey extends BaseStringDSKey {
 
     public ModelKey() {
     }

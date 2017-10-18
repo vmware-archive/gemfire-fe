@@ -1,8 +1,9 @@
 package io.pivotal.bds.gemfire.pmml.common.keys;
 
-import io.pivotal.bds.gemfire.key.BaseKey;
+import io.pivotal.bds.gemfire.keyfw.BaseStringDSKey;
 
-public class EvalKey extends BaseKey<String> {
+@SuppressWarnings("serial")
+public class EvalKey extends BaseStringDSKey {
 
     public EvalKey() {
     }
@@ -10,5 +11,4 @@ public class EvalKey extends BaseKey<String> {
     public EvalKey(String id) {
         super(id);
     }
-
 }

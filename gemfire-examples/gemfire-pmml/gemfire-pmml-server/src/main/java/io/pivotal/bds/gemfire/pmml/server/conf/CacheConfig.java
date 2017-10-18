@@ -27,7 +27,7 @@ public class CacheConfig {
         LOG.info("creating Cache, locators={}, port={}", locators, port);
         cf.set("locators", locators);
 
-        cf.setPdxSerializer(new ReflectionBasedAutoSerializer("io.pivotal.bds.gemfire.analytics.common.*"));
+        cf.setPdxSerializer(new ReflectionBasedAutoSerializer("io.pivotal.bds.gemfire.pmml.common.data.*"));
         cf.setPdxReadSerialized(false);
         cf.setPdxPersistent(true);
 
