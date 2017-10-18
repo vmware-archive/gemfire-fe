@@ -22,6 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
+import com.codahale.metrics.Timer.Context;
 import com.google.common.collect.BiMap;
 
 import io.pivotal.bds.gemfire.pmml.common.data.EvaluatorParams;
@@ -30,11 +33,18 @@ import io.pivotal.bds.gemfire.pmml.common.data.EvaluatorResults;
 @Component
 public class EvaluatorService {
     
+    private Timer timer;
+    
     private static final ModelEvaluatorFactory modelEvaluatorFactory = ModelEvaluatorFactory.newInstance();
     private static final Logger LOG = LoggerFactory.getLogger(EvaluatorService.class);
 
+    public EvaluatorService(MetricRegistry metricRegistry) {
+        this.timer = metricRegistry.timer("EvaluatorService");
+    }
+
     public EvaluatorResults evaluate(EvaluatorParams params, PMML pmml) {
-        LOG.info("execute: params={}", params);
+        Context ctx = timer.time();
+        LOG.debug("execute: params={}", params);
         
         Map<String, Object> parameters = params.getParameters();
 
@@ -96,7 +106,9 @@ public class EvaluatorService {
         }
         
         EvaluatorResults evaluatorResults = new EvaluatorResults(params, resultValues, outputValues);
-        LOG.info("execute: evaluatorResults={}", evaluatorResults);
+        LOG.debug("execute: evaluatorResults={}", evaluatorResults);
+        
+        ctx.stop();
 
         return evaluatorResults;
     }
