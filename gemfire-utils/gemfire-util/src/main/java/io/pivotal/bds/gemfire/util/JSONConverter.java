@@ -8,9 +8,9 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.gemstone.gemfire.cache.CacheFactory;
-import com.gemstone.gemfire.pdx.PdxInstance;
-import com.gemstone.gemfire.pdx.PdxInstanceFactory;
+import org.apache.geode.cache.CacheFactory;
+import org.apache.geode.pdx.PdxInstance;
+import org.apache.geode.pdx.PdxInstanceFactory;
 
 public class JSONConverter {
 
@@ -184,7 +184,8 @@ public class JSONConverter {
 
             List<Object> list = new ArrayList<>();
 
-            for (Object av : array) {
+            for (int i = 0; i < array.length(); ++i) {
+                Object av = array.get(i);
                 if (av != null) {
                     Class<?> c = av.getClass();
 

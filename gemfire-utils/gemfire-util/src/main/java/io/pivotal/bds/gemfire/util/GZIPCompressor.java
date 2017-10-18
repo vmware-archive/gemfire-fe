@@ -6,8 +6,8 @@ import java.util.Properties;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.compression.Compressor;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.compression.Compressor;
 
 public class GZIPCompressor implements Compressor, Declarable {
 

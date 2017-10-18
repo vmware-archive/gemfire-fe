@@ -7,8 +7,8 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.Operation;
-import com.gemstone.gemfire.pdx.PdxInstance;
+import org.apache.geode.cache.Operation;
+import org.apache.geode.pdx.PdxInstance;
 
 import io.pivotal.bds.gemfire.ml.regression.RegressionModel;
 import io.pivotal.bds.gemfire.r.common.ModelKey;

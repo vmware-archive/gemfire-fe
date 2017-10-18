@@ -1,17 +1,16 @@
 package io.pivotal.bds.gemfire.util;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.RegionService;
-import com.gemstone.gemfire.cache.client.Pool;
-import com.gemstone.gemfire.cache.execute.Execution;
-import com.gemstone.gemfire.cache.execute.Function;
-import com.gemstone.gemfire.cache.execute.FunctionService;
-import com.gemstone.gemfire.distributed.DistributedMember;
-import com.gemstone.gemfire.distributed.DistributedSystem;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.RegionService;
+import org.apache.geode.cache.client.Pool;
+import org.apache.geode.cache.execute.Execution;
+import org.apache.geode.cache.execute.Function;
+import org.apache.geode.distributed.DistributedMember;
 
 import java.util.Map;
 import java.util.Set;
 
+@SuppressWarnings("rawtypes")
 public interface FunctionServiceHelper {
 
     Execution onRegion(Region region);
@@ -23,12 +22,6 @@ public interface FunctionServiceHelper {
     Execution onServer(RegionService regionService);
 
     Execution onServers(RegionService regionService);
-
-    Execution onMember(DistributedSystem system, DistributedMember distributedMember);
-
-    Execution onMembers(DistributedSystem system);
-
-    Execution onMembers(DistributedSystem system, Set<DistributedMember> distributedMembers);
 
     Execution onMember(DistributedMember distributedMember);
 

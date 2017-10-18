@@ -18,11 +18,11 @@ import javax.sql.DataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.Operation;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEventListener;
-import com.gemstone.gemfire.pdx.PdxInstance;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.Operation;
+import org.apache.geode.cache.asyncqueue.AsyncEvent;
+import org.apache.geode.cache.asyncqueue.AsyncEventListener;
+import org.apache.geode.pdx.PdxInstance;
 
 import io.pivotal.bds.gemfire.jdbc.util.ColumnMapping;
 import io.pivotal.bds.gemfire.jdbc.util.ConnectionConfiguration;

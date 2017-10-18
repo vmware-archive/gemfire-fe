@@ -11,7 +11,7 @@ import org.apache.kafka.common.serialization.Serializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
+import org.apache.geode.cache.asyncqueue.AsyncEvent;
 
 @SuppressWarnings("rawtypes")
 public class AsyncEventSpecificRecordSerializer implements Serializer<AsyncEvent> {

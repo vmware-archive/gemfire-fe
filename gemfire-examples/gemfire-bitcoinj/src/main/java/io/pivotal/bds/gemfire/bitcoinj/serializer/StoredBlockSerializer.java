@@ -8,7 +8,7 @@ import java.nio.ByteBuffer;
 import org.bitcoinj.core.NetworkParameters;
 import org.bitcoinj.core.StoredBlock;
 
-import com.gemstone.gemfire.DataSerializer;
+import org.apache.geode.DataSerializer;
 
 public class StoredBlockSerializer extends DataSerializer {
 

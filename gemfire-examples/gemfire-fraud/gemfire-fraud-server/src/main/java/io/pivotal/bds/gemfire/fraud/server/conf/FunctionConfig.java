@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.Assert;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.execute.FunctionService;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.execute.FunctionService;
 
 import io.pivotal.bds.gemfire.fraud.common.data.Account;
 import io.pivotal.bds.gemfire.fraud.common.key.AccountKey;

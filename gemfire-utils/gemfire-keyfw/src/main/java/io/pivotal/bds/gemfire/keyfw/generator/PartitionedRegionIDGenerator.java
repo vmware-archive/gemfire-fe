@@ -1,6 +1,6 @@
 package io.pivotal.bds.gemfire.keyfw.generator;
 
-import com.gemstone.gemfire.cache.Region;
+import org.apache.geode.cache.Region;
 import io.pivotal.bds.gemfire.util.FunctionServiceHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

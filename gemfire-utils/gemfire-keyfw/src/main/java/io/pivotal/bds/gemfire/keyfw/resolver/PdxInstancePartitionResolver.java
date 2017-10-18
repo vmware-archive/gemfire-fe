@@ -2,10 +2,10 @@ package io.pivotal.bds.gemfire.keyfw.resolver;
 
 import java.util.Properties;
 
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.EntryOperation;
-import com.gemstone.gemfire.cache.PartitionResolver;
-import com.gemstone.gemfire.pdx.PdxInstance;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.EntryOperation;
+import org.apache.geode.cache.PartitionResolver;
+import org.apache.geode.pdx.PdxInstance;
 
 public class PdxInstancePartitionResolver<V> implements PartitionResolver<PdxInstance, V>, Declarable {
 

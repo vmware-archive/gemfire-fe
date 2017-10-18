@@ -1,6 +1,6 @@
 package io.pivotal.bds.gemfire.util;
 
-import com.gemstone.gemfire.cache.CacheLoader;
+import org.apache.geode.cache.CacheLoader;
 
 public abstract class DelegateCacheLoader<K, V> implements CacheLoader<K, V> {
 

@@ -8,8 +8,8 @@
 	<artifactId>gemfire-mock</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>com.gemstone.gemfire</groupId>
-			<artifactId>gemfire</artifactId>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-core</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

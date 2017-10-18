@@ -1,12 +1,12 @@
 package io.pivotal.bds.gemfire.mock;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.RegionService;
-import com.gemstone.gemfire.cache.client.Pool;
-import com.gemstone.gemfire.cache.execute.Execution;
-import com.gemstone.gemfire.cache.execute.Function;
-import com.gemstone.gemfire.distributed.DistributedMember;
-import com.gemstone.gemfire.distributed.DistributedSystem;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.RegionService;
+import org.apache.geode.cache.client.Pool;
+import org.apache.geode.cache.execute.Execution;
+import org.apache.geode.cache.execute.Function;
+import org.apache.geode.distributed.DistributedMember;
+import org.apache.geode.distributed.DistributedSystem;
 import io.pivotal.bds.gemfire.util.FunctionServiceHelper;
 
 import java.util.ArrayList;
@@ -52,24 +52,6 @@ public class MockFunctionServiceHelper implements FunctionServiceHelper {
 
     @Override
     public Execution onServers(RegionService regionService) {
-        MockExecution mockExecution = new MockExecution(this);
-        return mockExecution;
-    }
-
-    @Override
-    public Execution onMember(DistributedSystem system, DistributedMember distributedMember) {
-        MockExecution mockExecution = new MockExecution(this);
-        return mockExecution;
-    }
-
-    @Override
-    public Execution onMembers(DistributedSystem system) {
-        MockExecution mockExecution = new MockExecution(this);
-        return mockExecution;
-    }
-
-    @Override
-    public Execution onMembers(DistributedSystem system, Set<DistributedMember> distributedMembers) {
         MockExecution mockExecution = new MockExecution(this);
         return mockExecution;
     }

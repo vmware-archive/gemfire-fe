@@ -16,8 +16,8 @@ import org.apache.kafka.common.serialization.Serializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.Operation;
-import com.gemstone.gemfire.pdx.PdxInstance;
+import org.apache.geode.cache.Operation;
+import org.apache.geode.pdx.PdxInstance;
 
 public abstract class BaseCSVSerializer<T> implements Serializer<T> {
 

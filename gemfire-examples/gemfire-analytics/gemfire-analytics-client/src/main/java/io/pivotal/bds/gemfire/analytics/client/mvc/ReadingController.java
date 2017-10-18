@@ -10,14 +10,14 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.management.internal.cli.util.spring.Assert;
+import org.apache.geode.cache.Region;
 
 import io.pivotal.bds.gemfire.analytics.common.Sensor;
 import io.pivotal.bds.gemfire.analytics.common.SensorKey;

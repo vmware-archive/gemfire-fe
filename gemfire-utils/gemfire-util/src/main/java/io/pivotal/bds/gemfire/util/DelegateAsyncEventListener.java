@@ -1,6 +1,6 @@
 package io.pivotal.bds.gemfire.util;
 
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEventListener;
+import org.apache.geode.cache.asyncqueue.AsyncEventListener;
 
 public abstract class DelegateAsyncEventListener implements AsyncEventListener {
 

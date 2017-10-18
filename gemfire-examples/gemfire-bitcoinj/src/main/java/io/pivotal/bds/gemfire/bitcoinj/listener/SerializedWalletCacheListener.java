@@ -3,8 +3,8 @@ package io.pivotal.bds.gemfire.bitcoinj.listener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.RegionEvent;
-import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
+import org.apache.geode.cache.RegionEvent;
+import org.apache.geode.cache.util.CacheListenerAdapter;
 
 public class SerializedWalletCacheListener extends CacheListenerAdapter<String, byte[]> {
 

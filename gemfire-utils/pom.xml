@@ -14,16 +14,12 @@
 	<modules>
 		<module>gemfire-key</module>
 		<module>gemfire-keyfw</module>
-        <module>gemfire-dao</module>
-        <module>gemfire-security</module>
-        <module>gemfire-federated</module>
-        <module>gemfire-spark</module>
-        <module>gemfire-ml</module>
-        
-        
-        
-        
-        <module>gemfire-util</module>
+		<module>gemfire-dao</module>
+		<module>gemfire-security</module>
+		<module>gemfire-federated</module>
+		<module>gemfire-spark</module>
+		<module>gemfire-ml</module>
+		<module>gemfire-util</module>
 		<module>gemfire-kafka</module>
 		<module>gemfire-mock</module>
 	</modules>

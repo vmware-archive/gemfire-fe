@@ -2,9 +2,9 @@ package io.pivotal.bds.gemfire.fraud.server.loader;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import com.gemstone.gemfire.cache.CacheLoader;
-import com.gemstone.gemfire.cache.CacheLoaderException;
-import com.gemstone.gemfire.cache.LoaderHelper;
+import org.apache.geode.cache.CacheLoader;
+import org.apache.geode.cache.CacheLoaderException;
+import org.apache.geode.cache.LoaderHelper;
 
 import io.pivotal.bds.gemfire.fraud.common.key.CardKey;
 

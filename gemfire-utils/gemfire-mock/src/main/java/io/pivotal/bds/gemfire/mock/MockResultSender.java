@@ -1,6 +1,6 @@
 package io.pivotal.bds.gemfire.mock;
 
-import com.gemstone.gemfire.cache.execute.ResultSender;
+import org.apache.geode.cache.execute.ResultSender;
 
 import java.util.Collection;
 

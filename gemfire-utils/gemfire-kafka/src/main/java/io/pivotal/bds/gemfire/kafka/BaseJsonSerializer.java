@@ -15,8 +15,8 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.Operation;
-import com.gemstone.gemfire.pdx.PdxInstance;
+import org.apache.geode.cache.Operation;
+import org.apache.geode.pdx.PdxInstance;
 
 public abstract class BaseJsonSerializer<T> implements Serializer<T> {
 

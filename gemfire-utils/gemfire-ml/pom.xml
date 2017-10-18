@@ -13,8 +13,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.gemstone.gemfire</groupId>
-			<artifactId>gemfire</artifactId>
+			<groupId>io.pivotal.gemfire</groupId>
+			<artifactId>geode-core</artifactId>
 			<exclusions>
 				<exclusion>
 					<artifactId>jline</artifactId>

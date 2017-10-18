@@ -1,7 +1,7 @@
 package io.pivotal.bds.gemfire.keyfw.generator;
 
-import com.gemstone.gemfire.cache.execute.Execution;
-import com.gemstone.gemfire.cache.execute.ResultCollector;
+import org.apache.geode.cache.execute.Execution;
+import org.apache.geode.cache.execute.ResultCollector;
 import io.pivotal.bds.gemfire.mock.MockRegion;
 import io.pivotal.bds.gemfire.util.FunctionServiceHelper;
 import org.mockito.Mock;

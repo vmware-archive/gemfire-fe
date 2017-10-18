@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gemstone.gemfire.cache.Region;
+import org.apache.geode.cache.Region;
 
 import io.pivotal.bds.gemfire.complexobjs.client.exception.DuplicateException;
 import io.pivotal.bds.gemfire.complexobjs.client.exception.NotFoundException;

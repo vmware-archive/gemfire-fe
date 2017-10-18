@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import com.gemstone.gemfire.DataSerializer;
+import org.apache.geode.DataSerializer;
 
 public abstract class BaseSerializer<T> extends DataSerializer {
 

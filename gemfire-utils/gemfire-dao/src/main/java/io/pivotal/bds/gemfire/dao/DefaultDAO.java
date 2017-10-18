@@ -13,29 +13,29 @@ import java.util.concurrent.locks.Lock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.AttributesMutator;
-import com.gemstone.gemfire.cache.Cache;
-import com.gemstone.gemfire.cache.CacheLoaderException;
-import com.gemstone.gemfire.cache.CacheStatistics;
-import com.gemstone.gemfire.cache.CacheWriterException;
-import com.gemstone.gemfire.cache.EntryExistsException;
-import com.gemstone.gemfire.cache.EntryNotFoundException;
-import com.gemstone.gemfire.cache.InterestResultPolicy;
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.RegionAttributes;
-import com.gemstone.gemfire.cache.RegionExistsException;
-import com.gemstone.gemfire.cache.RegionService;
-import com.gemstone.gemfire.cache.StatisticsDisabledException;
-import com.gemstone.gemfire.cache.TimeoutException;
-import com.gemstone.gemfire.cache.execute.RegionFunctionContext;
-import com.gemstone.gemfire.cache.query.FunctionDomainException;
-import com.gemstone.gemfire.cache.query.NameResolutionException;
-import com.gemstone.gemfire.cache.query.Query;
-import com.gemstone.gemfire.cache.query.QueryInvocationTargetException;
-import com.gemstone.gemfire.cache.query.QueryService;
-import com.gemstone.gemfire.cache.query.SelectResults;
-import com.gemstone.gemfire.cache.query.TypeMismatchException;
-import com.gemstone.gemfire.cache.snapshot.RegionSnapshotService;
+import org.apache.geode.cache.AttributesMutator;
+import org.apache.geode.cache.Cache;
+import org.apache.geode.cache.CacheLoaderException;
+import org.apache.geode.cache.CacheStatistics;
+import org.apache.geode.cache.CacheWriterException;
+import org.apache.geode.cache.EntryExistsException;
+import org.apache.geode.cache.EntryNotFoundException;
+import org.apache.geode.cache.InterestResultPolicy;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.RegionAttributes;
+import org.apache.geode.cache.RegionExistsException;
+import org.apache.geode.cache.RegionService;
+import org.apache.geode.cache.StatisticsDisabledException;
+import org.apache.geode.cache.TimeoutException;
+import org.apache.geode.cache.execute.RegionFunctionContext;
+import org.apache.geode.cache.query.FunctionDomainException;
+import org.apache.geode.cache.query.NameResolutionException;
+import org.apache.geode.cache.query.Query;
+import org.apache.geode.cache.query.QueryInvocationTargetException;
+import org.apache.geode.cache.query.QueryService;
+import org.apache.geode.cache.query.SelectResults;
+import org.apache.geode.cache.query.TypeMismatchException;
+import org.apache.geode.cache.snapshot.RegionSnapshotService;
 
 import io.pivotal.bds.gemfire.dao.exception.DuplicateException;
 import io.pivotal.bds.gemfire.dao.exception.NotFoundException;
@@ -275,14 +275,8 @@ public class DefaultDAO<K, V> implements DAO<K, V> {
         region.destroyRegion(aCallbackArgument);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public Set<com.gemstone.gemfire.cache.Region.Entry<?, ?>> entries(boolean recursive) {
-        return region.entries(recursive);
-    }
-
-    @Override
-    public Set<com.gemstone.gemfire.cache.Region.Entry<?, ?>> entrySet(boolean recursive) {
+    public Set<Region.Entry<?, ?>> entrySet(boolean recursive) {
         return region.entrySet(recursive);
     }
 
@@ -335,7 +329,7 @@ public class DefaultDAO<K, V> implements DAO<K, V> {
     }
 
     @Override
-    public com.gemstone.gemfire.cache.Region.Entry<K, V> getEntry(Object key) {
+    public Region.Entry<K, V> getEntry(Object key) {
         return region.getEntry(key);
     }
 
@@ -422,12 +416,6 @@ public class DefaultDAO<K, V> implements DAO<K, V> {
     @Override
     public Set<K> keySetOnServer() {
         return region.keySetOnServer();
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public Set<K> keys() {
-        return region.keys();
     }
 
     @SuppressWarnings("deprecation")
@@ -604,6 +592,16 @@ public class DefaultDAO<K, V> implements DAO<K, V> {
     @Override
     public void writeToDisk() {
         region.writeToDisk();
+    }
+
+    @Override
+    public boolean isEmptyOnServer() {
+        return region.isEmptyOnServer();
+    }
+
+    @Override
+    public int sizeOnServer() {
+        return region.sizeOnServer();
     }
 
 }

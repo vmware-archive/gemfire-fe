@@ -4,9 +4,9 @@ import java.util.Properties;
 
 import org.springframework.util.Assert;
 
-import com.gemstone.gemfire.cache.CacheFactory;
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.Region;
+import org.apache.geode.cache.CacheFactory;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.Region;
 
 public class DeclarableGenerateIDFunction extends BaseGenerateIDFunction<Long> implements Declarable {
 

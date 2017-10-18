@@ -7,9 +7,9 @@ import java.util.Set;
 
 import org.springframework.util.Assert;
 
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEventListener;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.asyncqueue.AsyncEvent;
+import org.apache.geode.cache.asyncqueue.AsyncEventListener;
 
 public class DelegatingAsyncEventListener implements AsyncEventListener, Declarable {
 

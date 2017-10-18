@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gemstone.gemfire.cache.client.Pool;
-import com.gemstone.gemfire.cache.execute.FunctionService;
+import org.apache.geode.cache.client.Pool;
+import org.apache.geode.cache.execute.FunctionService;
 
 import io.pivotal.bds.gemfire.groovy.common.Constants;
 import io.pivotal.bds.gemfire.groovy.data.ScriptExecutionContext;

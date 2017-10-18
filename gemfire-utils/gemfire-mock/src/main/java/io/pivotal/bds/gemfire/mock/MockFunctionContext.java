@@ -1,8 +1,8 @@
 package io.pivotal.bds.gemfire.mock;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.execute.RegionFunctionContext;
-import com.gemstone.gemfire.cache.execute.ResultSender;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.execute.RegionFunctionContext;
+import org.apache.geode.cache.execute.ResultSender;
 
 import java.util.Set;
 
@@ -57,12 +57,13 @@ public class MockFunctionContext implements RegionFunctionContext {
     }
 
     @Override
-    public <T> ResultSender<T> getResultSender() {
-        return (ResultSender<T>) this.sender;
+    public ResultSender getResultSender() {
+        return this.sender;
     }
 
     @Override
     public boolean isPossibleDuplicate() {
         return false;
     }
+
 }

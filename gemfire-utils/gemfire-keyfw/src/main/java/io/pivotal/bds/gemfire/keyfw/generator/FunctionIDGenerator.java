@@ -2,9 +2,9 @@ package io.pivotal.bds.gemfire.keyfw.generator;
 
 import java.util.List;
 
-import com.gemstone.gemfire.cache.client.Pool;
-import com.gemstone.gemfire.cache.execute.FunctionService;
-import com.gemstone.gemfire.cache.execute.ResultCollector;
+import org.apache.geode.cache.client.Pool;
+import org.apache.geode.cache.execute.FunctionService;
+import org.apache.geode.cache.execute.ResultCollector;
 
 public class FunctionIDGenerator<T> implements IDGenerator<T> {
 

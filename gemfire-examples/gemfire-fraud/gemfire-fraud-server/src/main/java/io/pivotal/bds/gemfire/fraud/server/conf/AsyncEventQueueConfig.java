@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.gemstone.gemfire.cache.Cache;
-import com.gemstone.gemfire.cache.DiskStore;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEventQueue;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEventQueueFactory;
+import org.apache.geode.cache.Cache;
+import org.apache.geode.cache.DiskStore;
+import org.apache.geode.cache.asyncqueue.AsyncEventQueue;
+import org.apache.geode.cache.asyncqueue.AsyncEventQueueFactory;
 
 import io.pivotal.bds.gemfire.fraud.common.Constants;
 import io.pivotal.bds.gemfire.util.DelegatingAsyncEventListener;

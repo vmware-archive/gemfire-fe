@@ -3,10 +3,10 @@ package io.pivotal.bds.gemfire.util;
 import java.util.List;
 import java.util.Properties;
 
-import com.gemstone.gemfire.cache.CacheLoader;
-import com.gemstone.gemfire.cache.CacheLoaderException;
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.LoaderHelper;
+import org.apache.geode.cache.CacheLoader;
+import org.apache.geode.cache.CacheLoaderException;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.LoaderHelper;
 
 public class DSLockingArrayListCacheLoader<K, E> implements CacheLoader<K, List<E>>, Declarable {
 

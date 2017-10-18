@@ -1,8 +1,8 @@
 package io.pivotal.bds.gemfire.locking;
 
-import com.gemstone.gemfire.cache.CacheLoader;
-import com.gemstone.gemfire.cache.CacheLoaderException;
-import com.gemstone.gemfire.cache.LoaderHelper;
+import org.apache.geode.cache.CacheLoader;
+import org.apache.geode.cache.CacheLoaderException;
+import org.apache.geode.cache.LoaderHelper;
 
 public class CounterCacheLoader implements CacheLoader<String, Integer> {
 

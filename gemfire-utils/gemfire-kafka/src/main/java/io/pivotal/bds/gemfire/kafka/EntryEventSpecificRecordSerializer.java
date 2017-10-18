@@ -11,8 +11,8 @@ import org.apache.kafka.common.serialization.Serializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.EntryEvent;
-import com.gemstone.gemfire.cache.Operation;
+import org.apache.geode.cache.EntryEvent;
+import org.apache.geode.cache.Operation;
 
 public class EntryEventSpecificRecordSerializer implements Serializer<EntryEvent<Object, SpecificRecord>> {
 

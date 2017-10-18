@@ -2,8 +2,8 @@ package io.pivotal.bds.gemfire.kafka;
 
 import java.util.Map;
 
-import com.gemstone.gemfire.cache.Operation;
-import com.gemstone.gemfire.cache.asyncqueue.AsyncEvent;
+import org.apache.geode.cache.Operation;
+import org.apache.geode.cache.asyncqueue.AsyncEvent;
 
 public class AsyncEventJsonSerializer extends BaseJsonSerializer<AsyncEvent<Object, Object>> {
 

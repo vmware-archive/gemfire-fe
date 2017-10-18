@@ -2,10 +2,10 @@ package io.pivotal.bds.gemfire.r.server.writer;
 
 import java.util.Properties;
 
-import com.gemstone.gemfire.cache.CacheWriterException;
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.EntryEvent;
-import com.gemstone.gemfire.cache.util.CacheWriterAdapter;
+import org.apache.geode.cache.CacheWriterException;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.EntryEvent;
+import org.apache.geode.cache.util.CacheWriterAdapter;
 
 import io.pivotal.bds.gemfire.r.common.DynamicTrainDef;
 import io.pivotal.bds.gemfire.r.common.DynamicTrainDefKey;

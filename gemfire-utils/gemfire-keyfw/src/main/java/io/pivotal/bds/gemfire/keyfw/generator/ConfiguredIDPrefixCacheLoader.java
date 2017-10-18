@@ -2,10 +2,10 @@ package io.pivotal.bds.gemfire.keyfw.generator;
 
 import java.util.Properties;
 
-import com.gemstone.gemfire.cache.CacheLoader;
-import com.gemstone.gemfire.cache.CacheLoaderException;
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.LoaderHelper;
+import org.apache.geode.cache.CacheLoader;
+import org.apache.geode.cache.CacheLoaderException;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.LoaderHelper;
 
 public class ConfiguredIDPrefixCacheLoader implements CacheLoader<String, Long>, Declarable {
 

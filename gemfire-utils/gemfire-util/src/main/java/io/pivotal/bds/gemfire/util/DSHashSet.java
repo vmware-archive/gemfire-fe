@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashSet;
 
-import com.gemstone.gemfire.DataSerializable;
-import com.gemstone.gemfire.DataSerializer;
+import org.apache.geode.DataSerializable;
+import org.apache.geode.DataSerializer;
 
 public class DSHashSet<E> extends HashSet<E> implements DataSerializable {
 

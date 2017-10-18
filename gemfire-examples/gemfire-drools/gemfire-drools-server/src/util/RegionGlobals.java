@@ -8,8 +8,8 @@ import java.util.Set;
 
 import org.kie.api.runtime.Globals;
 
-import com.gemstone.gemfire.cache.Cache;
-import com.gemstone.gemfire.cache.Region;
+import org.apache.geode.cache.Cache;
+import org.apache.geode.cache.Region;
 
 public class RegionGlobals implements Globals {
 

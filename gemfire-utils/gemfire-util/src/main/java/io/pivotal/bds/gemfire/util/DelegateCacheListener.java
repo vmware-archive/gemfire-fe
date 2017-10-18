@@ -1,6 +1,6 @@
 package io.pivotal.bds.gemfire.util;
 
-import com.gemstone.gemfire.cache.CacheListener;
+import org.apache.geode.cache.CacheListener;
 
 public abstract class DelegateCacheListener<K, V> implements CacheListener<K, V> {
 

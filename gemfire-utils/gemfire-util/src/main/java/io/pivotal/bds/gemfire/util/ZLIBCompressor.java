@@ -4,8 +4,8 @@ import java.util.Properties;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.compression.Compressor;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.compression.Compressor;
 
 public class ZLIBCompressor implements Compressor, Declarable {
 

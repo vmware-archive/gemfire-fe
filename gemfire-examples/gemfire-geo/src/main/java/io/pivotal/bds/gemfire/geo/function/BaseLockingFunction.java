@@ -4,8 +4,8 @@ import java.util.Properties;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.execute.Function;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.execute.Function;
 
 import io.pivotal.bds.gemfire.geo.Constants;
 

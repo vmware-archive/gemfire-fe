@@ -2,8 +2,8 @@ package io.pivotal.bds.gemfire.kafka;
 
 import java.util.Map;
 
-import com.gemstone.gemfire.cache.EntryEvent;
-import com.gemstone.gemfire.cache.Operation;
+import org.apache.geode.cache.EntryEvent;
+import org.apache.geode.cache.Operation;
 
 public class EntryEventJsonSerializer<K, V> extends BaseJsonSerializer<EntryEvent<K, V>> {
 

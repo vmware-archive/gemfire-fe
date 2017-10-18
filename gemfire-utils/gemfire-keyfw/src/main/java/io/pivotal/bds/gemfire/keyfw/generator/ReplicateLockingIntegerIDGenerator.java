@@ -3,9 +3,9 @@ package io.pivotal.bds.gemfire.keyfw.generator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.distributed.DistributedLockService;
-import com.gemstone.gemfire.distributed.DistributedSystem;
+import org.apache.geode.cache.Region;
+import org.apache.geode.distributed.DistributedLockService;
+import org.apache.geode.distributed.DistributedSystem;
 
 public class ReplicateLockingIntegerIDGenerator implements IDGenerator<Integer> {
 

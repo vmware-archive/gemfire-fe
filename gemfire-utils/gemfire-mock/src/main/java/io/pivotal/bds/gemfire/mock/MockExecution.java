@@ -1,7 +1,7 @@
 package io.pivotal.bds.gemfire.mock;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.execute.*;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.execute.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,7 +33,7 @@ public class MockExecution implements Execution {
     }
 
     @Override
-    public Execution withFilter(Set<?> set) {
+    public Execution withFilter(Set set) {
         if (region == null) {
             throw new IllegalArgumentException("Filter can only be used with onRegion");
         }
@@ -48,7 +48,7 @@ public class MockExecution implements Execution {
     }
 
     @Override
-    public Execution withCollector(ResultCollector<?, ?> resultCollector) {
+    public Execution withCollector(ResultCollector resultCollector) {
         this.collector = resultCollector;
         return this;
     }
@@ -104,4 +104,11 @@ public class MockExecution implements Execution {
         f.execute(mockFunctionContext);
         return collector;
     }
+
+    @Override
+    public Execution setArguments(Object arg0) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

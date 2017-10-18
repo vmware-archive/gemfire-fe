@@ -13,8 +13,8 @@ import java.util.function.Consumer;
 
 import org.apache.commons.collections4.queue.CircularFifoQueue;
 
-import com.gemstone.gemfire.DataSerializable;
-import com.gemstone.gemfire.DataSerializer;
+import org.apache.geode.DataSerializable;
+import org.apache.geode.DataSerializer;
 
 @SuppressWarnings("serial")
 public class Window<T> extends CircularFifoQueue<T>implements DataSerializable {

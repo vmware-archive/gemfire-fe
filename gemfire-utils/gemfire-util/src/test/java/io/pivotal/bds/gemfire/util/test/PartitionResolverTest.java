@@ -5,8 +5,8 @@ import java.util.Properties;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.gemstone.gemfire.cache.EntryOperation;
-import com.gemstone.gemfire.internal.cache.EntryOperationImpl;
+import org.apache.geode.cache.EntryOperation;
+import org.apache.geode.internal.cache.EntryOperationImpl;
 
 import io.pivotal.bds.gemfire.util.EncodedStringPartitionResolver;
 

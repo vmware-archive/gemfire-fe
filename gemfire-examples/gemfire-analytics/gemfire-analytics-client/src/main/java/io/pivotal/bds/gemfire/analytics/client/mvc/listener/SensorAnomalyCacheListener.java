@@ -3,8 +3,8 @@ package io.pivotal.bds.gemfire.analytics.client.mvc.listener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.EntryEvent;
-import com.gemstone.gemfire.cache.util.CacheListenerAdapter;
+import org.apache.geode.cache.EntryEvent;
+import org.apache.geode.cache.util.CacheListenerAdapter;
 
 import io.pivotal.bds.gemfire.analytics.common.SensorAnomaly;
 import io.pivotal.bds.gemfire.analytics.common.SensorAnomalyKey;

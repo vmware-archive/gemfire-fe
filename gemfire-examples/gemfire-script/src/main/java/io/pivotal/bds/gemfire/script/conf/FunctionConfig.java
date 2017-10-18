@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import com.gemstone.gemfire.cache.execute.FunctionService;
+import org.apache.geode.cache.execute.FunctionService;
 
 import io.pivotal.bds.gemfire.script.function.ScriptExecutionFunction;
 

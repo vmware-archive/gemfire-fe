@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.gemstone.gemfire.DataSerializer;
-import com.gemstone.gemfire.cache.Cache;
-import com.gemstone.gemfire.cache.CacheFactory;
-import com.gemstone.gemfire.cache.server.CacheServer;
-//import com.gemstone.gemfire.pdx.ReflectionBasedAutoSerializer;
+import org.apache.geode.DataSerializer;
+import org.apache.geode.cache.Cache;
+import org.apache.geode.cache.CacheFactory;
+import org.apache.geode.cache.server.CacheServer;
+//import org.apache.geode.pdx.ReflectionBasedAutoSerializer;
 
 import io.pivotal.bds.gemfire.bitcoinj.serializer.StoredBlockSerializer;
 

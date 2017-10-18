@@ -10,8 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.util.Assert;
 
-import com.gemstone.gemfire.cache.client.ClientCacheFactory;
-import com.gemstone.gemfire.cache.client.PoolFactory;
+import org.apache.geode.cache.client.ClientCacheFactory;
+import org.apache.geode.cache.client.PoolFactory;
 
 public class LocatorHelper {
 

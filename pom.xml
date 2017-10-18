@@ -13,7 +13,7 @@
 		<java.version>1.8</java.version>
 
 		<geode.version>1.2.0</geode.version>
-		<gemfire.version>9.1.0</gemfire.version>
+		<gemfire.version>9.1.1</gemfire.version>
 		<spring.version>4.3.11.RELEASE</spring.version>
 		<spring-boot.version>1.4.7.RELEASE</spring-boot.version>
 		<spring-integration.version>4.3.12.RELEASE</spring-integration.version>

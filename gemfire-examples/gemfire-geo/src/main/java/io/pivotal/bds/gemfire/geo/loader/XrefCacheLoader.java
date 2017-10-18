@@ -3,10 +3,10 @@ package io.pivotal.bds.gemfire.geo.loader;
 import java.util.Collection;
 import java.util.Properties;
 
-import com.gemstone.gemfire.cache.CacheLoader;
-import com.gemstone.gemfire.cache.CacheLoaderException;
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.LoaderHelper;
+import org.apache.geode.cache.CacheLoader;
+import org.apache.geode.cache.CacheLoaderException;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.LoaderHelper;
 
 import io.pivotal.bds.gemfire.util.DSArrayList;
 

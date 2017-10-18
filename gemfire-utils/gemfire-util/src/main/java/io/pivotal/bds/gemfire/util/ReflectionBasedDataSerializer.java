@@ -1,6 +1,6 @@
 package io.pivotal.bds.gemfire.util;
 
-import com.gemstone.gemfire.DataSerializer;
+import org.apache.geode.DataSerializer;
 
 import java.io.DataInput;
 import java.io.DataOutput;

@@ -1,17 +1,17 @@
 package io.pivotal.bds.gemfire.util;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.RegionService;
-import com.gemstone.gemfire.cache.client.Pool;
-import com.gemstone.gemfire.cache.execute.Execution;
-import com.gemstone.gemfire.cache.execute.Function;
-import com.gemstone.gemfire.cache.execute.FunctionService;
-import com.gemstone.gemfire.distributed.DistributedMember;
-import com.gemstone.gemfire.distributed.DistributedSystem;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.RegionService;
+import org.apache.geode.cache.client.Pool;
+import org.apache.geode.cache.execute.Execution;
+import org.apache.geode.cache.execute.Function;
+import org.apache.geode.cache.execute.FunctionService;
+import org.apache.geode.distributed.DistributedMember;
 
 import java.util.Map;
 import java.util.Set;
 
+@SuppressWarnings("rawtypes")
 public class DefaultFunctionServiceHelper implements FunctionServiceHelper {
 
     @Override
@@ -37,21 +37,6 @@ public class DefaultFunctionServiceHelper implements FunctionServiceHelper {
     @Override
     public Execution onServers(RegionService regionService) {
         return FunctionService.onServers(regionService);
-    }
-
-    @Override
-    public Execution onMember(DistributedSystem system, DistributedMember distributedMember) {
-        return FunctionService.onMember(system, distributedMember);
-    }
-
-    @Override
-    public Execution onMembers(DistributedSystem system) {
-        return FunctionService.onMembers(system);
-    }
-
-    @Override
-    public Execution onMembers(DistributedSystem system, Set<DistributedMember> distributedMembers) {
-        return FunctionService.onMembers(system, distributedMembers);
     }
 
     @Override

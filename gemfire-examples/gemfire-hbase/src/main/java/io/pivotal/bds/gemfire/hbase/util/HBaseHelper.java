@@ -24,9 +24,9 @@ import org.apache.hadoop.hbase.client.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.pdx.PdxInstance;
-import com.gemstone.gemfire.pdx.internal.PdxInputStream;
-import com.gemstone.gemfire.pdx.internal.PdxOutputStream;
+import org.apache.geode.pdx.PdxInstance;
+import org.apache.geode.pdx.internal.PdxInputStream;
+import org.apache.geode.pdx.internal.PdxOutputStream;
 
 public class HBaseHelper {
 

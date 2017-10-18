@@ -8,7 +8,7 @@ import java.net.URLStreamHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.gemstone.gemfire.cache.Region;
+import org.apache.geode.cache.Region;
 
 public class GemfireURLStreamHandler extends URLStreamHandler {
 

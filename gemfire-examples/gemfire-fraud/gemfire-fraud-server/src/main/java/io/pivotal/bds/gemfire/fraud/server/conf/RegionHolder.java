@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
-import com.gemstone.gemfire.cache.Region;
+import org.apache.geode.cache.Region;
 
 import io.pivotal.bds.gemfire.fraud.common.Constants;
 import io.pivotal.bds.gemfire.fraud.common.data.Account;

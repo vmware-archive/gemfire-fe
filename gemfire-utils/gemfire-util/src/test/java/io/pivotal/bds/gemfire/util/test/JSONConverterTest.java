@@ -4,9 +4,9 @@ import java.io.FileReader;
 
 import org.json.JSONObject;
 
-import com.gemstone.gemfire.cache.Cache;
-import com.gemstone.gemfire.cache.CacheFactory;
-import com.gemstone.gemfire.pdx.PdxInstance;
+import org.apache.geode.cache.Cache;
+import org.apache.geode.cache.CacheFactory;
+import org.apache.geode.pdx.PdxInstance;
 
 import io.pivotal.bds.gemfire.util.JSONConverter;
 

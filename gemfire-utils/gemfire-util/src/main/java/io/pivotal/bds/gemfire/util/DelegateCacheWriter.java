@@ -1,6 +1,6 @@
 package io.pivotal.bds.gemfire.util;
 
-import com.gemstone.gemfire.cache.CacheWriter;
+import org.apache.geode.cache.CacheWriter;
 
 public abstract class DelegateCacheWriter<K, V> implements CacheWriter<K, V> {
 

@@ -1,8 +1,8 @@
 package io.pivotal.bds.gemfire.mock;
 
-import com.gemstone.gemfire.cache.*;
-import com.gemstone.gemfire.cache.query.*;
-import com.gemstone.gemfire.cache.snapshot.RegionSnapshotService;
+import org.apache.geode.cache.*;
+import org.apache.geode.cache.query.*;
+import org.apache.geode.cache.snapshot.RegionSnapshotService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.util.*;
 import java.util.concurrent.locks.Lock;
 
+@SuppressWarnings("serial")
 public class MockRegion<K, V> extends HashMap<K, V> implements Region<K, V> {
 
     private String name;
@@ -279,23 +280,8 @@ public class MockRegion<K, V> extends HashMap<K, V> implements Region<K, V> {
     }
 
     @Override
-    public Set<K> keys() {
-        return keySet();
-    }
-
-    @Override
-    public Set<Region.Entry<?, ?>> entries(boolean b) {
-        HashSet<Region.Entry<?, ?>> set = new HashSet<>();
-        for (Object k: keySet()) {
-            Region.Entry<?,?> re = getEntry(k);
-            set.add(re);
-        }
-        return set;
-    }
-
-    @Override
     public Set<Region.Entry<?, ?>> entrySet(boolean b) {
-        return entries(b);
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -498,5 +484,15 @@ public class MockRegion<K, V> extends HashMap<K, V> implements Region<K, V> {
     @Override
     public boolean containsKeyOnServer(Object o) {
         return containsKey(o);
+    }
+
+    @Override
+    public boolean isEmptyOnServer() {
+        return isEmpty();
+    }
+
+    @Override
+    public int sizeOnServer() {
+        return size();
     }
 }

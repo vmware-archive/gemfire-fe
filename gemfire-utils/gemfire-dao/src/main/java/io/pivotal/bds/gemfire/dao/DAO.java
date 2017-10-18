@@ -2,8 +2,8 @@ package io.pivotal.bds.gemfire.dao;
 
 import java.util.List;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.execute.RegionFunctionContext;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.execute.RegionFunctionContext;
 
 public interface DAO<K, V> extends Region<K, V> {
 

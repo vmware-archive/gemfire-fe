@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.execute.FunctionService;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.execute.FunctionService;
 
 import io.pivotal.bds.gemfire.bitcoinj.function.AddWalletFunction;
 

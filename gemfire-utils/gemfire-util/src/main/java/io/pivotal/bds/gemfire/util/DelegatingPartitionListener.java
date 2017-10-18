@@ -6,9 +6,9 @@ import java.util.Set;
 
 import org.springframework.util.Assert;
 
-import com.gemstone.gemfire.cache.Declarable;
-import com.gemstone.gemfire.cache.Region;
-import com.gemstone.gemfire.cache.partition.PartitionListener;
+import org.apache.geode.cache.Declarable;
+import org.apache.geode.cache.Region;
+import org.apache.geode.cache.partition.PartitionListener;
 
 public class DelegatingPartitionListener implements PartitionListener, Declarable {
 

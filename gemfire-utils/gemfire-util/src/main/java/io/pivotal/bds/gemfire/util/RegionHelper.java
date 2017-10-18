@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.springframework.util.Assert;
 
-import com.gemstone.gemfire.cache.CacheFactory;
-import com.gemstone.gemfire.cache.Region;
+import org.apache.geode.cache.CacheFactory;
+import org.apache.geode.cache.Region;
 
 public class RegionHelper {
 
