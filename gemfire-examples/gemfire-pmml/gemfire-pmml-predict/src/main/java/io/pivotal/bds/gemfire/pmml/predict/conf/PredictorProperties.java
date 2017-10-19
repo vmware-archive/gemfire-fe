@@ -6,4 +6,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class PredictorProperties {
 
     public String csvFileName = "creditcard.csv";
+    public boolean useFunction = false;
 }

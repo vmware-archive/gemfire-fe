@@ -1,6 +1,8 @@
 package io.pivotal.bds.gemfire.pmml.server.conf;
 
 import org.apache.geode.cache.Cache;
+import org.apache.geode.cache.PartitionAttributes;
+import org.apache.geode.cache.PartitionAttributesFactory;
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.RegionFactory;
 import org.apache.geode.cache.RegionShortcut;
@@ -40,23 +42,31 @@ public class RegionConfig {
 
         return rf.create("model");
     }
-    
-    @Bean
-    public Region<EvalKey, EvaluatorParams> paramsRegion(Cache cache, EvaluatorCacheListener evaluatorCacheListener) {
-        LOG.info("paramsRegion");
-        
-        RegionFactory<EvalKey, EvaluatorParams> rf = cache.createRegionFactory(RegionShortcut.PARTITION_PERSISTENT_OVERFLOW);
-        rf.addCacheListener(evaluatorCacheListener);
-        
-        return rf.create("params");
-    }
-    
+
     @Bean
     public Region<EvalKey, EvaluatorResults> resultsRegion(Cache cache) {
         LOG.info("resultsRegion");
-        
+
         RegionFactory<EvalKey, EvaluatorResults> rf = cache.createRegionFactory(RegionShortcut.PARTITION_PERSISTENT_OVERFLOW);
-        
+
         return rf.create("eval");
     }
+
+    @Bean
+    public Region<EvalKey, EvaluatorParams> paramsRegion(Cache cache, EvaluatorCacheListener evaluatorCacheListener,
+            Region<EvalKey, EvaluatorResults> resultsRegion) {
+        LOG.info("paramsRegion");
+
+        RegionFactory<EvalKey, EvaluatorParams> rf = cache.createRegionFactory(RegionShortcut.PARTITION_PERSISTENT_OVERFLOW);
+        rf.addCacheListener(evaluatorCacheListener);
+
+        PartitionAttributesFactory<EvalKey, EvaluatorResults> paf = new PartitionAttributesFactory<>();
+        paf.setColocatedWith(resultsRegion.getName());
+        PartitionAttributes<EvalKey, EvaluatorResults> pa = paf.create();
+
+        rf.setPartitionAttributes(pa);
+
+        return rf.create("params");
+    }
+
 }

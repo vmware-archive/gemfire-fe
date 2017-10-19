@@ -2,25 +2,40 @@ package io.pivotal.bds.gemfire.pmml.common.data;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+import io.pivotal.bds.gemfire.pmml.common.keys.EvalKey;
+
 public class EvaluatorParams {
 
-    private String name;
+    private EvalKey key;
+    private String modelName;
     private Map<String, Object> parameters;
 
     public EvaluatorParams() {
     }
 
-    public EvaluatorParams(String name, Map<String, Object> parameters) {
-        this.name = name;
+    public EvaluatorParams(EvalKey key, String modelName, Map<String, Object> parameters) {
+        this.key = key;
+        this.modelName = modelName;
         this.parameters = parameters;
     }
 
-    public String getName() {
-        return name;
+    public EvalKey getKey() {
+        return key;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setKey(EvalKey key) {
+        this.key = key;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 
     public Map<String, Object> getParameters() {
@@ -32,8 +47,13 @@ public class EvaluatorParams {
     }
 
     @Override
+    public int hashCode() {
+        return key.hashCode();
+    }
+
+    @Override
     public String toString() {
-        return "EvaluatorParams [name=" + name + ", parameters=" + parameters + "]";
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 
 }

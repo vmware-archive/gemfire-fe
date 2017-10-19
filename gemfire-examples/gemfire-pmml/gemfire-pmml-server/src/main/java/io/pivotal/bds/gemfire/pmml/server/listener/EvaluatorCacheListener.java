@@ -32,13 +32,13 @@ public class EvaluatorCacheListener extends CacheListenerAdapter<EvalKey, Evalua
 
     @Override
     public void afterCreate(EntryEvent<EvalKey, EvaluatorParams> event) {
-        LOG.info("afterCreate: event={}", event);
+        LOG.debug("afterCreate: event={}", event);
         evaluate(event);
     }
 
     @Override
     public void afterUpdate(EntryEvent<EvalKey, EvaluatorParams> event) {
-        LOG.info("afterUpdate: event={}", event);
+        LOG.debug("afterUpdate: event={}", event);
         evaluate(event);
     }
 
@@ -47,14 +47,14 @@ public class EvaluatorCacheListener extends CacheListenerAdapter<EvalKey, Evalua
     }
 
     private void evaluate(EvalKey key, EvaluatorParams params) {
-        ModelKey modelKey = new ModelKey(params.getName());
+        ModelKey modelKey = new ModelKey(params.getModelName());
         PMML pmml = pmmlRegion.get(modelKey);
 
         if (pmml == null) {
             LOG.error("evaluate: pmml not found for key={}", key);
         } else {
             EvaluatorResults results = evaluatorService.evaluate(params, pmml);
-            LOG.info("evaluate: results={}", results);
+            LOG.debug("evaluate: results={}", results);
             resultsRegion.put(key, results);
         }
     }

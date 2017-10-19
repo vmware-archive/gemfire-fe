@@ -1,9 +1,15 @@
 package io.pivotal.bds.gemfire.pmml.server.function;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import org.apache.geode.cache.Region;
 import org.apache.geode.cache.execute.Function;
 import org.apache.geode.cache.execute.FunctionContext;
 import org.apache.geode.cache.execute.FunctionException;
+import org.apache.geode.cache.execute.RegionFunctionContext;
 import org.apache.geode.cache.execute.ResultSender;
 import org.dmg.pmml.PMML;
 import org.slf4j.Logger;
@@ -29,30 +35,61 @@ public class EvaluatorFunction implements Function<EvaluatorParams> {
         this.evaluatorService = evaluatorService;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void execute(FunctionContext<EvaluatorParams> context) {
         try {
-            EvaluatorParams params = context.getArguments();
-            LOG.debug("execute: params={}", params);
+            List<EvaluatorResults> results = new ArrayList<>();
             
-            String name = params.getName();
-
-            ModelKey key = new ModelKey(name);
-            PMML pmml = pmmlRegion.get(key);
-
-            if (pmml == null) {
-                throw new NullPointerException("Model " + name + " not found");
+            if (context instanceof RegionFunctionContext) {
+                RegionFunctionContext rctx = (RegionFunctionContext)context;
+                Set<EvaluatorParams> filter = (Set<EvaluatorParams>) rctx.getFilter();
+                
+                for (EvaluatorParams params: filter) {
+                    process(params, results);
+                }
             }
-
-            EvaluatorResults evaluatorResults = evaluatorService.evaluate(params, pmml);
-            LOG.debug("execute: evaluatorResults={}", evaluatorResults);
-
+            
+            EvaluatorParams params = context.getArguments();
+            
+            if (params != null) {
+                process(params, results);
+            }
+            
             ResultSender<EvaluatorResults> sender = context.getResultSender();
-            sender.lastResult(evaluatorResults);
+            Iterator<EvaluatorResults> iter = results.iterator();
+            
+            while (iter.hasNext()) {
+                EvaluatorResults result = iter.next();
+                
+                if (iter.hasNext()) {                    
+                    sender.sendResult(result);
+                } else {                    
+                    sender.lastResult(result);
+                }
+            }
         } catch (Exception x) {
             LOG.error("execute: x={}", x.toString(), x);
             throw new FunctionException(x.toString(), x);
         }
+    }
+    
+    private void process(EvaluatorParams params, List<EvaluatorResults> results) {
+        LOG.debug("process: params={}", params);
+        
+        String name = params.getModelName();
+
+        ModelKey key = new ModelKey(name);
+        PMML pmml = pmmlRegion.get(key);
+
+        if (pmml == null) {
+            throw new NullPointerException("Model " + name + " not found");
+        }
+
+        EvaluatorResults evaluatorResults = evaluatorService.evaluate(params, pmml);
+        LOG.debug("process: evaluatorResults={}", evaluatorResults);
+        
+        results.add(evaluatorResults);
     }
 
     @Override
@@ -72,7 +109,7 @@ public class EvaluatorFunction implements Function<EvaluatorParams> {
 
     @Override
     public boolean optimizeForWrite() {
-        return false;
+        return true;
     }
 
 }
