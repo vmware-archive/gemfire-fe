@@ -2,13 +2,13 @@ package io.pivotal.bds.gemfire.pmml.predict.task;
 
 import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.UUID;
 
 import org.apache.geode.cache.Region;
-import org.apache.geode.cache.client.Pool;
 import org.apache.geode.cache.execute.FunctionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Component;
 
 import io.pivotal.bds.gemfire.pmml.common.data.EvaluatorParams;
-import io.pivotal.bds.gemfire.pmml.common.data.EvaluatorResults;
 import io.pivotal.bds.gemfire.pmml.common.keys.EvalKey;
 import io.pivotal.bds.gemfire.pmml.predict.conf.PredictorProperties;
 
@@ -25,14 +24,15 @@ import io.pivotal.bds.gemfire.pmml.predict.conf.PredictorProperties;
 @EnableConfigurationProperties(PredictorProperties.class)
 public class PredictorTask implements CommandLineRunner {
 
-    private Pool pool;
     private PredictorProperties predictorProperties;
     private Region<EvalKey, EvaluatorParams> paramsRegion;
+    
+    private static final int batchCount = 100;
+    private static final int logCount = batchCount * 10;
 
     private static final Logger LOG = LoggerFactory.getLogger(PredictorTask.class);
 
-    public PredictorTask(Pool pool, PredictorProperties predictorProperties, Region<EvalKey, EvaluatorParams> paramsRegion) {
-        this.pool = pool;
+    public PredictorTask(PredictorProperties predictorProperties, Region<EvalKey, EvaluatorParams> paramsRegion) {
         this.predictorProperties = predictorProperties;
         this.paramsRegion = paramsRegion;
     }
@@ -49,6 +49,8 @@ public class PredictorTask implements CommandLineRunner {
     private void useRegion() throws Exception {
         String fileName = predictorProperties.csvFileName;
         Map<EvalKey, EvaluatorParams> paramMap = new HashMap<>();
+        int count = 0;
+        long start = System.currentTimeMillis();
 
         try (Scanner scanner = new Scanner(Paths.get(fileName))) {
             scanner.useDelimiter("\n");
@@ -65,21 +67,40 @@ public class PredictorTask implements CommandLineRunner {
 
                 paramMap.put(key, params);
 
-                if (paramMap.size() >= 100) {
+                if (paramMap.size() >= batchCount) {
                     paramsRegion.putAll(paramMap);
                     paramMap.clear();
+                    
+                    count += batchCount;
+                    
+                    if (count % logCount == 0) {
+                        long end = System.currentTimeMillis();
+                        long delta = end-start;
+                        long avg = delta/count;
+                        LOG.info("useRegion: processed {} entries in {} milliseconds, avg {}", count, delta, avg);
+                    }
                 }
             }
         }
 
         if (!paramMap.isEmpty()) {
             paramsRegion.putAll(paramMap);
+            count += paramMap.size();
         }
+        
+        long end = System.currentTimeMillis();
+        long delta = end-start;
+        long avg = delta/count;
+        LOG.info("useRegion: processed {} total entries in {} milliseconds, avg {}", count, delta, avg);
     }
 
     @SuppressWarnings("unchecked")
     private void useFunction() throws Exception {
         String fileName = predictorProperties.csvFileName;
+        Map<EvalKey, EvaluatorParams> paramMap = new HashMap<>();
+        int count = 0;
+        long start = System.currentTimeMillis();
+
         try (Scanner scanner = new Scanner(Paths.get(fileName))) {
             scanner.useDelimiter("\n");
             scanner.next(); // header
@@ -88,25 +109,44 @@ public class PredictorTask implements CommandLineRunner {
                 String line = scanner.next();
 
                 Map<String, Object> data = getData(line);
-                String clazz = (String) data.remove("Class");
+                data.remove("Class");
 
                 EvalKey key = new EvalKey(UUID.randomUUID().toString());
                 EvaluatorParams params = new EvaluatorParams(key, "test", data);
 
-                List<EvaluatorResults> results = (List<EvaluatorResults>) FunctionService.onServer(pool).setArguments(params)
-                        .execute("EvaluatorFunction").getResult();
-                EvaluatorResults result = results.iterator().next();
-                Double pclass = (Double) result.getResultValues().get("Class");
-                String predictedClass = pclass > 0.5 ? "\"1\"" : "\"0\"";
+                paramMap.put(key, params);
 
-                if (!clazz.equals(predictedClass)) {
-                    LOG.warn("wrong!: clazz={}, predictedClass={}", clazz, predictedClass);
+                if (paramMap.size() >= batchCount) {
+                    Set<EvaluatorParams> filter = new HashSet<>();
+                    filter.addAll(paramMap.values());
+
+                    FunctionService.onRegion(paramsRegion).withFilter(filter).execute("EvaluatorFunction").getResult();
+
+                    paramMap.clear();
+                    count += batchCount;
+                    
+                    if (count % logCount == 0) {
+                        long end = System.currentTimeMillis();
+                        long delta = end-start;
+                        long avg = delta/count;
+                        LOG.info("useFunction: processed {} entries in {} milliseconds, avg {}", count, delta, avg);
+                    }
                 }
-
-                LOG.debug("clazz={}, predicted clazz={}, params={}, result={}", clazz, predictedClass, params,
-                        results.iterator().next());
             }
         }
+        
+        if (!paramMap.isEmpty()) {
+            Set<EvaluatorParams> filter = new HashSet<>();
+            filter.addAll(paramMap.values());
+
+            FunctionService.onRegion(paramsRegion).withFilter(filter).execute("EvaluatorFunction").getResult();
+            count += paramMap.size();
+        }
+        
+        long end = System.currentTimeMillis();
+        long delta = end-start;
+        long avg = delta/count;
+        LOG.info("useFunction: processed {} total entries in {} milliseconds, avg {}", count, delta, avg);
     }
 
     private Map<String, Object> getData(String line) {

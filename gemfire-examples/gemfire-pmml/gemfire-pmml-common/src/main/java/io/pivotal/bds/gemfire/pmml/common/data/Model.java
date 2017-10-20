@@ -1,5 +1,8 @@
 package io.pivotal.bds.gemfire.pmml.common.data;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import io.pivotal.bds.gemfire.pmml.common.keys.ModelKey;
 
 public class Model {
@@ -33,7 +36,7 @@ public class Model {
 
     @Override
     public String toString() {
-        return "Model [key=" + key + ", model=" + model + "]";
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 
 }

@@ -32,9 +32,9 @@ import io.pivotal.bds.gemfire.pmml.common.data.EvaluatorResults;
 
 @Component
 public class EvaluatorService {
-    
+
     private Timer timer;
-    
+
     private static final ModelEvaluatorFactory modelEvaluatorFactory = ModelEvaluatorFactory.newInstance();
     private static final Logger LOG = LoggerFactory.getLogger(EvaluatorService.class);
 
@@ -43,9 +43,10 @@ public class EvaluatorService {
     }
 
     public EvaluatorResults evaluate(EvaluatorParams params, PMML pmml) {
-        Context ctx = timer.time();
         LOG.debug("execute: params={}", params);
         
+        Context ctx = timer.time();
+
         Map<String, Object> parameters = params.getParameters();
 
         ModelEvaluator<?> evaluator = modelEvaluatorFactory.newModelEvaluator(pmml);
@@ -75,41 +76,49 @@ public class EvaluatorService {
         for (TargetField targetField : targetFields) {
             FieldName fieldName = targetField.getName();
             Object targetFieldValue = results.get(fieldName);
-            Object fieldValue = null;
+            LOG.debug("execute: targetFieldValue={}", targetFieldValue);
 
-            if (targetFieldValue instanceof Computable) {
-                fieldValue = ((Computable) targetFieldValue).getResult();
-            } else if (targetFieldValue instanceof HasEntityId) {
-                HasEntityId hasEntityId = (HasEntityId) targetFieldValue;
-                HasEntityRegistry<?> hasEntityRegistry = (HasEntityRegistry<?>) evaluator;
-                BiMap<String, ? extends Entity> entities = hasEntityRegistry.getEntityRegistry();
-                Entity winner = entities.get(hasEntityId.getEntityId());
+            if (targetFieldValue != null) {
+                Class<?> targetFieldValueClass = targetFieldValue.getClass();
+                LOG.debug("execute: targetFieldValue.getClass()={}", targetFieldValueClass);
+                
+                Object fieldValue = null;
 
-                if (targetFieldValue instanceof HasProbability) {
+                if (targetFieldValue instanceof Computable) {
+                    fieldValue = ((Computable) targetFieldValue).getResult();
+                } else if (targetFieldValue instanceof HasEntityId && targetFieldValue instanceof HasProbability) {
+                    HasEntityId hasEntityId = (HasEntityId) targetFieldValue;
+                    HasEntityRegistry<?> hasEntityRegistry = (HasEntityRegistry<?>) evaluator;
+
+                    BiMap<String, ? extends Entity> entities = hasEntityRegistry.getEntityRegistry();
+                    Entity winner = entities.get(hasEntityId.getEntityId());
+
                     HasProbability hasProbability = (HasProbability) targetFieldValue;
                     fieldValue = hasProbability.getProbability(winner.getId());
+                } else {
+                    fieldValue = targetFieldValue;
                 }
-            } else {
-                fieldValue = targetFieldValue;
-            }
 
-            resultValues.put(fieldName.getValue(), fieldValue);
+                resultValues.put(fieldName.getValue(), fieldValue);
+            } else {
+                LOG.warn("execute: target value for field {} is null", fieldName.getValue());
+            }
         }
 
         Map<String, Object> outputValues = new HashMap<>();
-
         List<OutputField> outputFields = evaluator.getOutputFields();
+
         for (OutputField outputField : outputFields) {
             FieldName outputFieldName = outputField.getName();
             Object outputFieldValue = results.get(outputFieldName);
             outputValues.put(outputFieldName.getValue(), outputFieldValue);
         }
-        
+
         EvaluatorResults evaluatorResults = new EvaluatorResults(params, resultValues, outputValues);
-        LOG.debug("execute: evaluatorResults={}", evaluatorResults);
-        
+
         ctx.stop();
 
+        LOG.debug("execute: evaluatorResults={}", evaluatorResults);
         return evaluatorResults;
     }
 }

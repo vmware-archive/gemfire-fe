@@ -16,6 +16,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
+import com.codahale.metrics.Timer.Context;
+
 import io.pivotal.bds.gemfire.pmml.common.data.EvaluatorParams;
 import io.pivotal.bds.gemfire.pmml.common.data.EvaluatorResults;
 import io.pivotal.bds.gemfire.pmml.common.keys.ModelKey;
@@ -27,18 +31,22 @@ public class EvaluatorFunction implements Function<EvaluatorParams> {
 
     private Region<ModelKey, PMML> pmmlRegion;
     private EvaluatorService evaluatorService;
+    private Timer timer;
 
     private static final Logger LOG = LoggerFactory.getLogger(EvaluatorFunction.class);
 
-    public EvaluatorFunction(Region<ModelKey, PMML> pmmlRegion, EvaluatorService evaluatorService) {
+    public EvaluatorFunction(Region<ModelKey, PMML> pmmlRegion, EvaluatorService evaluatorService, MetricRegistry metricRegistry) {
         this.pmmlRegion = pmmlRegion;
         this.evaluatorService = evaluatorService;
+        this.timer = metricRegistry.timer("EvaluatorFunction");
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public void execute(FunctionContext<EvaluatorParams> context) {
         try {
+            Context tctx = timer.time();
+            
             List<EvaluatorResults> results = new ArrayList<>();
             
             if (context instanceof RegionFunctionContext) {
@@ -68,6 +76,8 @@ public class EvaluatorFunction implements Function<EvaluatorParams> {
                     sender.lastResult(result);
                 }
             }
+            
+            tctx.stop();
         } catch (Exception x) {
             LOG.error("execute: x={}", x.toString(), x);
             throw new FunctionException(x.toString(), x);

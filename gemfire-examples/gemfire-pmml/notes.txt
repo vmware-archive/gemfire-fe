@@ -1,0 +1,24 @@
+Gemfire PMML Notes
+========================================================================================================================
+
+Credit Card data: https://www.kaggle.com/dalpozz/creditcardfraud
+
+R:
+
+install.packages("gbm")
+install.packages("pmml")
+
+library("gbm")
+library("pmml")
+
+cc = read.csv("~/tmp/data/creditcard.csv")
+cc_0 = subset(cc, Class == 0)
+cc_1 = subset(cc, Class == 1)
+cc_0_train = head(cc_0, n=100)
+cc_1_train = head(cc_1, n=100)
+cc_0_test = tail(cc_0, n=length(cc_0)-100)
+cc_1_test = tail(cc_1, n=length(cc_1)-100)
+cc_train = rbind(cc_0_train, cc_1_train)
+cc_test = rbind(cc_0_test, cc_1_test)
+gbm_model = gbm(formula = Class ~ ., data=cc_train, distribution="gaussian", n.trees=1000, shrinkage=0.01)
+saveXML(pmml(gbm_model), "gbm.xml")
