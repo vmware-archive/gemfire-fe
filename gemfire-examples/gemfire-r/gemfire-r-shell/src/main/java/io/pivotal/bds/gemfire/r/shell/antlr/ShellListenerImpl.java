@@ -186,7 +186,7 @@ public class ShellListenerImpl extends ShellBaseListener {
         RstatsRequest req = new RstatsRequest(matrixKey, row);
 
         @SuppressWarnings("unchecked")
-        List<StatsResponse> resp = (List<StatsResponse>) FunctionService.onServer(pool).withArgs(req).execute("RstatsFunction")
+        List<StatsResponse> resp = (List<StatsResponse>) FunctionService.onServer(pool).setArguments(req).execute("RstatsFunction")
                 .getResult();
         StatsResponse sr = resp.get(0);
         stdout.println(sr);
@@ -202,7 +202,7 @@ public class ShellListenerImpl extends ShellBaseListener {
         CstatsRequest req = new CstatsRequest(matrixKey, col);
 
         @SuppressWarnings("unchecked")
-        List<StatsResponse> resp = (List<StatsResponse>) FunctionService.onServer(pool).withArgs(req).execute("CstatsFunction")
+        List<StatsResponse> resp = (List<StatsResponse>) FunctionService.onServer(pool).setArguments(req).execute("CstatsFunction")
                 .getResult();
         StatsResponse sr = resp.get(0);
         stdout.println(sr);
@@ -217,12 +217,13 @@ public class ShellListenerImpl extends ShellBaseListener {
         VstatsRequest req = new VstatsRequest(vectorKey);
 
         @SuppressWarnings("unchecked")
-        List<StatsResponse> resp = (List<StatsResponse>) FunctionService.onServer(pool).withArgs(req).execute("VstatsFunction")
+        List<StatsResponse> resp = (List<StatsResponse>) FunctionService.onServer(pool).setArguments(req).execute("VstatsFunction")
                 .getResult();
         StatsResponse sr = resp.get(0);
         stdout.println(sr);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void exitRbind(RbindContext ctx) {
         String srcMatrixId = ctx.matrixId().get(1).getText();
@@ -237,9 +238,10 @@ public class ShellListenerImpl extends ShellBaseListener {
         MatrixKey destMatrixKey = new MatrixKey(destMatrixId);
 
         CbindRequest req = new CbindRequest(srcMatrixKey, destMatrixKey, vectorKey);
-        FunctionService.onServer(pool).withArgs(req).execute("RbindFunction").getResult();
+        FunctionService.onServer(pool).setArguments(req).execute("RbindFunction").getResult();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void exitCbind(CbindContext ctx) {
         String srcMatrixId = ctx.matrixId().get(1).getText();
@@ -254,9 +256,10 @@ public class ShellListenerImpl extends ShellBaseListener {
         MatrixKey destMatrixKey = new MatrixKey(destMatrixId);
 
         CbindRequest req = new CbindRequest(srcMatrixKey, destMatrixKey, vectorKey);
-        FunctionService.onServer(pool).withArgs(req).execute("CbindFunction").getResult();
+        FunctionService.onServer(pool).setArguments(req).execute("CbindFunction").getResult();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void exitT(TContext ctx) {
         String srcMatrixId = ctx.matrixId().get(1).getText();
@@ -267,7 +270,7 @@ public class ShellListenerImpl extends ShellBaseListener {
         MatrixKey destMatrixKey = new MatrixKey(destMatrixId);
 
         TransposeRequest req = new TransposeRequest(srcMatrixKey, destMatrixKey);
-        FunctionService.onServer(pool).withArgs(req).execute("TransposeFunction").getResult();
+        FunctionService.onServer(pool).setArguments(req).execute("TransposeFunction").getResult();
     }
 
     @Override
@@ -704,6 +707,7 @@ public class ShellListenerImpl extends ShellBaseListener {
         dynamicTrainDefRegion.put(trainDefKey, trainDef);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void exitFft(FftContext ctx) {
         String inputId = ctx.fftInputId().getText();
@@ -734,7 +738,6 @@ public class ShellListenerImpl extends ShellBaseListener {
 
         ResultCollector<?, ?> coll = FunctionService.onRegion(routeRegion).withFilter(filter).execute("FFTFunction");
 
-        @SuppressWarnings("unchecked")
         List<FFTResponse> lresp = (List<FFTResponse>) coll.getResult();
         FFTResponse resp = lresp.get(0);
         Object res = resp.getResult();
@@ -961,6 +964,7 @@ public class ShellListenerImpl extends ShellBaseListener {
         modelDefRegion.put(key, info);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void exitPredict(PredictContext ctx) {
         String modelId = ctx.modelId().getText();
@@ -982,9 +986,8 @@ public class ShellListenerImpl extends ShellBaseListener {
 
         AdhocPredictionRequest req = new AdhocPredictionRequest(modelKey, arg);
 
-        ResultCollector<?, ?> coll = FunctionService.onServer(pool).withArgs(req).execute("AdhocPredictionFunction");
+        ResultCollector<?, ?> coll = FunctionService.onServer(pool).setArguments(req).execute("AdhocPredictionFunction");
 
-        @SuppressWarnings("unchecked")
         List<AdhocPredictionResponse> lresp = (List<AdhocPredictionResponse>) coll.getResult();
         Assert.isTrue(!lresp.isEmpty(), "No response");
 
@@ -1221,7 +1224,7 @@ public class ShellListenerImpl extends ShellBaseListener {
     }
 
     private boolean printModelVar(String modelId) {
-        ModelKey mk = new ModelKey(modelId);
+        ModelDefKey mk = new ModelDefKey(modelId);
         ModelDef info = modelDefRegion.get(mk);
 
         if (info == null) {

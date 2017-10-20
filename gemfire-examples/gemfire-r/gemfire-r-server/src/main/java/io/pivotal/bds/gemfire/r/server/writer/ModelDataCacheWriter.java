@@ -105,13 +105,13 @@ public class ModelDataCacheWriter extends CacheWriterAdapter<ModelKey, ModelData
                 break;
             }
             case regression: {
-                ModelFactory<double[][], double[], double[], Integer> factory = ModelFactoryManager.getFactory(modelType,
+                ModelFactory<double[][], double[], double[], Double> factory = ModelFactoryManager.getFactory(modelType,
                         modelName);
 
                 double[][] x = modelData.getX();
                 double[] y = convertToDoubleArray(modelData.getY());
 
-                Model<double[][], double[], double[], Integer> model = factory.create(modelId, properties);
+                Model<double[][], double[], double[], Double> model = factory.create(modelId, properties);
                 model.train(x, y);
 
                 getModelRegion().put(modelKey, model);

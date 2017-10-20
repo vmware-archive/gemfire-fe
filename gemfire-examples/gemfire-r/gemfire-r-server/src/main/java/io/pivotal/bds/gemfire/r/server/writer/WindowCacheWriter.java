@@ -21,18 +21,18 @@ import io.pivotal.bds.gemfire.r.common.WindowDef;
 import io.pivotal.bds.gemfire.r.common.WindowKey;
 import io.pivotal.bds.gemfire.util.RegionHelper;
 
-public class WindowCacheWriter<T> extends CacheWriterAdapter<WindowKey, Window<T>>implements Declarable {
+public class WindowCacheWriter<T> extends CacheWriterAdapter<WindowKey<String>, Window<T>>implements Declarable {
 
     private static final Logger LOG = LoggerFactory.getLogger(WindowCacheWriter.class);
 
     @Override
-    public void beforeCreate(EntryEvent<WindowKey, Window<T>> event) throws CacheWriterException {
+    public void beforeCreate(EntryEvent<WindowKey<String>, Window<T>> event) throws CacheWriterException {
         LOG.debug("beforeCreate: event={}", event);
         updateMatrixOrVector(event);
     }
 
     @Override
-    public void beforeUpdate(EntryEvent<WindowKey, Window<T>> event) throws CacheWriterException {
+    public void beforeUpdate(EntryEvent<WindowKey<String>, Window<T>> event) throws CacheWriterException {
         LOG.debug("beforeUpdate: event={}", event);
         updateMatrixOrVector(event);
     }
@@ -42,13 +42,13 @@ public class WindowCacheWriter<T> extends CacheWriterAdapter<WindowKey, Window<T
     }
 
     @SuppressWarnings("unchecked")
-    private void updateMatrixOrVector(EntryEvent<WindowKey, Window<T>> event) throws CacheWriterException {
-        WindowKey key = event.getKey();
+    private void updateMatrixOrVector(EntryEvent<WindowKey<String>, Window<T>> event) throws CacheWriterException {
+        WindowKey<String> key = event.getKey();
         LOG.debug("updateMatrixOrVector: key={}", key);
 
         Window<T> win = event.getNewValue();
 
-        Region<WindowKey, WindowDef> windowDefRegion = RegionHelper.getRegion("windowDef");
+        Region<WindowKey<String>, WindowDef> windowDefRegion = RegionHelper.getRegion("windowDef");
         WindowDef def = windowDefRegion.get(key);
         LOG.debug("updateMatrixOrVector: key={}, def={}", key, def);
 

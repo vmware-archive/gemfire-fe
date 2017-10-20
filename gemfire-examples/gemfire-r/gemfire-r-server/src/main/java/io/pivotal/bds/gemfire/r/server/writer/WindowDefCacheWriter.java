@@ -15,26 +15,26 @@ import io.pivotal.bds.gemfire.r.common.WindowKey;
 import io.pivotal.bds.gemfire.r.server.util.Handler;
 import io.pivotal.bds.gemfire.r.server.util.WindowHandler;
 
-public class WindowDefCacheWriter extends CacheWriterAdapter<WindowKey, WindowDef>implements Declarable {
+public class WindowDefCacheWriter extends CacheWriterAdapter<WindowKey<String>, WindowDef>implements Declarable {
 
     private static final Logger LOG = LoggerFactory.getLogger(WindowDefCacheWriter.class);
 
     @Override
-    public void beforeCreate(EntryEvent<WindowKey, WindowDef> event) throws CacheWriterException {
+    public void beforeCreate(EntryEvent<WindowKey<String>, WindowDef> event) throws CacheWriterException {
         LOG.debug("beforeCreate: event={}", event);
         createWindow(event);
     }
 
     @Override
-    public void beforeUpdate(EntryEvent<WindowKey, WindowDef> event) throws CacheWriterException {
+    public void beforeUpdate(EntryEvent<WindowKey<String>, WindowDef> event) throws CacheWriterException {
         LOG.debug("beforeUpdate: event={}", event);
         createWindow(event);
     }
 
     @Override
-    public void beforeDestroy(EntryEvent<WindowKey, WindowDef> event) throws CacheWriterException {
+    public void beforeDestroy(EntryEvent<WindowKey<String>, WindowDef> event) throws CacheWriterException {
         LOG.debug("beforeDestroy: event={}", event);
-        WindowKey key = event.getKey();
+        WindowKey<String> key = event.getKey();
         WindowDef def = event.getOldValue();
         Handler.removeHandler(key, def.getRegionName());
     }
@@ -43,8 +43,8 @@ public class WindowDefCacheWriter extends CacheWriterAdapter<WindowKey, WindowDe
     public void init(Properties props) {
     }
 
-    private void createWindow(EntryEvent<WindowKey, WindowDef> event) throws CacheWriterException {
-        WindowKey key = event.getKey();
+    private void createWindow(EntryEvent<WindowKey<String>, WindowDef> event) throws CacheWriterException {
+        WindowKey<String> key = event.getKey();
         WindowDef def = event.getNewValue();
 
         WindowHandler handler = new WindowHandler(key, def);
