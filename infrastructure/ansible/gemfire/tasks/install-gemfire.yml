@@ -28,5 +28,5 @@
 
 - name: add gemfire to path
   template:
-    src: gemfire.sh.j2
+    src: templates/gemfire.sh.j2
     dest: /etc/profile.d/gemfire.sh

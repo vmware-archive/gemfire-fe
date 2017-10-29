@@ -1,7 +1,7 @@
 ---
-- name: "copy gemfire boot jar {{ gemfire_boot_jar }} from bucket {{ bucket_name }} to file {{ boot_jar_name }}"
+- name: "copy gemfire boot jar {{ gemfire_boot_jar }} from bucket {{ bucket_name }} to /opt/app/jars"
   s3:
     bucket: "{{ bucket_name }}"
     object: "{{ gemfire_boot_jar }}"
-    dest: "/opt/app/jars/{{ boot_jar_name }}"
+    dest: "/opt/app/jars/{{ gemfire_boot_jar }}"
     mode: get

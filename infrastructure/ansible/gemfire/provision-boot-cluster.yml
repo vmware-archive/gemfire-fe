@@ -8,8 +8,8 @@
     bucket_name: gemfire-fe-artifacts
     jdk_file_name: jdk-8u144-linux-x64.rpm
   tasks:
-    - include: tasks/yum-update.yml
-    - include: tasks/install-jdk.yml
+  - include_tasks: tasks/yum-update.yml
+  - include_tasks: tasks/install-jdk.yml
 
 - name: install gemfire
   hosts: locators
@@ -21,7 +21,7 @@
     jdk_file_name: jdk-8u144-linux-x64.rpm
     gemfire_file_name: pivotal-gemfire-9.1.0.tar.gz
   tasks:
-    - include: tasks/install-gemfire.yml
+  - include_tasks: tasks/install-gemfire.yml
 
 - name: provision locators
   hosts: locators
@@ -32,10 +32,10 @@
     locator_user: centos
     locator_group: centos
     locator_port: 10334
-    properties_file: locator.properties
+    properties_file: config/locator.properties
   tasks:
-    - include: tasks/copy-gemfire-properties.yml
-    - include: tasks/create-locator-unit.yml
+  - include_tasks: tasks/copy-gemfire-properties.yml
+  - include_tasks: tasks/create-locator-unit.yml
 
 - name: provision servers
   hosts: servers
@@ -46,6 +46,10 @@
     server_user: centos
     server_group: centos
     locator_port: 10334
+    gemfire_boot_jar: ???
+    properties_file: config/server.properties
   tasks:
-    - include: tasks/create-server-dirs.yml
-    - include: tasks/create-server-unit.yml
+  - include_tasks: tasks/create-server-dirs.yml
+  - include_tasks: tasks/copy-gemfire-properties.yml
+  - include_tasks: tasks/copy-gemfire-boot-jar.yml
+  - include_tasks: tasks/create-boot-server-unit.yml

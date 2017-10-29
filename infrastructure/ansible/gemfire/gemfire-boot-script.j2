@@ -1,7 +1,0 @@
-#!/bin/bash -v
-
-source /etc/gemfire.conf
-
-java ${JAVA_OPTS} ${GEMFIRE_OPTS} -jar /opt/app/bin/{{ boot_jar_name }} 1>/var/log/gemfire.out 2>/var/log/gemfire.err
-
-echo "$!" >/var/run/gemfire-boot.pid

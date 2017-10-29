@@ -11,7 +11,7 @@
 
 - name: create systemd unit for server
   template:
-    src: gemfire-server.service.j2
+    src: templates/gemfire-server-classic.service.j2
     dest: /usr/lib/systemd/system/gemfire-server.service
 
 - name: start server

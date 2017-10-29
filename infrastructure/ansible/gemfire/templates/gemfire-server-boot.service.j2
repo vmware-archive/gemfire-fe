@@ -7,10 +7,10 @@ After=network.target
 Type=simple
 User={{ server_user }}
 Group={{ server_group }}
-ExecStart=/opt/app/bin/server-start.sh
+EnvironmentFile=/etc/gemfire.conf
+ExecStart=/use/bin/java ${JAVA_OPTS} ${GEMFIRE_OPTS} -jar /opt/app/bin/{{ gemfire_boot_jar }}
 TimeoutSec=5min
 WorkingDirectory=/home/{{ server_user }}
-PIDFile=/var/run/gemfire-boot.pid
 
 [Install]
 WantedBy=multi-user.target

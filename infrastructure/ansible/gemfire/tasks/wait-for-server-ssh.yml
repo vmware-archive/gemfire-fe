@@ -1,0 +1,8 @@
+---
+- name: wait for server reboot
+  wait_for:
+    host={{ ansible_hostname }}
+    port=22
+    delay=15
+    timeout=600
+  delegate_to: localhost

@@ -1,0 +1,6 @@
+---
+- name: wait for server to start
+  wait_for:
+    path: "{{ log_file_path }}"
+    state: present
+    search_regex: "{{ search_regex }}"

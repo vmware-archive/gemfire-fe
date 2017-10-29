@@ -5,33 +5,15 @@
   become: true
   gather_facts: true
   serial: 1
+  vars:
+    server_user: centos
+    log_file_path: "/home/{{ server_user }}/{{ ansible_hostname }}/{{ ansible_hostname }}.log"
+    search_regex: ???
   tasks:
-  - name: update OS
-    systemd:
-      name: '*'
-      state: latest
-  - name: reboot the server
-    shell: sleep 2 && shutdown -r now
-    async: 1
-    poll: 0
-  - name: wait for server reboot
-    wait_for:
-      host={{ ansible_hostname }}
-      port=22
-      delay=15
-      timeout=600
-    delegate_to: localhost
-  - name: search for log file
-    find:
-      paths: "/home/{{ server_user }}/{{ ansible_hostname }}"
-      patterns: "{{ ansible_hostname }}.log"
-    register: log_files
-  - name: wait for server to start
-    wait_for:
-      path: "{{ item.path }}"
-      state: present
-      search_regex: "CacheServer Configuration"
-    with_items: "{{ log_files.files }}"
+  - include_tasks: tasks/yum-update.yml
+  - include_tasks: tasks/reboot-server.yml
+  - include_tasks: tasks/wait-for-server-ssh.yml
+  - include_tasks: tasks/wait-for-log-entry.yml
   - name: sleep to ensure server is fully functional
     pause:
       seconds: 10

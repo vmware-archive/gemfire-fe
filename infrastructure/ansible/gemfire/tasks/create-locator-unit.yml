@@ -11,7 +11,7 @@
 
 - name: create systemd unit for locator
   template:
-    src: gemfire-locator.service.j2
+    src: templates/gemfire-locator.service.j2
     dest: /usr/lib/systemd/system/gemfire-locator.service
 
 - name: start locator
