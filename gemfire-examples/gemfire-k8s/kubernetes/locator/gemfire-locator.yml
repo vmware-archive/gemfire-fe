@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gemfire-locator
+  name: gemfire-locator
+spec:
+  ports:
+  - port: 10334
+    targetPort: 10334
+    name: locator-port
+    protocol: TCP
+  - port: 1099
+    targetPort: 1099
+    name: jmx-port
+    protocol: TCP
+  - port: 7070
+    targetPort: 7070
+    name: http-port
+    protocol: TCP
+  selector:
+    app: gemfire-locator
+---
+apiVersion: apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: gemfire-locator
+  labels:
+    app: gemfire-locator
+spec:
+  serviceName: gemfire-locator
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gemfire-locator
+  template:
+    metadata:
+      labels:
+        app: gemfire-locator
+    spec:
+      containers:
+      - name: gemfire-locator
+        image: 746153402808.dkr.ecr.us-west-2.amazonaws.com/gemfire-locator:9.3.0-3
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 10334
+          name: locator-port
+        - containerPort: 1099
+          name: jmx-port
+        - containerPort: 7070
+          name: http-port
+        env:
+        - name: LOCATOR_COUNT
+          value: "3"
+        command:
+        - sh
+        - -c
+        - /opt/gemfire/bin/generate_script.sh && /opt/gemfire/bin/run.sh
+        resources:
+          limits:
+            cpu: "500m"
+            memory: 1Gi
+          requests:
+           cpu: "500m"
+           memory: 1Gi
+        volumeMounts:
+        - name: datadir
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: datadir
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
