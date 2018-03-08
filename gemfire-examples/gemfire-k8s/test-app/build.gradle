@@ -1,0 +1,37 @@
+group = "io.pivotal.pde.kube"
+version = "0.0.1-SNAPSHOT"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE')
+        classpath('org.junit.platform:junit-platform-gradle-plugin:1.0.2')
+    }
+}
+
+apply plugin: 'java-library'
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "http://repo.spring.io/libs-release/"
+    }
+}
+
+dependencies {
+    compile "io.pivotal.gemfire:geode-core:9.3.0"
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compileOnly "org.projectlombok:lombok:1.16.18"
+}
+
+
