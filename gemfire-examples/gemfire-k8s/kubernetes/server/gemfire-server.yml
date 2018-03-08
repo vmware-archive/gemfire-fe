@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gemfire-server
+  name: gemfire-server
+spec:
+  clusterIP: None
+  ports:
+  - port: 40404
+    targetPort: 40404
+    name: server-port
+    protocol: TCP
+  selector:
+    app: gemfire-server
+---
+apiVersion: apps/v1beta2
+kind: StatefulSet
+metadata:
+  name: gemfire-server
+  labels:
+    app: gemfire-server
+spec:
+  serviceName: gemfire-server
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gemfire-server
+  template:
+    metadata:
+      labels:
+        app: gemfire-server
+    spec:
+      containers:
+      - name: gemfire-server
+        image: us.gcr.io/fe-tdalsing/gemfire-server:9.3.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 40404
+          name: server-port
+        env:
+        - name: LOCATOR_SPEC
+          value: "gemfire-locator-0.gemfire-locator.default.svc.cluster.local[10334],gemfire-locator-1.gemfire-locator.default.svc.cluster.local[10334],gemfire-locator-2.gemfire-locator.default.svc.cluster.local[10334]"
+        command:
+        - sh
+        - -c
+        - /opt/gemfire/bin/generate_script.sh && /opt/gemfire/bin/run.sh
+        resources:
+          limits:
+            cpu: "500m"
+            memory: 4Gi
+          requests:
+           cpu: "500m"
+           memory: 4Gi
+        volumeMounts:
+        - name: datadir
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: datadir
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
