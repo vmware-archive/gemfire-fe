@@ -30,6 +30,7 @@ echo "LOCATOR_SPEC = $LOCATOR_SPEC"
 
 cat << EOF > /opt/gemfire/bin/run.sh
 cd /data
+rm -Rf /data/*
 /opt/gemfire/bin/gfsh start locator --name=$HOST-locator --locators=$LOCATOR_SPEC
 tail -f /data/$HOST-locator/$HOST-locator.log
 EOF

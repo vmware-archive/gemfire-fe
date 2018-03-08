@@ -5,6 +5,7 @@ metadata:
     app: gemfire-locator
   name: gemfire-locator
 spec:
+  clusterIP: None
   ports:
   - port: 10334
     targetPort: 10334
@@ -40,7 +41,7 @@ spec:
     spec:
       containers:
       - name: gemfire-locator
-        image: 746153402808.dkr.ecr.us-west-2.amazonaws.com/gemfire-locator:9.3.0-3
+        image: us.gcr.io/fe-tdalsing/gemfire-locator:9.3.0-4
         imagePullPolicy: Always
         ports:
         - containerPort: 10334
